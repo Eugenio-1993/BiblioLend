@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/resenas.css">
+    <title>Reseñas - BiblioLend</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="../imagenes/bibliolend_logo_V0.1.png" alt="Logo BiblioLend" />
+        <h1>BiblioLend</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="panel_principal.html">Inicio</a></li>
+          <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="contactanos.html">Contáctanos</a></li>
+          <li><a href="reseñas.html">Reseñas</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr />
+
+    <main>
+      <section>
+        <h2>Cuéntanos, ¿qué opinas de nosotros?</h2>
+        <p>
+          Tu opinión es importantísima para que <strong>BiblioLend</strong> siga
+          mejorandp, ayudanos.
+        </p>
+
+        <form>
+          <fieldset>
+            <legend>Información Personal</legend>
+            <br />
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Tu nombre"
+              required
+            />
+            <br /><br />
+
+            <label for="apellido">Apellidos:</label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              placeholder="Tu apellido"
+              required
+            />
+            <br /><br />
+
+            <label for="grado">Grado:</label>
+            <select id="grado" name="grado">
+              <option value="6">6°</option>
+              <option value="7">7°</option>
+              <option value="8">8°</option>
+              <option value="9">9°</option>
+              <option value="10">10°</option>
+              <option value="11">11°</option>
+            </select>
+          </fieldset>
+
+          <br />
+
+          <fieldset>
+            <legend>Tu Comentario</legend>
+            <br />
+            <label for="resena">Reseña:</label><br />
+            <textarea
+              id="resena"
+              name="resena"
+              placeholder="Escribe aquí tu experiencia con la plataforma..."
+              required
+            ></textarea>
+            <br /><br />
+            <input type="submit" value="Enviar Reseña" />
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <br />
+    <hr />
+
+    <footer>
+      <p><a href="panel_principal.html">← Volver al inicio</a></p>
+      <p>&copy; 2026 BiblioLend - CodeForge.</p>
+    </footer>
+  </body>
+</html>
