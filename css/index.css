@@ -1,6 +1,18 @@
-html {
-    width: fit-content;
+.navbar-sobre {
+    background-color: #7b4b2a;
 }
-footer{
-    background-color: aquamarine;
+
+.navbar-sobre .navbar-brand img {
+    object-fit: contain;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.navbar-sobre .nav-link {
+    font-weight: bold;
+}
+
+.navbar-sobre .nav-link.active {
+    text-decoration: underline;
 }
