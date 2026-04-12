@@ -12,22 +12,36 @@
         <img src="../imagenes/bibliolend_logo_V0.1.png" alt="Logo BiblioLend" />
         <h1>BiblioLend</h1>
       </div>
-      <nav class="navbar_principal">
-          <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="panel_principal.html">Inicio</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="sobre_nosotros.html">Sobre Nosotros</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="contactanos.html">Contáctanos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="resenas.html">Reseñas</a>
-  </li>
-        </ul>
-      </nav>
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-sobre">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+          <img src="../imagenes/bibliolend_logo_V0.1.png" alt="Logo BiblioLend" width="50" height="50">
+          <span>BiblioLend</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuSobre"
+          aria-controls="menuSobre" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuSobre">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="sobre_nosotros.html">Sobre Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contactanos.html">Contáctanos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="resenas.html">Reseñas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     </header>
 
     <hr />
