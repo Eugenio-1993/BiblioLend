@@ -2,7 +2,11 @@
     background-color: #2a2f7b;
 }
 
-.navbar-sobre .navbar-brand img {
+.body-index {
+    background-color: #e8eaff;
+}
+
+.img-principal {
     object-fit: contain;
     background-color: #d1ae54;
     border-radius: 50%;
