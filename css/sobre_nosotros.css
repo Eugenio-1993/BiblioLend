@@ -1,3 +1,7 @@
+html {
+    width: fit-content;
+}
+
 .navbar-sobre {
     background-color: #7b4b2a;
 }
@@ -16,3 +20,4 @@
 .navbar-sobre .nav-link.active {
     text-decoration: underline;
 }
+
