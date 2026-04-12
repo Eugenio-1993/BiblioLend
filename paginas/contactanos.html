@@ -1,10 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/contactanos.css">
     <title>Contáctanos - BiblioLend</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/contactanos.css" />
   </head>
   <body>
     <header>
@@ -12,42 +17,20 @@
         <img src="../imagenes/bibliolend_logo_V0.1.png" alt="Logo BiblioLend" />
         <h1>BiblioLend</h1>
       </div>
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-sobre">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
-          <img src="../imagenes/bibliolend_logo_V0.1.png" alt="Logo BiblioLend" width="50" height="50">
-          <span>BiblioLend</span>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuSobre"
-          aria-controls="menuSobre" aria-expanded="false" aria-label="Abrir menú">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menuSobre">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="../index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="sobre_nosotros.html">Sobre Nosotros</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contactanos.html">Contáctanos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resenas.html">Reseñas</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      <nav>
+        <ul>
+          <li><a href="panel_principal.html">Inicio</a></li>
+          <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="contactanos.html">Contáctanos</a></li>
+          <li><a href="resenas.html">Reseñas</a></li>
+        </ul>
+      </nav>
     </header>
 
     <hr />
 
-    <main>
-      <section>
+    <main class="container py-4">
+      <section class="mb-4">
         <h2>Ponte en contacto con nosotros</h2>
         <p>
           Puedes contactarnos por medio de nuestros diferentes canales de
@@ -57,46 +40,47 @@
 
       <section>
         <h3>Equipo de Desarrolladores:</h3>
-        <ul>
-          <li>
+        <ul class="list-unstyled">
+          <li class="mb-3">
             <strong>Eugenio Morales C.</strong><br />
             Correo:
-            <a href="mailto:moralescarrizoe@gmail.com"
-              >moralescarrizoe@gmail.com</a
-            >
+            <a href="mailto:moralescarrizoe@gmail.com">
+              moralescarrizoe@gmail.com
+            </a>
           </li>
-          <br />
-          <li>
+
+          <li class="mb-3">
             <strong>Juan Camilo Puerta S.</strong><br />
             Correo:
-            <a href="mailto:juancamilo321312@gmail.com"
-              >juancamilo321312@gmail.com</a
-            >
+            <a href="mailto:juancamilo321312@gmail.com">
+              juancamilo321312@gmail.com
+            </a>
           </li>
-          <br />
-          <li>
+
+          <li class="mb-3">
             <strong>Hans Rentería A.</strong><br />
             Correo:
             <a href="mailto:hansalbornozz@gmail.com">hansalbornozz@gmail.com</a>
           </li>
-          <br />
-          <li>
+
+          <li class="mb-3">
             <strong>Santiago Palomino M.</strong><br />
             Correo:
-            <a href="mailto:santiagopalomino345@gmail.com"
-              >santiagopalomino345@gmail.com</a
-            >
+            <a href="mailto:santiagopalomino345@gmail.com">
+              santiagopalomino345@gmail.com
+            </a>
           </li>
         </ul>
       </section>
     </main>
 
-    <br />
     <hr />
 
-    <footer>
+    <footer class="container py-3">
       <p><a href="panel_principal.html">← Volver al inicio</a></p>
       <p>&copy; 2026 BiblioLend - Todos los derechos reservados.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
