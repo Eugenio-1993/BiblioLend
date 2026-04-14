@@ -19,7 +19,12 @@ body {
 
 .navbar-sobre .nav-link {
     font-weight: bold;
+    
 }
 
+footer {
+    background-color: #2a2f7b;
+    color: white
+} 
 
 
