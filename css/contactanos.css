@@ -2,7 +2,11 @@
     background-color: #2a2f7b;
 }
 
-.body {
+.titulo-logo {
+    font-size: 23px;
+}
+
+body {
     background-color: #e8eaff;
 }
 

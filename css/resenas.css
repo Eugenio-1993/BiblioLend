@@ -1,5 +1,9 @@
-.body {
+body {
     background-color: #e8eaff;
+}
+
+.titulo-logo {
+    font-size: 23px;
 }
 
 .navbar-sobre {

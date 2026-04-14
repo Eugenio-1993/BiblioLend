@@ -2,6 +2,10 @@ html {
     width: fit-content;
 }
 
+.titulo-logo {
+    font-size: 23px;
+}
+
 body {
     background-color: #e8eaff;
 }
