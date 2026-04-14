@@ -2,7 +2,11 @@
     background-color: #2a2f7b;
 }
 
-.body-contactanos {
+.titulo-logo {
+    font-size: 23px;
+}
+
+body {
     background-color: #e8eaff;
 }
 
@@ -17,4 +21,7 @@
     font-weight: bold;
 }
 
-
+footer {
+    background-color: #2a2f7b;
+    color: white
+} 
