@@ -17,6 +17,16 @@
     font-weight: bold;
 }
 
+.btn-success {
+    background-color: #2a2f7b;
+    cursor: pointer;
+    border-color: #d1ae54;
+
+}
+    .btn-success:hover {
+    background-color: #2a06ce;
+    }
+
 footer {
     background-color: #2a2f7b;
     color: white
