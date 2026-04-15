@@ -26,6 +26,14 @@ body {
     
 }
 
+.btn-outline-secondary {
+color: white;
+background-color: #2a2f7b;
+}
+.btn-outline-secondary:hover {
+background-color: #130092;
+}
+
 footer {
     background-color: #2a2f7b;
     color: white
