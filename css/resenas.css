@@ -41,6 +41,22 @@ color: white
     font-weight: bold;
 }
 
+.intro-resenas {
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+}
+.mb-4, label {
+    padding: 4px;
+    font-size: 20px;
+}
+legend {
+    background-color:#d1ae54 
+}
+.p-3 {
+    background-color: #a6adff;
+}
+
 footer {
     background-color: #2a2f7b;
     color: white
