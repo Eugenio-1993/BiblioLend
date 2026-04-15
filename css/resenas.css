@@ -17,6 +17,14 @@ body {
     padding: 4px;
 }
 
+.btn-outline-secondary {
+color: white;
+background-color: #2a2f7b;
+}
+.btn-outline-secondary:hover {
+background-color: #130092;
+}
+
 .navbar-sobre .nav-link {
     font-weight: bold;
 }
