@@ -27,11 +27,13 @@ body {
 }
 
 .btn-outline-secondary {
-color: white;
-background-color: #2a2f7b;
+border-color: #d1ae54;
+color: #2a2f7b
 }
 .btn-outline-secondary:hover {
-background-color: #130092;
+border-color: #d1ae54;
+background-color: #2a06ce;
+color: white
 }
 
 footer {
