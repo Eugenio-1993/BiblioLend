@@ -22,6 +22,12 @@ body {
     font-weight: bold;
 }
 
+.mb-4 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+}
+
 .btn-outline-secondary {
 border-color: #d1ae54;
 color: #2a2f7b
