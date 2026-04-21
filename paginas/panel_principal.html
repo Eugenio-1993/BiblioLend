@@ -43,14 +43,10 @@
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="panel_principal.html"
-                  >Inicio</a
-                >
+                <a class="nav-link active" href="panel_principal.html">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="sobre_nosotros.html"
-                  >Sobre Nosotros</a
-                >
+                <a class="nav-link" href="sobre_nosotros.html">Sobre Nosotros</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contactanos.html">Contáctanos</a>
@@ -75,6 +71,95 @@
           cualquier momento.
         </p>
         <a href="#" class="btn btn-success">Explorar Catálogo Completo</a>
+      </section>
+
+      <section class="my-4">
+        <div
+          id="carouselBiblioteca"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Imagen 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="1"
+              aria-label="Imagen 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="2"
+              aria-label="Imagen 3"
+            ></button>
+          </div>
+
+          <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+              <img
+                src="../imagenes/biblioteca 1.png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 1"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Explora la biblioteca</h5>
+                <p>Encuentra libros escolares de forma rapida y sencilla.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img
+                src="../imagenes/biblioteca 2.png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 2"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Aprende cada dia</h5>
+                <p>Accede al catalogo desde cualquier lugar.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img
+                src="../imagenes/biblioteca 3.png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 3"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>BiblioLend</h5>
+                <p>Tu biblioteca digital escolar.</p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselBiblioteca"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselBiblioteca"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
       </section>
 
       <section class="mb-4">
@@ -139,37 +224,34 @@
             </tbody>
           </table>
         </div>
-        </section>
-        
-        <section>
+      </section>
+
+      <section>
         <h2>Horarios de Atención</h2>
         <div class="table-responsive">
-        <table border="1" class="table table-bordered w-auto">
-          <tr>
-            <td>Lunes - Viernes</td>
-            <td>6:00am - 10:00am</td>
-          </tr>
-          <tr>
-            <td>Sábado y Domingo</td>
-            <td>Cerrado</td>
-          </tr>
-        </table>
-      </div>
+          <table border="1" class="table table-bordered w-auto">
+            <tr>
+              <td>Lunes - Viernes</td>
+              <td>6:00am - 10:00am</td>
+            </tr>
+            <tr>
+              <td>Sábado y Domingo</td>
+              <td>Cerrado</td>
+            </tr>
+          </table>
+        </div>
       </section>
     </main>
 
     <hr />
     <footer class="text-center py-3">
-      <hr>
-        <p>
+      <p>
         <strong>BiblioLend</strong> - La mejor herramienta para acceder al
         catálogo escolar.
-        </p>
+      </p>
       <p>&copy; 2026 BiblioLend, By CodeForge - Todos los derechos reservados</p>
       <p>Institución Educativa República de Honduras</p>
     </footer>
-  </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
