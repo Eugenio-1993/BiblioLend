@@ -20,16 +20,18 @@ body {
 
 .navbar-sobre .nav-link {
     font-weight: bold;
-    color: white;
+    color: #c9c9c9
 }
 
-.navbar-sobre .nav-link:hover,
+.navbar-sobre .nav-link:hover {
+    color: white;
+}
 .navbar-sobre .nav-link.active {
     color: #d1ae54;
 }
 
 .navbar-sobre .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.7);
+    border-color: #ffffffb3;
 }
 
 .navbar-sobre .navbar-toggler-icon {
