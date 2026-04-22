@@ -18,15 +18,18 @@ body {
     font-weight: bold;
 }
 
-.btn-success {
-    background-color: #2a2f7b;
-    cursor: pointer;
-    border-color: #d1ae54;
-    
+.btn-outline-secondary {
+    border-color: #3737a6;
+    color: #3737a6;
+    background-color: transparent;
 }
-    .btn-success:hover {
-    background-color: #2a06ce;
+
+.btn-outline-secondary:hover {
+    border-color: #3737a6;
+    background-color: #3737a6;
+    color: white;
 }
+
 
 footer {
     background: #3737a6;
