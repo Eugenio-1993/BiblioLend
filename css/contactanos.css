@@ -45,9 +45,9 @@ body {
 }
 
 .btn-outline-secondary {
-    border-color: #3737a6;
+    border-color: transparent;
     color: #3737a6;
-    background-color: transparent;
+    background-color: white;
 }
 
 .btn-outline-secondary:hover {
