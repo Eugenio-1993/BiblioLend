@@ -29,14 +29,17 @@ body {
 }
 
 .btn-outline-secondary {
-border-color: #d1ae54;
-color: #2a2f7b
+    border-color: #3737a6;
+    color: #3737a6;
+    background-color: transparent;
 }
+
 .btn-outline-secondary:hover {
-border-color: #d1ae54;
-background-color: #2a06ce;
-color: white
+    border-color: #3737a6;
+    background-color: #3737a6;
+    color: white;
 }
+
 
 .navbar-sobre .nav-link {
     font-weight: bold;
