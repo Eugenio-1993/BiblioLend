@@ -13,21 +13,22 @@ body {
 
 .navbar-sobre .navbar-brand img {
     object-fit: contain;
-    background-color: #d1ae54;
+    background-color: white;
     border-radius: 50%;
     padding: 4px;
 }
 
 .navbar-sobre .nav-link {
     font-weight: bold;
-    color: #c9c9c9
+    color: #c9c9c9;
 }
 
 .navbar-sobre .nav-link:hover {
     color: white;
 }
+
 .navbar-sobre .nav-link.active {
-    color: #d1ae54;
+    color: #dfe3ff;
 }
 
 .navbar-sobre .navbar-toggler {
@@ -38,10 +39,54 @@ body {
     filter: brightness(0) invert(1);
 }
 
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+section {
+    background-color: white;
+    padding: 24px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+}
+
+section h2 {
+    color: #2a2f7b;
+    margin-bottom: 14px;
+}
+
+section p {
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+table thead {
+    background-color: #3737a6;
+    color: white;
+}
+
+table th,
+table td {
+    padding: 12px;
+    border: 1px solid #d9defc;
+    text-align: left;
+}
+
 .btn-outline-secondary {
     border-color: #3737a6;
     color: #3737a6;
-    background-color: transparent;
+    background-color: white;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-outline-secondary:hover {
@@ -69,6 +114,23 @@ footer {
     .navbar-sobre .nav-link {
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+
+    main {
+        padding: 20px 14px;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .btn-outline-secondary {
+        margin-left: 14px;
     }
 }
 
