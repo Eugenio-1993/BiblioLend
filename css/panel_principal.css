@@ -48,10 +48,18 @@ footer {
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
+    text-align: center;
 }
-.table-responsive
+.table-responsive{
     h2 {
         margin-bottom: 20px;
     }
+
+}
+
+table thead {
+    background-color: #3737a6;
+    color: white;
+}
 
 
