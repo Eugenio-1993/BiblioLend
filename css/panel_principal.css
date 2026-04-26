@@ -83,9 +83,18 @@ main {
     border-color: #3737a6;
 }
 
-.btn-primary:hover {
-    background-color: #2a2f7b;
-    border-color: #2a2f7b;
+.table-responsive {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.table-responsive{
+    h2 {
+        margin-bottom: 20px;
+    }
 }
 
 table thead {
