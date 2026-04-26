@@ -43,18 +43,19 @@ footer {
     background: linear-gradient(90deg,rgba(55, 55, 166, 1) 21%, rgba(7, 15, 46, 1) 100%);
     color: white
 }
+
 .table-responsive {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 }
+
 .table-responsive{
     h2 {
         margin-bottom: 20px;
     }
-
 }
 
 table thead {
