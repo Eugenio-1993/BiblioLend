@@ -48,7 +48,7 @@ main {
 section {
     background-color: white;
     padding: 24px;
-    border-radius: 8px;
+    border-radius: 20px;
     margin-bottom: 24px;
     box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
 }
