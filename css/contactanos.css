@@ -59,7 +59,7 @@ main {
 .contacto-card {
     background-color: white;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 8px;
     border: 1px solid #d9defc;
     border-left: 6px solid #3737a6;
     box-shadow: 0 6px 18px rgba(42, 47, 123, 0.06);
@@ -93,7 +93,7 @@ main {
 }
 
 .btn-outline-secondary {
-    border-color: #3737a6;
+    border-color: transparent;
     color: #3737a6;
     background-color: white;
 }

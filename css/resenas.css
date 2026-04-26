@@ -95,7 +95,8 @@ legend {
 }
 
 .btn-outline-secondary {
-    border-color: #3737a6;
+    margin-top: 20px;
+    border-color: transparent;
     color: #3737a6;
     background-color: white;
 }
