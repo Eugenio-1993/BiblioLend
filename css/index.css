@@ -24,6 +24,12 @@ body {
     background-color: transparent;
 }
 
+.btn-success {
+    background-color: #3737a6;
+    border-color: #3737a6;
+    color: white;
+}
+
 .btn-outline-secondary:hover {
     border-color: #3737a6;
     background-color: #3737a6;
