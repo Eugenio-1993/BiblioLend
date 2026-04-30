@@ -60,7 +60,7 @@
       </nav>
     </header>
 
-    <main class="panel-usuario">
+    <main class="panelUsuario">
       <div class="topbar">
         <strong>Panel de Usuario</strong>
         <div class="topbar-dots">
@@ -73,35 +73,68 @@
       <div class="panel-layout">
         <aside class="sidebar">
           <div class="avatar"></div>
-          <h2 class="user-name">Usuario</h2>
-          <p class="user-role">Estudiante</p>
+          <h2 class="user-name">Juan Pérez</h2>
+          <p class="user-role">Estudiante - 10°</p>
+
+          <div class="user-data">
+            <p><strong>Correo:</strong> juan@colegio.edu.co</p>
+            <p><strong>ID:</strong> BL-1024</p>
+            <p><strong>Estado:</strong> Activo</p>
+          </div>
 
           <a href="#" class="btn-panel activo">Perfil</a>
-          <a href="#" class="btn-panel">Configuración</a>
           <a href="#" class="btn-panel">Mis préstamos</a>
+          <a href="#" class="btn-panel">Configuración</a>
         </aside>
 
         <section class="content">
           <div class="header-box">
-            <h3>Resumen de tu cuenta</h3>
-            <p>Consulta tu información, estado de préstamos y actividad reciente.</p>
+            <h3>Bienvenido a tu cuenta</h3>
+            <p>Desde aquí puedes consultar tu actividad, revisar tus préstamos y mantener tu información al día.</p>
           </div>
 
-          <div class="card-panel">
-            <div class="thumb"></div>
-            <div class="lines">
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h4>Préstamos activos</h4>
+              <span>2</span>
+            </div>
+            <div class="stat-card">
+              <h4>Libros leídos</h4>
+              <span>8</span>
+            </div>
+            <div class="stat-card">
+              <h4>Pendientes</h4>
+              <span>0</span>
             </div>
           </div>
 
           <div class="card-panel">
-            <div class="thumb"></div>
-            <div class="lines">
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+            <h4>Actividad reciente</h4>
+            <ul class="activity-list">
+              <li>Prestaste <strong>100 Años de soledad</strong>.</li>
+              <li>Consultaste el catálogo de libros de Historia.</li>
+              <li>Actualizaste tu información de perfil.</li>
+            </ul>
+          </div>
+
+          <div class="card-panel">
+            <h4>Recomendaciones para ti</h4>
+            <div class="recommend-grid">
+              <div class="recommend-item">
+                <div class="thumb"></div>
+                <div>
+                  <p class="book-title">Principios de la Física</p>
+                  <p class="book-meta">Ciencia</p>
+                </div>
+              </div>
+
+              <div class="recommend-item">
+                <div class="thumb"></div>
+                <div>
+                  <p class="book-title">Meditaciones</p>
+                  <p class="book-meta">Historia</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
