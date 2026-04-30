@@ -1,0 +1,161 @@
+.titulo-logo {
+    font-size: 23px;
+}
+
+body {
+    margin: 0;
+    background-color: #e8eaff;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-sobre {
+    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+}
+
+.navbar-sobre .navbar-brand img {
+    object-fit: contain;
+    background-color: #d1ae54;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.navbar-sobre .nav-link {
+    font-weight: bold;
+    color: #c9c9c9;
+}
+
+.navbar-sobre .nav-link:hover {
+    color: white;
+}
+
+.navbar-sobre .nav-link.active {
+    color: #dfe3ff;
+}
+
+.catalogo-page {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.catalogo-bloque {
+    background-color: white;
+    padding: 24px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+}
+
+.catalogo-bloque h2 {
+    color: #2a2f7b;
+    margin-bottom: 10px;
+}
+
+.filtros {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.libros-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.libro-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+    text-align: left;
+}
+
+.libro-img {
+    height: 170px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #d8dde6, #bfc8d8);
+    margin-bottom: 16px;
+}
+
+.libro-card h3 {
+    font-size: 1.1rem;
+    color: #2a2f7b;
+    margin-bottom: 8px;
+}
+
+.autor,
+.categoria {
+    margin-bottom: 6px;
+    color: #5f6475;
+}
+
+.estado {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.disponible {
+    background-color: #dff7e7;
+    color: #1f7a3f;
+}
+
+.prestado {
+    background-color: #ffe4e4;
+    color: #b42318;
+}
+
+.btn-primary {
+    background-color: #3737a6;
+    border-color: #3737a6;
+}
+
+.btn-primary:hover {
+    background-color: #2a2f7b;
+    border-color: #2a2f7b;
+}
+
+footer {
+    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+    color: white;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 992px) {
+    .libros-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .titulo-logo {
+        font-size: 18px;
+    }
+
+    .navbar-sobre .navbar-brand img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .catalogo-page {
+        padding: 20px 14px;
+    }
+
+    .filtros,
+    .libros-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogo-bloque,
+    .libro-card {
+        padding: 18px;
+    }
+}
+
