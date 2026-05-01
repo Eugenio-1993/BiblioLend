@@ -12,11 +12,17 @@ body {
     background: linear-gradient(90deg, rgba(55, 55, 166, 1) 21%, rgba(7, 15, 46, 1) 100%);
 }
 
-.navbar-sobre .navbar-brand img {
+.logoBibliolend {
     object-fit: contain;
-    background-color: #d1ae54;
+    background-color: #ffab00;
     border-radius: 50%;
     padding: 4px;
+}
+
+.tituloLogo {
+    font-size: larger;
+    color: white;
+    font-weight: 600;
 }
 
 .navbar-sobre .nav-link {
@@ -70,7 +76,7 @@ main {
 .btn-success {
     background-color: #2a06ce;
     cursor: pointer;
-    border-color: #d1ae54;
+    border-color: #ffab00;
 }
 
 .btn-success:hover {
