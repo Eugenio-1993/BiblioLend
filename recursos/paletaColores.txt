@@ -1,0 +1,9 @@
+---
+Colores en Hexadecimal:
+
+Azul oscuro: #002562
+Celeste-claro: #1971ff
+Celeste-oscuro: #0062ff
+Dorado-oscuro: #b37800
+Dorado-claro: #ffab00
+---
