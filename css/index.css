@@ -54,7 +54,7 @@ footer {
     height: 110px;
 }
 
-.footerIndex {
+.text-center py-3 {
     display: flex;
     align-items: center;
     justify-content: center;
