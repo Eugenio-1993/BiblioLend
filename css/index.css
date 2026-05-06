@@ -51,11 +51,5 @@ footer {
     background: #3737a6;
     background: linear-gradient(90deg,rgba(55, 55, 166, 1) 21%, rgba(7, 15, 46, 1) 100%);
     color: white;
-    height: 110px;
-}
-
-.text-center py-3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 170px;
 }
