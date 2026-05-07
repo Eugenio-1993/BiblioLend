@@ -141,6 +141,15 @@ body {
     color: white;
 }
 
+.btn-cerrar {
+    background-color: #c62828;
+}
+
+.btn-cerrar:hover {
+    background-color: #8e1b1b;
+    color: white;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -153,11 +162,6 @@ body {
     background: white;
     border-radius: 20px;
     box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
-}
-
-.header-box,
-.card-panel,
-.stat-card {
     padding: 20px;
 }
 
@@ -268,4 +272,3 @@ footer p:last-child {
         height: 100px;
     }
 }
-
