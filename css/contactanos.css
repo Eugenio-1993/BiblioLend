@@ -112,6 +112,9 @@ main {
     border-color: transparent;
     color: #3737a6;
     background-color: white;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-weight: 400;
 }
 
 .btn-outline-secondary:hover {
