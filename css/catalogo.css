@@ -1,11 +1,20 @@
+.logoBibliolend {
+    object-fit: contain;
+    background-color: #ffab00;
+    border-radius: 50%;
+    padding: 4px;
+}
+
 .titulo-logo {
-    font-size: 23px;
+    font-size: larger;
+    color: white;
+    font-weight: 600;
 }
 
 body {
     margin: 0;
     background-color: #e8eaff;
-    font-family: Arial, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 .navbar-sobre {
@@ -14,7 +23,7 @@ body {
 
 .navbar-sobre .navbar-brand img {
     object-fit: contain;
-    background-color: #d1ae54;
+    background-color: #ffab00;
     border-radius: 50%;
     padding: 4px;
 }
@@ -46,9 +55,9 @@ body {
     box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
 }
 
-.catalogo-bloque h2 {
+.catalogo-bloque h2,
+.subtitulo-catalogo {
     color: #2a2f7b;
-    margin-bottom: 10px;
 }
 
 .filtros {
@@ -60,24 +69,30 @@ body {
 
 .libros-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
 .libro-card {
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
-    text-align: left;
+    background-color: #f9faff;
+    border-radius: 18px;
+    padding: 18px;
+    border: 1px solid #d9defc;
+    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.06);
 }
 
 .libro-img {
-    height: 170px;
+    height: 180px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #d8dde6, #bfc8d8);
     margin-bottom: 16px;
 }
+
+.portada-1 { background: linear-gradient(135deg, #8b4513, #d4a373); }
+.portada-2 { background: linear-gradient(135deg, #1f3c88, #5dade2); }
+.portada-3 { background: linear-gradient(135deg, #4b5320, #8f9779); }
+.portada-4 { background: linear-gradient(135deg, #7b1e7a, #c77dff); }
+.portada-5 { background: linear-gradient(135deg, #006d77, #83c5be); }
+.portada-6 { background: linear-gradient(135deg, #2b2d42, #8d99ae); }
 
 .libro-card h3 {
     font-size: 1.1rem;
@@ -107,6 +122,11 @@ body {
 .prestado {
     background-color: #ffe4e4;
     color: #b42318;
+}
+
+.reservado {
+    background-color: #fff3d6;
+    color: #b26a00;
 }
 
 .btn-primary {
