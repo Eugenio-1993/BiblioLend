@@ -1,5 +1,14 @@
+.logoBibliolend {
+    object-fit: contain;
+    background-color: #ffab00;
+    border-radius: 50%;
+    padding: 4px;
+}
+
 .titulo-logo {
-    font-size: 23px;
+    font-size: larger;
+    color: white;
+    font-weight: 600;
 }
 
 body {
@@ -14,7 +23,7 @@ body {
 
 .navbar-sobre .navbar-brand img {
     object-fit: contain;
-    background-color: white;
+    background-color: #ffab00;
     border-radius: 50%;
     padding: 4px;
 }
