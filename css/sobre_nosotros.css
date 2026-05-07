@@ -13,7 +13,7 @@ body {
 
 .navbar-sobre .navbar-brand img {
     object-fit: contain;
-    background-color: white;
+    background-color: #ffab00;
     border-radius: 50%;
     padding: 4px;
 }
