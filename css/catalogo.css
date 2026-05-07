@@ -94,9 +94,18 @@ body {
     margin-bottom: 16px;
 }
 
-.portada-1 { background: linear-gradient(135deg, #8b4513, #d4a373); }
-.portada-2 { background: linear-gradient(135deg, #1f3c88, #5dade2); }
-.portada-3 { background: linear-gradient(135deg, #4b5320, #8f9779); }
+.portada-1 { 
+    width: 300px;
+    height: 290px;
+ }
+.portada-2 { 
+    width: 300px;
+    height: 290px; 
+}
+
+.portada-3 { 
+    width: 300px;
+    height: 290px;}
 .portada-4 { background: linear-gradient(135deg, #7b1e7a, #c77dff); }
 .portada-5 { background: linear-gradient(135deg, #006d77, #83c5be); }
 .portada-6 { background: linear-gradient(135deg, #2b2d42, #8d99ae); }
@@ -184,5 +193,8 @@ footer p:last-child {
     .libro-card {
         padding: 18px;
     }
+
 }
+
+
 
