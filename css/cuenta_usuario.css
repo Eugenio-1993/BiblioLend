@@ -20,9 +20,7 @@ body {
         margin-left: 8px;
     }
 
-    .green { background: #2ecc71; }
-    .yellow { background: #f1c40f; }
-    .red { background: #e74c3c; }
+    
 
     .container {
         display: flex;
