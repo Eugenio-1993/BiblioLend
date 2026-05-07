@@ -41,6 +41,13 @@ body {
     color: #dfe3ff;
 }
 
+.navItem--perfil {
+    margin-left: 30px;
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+}
+
 .catalogo-page {
     max-width: 1150px;
     margin: 0 auto;
