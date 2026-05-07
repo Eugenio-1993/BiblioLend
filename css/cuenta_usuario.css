@@ -1,90 +1,242 @@
+.logoBibliolend {
+    object-fit: contain;
+    background-color: #ffab00;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.titulo-logo {
+    font-size: larger;
+    color: white;
+    font-weight: 600;
+}
+
 body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #eef1f5;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #e8eaff;
+}
+
+.navbar-sobre {
+    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+}
+
+.navbar-sobre .navbar-brand img {
+    object-fit: contain;
+    background-color: #ffab00;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.navbar-sobre .nav-link {
+    font-weight: bold;
+    color: #c9c9c9;
+}
+
+.navbar-sobre .nav-link:hover {
+    color: white;
+}
+
+.navbar-sobre .nav-link.active {
+    color: #dfe3ff;
+}
+
+.panel-usuario {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.topbar,
+.sidebar,
+.header-box,
+.card-panel,
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+}
+
+.topbar {
+    background: #4a67c2;
+    color: white;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    margin-bottom: 24px;
+}
+
+.topbar-dots {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.green { background: #2ecc71; }
+.yellow { background: #f1c40f; }
+.red { background: #e74c3c; }
+
+.panel-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+}
+
+.sidebar,
+.header-box,
+.card-panel,
+.stat-card {
+    padding: 20px;
+}
+
+.sidebar {
+    text-align: center;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #d8dde6, #bfc8d8);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+}
+
+.user-name,
+.header-box h3,
+.card-panel h4,
+.stat-card h4 {
+    color: #2a2f7b;
+}
+
+.user-role,
+.book-meta {
+    color: #6b7280;
+}
+
+.user-data {
+    text-align: left;
+    background-color: #f5f7ff;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-panel {
+    display: block;
+    margin: 12px auto;
+    max-width: 190px;
+    padding: 10px 14px;
+    background: #4a67c2;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-panel:hover,
+.btn-panel.activo {
+    background: #2a2f7b;
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    text-align: center;
+}
+
+.stat-card span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4a67c2;
+}
+
+.activity-list {
+    padding-left: 18px;
+}
+
+.recommend-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #f5f7ff;
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.thumb {
+    width: 60px;
+    height: 60px;
+    background: #d8dde6;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.book-title {
+    margin: 0 0 4px;
+    font-weight: bold;
+    color: #2a2f7b;
+}
+
+footer {
+    background: #3737a6;
+    background: linear-gradient(90deg,rgba(55, 55, 166, 1) 21%, rgba(7, 15, 46, 1) 100%);
+    color: white;
+    height: 170px;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .panel-layout,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .titulo-logo {
+        font-size: 18px;
     }
 
-    .topbar {
-        background: #4a67c2;
+    .navbar-sobre .navbar-brand img {
+        width: 50px;
         height: 50px;
-        display: flex;
-        align-items: center;
-        padding: 0 15px;
-        color: white;
     }
 
-    .topbar .circle {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin-left: 8px;
+    .panel-usuario {
+        padding: 20px 14px;
     }
 
-    
-
-    .container {
-        display: flex;
-        padding: 20px;
-    }
-
-    .sidebar {
-        width: 250px;
-        text-align: center;
+    .topbar,
+    .sidebar,
+    .header-box,
+    .card-panel,
+    .stat-card {
+        padding: 18px;
     }
 
     .avatar {
-        width: 140px;
-        height: 140px;
-        background: #d8dde6;
-        border-radius: 50%;
-        margin: 20px auto;
+        width: 100px;
+        height: 100px;
     }
-
-    .btn {
-        display: block;
-        margin: 15px auto;
-        width: 150px;
-        padding: 10px;
-        background: #4a67c2;
-        color: white;
-        border-radius: 20px;
-        text-decoration: none;
-    }
-
-    .content {
-        flex: 1;
-        margin-left: 20px;
-    }
-
-    .header-box {
-        background: #4a67c2;
-        height: 40px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .card {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        display: flex;
-        gap: 15px;
-    }
-
-    .thumb {
-        width: 50px;
-        height: 50px;
-        background: #d8dde6;
-    }
-
-    .lines div {
-        height: 8px;
-        background: #ccc;
-        margin-bottom: 6px;
-        border-radius: 4px;
-    }
-
-    .line1 { width: 80%; }
-    .line2 { width: 60%; }
-    .line3 { width: 90%; }
+}

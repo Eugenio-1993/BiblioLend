@@ -1,0 +1,14 @@
+---
+Fuente Roboto
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+---
+Colores en Hexadecimal:
+
+Azul oscuro: #002562
+Celeste-claro: #1971ff
+Celeste-oscuro: #0062ff
+Dorado-oscuro: #b37800
+Dorado-claro: #ffab00
+---
+Josselyn
