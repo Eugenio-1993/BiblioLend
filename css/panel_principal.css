@@ -29,7 +29,7 @@ body {
 /* El navbar animado */
 .navbar-sobre .nav-link:hover { 
     color: #ffc95e;
-border-top: 1px solid #ffc95e; border-bottom-width: 4px; 
+    border-top: 1px solid #ffc95e; border-bottom-width: 4px; 
 }
 
 .navbar-sobre .nav-link.active {
@@ -83,14 +83,22 @@ main {
 }
 
 .btn-success {
-    background-color: #2a06ce;
-    cursor: pointer;
-    border-color: #ffab00;
+    background-color: #002562;
+    border-color: #002562;
+    color: white;
+    position: relative;
+    bottom: 0px;
 }
 
 .btn-success:hover {
-    background-color: #2a06ce;
-    border-color: #2a06ce;
+    background-color: #ffab00;
+    border-color: #ffab00;
+    color: black;
+    bottom: 3px;
+    transition: bottom;
+    transition-duration: 0.3s;
+    border: 1px solid #0006;
+    box-shadow: 0px 5px 5px 0px #000d;
 }
 
 .btn-primary {
