@@ -33,12 +33,16 @@ body {
     color: #c9c9c9;
 }
 
-.navbar-sobre .nav-link:hover {
-    color: white;
+/* El navbar animado */
+.navbar-sobre .nav-link:hover { 
+    color: #ffc95e;
+border-top: 1px solid #ffc95e; border-bottom-width: 4px; 
 }
 
 .navbar-sobre .nav-link.active {
-    color: #dfe3ff;
+    color: #ffab00;
+    border-bottom: 2px solid #ffab00;
+    border-top: transparent;
 }
 
 .panel-usuario {
