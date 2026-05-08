@@ -62,6 +62,7 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     background-color: white;
     padding: 24px;
     border-radius: 20px;
+    border: 1px solid #ffab00;
     margin-bottom: 24px;
     box-shadow: 0 6px 18px #2a2f7b14;
 }
