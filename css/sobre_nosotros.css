@@ -65,6 +65,9 @@ main {
     padding: 30px 20px;
 }
 
+.bloque {
+    border: 1px solid #ffab00;
+}
 section {
     background-color: white;
     padding: 24px;
