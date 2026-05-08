@@ -56,7 +56,7 @@ body {
     color: white;
     border-radius: 18px;
     margin-bottom: 24px;
-    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+    box-shadow: 0 6px 18px #2a2f7b14;
 }
 
 .topbar-dots {
@@ -86,7 +86,7 @@ body {
     border-radius: 20px;
     padding: 24px;
     text-align: center;
-    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+    box-shadow: 0 6px 18px #2a2f7b14;
 }
 
 .avatar {
@@ -161,7 +161,7 @@ body {
 .stat-card {
     background: white;
     border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+    box-shadow: 0 6px 18px #2a2f7b14;
     padding: 20px;
 }
 
@@ -232,6 +232,8 @@ body {
 footer {
     background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
     color: white;
+    height: 130px;
+
 }
 
 footer p:last-child {
