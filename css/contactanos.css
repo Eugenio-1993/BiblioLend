@@ -64,7 +64,7 @@ main {
     border-radius: 20px;
     border: 1px solid #ffab00;
     margin-bottom: 24px;
-    box-shadow: 0 6px 18px #2a2f7b14;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .bloque h2 {
@@ -83,13 +83,20 @@ main {
     border-radius: 8px;
     border: 1px solid #d9defc;
     border-left: 6px solid #3737a6;
-    box-shadow: 0 6px 18px #2a2f7b0f;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 10px 10px 1px 0px #000;
+    position: relative;
+    top: 0px;
 }
 
 .contacto-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px #2a2f7b1f;
+    transform: top;
+    top: -10px;
+    outline-style: solid;
+    outline-color: #ffab00;
+    outline-width: 1px;
+    transition: top;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
 }
 
 .contacto-card .card-title {

@@ -64,7 +64,7 @@ main {
     border-radius: 20px;
     border: 1px solid #ffab00;
     margin-bottom: 24px;
-    box-shadow: 0 6px 18px #2a2f7b14;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .intro-resenas h2 {
@@ -106,13 +106,22 @@ legend {
 }
 
 .btn-success {
-    background-color: #3737a6;
-    border-color: #3737a6;
+    background-color: #002562;
+    border-color: #002562;
+    color: white;
+    position: relative;
+    bottom: 0px;
 }
 
 .btn-success:hover {
-    background-color: #2a2f7b;
-    border-color: #2a2f7b;
+    background-color: #ffab00;
+    border-color: #ffab00;
+    color: black;
+    bottom: 3px;
+    transition: bottom;
+    transition-duration: 0.3s;
+    border: 1px solid #0006;
+    box-shadow: 0px 5px 5px 0px #000d;
 }
 
 .btn-outline-secondary {
