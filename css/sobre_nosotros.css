@@ -29,7 +29,7 @@ body {
 
 .navbar-sobre .nav-link {
     font-weight: bold;
-    color: #c9c9c9;
+    color: white;
 }
 
 /* El navbar animado */
@@ -66,6 +66,9 @@ main {
 }
 
 .bloque {
+    border: 1px solid #ffab00;
+}
+section {
     background-color: white;
     padding: 24px;
     border-radius: 20px;

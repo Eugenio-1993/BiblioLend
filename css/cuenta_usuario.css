@@ -30,7 +30,7 @@ body {
 
 .navbar-sobre .nav-link {
     font-weight: bold;
-    color: #c9c9c9;
+    color: white;
 }
 
 /* El navbar animado */
@@ -43,6 +43,10 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     color: #ffab00;
     border-bottom: 2px solid #ffab00;
     border-top: transparent;
+}
+
+.bloque {
+    border: 1px solid #ffab00;
 }
 
 .panel-usuario {
