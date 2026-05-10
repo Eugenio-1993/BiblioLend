@@ -58,7 +58,7 @@ main {
     border-radius: 20px;
     border: 1px solid #ffab00; /*Borde de los bloques*/
     margin-bottom: 24px;
-    box-shadow: 0 6px 18px #2a2f7b14;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .bloque h2 {
