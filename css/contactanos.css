@@ -113,6 +113,13 @@ main {
     text-decoration: underline;
 }
 
+.img_perfil--Juan { /*css de ejemplo imagen de desarrollador*/
+    margin-left: 10px;
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+}
+
 .btn-outline-secondary {
     border-color: transparent;
     color: #3737a6;
