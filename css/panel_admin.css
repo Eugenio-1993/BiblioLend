@@ -20,6 +20,24 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    width: 100%;
+}
+
+.admin-nav__link--logout {
+    margin-left: auto;
+    background-color: #c62828;
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    border: 1px solid #000;
+}
+
+.admin-nav__link--logout:hover {
+    background-color: #961212;
+    color: #fff;
 }
 
 .admin-header__logo {
@@ -41,23 +59,49 @@ body {
 }
 
 .admin-nav {
-    margin-top: 20px;
+    display: none; 
 }
 
 .admin-nav__list {
     display: flex;
+    width: 100%;
     gap: 20px;
     list-style: none;
 }
 
+.admin-nav__item--logout {
+    margin-left: auto; 
+}
+
+.admin-nav__item {
+    height: 25px;
+    background-color: #ffab00;
+    border-radius: 4px;
+    border: 1px solid #000
+}
+
+.admin-nav__item:hover {
+    background-color: #d60000;
+}
+
 .admin-nav__link {
-    color: white;
+    display: flex;          
+    justify-content: center; 
+    align-items: center;    
+    height: 100%;           
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding: 12px;
+}
+
+a {
+    height: 25px;
+    color: #000;
 }
 
 .admin-nav__link:hover {
-    color: #ffab00;
+    color: #fff;
 }
 
 .admin-main {
@@ -68,12 +112,25 @@ body {
 
 .dashboard {
     margin-bottom: 40px;
+    background-color: white;
+    padding: 24px;
+    border-radius: 14px;
 }
 
 .dashboard__title,
 .management__title {
     margin-bottom: 20px;
     color: #3737a6;
+    display: inline-block;
+    transition: transform 0.4s ease, color 0.4s ease, letter-spacing 0.4s ease;
+    transform-origin: left;
+}
+
+.dashboard__title:hover,
+.management__title:hover {
+    color: #ffab00;
+    transform: scale(1.1) translateX(20px); 
+    letter-spacing: 2px;
 }
 
 .dashboard__cards {
@@ -87,6 +144,14 @@ body {
     padding: 24px;
     border-radius: 14px;
     border: 1px solid #d8ddff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px #0000000d;
+}
+
+.card-stat:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px #3737a633;
+    border-color: #3737a6;
 }
 
 .card-stat__title {
@@ -114,17 +179,26 @@ body {
 }
 
 .management__button {
-    background-color: #3737a6;
+    background-color: #002562;
+    border: 1px solid #002562;
     color: white;
-    border: none;
-    padding: 10px 16px;
+    position: relative;
+    bottom: 0px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .management__button:hover {
     background-color: #ffab00;
+    border-color: #ffab00;
     color: black;
+    bottom: 3px;
+    border: 1px solid #0006;
+    box-shadow: 0px 5px 10px 0px #000;
 }
 
 .table-container {

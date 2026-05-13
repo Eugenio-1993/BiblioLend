@@ -1,139 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Administración | BiblioLend</title>
-    <link rel="stylesheet" href="../css/panel_admin.css">
-</head>
-<body class="admin-panel">
-
+    <link rel="stylesheet" href="../css/panel_admin.css" />
+  </head>
+  <body class="admin-panel">
     <header class="admin-header">
-        <div class="admin-header__brand">
-            <img
-                src="../imagenes/bibliolend_new_logo.png"
-                alt="Logo BiblioLend"
-                class="admin-header__logo"
-            >
+      <div class="admin-header__brand">
+        <img
+          src="../imagenes/bibliolend_new_logo.png"
+          alt="Logo BiblioLend"
+          class="admin-header__logo"
+        />
 
-            <div class="admin-header__info">
-                <h1 class="admin-header__title">Panel de Administración</h1>
-                <p class="admin-header__subtitle">Gestión general de la plataforma</p>
-            </div>
+        <div class="admin-header__info">
+          <h1 class="admin-header__title">Panel de Administración</h1>
+          <p class="admin-header__subtitle">Gestión general de la plataforma</p>
         </div>
-
-        <nav class="admin-nav" aria-label="Navegación principal">
-            <ul class="admin-nav__list">
-                <li class="admin-nav__item">
-                    <a href="panel_principal.html" class="admin-nav__link">Inicio</a>
-                </li>
-
-                <li class="admin-nav__item">
-                    <a href="catalogo.html" class="admin-nav__link">Catálogo</a>
-                </li>
-
-                <li class="admin-nav__item">
-                    <a href="cuenta_usuario.html" class="admin-nav__link">Cuenta</a>
-                </li>
-            </ul>
-        </nav>
+        <a
+          href="../index.html"
+          class="admin-nav__link admin-nav__link--logout"
+          target="_blank"
+        >
+          Cerrar Sesión
+        </a>
+      </div>
     </header>
 
     <main class="admin-main">
+      <section class="dashboard" aria-labelledby="dashboard-title">
+        <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
 
-        <section class="dashboard" aria-labelledby="dashboard-title">
-            <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
+        <div class="dashboard__cards">
+          <article class="card-stat">
+            <h3 class="card-stat__title">Usuarios registrados</h3>
+            <p class="card-stat__value">1,248</p>
+          </article>
 
-            <div class="dashboard__cards">
+          <article class="card-stat">
+            <h3 class="card-stat__title">Libros disponibles</h3>
+            <p class="card-stat__value">532</p>
+          </article>
 
-                <article class="card-stat">
-                    <h3 class="card-stat__title">Usuarios registrados</h3>
-                    <p class="card-stat__value">1,248</p>
-                </article>
+          <article class="card-stat">
+            <h3 class="card-stat__title">Préstamos activos</h3>
+            <p class="card-stat__value">89</p>
+          </article>
 
-                <article class="card-stat">
-                    <h3 class="card-stat__title">Libros disponibles</h3>
-                    <p class="card-stat__value">532</p>
-                </article>
+          <article class="card-stat">
+            <h3 class="card-stat__title">Reseñas nuevas</h3>
+            <p class="card-stat__value">34</p>
+          </article>
+        </div>
+      </section>
 
-                <article class="card-stat">
-                    <h3 class="card-stat__title">Préstamos activos</h3>
-                    <p class="card-stat__value">89</p>
-                </article>
+      <section class="management" aria-labelledby="management-title">
+        <div class="management__header">
+          <h2 id="management-title" class="management__title">
+            Gestión de Libros
+          </h2>
 
-                <article class="card-stat">
-                    <h3 class="card-stat__title">Reseñas nuevas</h3>
-                    <p class="card-stat__value">34</p>
-                </article>
-            </div>
-        </section>
+          <button class="management__button">Agregar libro</button>
+        </div>
 
-        <section class="management" aria-labelledby="management-title">
-            <div class="management__header">
-                <h2 id="management-title" class="management__title">
-                    Gestión de Libros
-                </h2>
+        <div class="table-container">
+          <table class="table-books">
+            <thead class="table-books__head">
+              <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
 
-                <button class="management__button">
-                    Agregar libro
-                </button>
-            </div>
+            <tbody class="table-books__body">
+              <tr>
+                <td>1984</td>
+                <td>George Orwell</td>
+                <td>
+                  <span
+                    class="table-books__status table-books__status--available"
+                  >
+                    Disponible
+                  </span>
+                </td>
+                <td>
+                  <button class="table-books__action">Editar</button>
+                  <button
+                    class="table-books__action table-books__action--danger"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
 
-            <div class="table-container">
-                <table class="table-books">
-                    <thead class="table-books__head">
-                        <tr>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="table-books__body">
-                        <tr>
-                            <td>1984</td>
-                            <td>George Orwell</td>
-                            <td>
-                                <span class="table-books__status table-books__status--available">
-                                    Disponible
-                                </span>
-                            </td>
-                            <td>
-                                <button class="table-books__action">Editar</button>
-                                <button class="table-books__action table-books__action--danger">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>El Principito</td>
-                            <td>Antoine de Saint-Exupéry</td>
-                            <td>
-                                <span class="table-books__status table-books__status--borrowed">
-                                    Prestado
-                                </span>
-                            </td>
-                            <td>
-                                <button class="table-books__action">Editar</button>
-                                <button class="table-books__action table-books__action--danger">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
+              <tr>
+                <td>El Principito</td>
+                <td>Antoine de Saint-Exupéry</td>
+                <td>
+                  <span
+                    class="table-books__status table-books__status--borrowed"
+                  >
+                    Prestado
+                  </span>
+                </td>
+                <td>
+                  <button class="table-books__action">Editar</button>
+                  <button
+                    class="table-books__action table-books__action--danger"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
 
     <footer class="admin-footer">
-        <p class="admin-footer__text">
-            © 2026 BiblioLend - Panel Administrativo
-        </p>
+      <p class="admin-footer__text">© 2026 BiblioLend - Panel Administrativo</p>
     </footer>
-
-</body>
+  </body>
 </html>
