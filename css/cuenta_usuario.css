@@ -143,9 +143,13 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     font-weight: 600;
 }
 
-.btn-panel:hover,
-.btn-panel.activo {
-    background: #2a2f7b;
+.btn-panel {
+ background: #4d4da8   
+}
+
+.btn-panel:hover
+{
+    background: #222f67;
     color: white;
 }
 
