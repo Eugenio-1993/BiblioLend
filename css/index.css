@@ -1,16 +1,24 @@
 body {
     background-color: #e8eaff;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     margin-top: 20px;
     text-align: center;
-    color:#ffab00
+    color: #ffab00;
+}
+
+main {
+    flex: 1;
 }
 
 .navbar-sobre {
     background: #3737a6;
-    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
+    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
 }
 
 .imgPrincipal {
@@ -19,12 +27,14 @@ header {
     border-radius: 50%;
     padding: 4px;
 }
+
 .h1_titulo--bibliolend {
-    color: #002562
+    color: #002562;
 }
+
 .p_descripcion--bibliolend {
     font-size: 18px;
-    color:#070f2e;
+    color: #070f2e;
 }
 
 .navbar-sobre .nav-link {
@@ -35,15 +45,21 @@ header {
     border: 10px solid #ffab00;
 }
 
+.estilosInputs {
+    transition: outline-color, outline-width, outline-style;
+    transition-duration: 0.3s;
+}
+
 .estilosInputs:focus {
     outline-width: 5px;
     outline-color: #ffab00;
     outline-style: solid;
 }
 
-.estilosInputs {
-    transition: outline-color, outline-width, outline-style;
-    transition-duration: 0.3s;
+select.estilosInputs {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .btn-outline-secondary {
@@ -57,7 +73,7 @@ header {
     border-color: #002562;
     color: white;
     position: relative;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .btn-success:hover {
@@ -65,8 +81,7 @@ header {
     border-color: #ffab00;
     color: black;
     bottom: 3px;
-    transition: bottom;
-    transition-duration: 0.3s;
+    transition: bottom 0.3s;
     border: 1px solid #0006;
     box-shadow: 0px 5px 5px 0px #000d;
 }
@@ -79,7 +94,15 @@ header {
 
 footer {
     background: #3737a6;
-    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
+    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
     color: white;
-    height: 200px;
+    padding: 20px 15px;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
 }
