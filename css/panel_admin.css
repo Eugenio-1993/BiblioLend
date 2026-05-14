@@ -184,12 +184,22 @@ body {
     background-color: #c62828;
 }
 
-.admin-footer {
-    background-color: #070f2e;
-    color: white;
+
+/* todo el footer */
+footer {
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    background: #3737a6;
+    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
+    color: white;
+    height: 200px;
+}
+
+.a_direccion--sede {
+    color: white;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 768px) {

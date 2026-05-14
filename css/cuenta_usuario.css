@@ -47,6 +47,7 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
 
 .bloque {
     border: 1px solid #ffab00;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .panel-usuario {
@@ -79,10 +80,6 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     border-radius: 50%;
 }
 
-.green { background: #2ecc71; }
-.yellow { background: #f1c40f; }
-.red { background: #e74c3c; }
-
 .panel-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -94,8 +91,7 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     border-radius: 20px;
     padding: 24px;
     text-align: center;
-    box-shadow: 0 6px 18px #2a2f7b14;
-}
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;}
 
 .avatar {
     width: 120px;
@@ -144,7 +140,7 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
 }
 
 .btn-panel {
- background: #4d4da8   
+    background: #4d4da8   
 }
 
 .btn-panel:hover
@@ -173,8 +169,7 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
 .stat-card {
     background: white;
     border-radius: 20px;
-    box-shadow: 0 6px 18px #2a2f7b14;
-    padding: 20px;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;    padding: 20px;
 }
 
 .header-box h3,
@@ -241,16 +236,22 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     color: #6b7280;
 }
 
+/* todo el footer */
 footer {
-    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+    background: #3737a6;
+    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
     color: white;
     height: 200px;
+}
 
+.a_direccion--sede {
+    color: white;
 }
 
 footer p:last-child {
     margin-bottom: 0;
 }
+
 
 @media (max-width: 768px) {
     .panel-layout,
