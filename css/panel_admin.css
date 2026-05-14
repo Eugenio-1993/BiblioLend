@@ -129,7 +129,7 @@ a {
 .dashboard__title:hover,
 .management__title:hover {
     color: #ffab00;
-    transform: scale(1.1) translateX(20px); 
+    transform: scale(1.1) translateX(20px);
     letter-spacing: 2px;
 }
 
@@ -156,7 +156,7 @@ a {
     /* borde de los bloques + sombreado */
     border: 1px solid #ffab00;
     box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
->>>>>>> develop
+
 }
 
 .card-stat__title {

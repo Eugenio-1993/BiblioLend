@@ -1,153 +1,127 @@
 <!doctype html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Administración | BiblioLend</title>
-<<<<<<< Eugenio-Morales
-    <link rel="stylesheet" href="../css/panel_admin.css" />
-  </head>
-  <body class="admin-panel">
-=======
     <link rel="stylesheet" href="../css/panel_admin.css">
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+
 <body class="admin-panel">
 
     <header class="admin-header">
-      <div class="admin-header__brand">
-        <img
-          src="../imagenes/bibliolend_new_logo.png"
-          alt="Logo BiblioLend"
-          class="admin-header__logo"
-        />
+        <div class="admin-header__brand">
+            <img src="../imagenes/bibliolend_new_logo.png" alt="Logo BiblioLend" class="admin-header__logo" />
 
-        <div class="admin-header__info">
-          <h1 class="admin-header__title">Panel de Administración</h1>
-          <p class="admin-header__subtitle">Gestión general de la plataforma</p>
+            <div class="admin-header__info">
+                <h1 class="admin-header__title">Panel de Administración</h1>
+                <p class="admin-header__subtitle">Gestión general de la plataforma</p>
+            </div>
+            <a href="../index.html" class="admin-nav__link admin-nav__link--logout" target="_blank">
+                Cerrar Sesión
+            </a>
         </div>
-        <a
-          href="../index.html"
-          class="admin-nav__link admin-nav__link--logout"
-          target="_blank"
-        >
-          Cerrar Sesión
-        </a>
-      </div>
     </header>
 
     <main class="admin-main">
-      <section class="dashboard" aria-labelledby="dashboard-title">
-        <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
+        <section class="dashboard" aria-labelledby="dashboard-title">
+            <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
 
-        <div class="dashboard__cards">
-          <article class="card-stat">
-            <h3 class="card-stat__title">Usuarios registrados</h3>
-            <p class="card-stat__value">1,248</p>
-          </article>
+            <div class="dashboard__cards">
+                <article class="card-stat">
+                    <h3 class="card-stat__title">Usuarios registrados</h3>
+                    <p class="card-stat__value">1,248</p>
+                </article>
 
-          <article class="card-stat">
-            <h3 class="card-stat__title">Libros disponibles</h3>
-            <p class="card-stat__value">532</p>
-          </article>
+                <article class="card-stat">
+                    <h3 class="card-stat__title">Libros disponibles</h3>
+                    <p class="card-stat__value">532</p>
+                </article>
 
-          <article class="card-stat">
-            <h3 class="card-stat__title">Préstamos activos</h3>
-            <p class="card-stat__value">89</p>
-          </article>
+                <article class="card-stat">
+                    <h3 class="card-stat__title">Préstamos activos</h3>
+                    <p class="card-stat__value">89</p>
+                </article>
 
-          <article class="card-stat">
-            <h3 class="card-stat__title">Reseñas nuevas</h3>
-            <p class="card-stat__value">34</p>
-          </article>
-        </div>
-      </section>
+                <article class="card-stat">
+                    <h3 class="card-stat__title">Reseñas nuevas</h3>
+                    <p class="card-stat__value">34</p>
+                </article>
+            </div>
+        </section>
 
-      <section class="management" aria-labelledby="management-title">
-        <div class="management__header">
-          <h2 id="management-title" class="management__title">
-            Gestión de Libros
-          </h2>
+        <section class="management" aria-labelledby="management-title">
+            <div class="management__header">
+                <h2 id="management-title" class="management__title">
+                    Gestión de Libros
+                </h2>
 
-          <button class="management__button">Agregar libro</button>
-        </div>
+                <button class="management__button">Agregar libro</button>
+            </div>
 
-        <div class="table-container">
-          <table class="table-books">
-            <thead class="table-books__head">
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
+            <div class="table-container">
+                <table class="table-books">
+                    <thead class="table-books__head">
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-            <tbody class="table-books__body">
-              <tr>
-                <td>1984</td>
-                <td>George Orwell</td>
-                <td>
-                  <span
-                    class="table-books__status table-books__status--available"
-                  >
-                    Disponible
-                  </span>
-                </td>
-                <td>
-                  <button class="table-books__action">Editar</button>
-                  <button
-                    class="table-books__action table-books__action--danger"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+                    <tbody class="table-books__body">
+                        <tr>
+                            <td>1984</td>
+                            <td>George Orwell</td>
+                            <td>
+                                <span class="table-books__status table-books__status--available">
+                                    Disponible
+                                </span>
+                            </td>
+                            <td>
+                                <button class="table-books__action">Editar</button>
+                                <button class="table-books__action table-books__action--danger">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
 
-              <tr>
-                <td>El Principito</td>
-                <td>Antoine de Saint-Exupéry</td>
-                <td>
-                  <span
-                    class="table-books__status table-books__status--borrowed"
-                  >
-                    Prestado
-                  </span>
-                </td>
-                <td>
-                  <button class="table-books__action">Editar</button>
-                  <button
-                    class="table-books__action table-books__action--danger"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+                        <tr>
+                            <td>El Principito</td>
+                            <td>Antoine de Saint-Exupéry</td>
+                            <td>
+                                <span class="table-books__status table-books__status--borrowed">
+                                    Prestado
+                                </span>
+                            </td>
+                            <td>
+                                <button class="table-books__action">Editar</button>
+                                <button class="table-books__action table-books__action--danger">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
-<<<<<<< Eugenio-Morales
-    <footer class="admin-footer">
-      <p class="admin-footer__text">© 2026 BiblioLend - Panel Administrativo</p>
-    </footer>
-  </body>
-</html>
-=======
     <br>
     <hr>
     <footer class="text-center py-3">
         <p><strong>BiblioLend</strong> - La mejor herramienta para acceder al catálogo escolar.</p>
         <p>&copy; 2026 BiblioLend, By CodeForge - Todos los derechos reservados</p>
         <p>Institución Educativa República de Honduras</p>
-        <a class=a_direccion--sede href="https://www.google.com/maps/place/I.E+REPUBLICA+DE+HONDURAS/@6.2908209,-75.5595034,20.29z/data=!4m6!3m5!1s0x8e4428c2eea6ac25:0x233b9380bcaa9ea5!8m2!3d6.2907713!4d-75.5595566!16s%2Fg%2F11bw1z2typ?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/place/I.E+REPUBLICA+DE+HONDURAS/@6.2908209,-75.5595034,20.29z/data=!4m6!3m5!1s0x8e4428c2eea6ac25:0x233b9380bcaa9ea5!8m2!3d6.2907713!4d-75.5595566!16s%2Fg%2F11bw1z2typ?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D">Sede principal: Cra. 50B #97a-30, Santa Cruz, Medellín, Antioquia, Colombia.</a>
+        <a class=a_direccion--sede
+            href="https://www.google.com/maps/place/I.E+REPUBLICA+DE+HONDURAS/@6.2908209,-75.5595034,20.29z/data=!4m6!3m5!1s0x8e4428c2eea6ac25:0x233b9380bcaa9ea5!8m2!3d6.2907713!4d-75.5595566!16s%2Fg%2F11bw1z2typ?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/place/I.E+REPUBLICA+DE+HONDURAS/@6.2908209,-75.5595034,20.29z/data=!4m6!3m5!1s0x8e4428c2eea6ac25:0x233b9380bcaa9ea5!8m2!3d6.2907713!4d-75.5595566!16s%2Fg%2F11bw1z2typ?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D">Sede
+            principal: Cra. 50B #97a-30, Santa Cruz, Medellín, Antioquia, Colombia.</a>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
