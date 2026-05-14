@@ -236,16 +236,22 @@ border-top: 1px solid #ffc95e; border-bottom-width: 4px;
     color: #6b7280;
 }
 
+/* todo el footer */
 footer {
-    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+    background: #3737a6;
+    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
     color: white;
     height: 200px;
+}
 
+.a_direccion--sede {
+    color: white;
 }
 
 footer p:last-child {
     margin-bottom: 0;
 }
+
 
 @media (max-width: 768px) {
     .panel-layout,
