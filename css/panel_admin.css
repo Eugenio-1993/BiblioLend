@@ -150,7 +150,6 @@ a {
 
 .card-stat:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px #3737a633;
     border-color: #3737a6;
 
     /* borde de los bloques + sombreado */
