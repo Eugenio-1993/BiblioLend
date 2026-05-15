@@ -12,59 +12,19 @@
   <link rel="stylesheet" href="../css/panel_bibliotecario.css" />
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark navbar-sobre">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="panel_principal.html">
-          <img
-            class="logoBibliolend"
-            src="../imagenes/bibliolend_new_logo.png"
-            alt="Logo BiblioLend"
-            width="80"
-            height="80"
-          />
-          <span class="titulo-logo">BiblioLend</span>
-        </a>
+    <header class="admin-header">
+        <div class="admin-header__brand">
+            <img src="../imagenes/bibliolend_new_logo.png" alt="Logo BiblioLend" class="admin-header__logo" />
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#menuNav"
-          aria-controls="menuNav"
-          aria-expanded="false"
-          aria-label="Abrir menú"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menuNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="panel_principal.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="catalogo.html">Catálogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sobre_nosotros.html">Sobre Nosotros</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contactanos.html">Contáctanos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="panel_bibliotecario.html">Bibliotecario</a>
-            </li>
-            <li class="nav-item">
-              <a href="cuenta_usuario.html">
-                <img src="../imagenes/imagenPerfil.jpg" alt="Perfil" class="navItem--perfil" />
-              </a>
-            </li>
-          </ul>
+            <div class="admin-header__info">
+                <h1 class="admin-header__title">Panel de Bibliotecario</h1>
+                <p class="admin-header__subtitle">Gestión de libros de la plataforma</p>
+            </div>
+            <a href="../index.html" class="admin-nav__link admin-nav__link--logout" target="_blank">
+                Cerrar Sesión
+            </a>
         </div>
-      </div>
-    </nav>
-  </header>
+    </header>
 
   <main class="panel-bibliotecario">
     <section class="bloque bienvenida">
