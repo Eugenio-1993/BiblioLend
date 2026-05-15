@@ -10,7 +10,7 @@
 html,
 body {
   height: 100%;
-  font-family: "DM Sans", sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 /* ─── Layout Principal ──────────────────────────────────────── */
