@@ -124,7 +124,7 @@ main {
     margin-left: 10px;
     height: 150px;
     width: 150px;
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 .btn-outline-secondary {
