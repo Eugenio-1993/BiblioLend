@@ -120,11 +120,12 @@ main {
     text-decoration: underline;
 }
 
-.img_perfil--Juan { /*css de ejemplo imagen de desarrollador*/
+.img_perfiles { /*css de ejemplo imagen de desarrollador*/
+    width: 150px;
     margin-left: 10px;
     height: 150px;
-    width: 150px;
-    border-radius: 50%;
+    object-fit: cover;
+    border-radius: 100%;
 }
 
 .btn-outline-secondary {
