@@ -14,6 +14,8 @@
 body {
     background-color: #e8eaff;
     margin: 0;
+    font-family: system-ui, sans-serif;
+
 }
 
 .navbar-sobre {
@@ -105,7 +107,9 @@ legend {
     box-shadow: 0 0 0 0.2rem #3737a626;
 }
 
+/* boton amarillo ejemplar */
 .btn-success {
+    font-weight: bold;
     background-color: #002562;
     border-color: #002562;
     color: white;

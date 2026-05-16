@@ -10,7 +10,7 @@
 html,
 body {
   height: 100%;
-  font-family: "DM Sans", sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 /* ─── Layout Principal ──────────────────────────────────────── */
@@ -28,48 +28,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 48px 52px;
-  overflow: hidden;
   color: white;
-}
-
-/* Decoración geométrica de fondo */
-.panel-left__deco {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.03) 0px,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 80px
-  );
-  pointer-events: none;
-}
-
-/* Círculo decorativo grande */
-.panel-left::after {
-  content: "";
-  position: absolute;
-  bottom: -120px;
-  right: -80px;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  border: 60px solid rgba(209, 174, 84, 0.12);
-  pointer-events: none;
-}
-
-/* Círculo decorativo pequeño */
-.panel-left::before {
-  content: "";
-  position: absolute;
-  top: -60px;
-  left: -60px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 40px solid rgba(255, 255, 255, 0.05);
-  pointer-events: none;
 }
 
 .panel-left__content {
@@ -84,24 +43,23 @@ body {
 
 .logo-img {
   object-fit: contain;
-  background-color: #d1ae54;
+  background-color: #ffab00;
   border-radius: 50%;
   padding: 6px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .brand-title {
-  font-family: "Playfair Display", serif;
-  font-size: 3.2rem;
+  font-size: 50px;
   font-weight: 700;
   line-height: 1.1;
-  color: #ffffff;
+  color: #fff;
 }
 
 .brand-tagline {
-  font-size: 1.05rem;
+  font-size: 19px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.75);
+  color: #fff;
   max-width: 380px;
   line-height: 1.7;
 }
@@ -110,13 +68,12 @@ body {
   position: relative;
   z-index: 1;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: #ffab00
 }
-
 /* ─── Panel Derecho ─────────────────────────────────────────── */
 .panel-right {
   flex: 1;
-  background: #ffffff;
+  background: #ffab00;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +86,6 @@ body {
 }
 
 .form-brand {
-  font-family: "Playfair Display", serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #070f2e;
@@ -137,7 +93,6 @@ body {
 }
 
 .form-title {
-  font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 700;
   color: #0d0d0d;
@@ -146,7 +101,7 @@ body {
 
 .form-sub {
   font-size: 0.88rem;
-  color: #6b7280;
+  color: #3737a6;
   margin-bottom: 36px;
 }
 
@@ -166,7 +121,7 @@ body {
   display: block;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #374151;
+  color: #3737a6;
   margin-bottom: 6px;
   letter-spacing: 0.02em;
 }
@@ -174,10 +129,9 @@ body {
 .field-input {
   width: 100%;
   border: none;
-  border-bottom: 1.5px solid #d1d5db;
+  border-bottom: 1.5px solid #3737a6;
   background: transparent;
   padding: 10px 2px;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.95rem;
   color: #111827;
   outline: none;
@@ -199,15 +153,12 @@ body {
   border-bottom: 1.5px solid #d1d5db;
   background: transparent;
   padding: 10px 2px;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.95rem;
   color: #111827;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
   background-position: right 4px center;
   padding-right: 28px;
   transition: border-color 0.2s;
@@ -236,7 +187,6 @@ body {
   color: #ffffff;
   border: none;
   border-radius: 6px;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
