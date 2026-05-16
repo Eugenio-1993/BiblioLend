@@ -1,39 +1,27 @@
-/* ─── Reset & Base ─────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
 body {
-  height: 100%;
   font-family: system-ui, sans-serif;
 }
 
-/* ─── Layout Principal ──────────────────────────────────────── */
+/* ─── Posicion doble Principal ──────────────────────────────────────── */
 .login-wrapper {
   display: flex;
-  min-height: 100vh;
 }
 
 /* ─── Panel Izquierdo ───────────────────────────────────────── */
 .panel-left {
   position: relative;
-  width: 52%;
+  width: 55%;
   background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 48px 52px;
+  padding: 50px;
   color: white;
+  border-right: 10px solid #ffab00;
 }
 
 .panel-left__content {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -42,18 +30,21 @@ body {
 }
 
 .logo-img {
-  object-fit: contain;
+  width: 250px;
+  height: 250px;
+
+
   background-color: #ffab00;
   border-radius: 50%;
   padding: 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px #0000004d;
 }
 
 .brand-title {
   font-size: 50px;
   font-weight: 700;
   line-height: 1.1;
-  color: #fff;
+  color: #ffffff;
 }
 
 .brand-tagline {
@@ -66,41 +57,37 @@ body {
 
 .panel-left__footer {
   position: relative;
-  z-index: 1;
-  font-size: 0.8rem;
+  font-size: 13px;
   color: #ffab00
 }
 /* ─── Panel Derecho ─────────────────────────────────────────── */
 .panel-right {
   flex: 1;
-  background: #ffab00;
+  background: #e8eaff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 40px;
-}
-
-.form-wrapper {
-  width: 100%;
-  max-width: 380px;
+  padding: 50px;
 }
 
 .form-brand {
-  font-size: 1.1rem;
+  font-size: 17px;
   font-weight: 700;
-  color: #070f2e;
-  margin-bottom: 28px;
+  color: #3737a6;
+  border-radius: 13px;
 }
 
+
 .form-title {
-  font-size: 2rem;
+  text-align: center;
+  font-size: Bold 20;
   font-weight: 700;
-  color: #0d0d0d;
+  color: #ffab00;
   margin-bottom: 8px;
 }
 
 .form-sub {
-  font-size: 0.88rem;
+  font-size: bold;
   color: #3737a6;
   margin-bottom: 36px;
 }
@@ -119,11 +106,10 @@ body {
 
 .field-group label {
   display: block;
-  font-size: 0.8rem;
+  font-size: bold;
   font-weight: 500;
   color: #3737a6;
   margin-bottom: 6px;
-  letter-spacing: 0.02em;
 }
 
 .field-input {
@@ -132,29 +118,29 @@ body {
   border-bottom: 1.5px solid #3737a6;
   background: transparent;
   padding: 10px 2px;
-  font-size: 0.95rem;
+  font-size: bold;
   color: #111827;
   outline: none;
   transition: border-color 0.2s;
 }
 
 .field-input::placeholder {
-  color: #9ca3af;
+  color: #070f2ec7;
 }
 
 .field-input:focus {
-  border-bottom-color: #3737a6;
+  border-bottom-color: #ffab00;
 }
 
 /* ─── Select de tipo de usuario ─────────────────────────────── */
 .field-select {
   width: 100%;
-  border: none;
-  border-bottom: 1.5px solid #d1d5db;
+  border: #ffab00;
+  border-bottom: 1.5px solid #3737a6;
   background: transparent;
   padding: 10px 2px;
   font-size: 0.95rem;
-  color: #111827;
+  color: #070f2e;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
@@ -165,7 +151,7 @@ body {
 }
 
 .field-select:focus {
-  border-bottom-color: #3737a6;
+  border-bottom-color: #ffab00;
 }
 
 .field-select option[value=""][disabled] {
@@ -173,8 +159,8 @@ body {
 }
 
 .field-select option {
-  color: #111827;
-  background: #ffffff;
+  color: #070f2e;
+  background: #fff;
 }
 
 /* ─── Botón principal ───────────────────────────────────────── */
@@ -187,17 +173,23 @@ body {
   color: #ffffff;
   border: none;
   border-radius: 6px;
-  font-size: 0.95rem;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  letter-spacing: 0.03em;
-  transition:
-    background-color 0.2s,
-    transform 0.1s;
+  letter-spacing: 5;
+  transition-duration: 0.2s;
 }
 
 .btn-login:hover {
-  background-color: #3737a6;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #0d0d0d;
+  background-color: #ffab00;
+  transition: bottom;
+  transition-duration: 0.3s;
+  border: 1px solid #0006;
+  box-shadow: 0px 5px 5px 0px #000d;
 }
 
 .btn-login:active {
@@ -207,27 +199,29 @@ body {
 /* ─── Links inferiores ──────────────────────────────────────── */
 .forgot {
   margin-top: 20px;
-  font-size: 0.82rem;
+  font-size: 14px;
   text-align: center;
-  color: #9ca3af;
 }
 
 .forgot a {
-  color: #9ca3af;
+  margin-top: 40px;
+  font-size: 14px;
+  text-align: center;
+  color: #3737a6;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .forgot a:hover {
-  color: #3737a6;
+  color: #ffab00;
 }
 
 .inst-label {
   margin-top: 32px;
-  font-size: 0.75rem;
+  font-size: 5px;
   text-align: center;
   color: #d1d5db;
-  letter-spacing: 0.03em;
+  letter-spacing: 1px;
 }
 
 /* ─── Responsive ────────────────────────────────────────────── */
@@ -249,7 +243,7 @@ body {
   }
 
   .brand-title {
-    font-size: 2rem;
+    font-size: 7px;
   }
 
   .brand-tagline {
