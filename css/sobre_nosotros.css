@@ -71,6 +71,7 @@ main {
 .bloque {
   border: 3px solid #ffab00;
 }
+
 section {
   background-color: #f5f5f5;
   padding: 24px;
@@ -173,4 +174,20 @@ footer p:last-child {
   .btn-outline-secondary {
     margin-left: 14px;
   }
+}
+
+/* Fuente Google: */
+h1 {
+  font-family: "Diplomata", serif;
+}
+
+h2, h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700; /* Puedes usar 400 hasta 900 (Es el Grosor de la letra) */
+  font-style: normal; /* o italic (Cursiva) */
+}
+
+p, span, button {
+  font-family: "Google Sans", sans-serif;
+  font-weight: 400; /* 400 hasta 700 */
 }
