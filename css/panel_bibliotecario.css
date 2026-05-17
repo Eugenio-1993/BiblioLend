@@ -12,9 +12,9 @@
 }
 
 body {
+  background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
   margin: 0;
   font-family: system-ui, sans-serif;
-  background-color: #e8eaff;
 }
 
 .admin-header {
