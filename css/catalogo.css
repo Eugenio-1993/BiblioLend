@@ -247,18 +247,38 @@ footer p:last-child {
   }
 }
 
-/* Fuente Google: */
+/* Títulos principales */
 h1 {
-  font-family: "Diplomata", serif;
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
 }
 
-h2 {
-  font-family: "Playfair Display", serif;
-  font-weight: 700; /* Puedes usar 400 hasta 900 (Es el Grosor de la letra) */
-  font-style: normal; /* o italic (Cursiva) */
+/* Subtítulos */
+h2, h3 {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
 }
 
-h3, p, span, button {
-  font-family: "Google Sans", sans-serif;
-  font-weight: 400; /* 400 hasta 700 */
+/* Texto normal */
+p, span {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+}
+
+/* Texto inclinado (en vez de italic) */
+.inclinado {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "slnt" -10, "wdth" 100, "GRAD" 0, "ROND" 0;
 }
