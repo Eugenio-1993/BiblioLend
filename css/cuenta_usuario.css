@@ -25,7 +25,7 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  background-color: #e8eaff;
+  background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
 }
 
 .navbar-sobre {
