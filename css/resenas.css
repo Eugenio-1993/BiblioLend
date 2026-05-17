@@ -30,21 +30,39 @@ body {
 }
 
 .navbar-sobre .nav-link {
+  margin-left: 10px;
+  border-radius: 16px;
   font-weight: bold;
   color: white;
+  position: relative;
+  top: 0px;
+  transition-property: border-radius;
+  transition-delay: 0.01s;
 }
 
 /* El navbar animado */
 .navbar-sobre .nav-link:hover {
+  border-radius: 8px;
+  background-color: #070f2e;
   color: #ffc95e;
-  border-top: 1px solid #ffc95e;
   border-bottom-width: 4px;
+  border-color: #ffc95e;
+  outline: 1px double;
+  outline-style: solid;
+}
+
+.navbar-sobre .nav-link:active {
+  outline-width: 4px;
 }
 
 .navbar-sobre .nav-link.active {
   color: #ffab00;
-  border-bottom: 2px solid #ffab00;
   border-top: transparent;
+  border-radius: 8px;
+  background-color: #070f2e;
+  color: #ffc95e;
+  border-bottom-width: 4px;
+  border-color: #ffc95e;
 }
 
 .navItem--perfil {
@@ -181,4 +199,20 @@ footer p:last-child {
   .bloque {
     padding: 18px;
   }
+}
+
+/* Fuente Google: */
+h1 {
+  font-family: "Diplomata", serif;
+}
+
+h2, h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700; /* Puedes usar 400 hasta 900 (Es el Grosor de la letra) */
+  font-style: normal; /* o italic (Cursiva) */
+}
+
+p, span, button {
+  font-family: "Google Sans", sans-serif;
+  font-weight: 400; /* 400 hasta 700 */
 }
