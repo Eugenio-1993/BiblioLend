@@ -1,142 +1,145 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: system-ui, sans-serif;
-    background-color: #eef1ff;
-    color: #1f1f1f;
+  font-family: system-ui, sans-serif;
+  background-color: #eef1ff;
+  color: #1f1f1f;
 }
 
 .admin-header {
-    background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
-    color: white;
-    padding: 20px;
+  background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
+  color: white;
+  padding: 20px;
 }
 
 .admin-header__brand {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
 }
 
 .admin-nav__link--logout {
-    margin-left: auto;
-    background-color: #c62828;
-    color: #000;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: background-color 0.3s;
-    border: 1px solid #000;
+  margin-left: auto;
+  background-color: #c62828;
+  color: #000;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  border: 1px solid #000;
 }
 
 .admin-nav__link--logout:hover {
-    background-color: #961212;
-    color: #fff;
+  background-color: #961212;
+  color: #fff;
 }
 
 .admin-header__logo {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    background-color: #ffab00;
-    border-radius: 50%;
-    padding: 6px;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 6px;
 }
 
 .admin-header__title {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .admin-header__subtitle {
-    margin-top: 4px;
-    font-size: 0.95rem;
+  margin-top: 4px;
+  font-size: 0.95rem;
 }
 
 .admin-nav {
-    display: none; 
+  display: none;
 }
 
 .admin-nav__list {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-    list-style: none;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  list-style: none;
 }
 
 .admin-nav__item--logout {
-    margin-left: auto; 
+  margin-left: auto;
 }
 
 .admin-nav__item {
-    height: 25px;
-    background-color: #ffab00;
-    border-radius: 4px;
-    border: 1px solid #000
+  height: 25px;
+  background-color: #ffab00;
+  border-radius: 4px;
+  border: 1px solid #000;
 }
 
 .admin-nav__item:hover {
-    background-color: #d60000;
+  background-color: #d60000;
 }
 
 .admin-nav__link {
-    display: flex;          
-    justify-content: center; 
-    align-items: center;    
-    height: 100%;           
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px;
 }
 
 a {
-    height: 25px;
-    color: #000;
+  height: 25px;
+  color: #000;
 }
 
 .admin-nav__link:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .admin-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
 
 .dashboard {
-    margin-bottom: 40px;
-    background-color: white;
-    padding: 24px;
-    border-radius: 14px;
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 14px;
 }
 
 .dashboard__title,
 .management__title {
-    margin-bottom: 20px;
-    color: #3737a6;
-    display: inline-block;
-    transition: transform 0.4s ease, color 0.4s ease, letter-spacing 0.4s ease;
-    transform-origin: left;
+  margin-bottom: 20px;
+  color: #3737a6;
+  display: inline-block;
+  transition:
+    transform 0.4s ease,
+    color 0.4s ease,
+    letter-spacing 0.4s ease;
+  transform-origin: left;
 }
 
 .dashboard__title:hover,
 .management__title:hover {
-    color: #ffab00;
-    transform: scale(1.1) translateX(20px);
-    letter-spacing: 2px;
+  color: #ffab00;
+  transform: scale(1.1) translateX(20px);
+  letter-spacing: 2px;
 }
 
 .dashboard__cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .card-stat {
@@ -156,17 +159,23 @@ a {
     border: 3px solid #3737a6;
     box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 
+  /* borde de los bloques + sombreado */
+  border: 1px solid #3737a6;
+  box-shadow:
+    0px 50px 100px -20px #3354,
+    0px 30px 60px -30px #0004,
+    0px -2px 6px 0px #0245 inset;
 }
 
 .card-stat__title {
-    margin-bottom: 12px;
-    font-size: 1rem;
+  margin-bottom: 12px;
+  font-size: 1rem;
 }
 
 .card-stat__value {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #3737a6;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #3737a6;
 }
 
 .management {
@@ -179,120 +188,118 @@ a {
 }
 
 .management__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .management__button {
-    background-color: #002562;
-    border: 1px solid #002562;
-    color: white;
-    position: relative;
-    bottom: 0px;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: #002562;
+  border: 1px solid #002562;
+  color: white;
+  position: relative;
+  bottom: 0px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .management__button:hover {
-    background-color: #ffab00;
-    border-color: #ffab00;
-    color: black;
-    bottom: 3px;
-    border: 1px solid #0006;
-    box-shadow: 0px 5px 10px 0px #000;
+  background-color: #ffab00;
+  border-color: #ffab00;
+  color: black;
+  bottom: 3px;
+  border: 1px solid #0006;
+  box-shadow: 0px 5px 10px 0px #000;
 }
 
 .table-container {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .table-books {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .table-books th,
 .table-books td {
-    padding: 14px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .table-books__head {
-    background-color: #3737a6;
-    color: white;
+  background-color: #3737a6;
+  color: white;
 }
 
 .table-books__status {
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
 }
 
 .table-books__status--available {
-    background-color: #d4f7d4;
-    color: #146814;
+  background-color: #d4f7d4;
+  color: #146814;
 }
 
 .table-books__status--borrowed {
-    background-color: #ffe2b7;
-    color: #8a5200;
+  background-color: #ffe2b7;
+  color: #8a5200;
 }
 
 .table-books__action {
-    background-color: #3737a6;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 8px;
+  background-color: #3737a6;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
 }
 
 .table-books__action--danger {
-    background-color: #c62828;
+  background-color: #c62828;
 }
-
 
 /* todo el footer */
 footer {
-    text-align: center;
-    background: #3737a6;
-    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
-    color: white;
-    height: 200px;
+  text-align: center;
+  background: #3737a6;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  color: white;
+  height: 200px;
 }
 
 .a_direccion--sede {
-    color: white;
+  color: white;
 }
 
 footer p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
+  .admin-header__brand {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .admin-header__brand {
-        flex-direction: column;
-        text-align: center;
-    }
+  .admin-nav__list {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .admin-nav__list {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .management__header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
+  .management__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
