@@ -23,22 +23,41 @@ body {
 }
 
 .navbar-sobre .nav-link {
+  margin-left: 10px;
+  border-radius: 16px;
   font-weight: bold;
   color: white;
+  position: relative;
+  top: 0px;
+  transition-property: border-radius;
+  transition-delay: 0.01s;
 }
 
 /* El navbar animado */
 .navbar-sobre .nav-link:hover {
+  border-radius: 8px;
+  background-color: #070f2e;
   color: #ffc95e;
-  border-top: 1px solid #ffc95e;
   border-bottom-width: 4px;
+  border-color: #ffc95e;
+  outline: 1px double;
+  outline-style: solid;
+}
+
+.navbar-sobre .nav-link:active {
+  outline-width: 4px;
 }
 
 .navbar-sobre .nav-link.active {
   color: #ffab00;
-  border-bottom: 2px solid #ffab00;
   border-top: transparent;
+  border-radius: 8px;
+  background-color: #070f2e;
+  color: #ffc95e;
+  border-bottom-width: 4px;
+  border-color: #ffc95e;
 }
+
 /*perfil*/
 .navItem--perfil {
   margin-left: 30px;
