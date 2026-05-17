@@ -33,7 +33,6 @@ body {
   width: 250px;
   height: 250px;
 
-
   background-color: #ffab00;
   border-radius: 50%;
   padding: 6px;
@@ -58,7 +57,7 @@ body {
 .panel-left__footer {
   position: relative;
   font-size: 13px;
-  color: #ffab00
+  color: #ffab00;
 }
 /* ─── Panel Derecho ─────────────────────────────────────────── */
 .panel-right {
@@ -76,7 +75,6 @@ body {
   color: #3737a6;
   border-radius: 13px;
 }
-
 
 .form-title {
   text-align: center;

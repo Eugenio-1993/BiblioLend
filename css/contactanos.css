@@ -1,182 +1,186 @@
 .logoBibliolend {
-    object-fit: contain;
-    background-color: #ffab00;
-    border-radius: 50%;
-    padding: 4px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 4px;
 }
 
 .titulo-logo {
-    font-size: larger;
-    color: white;
-    font-weight: 600;
+  font-size: larger;
+  color: white;
+  font-weight: 600;
 }
 
 body {
-    background-color: #e8eaff;
-    margin: 0;
-    font-family: system-ui, sans-serif;
-
+  background-color: #e8eaff;
+  margin: 0;
+  font-family: system-ui, sans-serif;
 }
 
 .navbar-sobre {
-    background: #3737a6;
-    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  background: #3737a6;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
 }
 
 .navbar-sobre .navbar-brand img {
-    object-fit: contain;
-    background-color: #ffab00;
-    border-radius: 50%;
-    padding: 4px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 4px;
 }
 
 .navbar-sobre .nav-link {
-    font-weight: bold;
-    color: white;
+  font-weight: bold;
+  color: white;
 }
 
 /* El navbar animado */
-.navbar-sobre .nav-link:hover { 
-    color: #ffc95e;
-border-top: 1px solid #ffc95e; border-bottom-width: 4px; 
+.navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+  border-top: 1px solid #ffc95e;
+  border-bottom-width: 4px;
 }
 
 .navbar-sobre .nav-link.active {
-    color: #ffab00;
-    border-bottom: 2px solid #ffab00;
-    border-top: transparent;
+  color: #ffab00;
+  border-bottom: 2px solid #ffab00;
+  border-top: transparent;
 }
 
 .navItem--perfil {
-    margin-left: 30px;
-    height: 45px;
-    width: 45px;
-    border-radius: 100%;
+  margin-left: 30px;
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
 }
 
 main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 30px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
 
 .bloque {
-    background-color: white;
-    padding: 24px;
-    border-radius: 20px;
-    border: 1px solid #ffab00;
-    margin-bottom: 24px;
-    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
+  background-color: white;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #ffab00;
+  margin-bottom: 24px;
+  box-shadow:
+    0px 50px 100px -20px #3354,
+    0px 30px 60px -30px #0004,
+    0px -2px 6px 0px #0245 inset;
 }
 
 .bloque h2 {
-    color: #2a2f7b;
-    margin-bottom: 14px;
+  color: #2a2f7b;
+  margin-bottom: 14px;
 }
 
 .bloque p {
-    line-height: 1.7;
-    margin-bottom: 0;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
 
 .contacto-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #d9defc;
-    border-left: 6px solid #3737a6;
-    box-shadow: 10px 10px 1px 0px #000;
-    position: relative;
-    top: 0px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #d9defc;
+  border-left: 6px solid #3737a6;
+  box-shadow: 10px 10px 1px 0px #000;
+  position: relative;
+  top: 0px;
 }
 
 .contacto-card:hover {
-    transform: top;
-    top: -10px;
-    outline-style: solid;
-    outline-color: #ffab00;
-    outline-width: 1px;
-    transition: top;
-    transition-duration: 0.5s;
-    transition-timing-function: ease;
+  transform: top;
+  top: -10px;
+  outline-style: solid;
+  outline-color: #ffab00;
+  outline-width: 1px;
+  transition: top;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }
 
 .contacto-card .card-title {
-    color: #2a2f7b;
-    font-weight: 700;
-    margin-bottom: 12px;
+  color: #2a2f7b;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .contacto-card p {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
 .contacto-card a {
-    color: #3737a6;
-    text-decoration: none;
-    word-break: break-word;
-    font-weight: 500;
+  color: #3737a6;
+  text-decoration: none;
+  word-break: break-word;
+  font-weight: 500;
 }
 
 .contacto-card a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.img_perfiles { /*css de ejemplo imagen de desarrollador*/
-    width: 150px;
-    margin-left: 10px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 100%;
+.img_perfiles {
+  /*css de ejemplo imagen de desarrollador*/
+  width: 150px;
+  margin-left: 10px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
 }
 
 .btn-outline-secondary {
-    border-color: transparent;
-    color: #3737a6;
-    background-color: white;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    font-weight: 400;
+  border-color: transparent;
+  color: #3737a6;
+  background-color: white;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .btn-outline-secondary:hover {
-    border-color: #3737a6;
-    background-color: #3737a6;
-    color: white;
+  border-color: #3737a6;
+  background-color: #3737a6;
+  color: white;
 }
 
 /* todo el footer */
 footer {
-    background: #3737a6;
-    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
-    color: white;
-    height: 200px;
+  background: #3737a6;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  color: white;
+  height: 200px;
 }
 
 .a_direccion--sede {
-    color: white;
+  color: white;
 }
 
 footer p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 @media (max-width: 576px) {
-    .titulo-logo {
-        font-size: 18px;
-    }
+  .titulo-logo {
+    font-size: 18px;
+  }
 
-    .navbar-sobre .navbar-brand img {
-        width: 50px;
-        height: 50px;
-    }
+  .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
 
-    main {
-        padding: 20px 14px;
-    }
+  main {
+    padding: 20px 14px;
+  }
 
-    .bloque,
-    .contacto-card {
-        padding: 18px;
-    }
+  .bloque,
+  .contacto-card {
+    padding: 18px;
+  }
 }
