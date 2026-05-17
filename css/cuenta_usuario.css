@@ -67,8 +67,9 @@ body {
 }
 
 .bloque {
-    border: 3px solid #ffab00;
-    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
+  background-color: #f5f5f5 !important;
+  border: 3px solid #ffab00;
+  box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .panel-usuario {
