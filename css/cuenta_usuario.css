@@ -57,11 +57,6 @@ body {
   border-top: transparent;
 }
 
-/* margin-left: 30px;
-    height: 45px;
-    width: 45px;
-    border-radius: 100%; */
-
 .navItem--perfil {
   margin-left: 30px;
   height: 45px;
@@ -72,11 +67,8 @@ body {
 }
 
 .bloque {
-  border: 1px solid #ffab00;
-  box-shadow:
-    0px 50px 100px -20px #3354,
-    0px 30px 60px -30px #0004,
-    0px -2px 6px 0px #0245 inset;
+    border: 3px solid #ffab00;
+    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
 }
 
 .panel-usuario {
