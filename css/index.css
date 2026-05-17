@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: system-ui, sans-serif;
 }
@@ -5,6 +11,9 @@ body {
 /* ─── Posicion doble Principal ──────────────────────────────────────── */
 .login-wrapper {
   display: flex;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  width: 100%;       
+  overflow-x: hidden; 
 }
 
 /* ─── Panel Izquierdo ───────────────────────────────────────── */
@@ -80,7 +89,7 @@ body {
   text-align: center;
   font-size: Bold 20;
   font-weight: 700;
-  color: #ffab00;
+  color: #000;
   margin-bottom: 8px;
 }
 
@@ -231,17 +240,24 @@ body {
   .panel-left {
     width: 100%;
     padding: 40px 32px;
-    min-height: 220px;
+    min-height: 130px;
   }
 
   .panel-left__content {
-    gap: 16px;
     flex-direction: row;
     align-items: center;
+    gap: 14px;
   }
 
+  .logo-img {
+  width: 70px;
+  height: 70px;
+  padding: 4px;
+  }
+
+
   .brand-title {
-    font-size: 7px;
+    font-size: 26px;
   }
 
   .brand-tagline {
@@ -251,5 +267,11 @@ body {
   .panel-left::after,
   .panel-left::before {
     display: none;
+  }
+  
+  /* Para bajar un tris el mini-foter amarillo */
+  :where(.panel-left__footer) p {
+    position: relative;
+    top: 35px;
   }
 }
