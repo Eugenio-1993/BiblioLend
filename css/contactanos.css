@@ -12,9 +12,10 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
-  margin: 0;
-  font-family: system-ui, sans-serif;
+    background-color: #e8eaff;
+    margin: 0;
+    font-family: system-ui, sans-serif;
+
 }
 
 hr {
@@ -144,13 +145,12 @@ main {
   text-decoration: underline;
 }
 
-.img_perfiles {
-  /*css de ejemplo imagen de desarrollador*/
-  width: 150px;
-  margin-left: 10px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 100%;
+.img_perfiles { /*css de ejemplo imagen de desarrollador*/
+    width: 150px;
+    margin-left: 10px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
 }
 
 .btn-outline-secondary {
