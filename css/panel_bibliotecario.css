@@ -17,6 +17,10 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+hr {
+  color:#ffab00;
+}
+
 .admin-header {
   background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
   color: white;
