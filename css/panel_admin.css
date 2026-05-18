@@ -4,14 +4,14 @@
   box-sizing: border-box;
 }
 
+hr {
+  color: #ffab00
+}
+
 body {
   background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
   font-family: system-ui, sans-serif;
   color: #1f1f1f;
-}
-
-hr {
-  color:#ffab00;
 }
 
 .admin-header {
