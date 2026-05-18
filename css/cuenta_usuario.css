@@ -28,6 +28,10 @@ body {
   background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
 }
 
+hr {
+  color:#ffab00;
+}
+
 .navbar-sobre {
   background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
 }

@@ -10,6 +10,10 @@ body {
   color: #1f1f1f;
 }
 
+hr {
+  color:#ffab00;
+}
+
 .admin-header {
   background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
   color: white;

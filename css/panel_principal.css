@@ -16,6 +16,11 @@ body {
   margin: 0;
   font-family: system-ui, sans-serif;
 }
+
+hr {
+  color:#ffab00
+}
+
 /*Navbar normal*/
 .navbar-sobre {
   background: #3737a6;
