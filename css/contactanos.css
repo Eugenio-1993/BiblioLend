@@ -140,13 +140,23 @@ main {
   text-decoration: underline;
 }
 
+.contacto-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .img_perfiles {
-  /*css de ejemplo imagen de desarrollador*/
-  width: 150px;
-  margin-left: 10px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 100%;
+  margin: 0 0 12px 0;  /* quitamos el margin-left, centramos con flexbox */
+}
+
+.img_eugenio {
+  object-position: center top;
 }
 
 .btn-outline-secondary {
@@ -197,7 +207,12 @@ footer p:last-child {
   .bloque,
   .contacto-card {
     padding: 18px;
-  }
+  } 
+
+  .img_perfiles {
+    width: 120px;
+    height: 120px;
+}
 }
 
 /* Títulos principales */
