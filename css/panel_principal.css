@@ -1,181 +1,232 @@
 .logoBibliolend {
-    object-fit: contain;
-    background-color: #ffab00;
-    border-radius: 50%;
-    padding: 4px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 4px;
 }
 
 .titulo-logo {
-    font-size: larger;
-    color: white;
-    font-weight: 600;
+  font-size: larger;
+  color: white;
+  font-weight: 600;
 }
 
 body {
-    background-color: #e8eaff;
-    margin: 0;
-    font-family: system-ui, sans-serif;
-
+  background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
+  margin: 0;
+  font-family: system-ui, sans-serif;
 }
 /*Navbar normal*/
 .navbar-sobre {
-    background: #3737a6;
-    background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  background: #3737a6;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
 }
 
 .navbar-sobre .nav-link {
-    font-weight: bold;
-    color: white;
+  margin-left: 10px;
+  border-radius: 16px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  top: 0px;
+  transition-property: border-radius;
+  transition-delay: 0.01s;
 }
 
 /* El navbar animado */
-.navbar-sobre .nav-link:hover { 
-    color: #ffc95e;
-    border-top: 1px solid #ffc95e; border-bottom-width: 4px; 
+.navbar-sobre .nav-link:hover {
+  border-radius: 8px;
+  background-color: #070f2e;
+  color: #ffc95e;
+  border-bottom-width: 4px;
+  border-color: #ffc95e;
+  outline: 1px double;
+  outline-style: solid;
+}
+
+.navbar-sobre .nav-link:active {
+  outline-width: 4px;
 }
 
 .navbar-sobre .nav-link.active {
-    color: #ffab00;
-    border-bottom: 2px solid #ffab00;
-    border-top: transparent;
+  color: #ffab00;
+  border-top: transparent;
+  border-radius: 8px;
+  background-color: #070f2e;
+  color: #ffc95e;
+  border-bottom-width: 4px;
+  border-color: #ffc95e;
 }
+
 /*perfil*/
 .navItem--perfil {
-    margin-left: 30px;
-    height: 45px;
-    width: 45px;
-    border-radius: 100%;
+  margin-left: 30px;
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
 }
 
-
 main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 30px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
 
 .bloque {
-    background-color: white;
-    padding: 24px;
-    border-radius: 20px;
-    border: 1px solid #ffab00; /*Borde de los bloques*/
-    margin-bottom: 24px;
-    box-shadow: 0px 50px 100px -20px #3354, 0px 30px 60px -30px #0004, 0px -2px 6px 0px #0245 inset;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.bloque:hover {
-    transform: translateY(-10px);
+  background-color: #f5f5f5;
+  padding: 24px;
+  border-radius: 20px;
+  border: 3px solid #ffab00; /*Borde de los bloques*/
+  margin-bottom: 24px;
+  box-shadow:
+    0px 50px 100px -20px #3354,
+    0px 30px 60px -30px #0004,
+    0px -2px 6px 0px #0245 inset;
 }
 
 .bloque h2 {
-    color: #2a2f7b;
-    margin-bottom: 14px;
+  color: #2a2f7b;
+  margin-bottom: 14px;
 }
 
 .bloque p {
-    line-height: 1.7;
+  line-height: 1.7;
 }
 
 .img-carousel {
-    height: 380px;
-    object-fit: cover;
-    border-radius: 16px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .carousel-caption {
-    background-color: #070f2e73;
-    border-radius: 10px;
-    padding: 10px;
+  background-color: #070f2e73;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 /* boton amarillo ejemplar */
 .btn-success {
-    font-weight: bold;
-    background-color: #002562;
-    border-color: #002562;
-    color: white;
-    position: relative;
-    bottom: 1px;
+  font-weight: bold;
+  background-color: #002562;
+  border-color: #002562;
+  color: white;
+  position: relative;
+  bottom: 1px;
 }
 
 .btn-success:hover {
-    background-color: #ffab00;
-    border-color: #ffab00;
-    color: black;
-    bottom: 3px;
-    transition: bottom;
-    transition-duration: 0.3s;
-    border: 1px solid #0006;
-    box-shadow: 0px 5px 5px 0px #000d;
+  background-color: #ffab00;
+  border-color: #ffab00;
+  color: black;
+  bottom: 3px;
+  transition: bottom;
+  transition-duration: 0.3s;
+  border: 1px solid #0006;
+  box-shadow: 0px 5px 5px 0px #000d;
 }
 
 .btn-primary {
-    background-color: #3737a6;
-    border-color: #3737a6;
+  background-color: #3737a6;
+  border-color: #3737a6;
 }
 
 .table-responsive {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: left;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
-.table-responsive{
-    h2 {
-        margin-bottom: 20px;
-    }
+.table-responsive {
+  h2 {
+    margin-bottom: 20px;
+  }
 }
 
 table thead {
-    background-color: #3737a6;
-    color: white;
+  background-color: #3737a6;
+  color: white;
 }
 
 table th,
 table td {
-    vertical-align: middle;
-    padding: 12px;
+  vertical-align: middle;
+  padding: 12px;
 }
 
 /* todo el footer */
 footer {
-    background: #3737a6;
-    background: linear-gradient(90deg,#3737a6 21%, #070f2e 100%);
-    color: white;
-    height: 200px;
+  background: #3737a6;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  color: white;
+  height: 200px;
 }
 
 .a_direccion--sede {
-    color: white;
+  color: white;
 }
 
 footer p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 @media (max-width: 576px) {
-    .titulo-logo {
-        font-size: 18px;
-    }
+  .titulo-logo {
+    font-size: 18px;
+  }
 
-    .navbar-sobre .navbar-brand img {
-        width: 50px;
-        height: 50px;
-    }
+  .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
 
-    main {
-        padding: 20px 14px;
-    }
+  main {
+    padding: 20px 14px;
+  }
 
-    .bloque {
-        padding: 18px;
-    }
+  .bloque {
+    padding: 18px;
+  }
 
-    .img-carousel {
-        height: 220px;
-    }
+  .img-carousel {
+    height: 220px;
+  }
 }
 
+/* Títulos principales */
+h1 {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+}
+
+/* Subtítulos */
+h2, h3 {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+}
+
+/* Texto normal */
+p, span {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+}
+
+/* Texto inclinado (en vez de italic) */
+.inclinado {
+  font-family: "Google Sans Flex", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "slnt" -10, "wdth" 100, "GRAD" 0, "ROND" 0;
+}
