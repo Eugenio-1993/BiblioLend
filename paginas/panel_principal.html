@@ -281,7 +281,15 @@
         Sede principal: Cra. 50B #97a-30, Santa Cruz, Medellín, Antioquia, Colombia.
       </a>
     </footer>
+    <script src="../JS/practica.js"></script>
+    <script>
+      // Protegemos esta página: solo roles que tengan "panel_principal.html"
+      // en su lista de páginas permitidas pueden verla.
+      protegerPagina("panel_principal.html");
 
+      // Mostramos el email del usuario en el saludo.
+      mostrarUsuario();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
