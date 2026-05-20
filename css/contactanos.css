@@ -159,6 +159,10 @@ main {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
+.img_eugenio {
+  object-position: center 10%; /* mueve la imagen hacia abajo dentro del círculo */
+}
+
 .btn-outline-secondary {
   border-color: transparent;
   color: #3737a6;
