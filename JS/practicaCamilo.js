@@ -5,7 +5,7 @@ const user = {
     "user": "administrador"
 
     
-} 
+}
 const formulario = document.getElementById('iniciarSesion');
 
 formulario.addEventListener("submit",function (event) {
