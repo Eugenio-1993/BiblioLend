@@ -1,11 +1,27 @@
 console.log('hola');
-const user = {
+const user = 
+[
+{
     "email": "admin@admin.com",
     "password": "admin123",
-    "user": "administrador"
+    "user": "administrador" 
+},
+ {
+    "email": "admin@estu.com",
+    "password": "estu123",
+    "user": "estudiante" 
+}
+,
+ {
+    "email": "admin@biblio.com",
+    "password": "biblio123",
+    "user": "bibliotecario" 
+}
+
+]
 
     
-}
+
 const formulario = document.getElementById('iniciarSesion');
 
 formulario.addEventListener("submit",function (event) {
@@ -20,8 +36,27 @@ formulario.addEventListener("submit",function (event) {
     
     } 
     return alert("usuario no encontrado")
-    localStorage.setItem("sesion_email", email);
-    localStorage.setItem("sesion_password", password);
+//clase 3
+//  opcion 1
+// function iniciarSesion(email, password) { 
+//     for (let index = 0; index < user.length; index++) {
+//         const element = user[index];
+//         if (element.email === email && element.passwors === password) {
+//             alert("usuario encontrado");
+//             sessionStorage.setItem("user", element.user);
+//             break;
+//         }
+//         alert("usuario no encontrado");
+
+//         console.log("index: ",index);
+//         console.log("elemento: ",element.email);
+//         console.log("elemento: ",element.passwors);
+//         console.log("elemento: ",element.user);
+
+
+//     }}
+
+
 }); 
 
 
