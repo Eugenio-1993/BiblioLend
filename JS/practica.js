@@ -4,9 +4,9 @@
 
 // --- BASE DE USUARIOS ---
 const usuarios = [
-  { email: "estudiante@institucion.edu.co", password: "123est",   rol: "estudiante"    },
-  { email: "biblio@institucion.edu.co",     password: "123bib",   rol: "bibliotecario" },
-  { email: "admin@institucion.edu.co",      password: "123adm",   rol: "administrador" }
+  { email: "estudiante@ierepublicadehonduras.edu.co", password: "123est",   rol: "estudiante"    },
+  { email: "biblio@ierepublicadehonduras.edu.co",     password: "123bib",   rol: "bibliotecario" },
+  { email: "admin@ierepublicadehonduras.edu.co",      password: "123adm",   rol: "administrador" }
 ];
 
 // --- PÁGINAS PERMITIDAS POR ROL ---
@@ -15,29 +15,28 @@ const usuarios = [
 const paginasPermitidas = {
   estudiante: [
     "panel_principal.html",
-    "catalogo.html",
-    "resenas.html",
-    "contactanos.html",
     "sobre_nosotros.html",
+    "contactanos.html",
+    "resenas.html",
+    "catalogo.html",
     "cuenta_usuario.html"
   ],
   bibliotecario: [
-    "panel_principal.html",   // ← necesario para no quedar atrapado en el login
-    "catalogo.html",
-    "resenas.html",
-    "contactanos.html",
+    "panel_principal.html",
     "sobre_nosotros.html",
+    "contactanos.html",
+    "resenas.html",
+    "catalogo.html",
     "cuenta_usuario.html",
     "panel_bibliotecario.html" // exclusiva del bibliotecario
   ],
   administrador: [
-    "panel_principal.html",   // ← ídem
-    "catalogo.html",
-    "resenas.html",
-    "contactanos.html",
+    "panel_principal.html",
     "sobre_nosotros.html",
+    "contactanos.html",
+    "resenas.html",
+    "catalogo.html",
     "cuenta_usuario.html",
-    "panel_bibliotecario.html",
     "panel_admin.html"         // exclusiva del administrador
   ]
 };
@@ -47,9 +46,9 @@ const paginasPermitidas = {
 // Todos van a panel_principal.html por ahora; puedes cambiarlos cuando
 // tengas los paneles de bibliotecario y admin listos.
 const paginaInicial = {
-  estudiante:    "./paginas/panel_principal.html",
-  bibliotecario: "./paginas/panel_principal.html", // cambiar a panel_bibliotecario.html cuando exista
-  administrador: "./paginas/panel_principal.html"  // cambiar a panel_admin.html cuando exista
+  estudiante:    "../paginas/panel_principal.html",
+  bibliotecario: "../paginas/panel_principal.html", // cambiar a panel_bibliotecario.html cuando exista
+  administrador: "../paginas/panel_principal.html"  // cambiar a panel_admin.html cuando exista
 };
 
 // ============================================================
@@ -107,38 +106,38 @@ function protegerPagina(nombrePagina) {
   }
 }
 
-// ============================================================
-// CERRAR SESIÓN
-// ============================================================
-function cerrarSesion() {
-  localStorage.removeItem("sesion_email");
-  localStorage.removeItem("sesion_rol");
-  window.location.href = "../index.html";
-}
+// // ============================================================
+// // CERRAR SESIÓN
+// // ============================================================
+// function cerrarSesion() {
+//   localStorage.removeItem("sesion_email");
+//   localStorage.removeItem("sesion_rol");
+//   window.location.href = "../index.html";
+// }
 
-// ============================================================
-// MOSTRAR USUARIO EN EL SALUDO
-// ============================================================
-// Busca el primer <h2> que contenga "[USUARIO]" y lo reemplaza.
-// Así no rompe otros <h2> de la página.
+// // ============================================================
+// // MOSTRAR USUARIO EN EL SALUDO
+// // ============================================================
+// // Busca el primer <h2> que contenga "[USUARIO]" y lo reemplaza.
+// // Así no rompe otros <h2> de la página.
 
-function mostrarUsuario() {
-  const email = localStorage.getItem("sesion_email");
-  const rol   = localStorage.getItem("sesion_rol");
+// function mostrarUsuario() {
+//   const email = localStorage.getItem("sesion_email");
+//   const rol   = localStorage.getItem("sesion_rol");
 
-  // Buscamos el h2 específico del saludo, no cualquier h2 de la página
-  const saludo = document.querySelector("h2[data-saludo]");
+//   // Buscamos el h2 específico del saludo, no cualquier h2 de la página
+//   const saludo = document.querySelector("h2[data-saludo]");
 
-  if (saludo && email) {
-    saludo.textContent = `Bienvenido de vuelta, ${email}`;
-  }
+//   if (saludo && email) {
+//     saludo.textContent = `Bienvenido de vuelta, ${email}`;
+//   }
 
-  // Opcional: mostrar/ocultar elementos según el rol
-  // Por ejemplo, un botón que solo ve el administrador
-  document.querySelectorAll("[data-rol-requerido]").forEach(elemento => {
-    const rolRequerido = elemento.getAttribute("data-rol-requerido");
-    if (rol !== rolRequerido) {
-      elemento.style.display = "none"; // Oculta el elemento si el rol no coincide
-    }
-  });
-}
+//   // Opcional: mostrar/ocultar elementos según el rol
+//   // Por ejemplo, un botón que solo ve el administrador
+//   document.querySelectorAll("[data-rol-requerido]").forEach(elemento => {
+//     const rolRequerido = elemento.getAttribute("data-rol-requerido");
+//     if (rol !== rolRequerido) {
+//       elemento.style.display = "none"; // Oculta el elemento si el rol no coincide
+//     }
+//   });
+// }
