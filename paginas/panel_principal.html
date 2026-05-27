@@ -71,6 +71,9 @@
                   />
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="cerrarSesion(); return false;">Cerrar Sesión</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -79,7 +82,7 @@
 
     <main>
       <section class="bloque">
-        <h2>Bienvenido de vuelta, [USUARIO]</h2>
+        <h2 data-saludo>Bienvenido de vuelta, [USUARIO]</h2>
         <p>
           Presiona el botón y acceda al catálogo de libros escolares en cualquier lugar y en
           cualquier momento.
@@ -281,7 +284,7 @@
         Sede principal: Cra. 50B #97a-30, Santa Cruz, Medellín, Antioquia, Colombia.
       </a>
     </footer>
-    <script src="../JS/practica.js"></script>
+    <script src="../JS/auth.js"></script>
     <script>
       // Protegemos esta página: solo roles que tengan "panel_principal.html"
       // en su lista de páginas permitidas pueden verla.
