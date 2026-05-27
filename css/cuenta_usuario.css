@@ -34,7 +34,7 @@ hr {
 
 /* NAV-BAR */
 .navbar-sobre {
-  background: rgba(11, 22, 66, 0.85);
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
