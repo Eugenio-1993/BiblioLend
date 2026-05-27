@@ -38,7 +38,6 @@ const paginasPermitidas = {
     "contactanos.html",
     "resenas.html",
     "catalogo.html",
-    "cuenta_usuario.html",
     "panel_bibliotecario.html",
   ],
   administrador: [
@@ -47,7 +46,6 @@ const paginasPermitidas = {
     "contactanos.html",
     "resenas.html",
     "catalogo.html",
-    "cuenta_usuario.html",
     "panel_admin.html",
   ],
 };
@@ -55,8 +53,8 @@ const paginasPermitidas = {
 // --- PÁGINA DE DESTINO SEGÚN ROL ---
 const paginaInicial = {
   estudiante: "../paginas/panel_principal.html",
-  bibliotecario: "../paginas/panel_principal.html",
-  administrador: "../paginas/panel_principal.html",
+  bibliotecario: "../paginas/panel_bibliotecario.html",
+  administrador: "../paginas/panel_admin.html",
 };
 
 // LOGIN
