@@ -21,9 +21,13 @@ hr {
   color: #ffab00;
 }
 
+/* NAV-BAR */
 .navbar-sobre {
-  background: #3737a6;
-  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  background: rgba(11, 22, 66, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-sobre .navbar-brand img {
@@ -34,26 +38,57 @@ hr {
 }
 
 .navbar-sobre .nav-link {
-  margin-left: 10px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: white;
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 1.05rem;
   position: relative;
-  top: 0px;
+  transition: color 0.3s ease;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
 }
 
-/* El navbar animado */
+.navbar-sobre .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #ffc95e;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* --- Hover --- */
 .navbar-sobre .nav-link:hover {
-  color: #f5f5f5;
+  color: #ffc95e;
+  background-color: transparent;
 }
 
+.navbar-sobre .nav-link:hover::after {
+  width: 80%;
+}
+
+/* --- Enlace activo --- */
 .navbar-sobre .nav-link.active {
-  color: #f5f5f5;
+  color: #ffab00;
+  font-weight: 600;
+}
+
+.navbar-sobre .nav-link.active::after {
+  width: 80%;
+  background-color: #ffab00;
 }
 
 .navbar-sobre .navbar-toggler {
   border-color: #ffffffb3;
 }
+
 
 .navbar-sobre .navbar-toggler-icon {
   filter: brightness(0) invert(1);
