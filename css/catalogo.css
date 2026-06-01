@@ -39,7 +39,7 @@ hr {
 
 .navbar-sobre .nav-link {
   margin: 0 8px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   font-weight: 500;
   font-size: 1.05rem;
   position: relative;
@@ -223,7 +223,7 @@ hr {
 
 .btn-outline-secondary {
   border-color: transparent;
-  color: #3737a6;
+  color: #000000;
   background-color: #ffab00;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -233,7 +233,7 @@ hr {
 .btn-outline-secondary:hover {
   border-color: #3737a6;
   background-color: #ffffff;
-  color: rgb(39, 45, 91);
+  color: #002562;
 }
 
 /* todo el footer */

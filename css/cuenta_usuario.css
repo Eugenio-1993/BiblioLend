@@ -50,7 +50,7 @@ hr {
 
 .navbar-sobre .nav-link {
   margin: 0 8px;
-  color: rgba(255, 255, 255, 0.85);
+   color: #ffffff;
   font-weight: 500;
   font-size: 1.05rem;
   position: relative;
@@ -114,7 +114,7 @@ hr {
 .panel-usuario {
   max-width: 1150px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 20px 10px;
 }
 
 .topbar {
@@ -302,6 +302,21 @@ hr {
 .book-meta {
   margin: 0;
   color: #6b7280;
+}
+
+.btn-outline-secondary {
+  border-color: transparent;
+  color: #000000;
+  background-color: #ffab00;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.btn-outline-secondary:hover {
+  border-color: #3737a6;
+  background-color: #ffffff;
+  color: #002562;
 }
 
 /* todo el footer */

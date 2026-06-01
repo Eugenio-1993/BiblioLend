@@ -39,7 +39,7 @@ hr {
 
 .navbar-sobre .nav-link {
   margin: 0 8px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   font-weight: 500;
   font-size: 1.05rem;
   position: relative;
@@ -135,8 +135,8 @@ section p {
 
 .btn-outline-secondary {
   border-color: transparent;
-  color: #3737a6;
-  background-color: white;
+  color: #000000;
+  background-color: #ffab00;
   margin-left: 20px;
   margin-bottom: 20px;
   font-weight: 400;
@@ -144,8 +144,8 @@ section p {
 
 .btn-outline-secondary:hover {
   border-color: #3737a6;
-  background-color: #3737a6;
-  color: white;
+  background-color: #ffffff;
+  color: #002562;
 }
 
 /* Acordeón del equipo */
