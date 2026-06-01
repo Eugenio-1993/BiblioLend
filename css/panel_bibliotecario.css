@@ -275,14 +275,17 @@ table td {
 
 .btn-outline-secondary {
   border-color: transparent;
-  color: #3737a6;
-  background-color: white;
+  color: #000000;
+  background-color: #ffab00;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .btn-outline-secondary:hover {
   border-color: #3737a6;
-  background-color: #3737a6;
-  color: white;
+  background-color: #ffffff;
+  color: #002562;
 }
 
 /* todo el footer */
