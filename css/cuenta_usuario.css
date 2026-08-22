@@ -319,6 +319,23 @@ hr {
   color: #002562;
 }
 
+/*botones de generacion de tickets*/
+.btn-true {
+  background-color: #2e41e9;
+  color: white;
+}
+btn-true:hover {
+  background-color: #1a2bbf;
+  color: white;
+}
+.btn-false {
+  background-color: #e92e2e;
+  color: white;
+}
+btn-false:hover {
+  background-color: #bf1a1a;
+  color: white;
+}
 /* todo el footer */
 footer {
   background: #3737a6;
