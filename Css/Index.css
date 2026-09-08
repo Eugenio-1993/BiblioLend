@@ -1,0 +1,280 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  color: #070f2e;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ─── Navegación ──────────────────────────────────────── */
+.nav-custom {
+  background-color: #ffffff;
+  padding: 14px 0;
+}
+
+.nav-logo {
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 4px 14px rgba(7, 15, 46, 0.15);
+}
+
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #070f2e;
+}
+
+.btn-login-nav {
+  background-color: #070f2e;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 26px;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-login-nav:hover {
+  background-color: #ffab00;
+  color: #070f2e;
+}
+
+/* ─── Hero Section ────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
+  color: #ffffff;
+  overflow: hidden;
+  padding-top: 76px;
+}
+
+/* Motivo de "columnas" tomado del logo, muy sutil, solo en el hero */
+.hero-columns {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 22px;
+  padding-right: 6%;
+  pointer-events: none;
+  opacity: 0.14;
+}
+
+.hero-columns span {
+  display: block;
+  width: 26px;
+  height: 100%;
+  background: #ffab00;
+}
+
+.hero-columns span:nth-child(2) { margin-top: 60px; }
+.hero-columns span:nth-child(3) { margin-top: 20px; }
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+.hero-eyebrow-mark {
+  width: 46px;
+  height: 3px;
+  background: #ffab00;
+  margin-bottom: 22px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 34px;
+  color: #d9deff;
+  max-width: 520px;
+}
+
+.btn-explore {
+  display: inline-block;
+  background-color: #ffab00;
+  color: #070f2e;
+  font-weight: 700;
+  padding: 13px 32px;
+  border-radius: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-explore:hover {
+  color: #070f2e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ─── Sección de Beneficios ───────────────────────────── */
+.section-beneficios {
+  background: #ffffff;
+  padding: 90px 0;
+}
+
+.section-heading {
+  max-width: 560px;
+  margin: 0 0 56px;
+}
+
+.section-kicker {
+  color: #3737a6;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #070f2e;
+  margin-bottom: 0;
+}
+
+.benefit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border-top: 4px solid #3737a6;
+  box-shadow: 0 6px 24px rgba(7, 15, 46, 0.06);
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(7, 15, 46, 0.1);
+}
+
+.benefit-title {
+  font-family: 'Playfair Display', serif;
+  color: #070f2e;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.benefit-card p {
+  color: #3a3f55;
+  line-height: 1.6;
+}
+
+/* ─── Sección de acceso (puente hacia el login) ───────── */
+.section-acceso {
+  background: #e8eaff;
+  padding: 80px 0;
+}
+
+.acceso-inner {
+  background: #070f2e;
+  border-radius: 16px;
+  padding: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  border-left: 6px solid #ffab00;
+}
+
+.acceso-text h2 {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.acceso-text p {
+  color: #c7cdfa;
+  max-width: 440px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.btn-acceso {
+  background-color: #ffab00;
+  color: #070f2e;
+  font-weight: 700;
+  padding: 14px 34px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-acceso:hover {
+  color: #070f2e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Footer ───────────────────────────────────────────── */
+.footer-custom {
+  background-color: #070f2e;
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 120px 0 70px;
+    text-align: left;
+  }
+
+  .hero-columns {
+    display: none;
+  }
+
+  .acceso-inner {
+    padding: 36px 28px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .acceso-text p {
+    max-width: 100%;
+  }
+}
+
+/* Accesibilidad: foco visible */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #ffab00;
+  outline-offset: 2px;
+}
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .btn-explore,
+  .btn-acceso,
+  .btn-login-nav,
+  .benefit-card {
+    transition: none;
+  }
+}
