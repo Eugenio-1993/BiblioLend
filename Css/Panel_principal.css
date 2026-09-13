@@ -24,9 +24,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px;
+  padding: 50px 50px 0px 50px;
   color: white;
   border-right: 10px solid #ffab00;
+  margin-bottom: 0;
 }
 
 .panel-left__content {
@@ -36,6 +37,7 @@ body {
   gap: 24px;
   margin-top: auto;
   margin-bottom: auto;
+  align-items: center;
 }
 
 .logo-img {
@@ -61,9 +63,12 @@ body {
   color: #fff;
   max-width: 380px;
   line-height: 1.7;
+  text-align: center;
 }
 
 .panel-left__footer {
+  margin: 0, 0, 0, 0;
+  text-align: left;
   position: relative;
   font-size: 13px;
   color: #ffab00;
