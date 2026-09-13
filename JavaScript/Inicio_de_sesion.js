@@ -98,7 +98,7 @@ function protegerPagina(nombrePagina) {
   // Sin sesión → al login
   if (!rol) {
     alert("Debes iniciar sesión para acceder a esta sección.");
-    window.location.href = "../index.html";
+    window.location.href = "../Inicio.html";
     return;
   }
 
@@ -116,5 +116,5 @@ function protegerPagina(nombrePagina) {
 function cerrarSesion() {
   localStorage.removeItem("sesion_email");
   localStorage.removeItem("sesion_rol");
-  window.location.href = "../index.html";
+  window.location.href = "../Inicio.html";
 }

@@ -16,7 +16,7 @@ a {
 
 /* ─── Navegación ──────────────────────────────────────── */
 .nav-custom {
-  background-color: #ffffff;
+  background-color: #e8eaff;
   padding: 14px 0;
 }
 
@@ -35,10 +35,11 @@ a {
 }
 
 .btn-login-nav {
+  margin-right: 3px;
   background-color: #070f2e;
   color: #ffffff;
   font-weight: 600;
-  padding: 10px 26px;
+  padding: 10px 30px;
   border-radius: 6px;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
@@ -130,8 +131,8 @@ a {
 
 /* ─── Sección de Beneficios ───────────────────────────── */
 .section-beneficios {
-  background: #ffffff;
-  padding: 90px 0;
+  background: #e8eaff;
+  padding: 90px 0px 0px 0px;
 }
 
 .section-heading {
@@ -154,9 +155,9 @@ a {
 }
 
 .benefit-card {
-  background: #ffffff;
+  background: #070f2e;
   border-radius: 12px;
-  border-top: 4px solid #3737a6;
+  border-top: 4px solid #ffab00;
   box-shadow: 0 6px 24px rgba(7, 15, 46, 0.06);
   height: 100%;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -169,8 +170,8 @@ a {
 
 .benefit-title {
   font-family: 'Playfair Display', serif;
-  color: #070f2e;
-  font-size: 1.4rem;
+  color: #e8eaff;
+  font-size: 1.8rem;
   margin-bottom: 14px;
 }
 
