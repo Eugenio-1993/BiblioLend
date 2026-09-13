@@ -85,7 +85,7 @@ a {
 
 .hero-content {
   position: relative;
-  z-Inicio: 1;
+  z-index: 1;
   max-width: 620px;
 }
 
