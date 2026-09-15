@@ -25,7 +25,7 @@ const usuarios = [
 // --- PÁGINAS PERMITIDAS POR ROL ---
 const paginasPermitidas = {
   estudiante: [
-    "panel_principal.html",
+    "Panel_login.html",
     "sobre_nosotros.html",
     "contactanos.html",
     "resenas.html",
@@ -33,7 +33,7 @@ const paginasPermitidas = {
     "cuenta_usuario.html",
   ],
   bibliotecario: [
-    "panel_principal.html",
+    "Panel_login.html",
     "sobre_nosotros.html",
     "contactanos.html",
     "resenas.html",
@@ -41,7 +41,7 @@ const paginasPermitidas = {
     "panel_bibliotecario.html",
   ],
   administrador: [
-    "panel_principal.html",
+    "Panel_login.html",
     "sobre_nosotros.html",
     "contactanos.html",
     "resenas.html",
@@ -52,7 +52,7 @@ const paginasPermitidas = {
 
 // --- PÁGINA DE DESTINO SEGÚN ROL ---
 const paginaInicial = {
-  estudiante: "../paginas/panel_principal.html",
+  estudiante: "../paginas/Panel_login.html",
   bibliotecario: "../paginas/panel_bibliotecario.html",
   administrador: "../paginas/panel_admin.html",
 };
@@ -106,7 +106,7 @@ function protegerPagina(nombrePagina) {
   const permitidas = paginasPermitidas[rol] || [];
   if (!permitidas.includes(nombrePagina)) {
     alert(`Tu rol (${rol}) no tiene acceso a esta sección.`);
-    window.location.href = "panel_principal.html";
+    window.location.href = "Panel_login.html";
   }
 }
 

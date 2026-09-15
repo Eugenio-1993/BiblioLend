@@ -3,96 +3,261 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bienvenido a BiblioLend - Iniciar Sesión</title>
+    <title>BiblioLend</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Fuente de Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <!-- Fuente de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
     <!-- Nuestro CSS -->
-    <link rel="stylesheet" href="../Css/Panel_principal.css"/>
-    <link rel="stylesheet" href="../Css/Panel_principal.css"/>
+    <link rel="stylesheet" href="../Css/Panel_principal.css" />
   </head>
   <body>
-    <div class="login-wrapper">
-      <!-- Panel izquierdo -->
-      <div class="panel-left">
-        <div class="panel-left__deco"></div>
-        <div class="panel-left__content">
-          <img
-            src="../Imagenes/Logo_bibliolend.png"
-            alt="Logo BiblioLend"
-            class="logo-img"
-            width="90"
-            height="90"
-          />
-          <h1 class="brand-title">BiblioLend</h1>
-          <p class="brand-tagline">
-            Accede al catálogo escolar, libros y recursos académicos de tu
-            institución educativa, todo en un solo lugar.
-          </p>
-        </div>
-        <div class="panel-left__footer">
-          <p>&copy; 2026 BiblioLend · CodeForge</p>
-        </div>
-      </div>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-sobre">
+        <div class="container">
+          <a
+            class="navbar-brand d-flex align-items-center gap-2"
+            href="Panel_principal.html"
+          >
+            <img
+              class="logoBibliolend"
+              alt="Logo BiblioLend"
+              src="../Imagenes/Logo_bibliolend.png"
+              width="80"
+              height="80"
+            />
+            <span class="titulo-logo">BiblioLend</span>
+          </a>
 
-      <!-- Panel derecho -->
-      <div class="panel-right">
-        <div class="form-wrapper">
-          <p class="form-brand">Inicia Sesión con tu cuenta de BiblioLend</p>
-          <h2 class="form-title">¡Bienvenido!</h2>
-          <p class="form-sub"></p>
-          <form action="enviar()" id="iniciarSesion">
-            <div class="field-group">
-              <label for="rol">Tipo de Usuario</label>
-              <select class="field-select" id="rol" name="rol" required>
-                <option value="" disabled>Selecciona tu rol</option>
-                <option value="estudiante" selected>Estudiante</option>
-                <option value="bibliotecario">Bibliotecario</option>
-                <option value="administrador">Administrador</option>
-              </select>
-            </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuNav"
+            aria-controls="menuNav"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <div class="field-group">
-              <label for="email">Correo Institucional</label>
-              <input
-                class="field-input"
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="usuario@ierepublicadehonduras.edu.co"
+          <div class="collapse navbar-collapse" id="menuNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="Panel_principal.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Sobre_nosotros.html">Sobre Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Contactanos.html">Contáctanos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Resenas.html">Reseñas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Catalogo.html">Catálogo</a>
+              </li>
+              <li class="nav-item">
+                <a href="Cuenta_usuarios.html">
+                  <img
+                    src="../Imagenes/Imagen_de_perfil.jpg"
+                    alt="Imagen de Perfil"
+                    class="navItem--perfil"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="bloque">
+        <h2 data-saludo>Bienvenido de vuelta, [USUARIO]</h2>
+        <p>
+          Presiona el botón y acceda al catálogo de libros escolares en cualquier lugar y en
+          cualquier momento.
+        </p>
+        <a href="catalogo.html" class="btn btn-success">
+          Catálogo Completo
+        </a>
+      </section>
+
+      <hr />
+
+      <section class="bloque">
+        <h2 class="visually-hidden">Galería</h2>
+        <div
+          id="carouselBiblioteca"
+          class="carousel slide"
+          data-bs-ride="carousel"
+          data-bs-interval="3000"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Imagen 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="1"
+              aria-label="Imagen 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselBiblioteca"
+              data-bs-slide-to="2"
+              aria-label="Imagen 3"
+            ></button>
+          </div>
+
+          <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+              <img
+                src="../Imagenes/Img_carrusel(1).png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 1"
               />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Explora la biblioteca</h5>
+                <p>Encuentra libros escolares de forma rapida y sencilla.</p>
+              </div>
             </div>
 
-            <div class="field-group">
-              <label for="password">Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="field-input"
-                placeholder="Ingrese su contraseña"
-                required
+            <div class="carousel-item">
+              <img
+                src="../Imagenes/Img_carrusel(2).png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 2"
               />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Aprende cada dia</h5>
+                <p>Accede al catalogo desde cualquier lugar.</p>
+              </div>
             </div>
 
-            <button type="submit" class="btn btn-login">
-              Entrar al Sistema
-            </button>
-          </form>
-          
-          <p class="forgot">
-            <a href="#">¿Olvidaste tu contraseña? Haz clic aquí</a>
-          </p>
+            <div class="carousel-item">
+              <img
+                src="../Imagenes/Img_carrusel(3).png"
+                class="d-block w-100 img-carousel"
+                alt="Biblioteca 3"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>BiblioLend</h5>
+                <p>Tu biblioteca digital escolar.</p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselBiblioteca"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselBiblioteca"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
         </div>
-      </div>
-    </div>
-    <script src="./JS/auth.js"></script>
+      </section>
+
+      <section class="bloque">
+        <h2>Mis Préstamos Activos</h2>
+        <div class="table-responsive">
+          <table border="1" class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Libro</th>
+                <th>Fecha de Préstamo</th>
+                <th>Fecha de Devolución</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>100 Años de soledad</td>
+                <td>10 / Marzo / 2025</td>
+                <td>17 / Marzo / 2025</td>
+                <td>Por devolver (3 días)</td>
+              </tr>
+              <tr>
+                <td>Inglés con Felipe</td>
+                <td>05 / Marzo / 2025</td>
+                <td>19 / Marzo / 2025</td>
+                <td>Por devolver (12 días)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      
+
+      <section class="bloque">
+        <h2>Horarios de Atención</h2>
+        <div class="table-responsive">
+          <table border="1" class="table table-bordered w-auto">
+            <tr>
+              <td>Lunes - Viernes</td>
+              <td>6:00am - 10:00am</td>
+            </tr>
+            <tr>
+              <td>Sábado y Domingo</td>
+              <td>Cerrado</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <hr />
+
+    <footer class="text-center py-3">
+      <p>
+        <strong>BiblioLend</strong> - La mejor herramienta para acceder al
+        catálogo escolar.
+      </p>
+      <p>
+        &copy; 2026 BiblioLend, By CodeForge - Todos los derechos reservados
+      </p>
+      <p>Institución Educativa República de Honduras</p>
+      <a
+        class="a_direccion--sede"
+        href="https://www.google.com/maps/place/I.E+REPUBLICA+DE+HONDURAS/@6.2908209,-75.5595034,20.29z/data=!4m6!3m5!1s0x8e4428c2eea6ac25:0x233b9380bcaa9ea5!8m2!3d6.2907713!4d-75.5595566!16s%2Fg%2F11bw1z2typ?entry=ttu"
+      >
+        Sede principal: Cra. 50B #97a-30, Santa Cruz, Medellín, Antioquia, Colombia.
+      </a>
+    </footer>
+    <script src="../JS/auth.js"></script>
+    <script>
+      // Protegemos esta página: solo roles que tengan "Panel_login.html"
+      // en su lista de páginas permitidas pueden verla.
+      protegerPagina("Panel_login.html");
+
+      // Mostramos el email del usuario en el saludo.
+      mostrarUsuario();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

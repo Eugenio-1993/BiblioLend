@@ -1,0 +1,281 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+/* ─── Posicion doble Principal ──────────────────────────────────────── */
+.login-wrapper {
+  display: flex;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  width: 100%;       
+  overflow-x: hidden; 
+}
+
+/* ─── Panel Izquierdo ───────────────────────────────────────── */
+.panel-left {
+  position: relative;
+  width: 55%;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px 50px 0px 50px;
+  color: white;
+  border-right: 10px solid #ffab00;
+  margin-bottom: 0;
+}
+
+.panel-left__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: auto;
+  margin-bottom: auto;
+  align-items: center;
+}
+
+.logo-img {
+  width: 250px;
+  height: 250px;
+
+  background-color: #ffab00;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 8px 32px #0000004d;
+}
+
+.brand-title {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.brand-tagline {
+  font-size: 19px;
+  font-weight: 300;
+  color: #fff;
+  max-width: 380px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.panel-left__footer {
+  margin: 0, 0, 0, 0;
+  text-align: left;
+  position: relative;
+  font-size: 13px;
+  color: #ffab00;
+}
+/* ─── Panel Derecho ─────────────────────────────────────────── */
+.panel-right {
+  flex: 1;
+  background: #e8eaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.form-brand {
+  font-size: 17px;
+  font-weight: 700;
+  color: #3737a6;
+  border-radius: 13px;
+}
+
+.form-title {
+  text-align: center;
+  font-size: Bold 20;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.form-sub {
+  font-size: bold;
+  color: #3737a6;
+  margin-bottom: 36px;
+}
+
+.form-sub a {
+  color: #3737a6;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ─── Campos del formulario ─────────────────────────────────── */
+.field-group {
+  margin-bottom: 20px;
+}
+
+.field-group label {
+  display: block;
+  font-size: bold;
+  font-weight: 500;
+  color: #3737a6;
+  margin-bottom: 6px;
+}
+
+.field-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #3737a6;
+  background: transparent;
+  padding: 10px 2px;
+  font-size: bold;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field-input::placeholder {
+  color: #070f2ec7;
+}
+
+.field-input:focus {
+  border-bottom-color: #ffab00;
+}
+
+/* ─── Select de tipo de usuario ─────────────────────────────── */
+.field-select {
+  width: 100%;
+  border: #ffab00;
+  border-bottom: 1.5px solid #3737a6;
+  background: transparent;
+  padding: 10px 2px;
+  font-size: 0.95rem;
+  color: #070f2e;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-position: right 4px center;
+  padding-right: 28px;
+  transition: border-color 0.2s;
+}
+
+.field-select:focus {
+  border-bottom-color: #ffab00;
+}
+
+.field-select option[value=""][disabled] {
+  color: #9ca3af;
+}
+
+.field-select option {
+  color: #070f2e;
+  background: #fff;
+}
+
+/* ─── Botón principal ───────────────────────────────────────── */
+.btn-login {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  background-color: #070f2e;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 5;
+  transition-duration: 0.2s;
+}
+
+.btn-login:hover {
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #0d0d0d;
+  background-color: #ffab00;
+  transition: bottom;
+  transition-duration: 0.3s;
+  box-shadow: 0px 5px 5px 0px #000d;
+}
+
+.btn-login:active {
+  transform: scale(0.99);
+}
+
+/* ─── Links inferiores ──────────────────────────────────────── */
+.forgot {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.forgot a {
+  margin-top: 40px;
+  font-size: 14px;
+  text-align: center;
+  color: #3737a6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.forgot a:hover {
+  color: #ffab00;
+}
+
+.inst-label {
+  margin-top: 32px;
+  font-size: 5px;
+  text-align: center;
+  color: #d1d5db;
+  letter-spacing: 1px;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .panel-left {
+    width: 100%;
+    padding: 40px 32px;
+    min-height: 130px;
+  }
+
+  .panel-left__content {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-img {
+  width: 70px;
+  height: 70px;
+  padding: 4px;
+  }
+
+
+  .brand-title {
+    font-size: 26px;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
+
+  .panel-left::after,
+  .panel-left::before {
+    display: none;
+  }
+  
+  /* Para bajar un tris el mini-foter amarillo */
+  :where(.panel-left__footer) p {
+    position: relative;
+    top: 35px;
+  }
+}
