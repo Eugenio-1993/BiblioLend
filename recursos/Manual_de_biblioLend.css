@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Variables Globales
+   ========================================================================== */
+:root {
+    --color-header-bg: #4a5568;    /* Gris oscuro como en Java Docs */
+    --color-sidebar-bg: #f7fafc;   /* Gris muy claro */
+    --color-text: #2d3748;         /* Gris oscuro para texto */
+    --color-link: #3182ce;         /* Azul para enlaces */
+    --color-border: #e2e8f0;       /* Borde sutil */
+    --color-accent: #ecc94b;       /* Amarillo/dorado para el subrayado */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Bloque: Header (Cabecera superior)
+   ========================================================================== */
+.header {
+    background-color: var(--color-header-bg);
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header__title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Bloque: Documentation (Contenedor principal Flexbox)
+   ========================================================================== */
+.documentation {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+/* ==========================================================================
+   Bloque: Sidebar (Menú lateral)
+   ========================================================================== */
+.sidebar {
+    width: 280px;
+    background-color: var(--color-sidebar-bg);
+    border-right: 1px solid var(--color-border);
+    padding: 2rem 0;
+    flex-shrink: 0;
+}
+
+.sidebar__list {
+    list-style: none;
+}
+
+.sidebar__item {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar__link {
+    display: block;
+    padding: 0.75rem 2rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar__link:hover {
+    background-color: var(--color-border);
+    color: var(--color-link);
+}
+
+/* ==========================================================================
+   Bloque: Content (Área de contenido principal)
+   ========================================================================== */
+.content {
+    flex-grow: 1;
+    padding: 3rem 4rem;
+    max-width: 900px; /* Evita que las líneas de texto sean demasiado largas */
+}
+
+.content__section {
+    margin-bottom: 3rem;
+}
+
+.content__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    /* Subrayado estilo Java Docs */
+    border-bottom: 3px solid var(--color-accent);
+    display: inline-block;
+    padding-bottom: 0.25rem;
+    color: #1a202c;
+}
+
+.content__text {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #4a5568;
+}
+
+/* Bloque interno para alinear icono y texto */
+.content__block {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.content__icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.content__subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+}
+
+/* Listas de enlaces */
+.content__list {
+    list-style: none;
+    margin-top: 0.5rem;
+}
+
+.content__list-item {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+/* Viñeta personalizada */
+.content__list-item::before {
+    content: "•";
+    color: var(--color-link);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+    top: 2px;
+}
+
+.content__link {
+    color: var(--color-link);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.content__link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive (Para pantallas pequeñas)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .documentation {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding: 1rem 0;
+    }
+    
+    .content {
+        padding: 2rem;
+    }
+}
