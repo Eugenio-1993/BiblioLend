@@ -171,6 +171,28 @@ main {
   text-decoration: underline;
 }
 
+.contacto-redes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: center;
+  padding: 0;
+}
+
+.contacto-redes--item {
+  text-decoration: none;
+  list-style: none;
+  width: 100%;
+}
+
+.contacto-redes a {
+  color: #3737a6;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
 .img_perfiles {
   width: 150px;
   height: 150px;
