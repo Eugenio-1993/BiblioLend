@@ -12,7 +12,14 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #0b1642 21%, #1d3cb8 100%);
+  background: linear-gradient(
+  to bottom,
+  #0b1642 0%,
+  #0b1642 21%,
+  #1d3cb8 50%,
+  #0b1642 79%,
+  #0b1642 100%
+  );
   background-color: #e8eaff;
   font-family: system-ui, sans-serif;
 }
