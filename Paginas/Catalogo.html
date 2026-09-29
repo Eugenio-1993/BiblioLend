@@ -46,7 +46,7 @@
               <a class="nav-link" href="Resenas.html">Reseñas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="Catalogo.html">Catálogo</a>
+              <a class="nav-link active" href="Catalogo.html" aria-current="page">Catálogo</a>
             </li>
             <li class="nav-item">
               <a href="Cuenta_usuarios.html"><img src="../Imagenes/Imagen_de_perfil.jpg" alt="Imagen de Perfil"
@@ -59,12 +59,13 @@
   </header>
 
   <main class="catalogo-page">
-    <section class="catalogo-bloque">
-      <h2>Catálogo de Libros</h2>
+    <section class="catalogo-bloque" aria-labelledby="titulo-catalogo">
+      <h1 id="titulo-catalogo">Catálogo de Libros</h1>
       <p>Explora los libros disponibles en la biblioteca escolar.</p>
 
       <div class="filtros">
-        <input type="text" class="form-control" placeholder="Buscar por título o autor" />
+        <label class="visually-hidden" for="buscar-libro">Buscar por título o autor</label>
+        <input id="buscar-libro" type="search" class="form-control" placeholder="Buscar por título o autor" />
         <select class="form-select" aria-label="Filtrar por categoría">
           <option>Todas las categorías</option>
           <option>Literatura</option>
@@ -76,8 +77,8 @@
       </div>
     </section>
 
-    <section class="catalogo-bloque">
-      <h3 class="subtitulo-catalogo">Todo lo que hay</h3>
+    <section class="catalogo-bloque" aria-labelledby="subtitulo-catalogo">
+      <h2 class="subtitulo-catalogo" id="subtitulo-catalogo">Todo lo que hay</h2>
       <div class="libros-grid">
         <article class="libro-card">
           <div class="libro-img portada-1">

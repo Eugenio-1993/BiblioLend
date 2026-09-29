@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="../Css/Panel_login.css"/>
   </head>
   <body>
-    <div class="login-wrapper">
+    <main class="login-wrapper">
       <!-- Panel izquierdo -->
-      <div class="panel-left">
+      <aside class="panel-left" aria-label="Presentación de BiblioLend">
         <div class="panel-left__deco"></div>
         <div class="panel-left__content">
           <img
@@ -28,7 +28,7 @@
             width="90"
             height="90"
           />
-          <h1 class="brand-title">BiblioLend</h1>
+          <p class="brand-title">BiblioLend</p>
           <p class="brand-tagline">
             Accede al catálogo escolar, libros y recursos académicos de tu
             institución educativa, todo en un solo lugar.
@@ -37,14 +37,13 @@
         <div class="panel-left__footer">
           <p>&copy; 2026 BiblioLend · CodeForge</p>
         </div>
-      </div>
+      </aside>
 
       <!-- Panel derecho -->
-      <div class="panel-right">
+      <section class="panel-right" aria-labelledby="titulo-login">
         <div class="form-wrapper">
           <p class="form-brand">Inicia Sesión con tu cuenta de BiblioLend</p>
-          <h2 class="form-title">¡Bienvenido!</h2>
-          <p class="form-sub"></p>
+          <h1 class="form-title" id="titulo-login">¡Bienvenido!</h1>
           <form action="enviar()" id="iniciarSesion">
             <div class="field-group">
               <label for="rol">Tipo de Usuario</label>
@@ -86,11 +85,11 @@
           </form>
           
           <p class="forgot">
-            <a href="#">¿Olvidaste tu contraseña? Haz clic aquí</a>
+            <a href="Olvide_mi_contrasena.html">¿Olvidaste tu contraseña? Haz clic aquí</a>
           </p>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
     <script src="./JS/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
