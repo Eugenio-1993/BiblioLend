@@ -184,13 +184,14 @@ hr {
   margin-bottom: 10px;
 }
 
-.stat-card span {
+.stat-card p {
   font-size: 2rem;
   font-weight: 700;
   color: #3737a6;
+  margin-bottom: 0;
 }
 
-.stat-card.alerta span {
+.stat-card.alerta p {
   color: #c62828;
 }
 
@@ -250,6 +251,9 @@ table td {
 .actividad-lista {
   display: grid;
   gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 .actividad-item {
@@ -257,6 +261,7 @@ table td {
   padding: 14px 16px;
   border-radius: 14px;
   border-left: 5px solid #3737a6;
+  margin: 0;
 }
 
 /* boton amarillo ejemplar */

@@ -53,22 +53,22 @@
         <a href="catalogo.html" class="btn btn-success">Gestionar Catálogo</a>
       </section>
 
-      <section class="stats-grid">
+      <section class="stats-grid" aria-label="Resumen de la biblioteca">
         <article class="stat-card">
           <h3>Libros disponibles</h3>
-          <span>124</span>
+          <p>124</p>
         </article>
         <article class="stat-card">
           <h3>Préstamos activos</h3>
-          <span>18</span>
+          <p>18</p>
         </article>
         <article class="stat-card">
           <h3>Devoluciones </h3>
-          <span>7</span>
+          <p>7</p>
         </article>
         <article class="stat-card alerta">
           <h3>Retrasos</h3>
-          <span>3</span>
+          <p>3</p>
         </article>
       </section>
 
@@ -86,13 +86,14 @@
         <h2>Préstamos pendientes</h2>
         <div class="table-responsive">
           <table class="table table-bordered align-middle">
+            <caption class="visually-hidden">Préstamos pendientes de devolución</caption>
             <thead>
               <tr>
-                <th>Estudiante</th>
-                <th>Libro</th>
-                <th>Fecha préstamo</th>
-                <th>Fecha devolución</th>
-                <th>Estado</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Libro</th>
+                <th scope="col">Fecha préstamo</th>
+                <th scope="col">Fecha devolución</th>
+                <th scope="col">Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -124,19 +125,19 @@
 
       <section class="bloque">
         <h2>Actividad reciente</h2>
-        <div class="actividad-lista">
-          <div class="actividad-item">
+        <ul class="actividad-lista">
+          <li class="actividad-item">
             <strong>Devolución registrada:</strong> Inglés con Felipe por María
             Torres.
-          </div>
-          <div class="actividad-item">
+          </li>
+          <li class="actividad-item">
             <strong>Nuevo préstamo:</strong> Principios de la Física para Andrés
             López.
-          </div>
-          <div class="actividad-item">
+          </li>
+          <li class="actividad-item">
             <strong>Catálogo actualizado:</strong> se agregó Biología Escolar.
-          </div>
-        </div>
+          </li>
+        </ul>
       </section>
 
       <div class="mt-4">
