@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Recupera el acceso a tu cuenta de BiblioLend, la biblioteca escolar digital de la Institución Educativa República de Honduras."
+    />
+    <title>Recuperar contraseña - BiblioLend</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Base visual compartida con el inicio de sesión -->
+    <link rel="stylesheet" href="../Css/Panel_login.css" />
+    <!-- Estilos propios de esta página -->
+    <link rel="stylesheet" href="../Css/Olvide_mi_contrasena.css" />
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <!-- Panel izquierdo: identidad de BiblioLend -->
+      <aside class="panel-left" aria-label="Presentación de BiblioLend">
+        <div class="panel-left__deco" aria-hidden="true"></div>
+        <div class="panel-left__content">
+          <img
+            src="../Imagenes/Logo_bibliolend.png"
+            alt="Logo BiblioLend"
+            class="logo-img"
+            width="90"
+            height="90"
+          />
+          <p class="brand-title">BiblioLend</p>
+          <p class="brand-tagline">
+            Accede al catálogo escolar, libros y recursos académicos de tu
+            institución educativa, todo en un solo lugar.
+          </p>
+        </div>
+        <footer class="panel-left__footer">
+          <p>&copy; 2026 BiblioLend · CodeForge</p>
+        </footer>
+      </aside>
+
+      <!-- Panel derecho: contenido principal de la página -->
+      <main class="panel-right">
+        <section class="form-wrapper" aria-labelledby="titulo-recuperar">
+          <p class="form-brand">Recupera el acceso a tu cuenta de BiblioLend</p>
+          <h1 class="form-title" id="titulo-recuperar">
+            ¿Olvidaste tu contraseña?
+          </h1>
+          <p class="form-sub" id="descripcion-recuperar">
+            Escribe tu correo institucional y te enviaremos las instrucciones
+            para crear una contraseña nueva.
+          </p>
+
+          <!-- Paso 1: solicitud -->
+          <form
+            id="recuperarContrasena"
+            novalidate
+            aria-describedby="descripcion-recuperar"
+          >
+            <div class="field-group">
+              <label for="email">Correo institucional</label>
+              <input
+                class="field-input"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                inputmode="email"
+                required
+                placeholder="usuario@ierepublicadehonduras.edu.co"
+                aria-describedby="email-ayuda email-error"
+              />
+              <p class="field-help" id="email-ayuda">
+                Es el mismo correo con el que inicias sesión.
+              </p>
+              <p class="field-error" id="email-error" role="alert" hidden></p>
+            </div>
+
+            <button type="submit" class="btn btn-login" id="btnEnviar">
+              Enviar instrucciones
+            </button>
+          </form>
+
+          <!-- Paso 2: confirmación (se muestra al enviar) -->
+          <section
+            class="confirmacion"
+            id="confirmacion"
+            aria-labelledby="titulo-confirmacion"
+            hidden
+          >
+            <h2 class="confirmacion__titulo" id="titulo-confirmacion" tabindex="-1">
+              Revisa tu correo
+            </h2>
+            <p>
+              Si <strong id="correoEnviado"></strong> está registrado en
+              BiblioLend, te enviamos un mensaje con las instrucciones para
+              restablecer tu contraseña.
+            </p>
+            <p>
+              Si no lo ves en unos minutos, revisa la carpeta de correo no
+              deseado.
+            </p>
+            <button type="button" class="btn-enlace" id="btnOtroCorreo">
+              Usar otro correo
+            </button>
+          </section>
+
+          <nav class="forgot" aria-label="Otras opciones de acceso">
+            <a href="Panel_login.html">&larr; Volver a iniciar sesión</a>
+          </nav>
+
+          <p class="ayuda-presencial">
+            ¿No tienes acceso a tu correo institucional? Acércate a la
+            biblioteca de lunes a viernes, de 6:00 a. m. a 10:00 a. m.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="../JavaScript/Olvide_mi_contrasena.js"></script>
+  </body>
+</html>
