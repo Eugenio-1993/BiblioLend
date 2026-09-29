@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Manual de usuario de BiblioLend" />
+    <title>Documentación | BiblioLend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio del manual">
+        <span class="brand-mark">B</span>
+        <span><strong>BiblioLend</strong><small>Documentación</small></span>
+      </a>
+      <label class="search" for="search-input">
+        <span aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" placeholder="Buscar en el manual..." autocomplete="off" />
+        <kbd>Ctrl K</kbd>
+      </label>
+      <a class="site-link" href="../Inicio.html">Ir a BiblioLend ↗</a>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="Navegación del manual">
+        <p class="sidebar-label">GUÍA DE USUARIO</p>
+        <nav>
+          <a class="nav-link active" href="#inicio">Introducción</a>
+          <a class="nav-link" href="#acceso">Acceso al sistema</a>
+          <a class="nav-link" href="#navegacion">Navegación general</a>
+          <a class="nav-link" href="#catalogo">Catálogo de libros</a>
+          <p class="sidebar-label">POR ROL</p>
+          <a class="nav-link" href="#estudiante">Estudiante</a>
+          <a class="nav-link" href="#bibliotecario">Bibliotecario</a>
+          <a class="nav-link" href="#administrador">Administrador</a>
+          <p class="sidebar-label">AYUDA</p>
+          <a class="nav-link" href="#informacion">Páginas informativas</a>
+          <a class="nav-link" href="#cerrar-sesion">Cerrar sesión</a>
+          <a class="nav-link" href="#preguntas">Preguntas frecuentes</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section id="inicio" data-searchable>
+          <p class="eyebrow">MANUAL DE USUARIO · 2026</p>
+          <h1>Aprende a usar BiblioLend</h1>
+          <p class="lead">Todo lo que necesitas para consultar el catálogo escolar y conocer las áreas disponibles para cada tipo de usuario.</p>
+          <div class="info-card">
+            <span class="info-icon">i</span>
+            <p><strong>¿Qué es BiblioLend?</strong><br />Es una biblioteca escolar digital de la Institución Educativa República de Honduras, creada por CodeForge.</p>
+          </div>
+          <div class="image-slot">
+            <img src="" alt="Captura de la página de inicio de BiblioLend" />
+            <p>Inserta aquí una captura de la página de inicio.</p>
+          </div>
+        </section>
+
+        <section id="acceso" data-searchable>
+          <p class="eyebrow">PRIMEROS PASOS</p>
+          <h2>Acceso al sistema</h2>
+          <p>Desde la página de inicio, selecciona <strong>Iniciar sesión</strong>. Completa los tres campos requeridos y pulsa <strong>Entrar al sistema</strong>.</p>
+          <ol class="steps">
+            <li><span>1</span><div><strong>Elige tu tipo de usuario</strong><p>Selecciona Estudiante, Bibliotecario o Administrador.</p></div></li>
+            <li><span>2</span><div><strong>Escribe tu correo institucional</strong><p>Usa el correo asignado por la institución.</p></div></li>
+            <li><span>3</span><div><strong>Ingresa tu contraseña</strong><p>El rol, correo y contraseña deben pertenecer a la misma cuenta.</p></div></li>
+          </ol>
+          <div class="image-slot">
+            <img src="" alt="Captura del formulario de inicio de sesión" />
+            <p>Inserta aquí una captura del inicio de sesión.</p>
+          </div>
+          <div class="callout warning"><strong>Importante:</strong> si los datos no coinciden, el sistema mostrará un mensaje de error. El enlace de recuperación de contraseña todavía no está habilitado.</div>
+        </section>
+
+        <section id="navegacion" data-searchable>
+          <p class="eyebrow">INTERFAZ</p>
+          <h2>Navegación general</h2>
+          <p>En las pantallas de estudiantes, la barra superior permite ir a <strong>Inicio</strong>, <strong>Sobre nosotros</strong>, <strong>Contáctanos</strong>, <strong>Reseñas</strong>, <strong>Catálogo</strong> y a la <strong>cuenta de usuario</strong> mediante el icono de perfil.</p>
+          <p>En dispositivos pequeños, usa el botón de menú para mostrar u ocultar las opciones de navegación.</p>
+          <div class="image-slot">
+            <img src="" alt="Captura de la barra de navegación de BiblioLend" />
+            <p>Inserta aquí una captura de la barra de navegación.</p>
+          </div>
+        </section>
+
+        <section id="catalogo" data-searchable>
+          <p class="eyebrow">CONSULTA DE RECURSOS</p>
+          <h2>Catálogo de libros</h2>
+          <p>Abre <strong>Catálogo</strong> para consultar los títulos disponibles. Cada tarjeta presenta el título, autor, categoría y estado del libro.</p>
+          <div class="feature-grid">
+            <article><h3>Buscar</h3><p>Escribe el título o el autor que deseas localizar.</p></article>
+            <article><h3>Filtrar</h3><p>Selecciona una categoría: Literatura, Ciencia, Historia, Matemáticas o Inglés.</p></article>
+            <article><h3>Consultar estado</h3><p>Identifica si el ejemplar está <strong>Disponible</strong> o <strong>Prestado</strong>.</p></article>
+          </div>
+          <div class="image-slot">
+            <img src="" alt="Captura del catálogo de libros de BiblioLend" />
+            <p>Inserta aquí una captura del catálogo.</p>
+          </div>
+          <div class="callout"><strong>Estado actual:</strong> el buscador, los filtros y el botón “Ver detalle” se muestran en la interfaz, pero aún no aplican cambios ni abren fichas de libros.</div>
+        </section>
+
+        <section id="estudiante" data-searchable>
+          <p class="eyebrow">ROL: ESTUDIANTE</p>
+          <h2>Mi cuenta</h2>
+          <p>Selecciona el icono de perfil en la barra de navegación para abrir tu cuenta. Allí encontrarás tus datos básicos, préstamos activos, tickets y el estado de tus libros.</p>
+          <ul>
+            <li>Consulta nombre, rol, correo y matrícula.</li>
+            <li>Revisa el número de préstamos activos y libros vencidos.</li>
+            <li>Visualiza los libros asociados a tu cuenta.</li>
+            <li>Usa <strong>Cerrar sesión</strong> para finalizar el acceso.</li>
+          </ul>
+          <div class="image-slot">
+            <img src="" alt="Captura de la cuenta de usuario estudiante" />
+            <p>Inserta aquí una captura de la cuenta de estudiante.</p>
+          </div>
+          <div class="callout warning"><strong>Estado actual:</strong> Editar perfil, generar préstamo y generar devolución son controles visuales y no realizan cambios todavía.</div>
+        </section>
+
+        <section id="bibliotecario" data-searchable>
+          <p class="eyebrow">ROL: BIBLIOTECARIO</p>
+          <h2>Panel del bibliotecario</h2>
+          <p>Esta área reúne la información operativa de la biblioteca. Muestra indicadores de libros disponibles, préstamos activos, devoluciones y retrasos.</p>
+          <h3>Elementos del panel</h3>
+          <ul>
+            <li><strong>Gestionar catálogo:</strong> acceso a la vista de catálogo.</li>
+            <li><strong>Acciones rápidas:</strong> registrar préstamo, devolución, agregar libro y ver usuarios.</li>
+            <li><strong>Préstamos pendientes:</strong> tabla con estudiante, libro, fechas y estado.</li>
+            <li><strong>Actividad reciente:</strong> resumen de movimientos presentados en la interfaz.</li>
+          </ul>
+          <div class="image-slot">
+            <img src="" alt="Captura del panel del bibliotecario" />
+            <p>Inserta aquí una captura del panel del bibliotecario.</p>
+          </div>
+          <div class="callout warning"><strong>Estado actual:</strong> salvo el acceso al catálogo, las acciones rápidas no registran datos en el prototipo.</div>
+        </section>
+
+        <section id="administrador" data-searchable>
+          <p class="eyebrow">ROL: ADMINISTRADOR</p>
+          <h2>Panel de administración</h2>
+          <p>El panel administrativo ofrece una vista general de usuarios registrados, libros disponibles, préstamos activos y reseñas activas.</p>
+          <h3>Gestión de libros</h3>
+          <p>La tabla incluye título, autor, estado y controles para <strong>Editar</strong> o <strong>Eliminar</strong>. En la parte superior se encuentra el botón <strong>Agregar libro</strong>.</p>
+          <div class="image-slot">
+            <img src="" alt="Captura del panel de administración" />
+            <p>Inserta aquí una captura del panel de administración.</p>
+          </div>
+          <div class="callout warning"><strong>Estado actual:</strong> los valores y registros son demostrativos; los controles para agregar, editar o eliminar no están conectados a una base de datos.</div>
+        </section>
+
+        <section id="informacion" data-searchable>
+          <p class="eyebrow">INFORMACIÓN Y CONTACTO</p>
+          <h2>Páginas informativas</h2>
+          <div class="feature-grid three">
+            <article><h3>Sobre nosotros</h3><p>Conoce la misión de BiblioLend y al equipo CodeForge. Pulsa cada nombre para expandir su información.</p></article>
+            <article><h3>Contáctanos</h3><p>Consulta las tarjetas del equipo y los medios de contacto configurados.</p></article>
+            <article><h3>Reseñas</h3><p>Escribe un comentario y usa el botón Enviar reseña.</p></article>
+          </div>
+          <div class="callout warning"><strong>Estado actual:</strong> el formulario de reseñas solicita texto, pero no guarda ni publica el comentario.</div>
+        </section>
+
+        <section id="cerrar-sesion" data-searchable>
+          <p class="eyebrow">SEGURIDAD</p>
+          <h2>Cerrar sesión</h2>
+          <p>Para finalizar tu acceso, pulsa <strong>Cerrar sesión</strong> desde Mi cuenta (estudiante) o desde el encabezado de los paneles de bibliotecario y administrador. La sesión se elimina del navegador y volverás a la página de inicio.</p>
+        </section>
+
+        <section id="preguntas" data-searchable>
+          <p class="eyebrow">SOPORTE</p>
+          <h2>Preguntas frecuentes</h2>
+          <details><summary>No puedo acceder a una página</summary><p>Inicia sesión y verifica que tu rol tenga permiso para consultar esa sección.</p></details>
+          <details><summary>El sistema indica que mis datos son incorrectos</summary><p>Comprueba que el correo, la contraseña y el tipo de usuario correspondan a la misma cuenta.</p></details>
+          <details><summary>No se guarda una solicitud o una reseña</summary><p>El prototipo actual no tiene base de datos ni servicios de almacenamiento conectados.</p></details>
+          <details><summary>Olvidé mi contraseña</summary><p>La recuperación de contraseña todavía no está disponible. Contacta al responsable de la plataforma.</p></details>
+        </section>
+
+        <footer class="page-footer">BiblioLend · CodeForge · Institución Educativa República de Honduras · 2026</footer>
+      </main>
+
+      <aside class="on-page" aria-label="En esta página"><p>EN ESTA PÁGINA</p><a href="#inicio">Introducción</a><a href="#acceso">Acceso</a><a href="#catalogo">Catálogo</a><a href="#preguntas">Preguntas frecuentes</a></aside>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

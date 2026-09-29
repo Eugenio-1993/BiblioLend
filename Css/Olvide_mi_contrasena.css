@@ -1,0 +1,136 @@
+/* ============================================================
+   Olvide_mi_contrasena.css
+   Complementa a Panel_login.css (cargar DESPUÉS de ese archivo).
+   Paleta del proyecto: #3737a6 · #070f2e · #ffab00 · #e8eaff
+   ============================================================ */
+
+/* ─── Contenedor del formulario ─────────────────────────────── */
+.form-wrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form-title {
+  font-size: 1.9rem;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.form-sub {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #070f2e;
+  margin-bottom: 28px;
+}
+
+/* ─── Ayuda y errores de campo ──────────────────────────────── */
+.field-help {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  color: #3a3f55;
+}
+
+.field-error {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b00020;
+}
+
+.field-input[aria-invalid="true"] {
+  border-bottom-color: #b00020;
+}
+
+/* ─── Botón deshabilitado mientras se envía ─────────────────── */
+.btn-login:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  background-color: #070f2e;
+  color: #ffffff;
+}
+
+/* ─── Confirmación de envío ─────────────────────────────────── */
+.confirmacion {
+  background: #ffffff;
+  color: #070f2e;
+  border-left: 6px solid #ffab00;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(7, 15, 46, 0.08);
+}
+
+.confirmacion__titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3737a6;
+  margin-bottom: 12px;
+}
+
+.confirmacion__titulo:focus {
+  outline: none; /* el foco se mueve aquí por código, no por teclado */
+}
+
+.confirmacion p {
+  line-height: 1.6;
+}
+
+.confirmacion strong {
+  overflow-wrap: anywhere; /* correos largos no se salen de la tarjeta */
+}
+
+.btn-enlace {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #3737a6;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.btn-enlace:hover {
+  color: #b37800;
+}
+
+/* ─── Enlaces inferiores ────────────────────────────────────── */
+.forgot {
+  margin-top: 24px;
+}
+
+.ayuda-presencial {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #3737a640;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #3a3f55;
+  text-align: center;
+}
+
+/* ─── Accesibilidad: foco visible ───────────────────────────── */
+.field-input:focus-visible,
+.btn-login:focus-visible,
+.btn-enlace:focus-visible,
+.forgot a:focus-visible {
+  outline: 2px solid #070f2e;
+  outline-offset: 3px;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .panel-right {
+    padding: 32px 20px;
+    align-items: flex-start;
+  }
+}
+
+/* ─── Movimiento reducido ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .btn-login,
+  .field-input {
+    transition: none;
+  }
+}
