@@ -226,7 +226,7 @@ main {
 /* todo el footer */
 footer {
   background: #3737a6;
-  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  background: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
   color: white;
   padding: 20px 15px;
 }
