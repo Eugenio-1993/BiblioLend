@@ -128,6 +128,8 @@ main {
 }
 
 .contacto-card {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   padding: 24px 18px;
   border-radius: 20px;
@@ -148,16 +150,19 @@ main {
   font-weight: 700;
   margin-top: 16px;
   margin-bottom: 8px;
+  min-height: 50px;
 }
 
 .contacto-rol {
   color: #5b6285;
   font-weight: 600;
   margin-bottom: 10px;
+  min-height: 65px;
 }
 
 .contacto-label {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .contacto-card a {
@@ -172,10 +177,11 @@ main {
 }
 
 .contacto-redes {
+  margin: 0px;
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: auto;
   align-items: center;
   padding: 0;
 }
