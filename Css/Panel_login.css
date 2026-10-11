@@ -5,7 +5,6 @@
 }
 
 body {
-  font-family: system-ui, sans-serif;
 }
 
 /* ─── Posicion doble Principal ──────────────────────────────────────── */
@@ -278,4 +277,37 @@ body {
     position: relative;
     top: 35px;
   }
+}
+/* ─── Tipografía (misma que la landing: Inicio.css) ─────── */
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Titulos principales y de seccion */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Texto normal */
+p,
+span,
+strong,
+li,
+a,
+button,
+input,
+label {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Texto inclinado */
+.inclinado {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
 }
