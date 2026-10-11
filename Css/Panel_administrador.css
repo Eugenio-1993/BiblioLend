@@ -9,19 +9,27 @@ hr {
 }
 
 body {
-  background: linear-gradient(
-  to bottom,
-  #0b1642 0%,
-  #0b1642 21%,
-  #1d3cb8 50%,
-  #0b1642 79%,
-  #0b1642 100%
+  /* Fondo fijo: el gradiente cubre siempre el viewport, sin importar
+     la altura del contenido de cada pagina */
+  background-image: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
   );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
   font-family: system-ui, sans-serif;
   color: #1f1f1f;
 }
 
 .admin-header {
+  position: relative;
+  z-index: 1000;
   background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
   color: white;
   padding: 20px;
