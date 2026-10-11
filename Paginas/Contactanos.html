@@ -18,76 +18,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-expand-sm navbar-dark navbar-sobre">
-        <div class="container">
-          <a
-            class="navbar-brand d-flex align-items-center gap-2"
-            href="Panel_principal.html"
-          >
-            <img
-              class="logoBibliolend"
-              alt="Logo BiblioLend"
-              src="../Imagenes/Logo_bibliolend.png"
-              width="80"
-              height="80"
-            />
-            <span class="titulo-logo">BiblioLend</span>
-          </a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuNav"
-            aria-controls="menuNav"
-            aria-expanded="false"
-            aria-label="Abrir menú"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="menuNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="Panel_principal.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Sobre_nosotros.html">Sobre Nosotros</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="Contactanos.html">Contáctanos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Resenas.html">Reseñas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Catalogo.html">Catálogo</a>
-              </li>
-              <li class="nav-item">
-                <a href="Cuenta_usuarios.html">
-                  <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
-                    alt="Imagen de Perfil"
-                    class="navItem--perfil"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
+    <header class="portada">
+      <div class="portada-contenido">
+        <div class="portada-izq">
+          <h1 class="portada-titulo">Contáctanos</h1>
+          <p class="portada-kicker">Canal de comunicación</p>
         </div>
-      </nav>
+
+        <div class="portada-der">
+          <p class="portada-bajada">
+            Ponte en contacto con nosotros por medio de nuestros diferentes
+            canales de comunicación disponibles. Te responderemos lo más rápido
+            posible.
+          </p>
+        </div>
+      </div>
     </header>
 
     <main>
-      <section class="bloque">
-        <h2>Ponte en contacto con nosotros</h2>
-        <p>
-          Puedes contactarnos por medio de nuestros diferentes canales de
-          comunicación disponibles. Te responderemos lo más rápido posible.
-        </p>
-      </section>
-
       <section class="bloque">
         <h2 class="mb-4">Equipo de Desarrolladores</h2>
         <div class="row g-4">
@@ -217,10 +165,6 @@
       </a>
     </footer>
 
-    <script src="../JS/auth.js"></script>
-    <script>
-      protegerPagina("contactanos.html");
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

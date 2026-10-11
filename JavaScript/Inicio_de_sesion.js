@@ -27,7 +27,6 @@ const paginasPermitidas = {
   estudiante: [
     "Panel_login.html",
     "sobre_nosotros.html",
-    "contactanos.html",
     "resenas.html",
     "catalogo.html",
     "cuenta_usuario.html",
@@ -35,7 +34,6 @@ const paginasPermitidas = {
   bibliotecario: [
     "Panel_login.html",
     "sobre_nosotros.html",
-    "contactanos.html",
     "resenas.html",
     "catalogo.html",
     "panel_bibliotecario.html",
@@ -43,7 +41,6 @@ const paginasPermitidas = {
   administrador: [
     "Panel_login.html",
     "sobre_nosotros.html",
-    "contactanos.html",
     "resenas.html",
     "catalogo.html",
     "panel_admin.html",
