@@ -205,22 +205,6 @@ table td {
   padding: 12px;
 }
 
-/* todo el footer */
-footer {
-  background: #3737a6;
-  background: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
-  color: white;
-  padding: 20px 15px;
-}
-
-.a_direccion--sede {
-  color: white;
-}
-
-footer p:last-child {
-  margin-bottom: 0;
-}
-
 @media (max-width: 576px) {
   .titulo-logo {
     font-size: 18px;

@@ -103,7 +103,6 @@ hr {
   border-color: #ffffffb3;
 }
 
-
 .navbar-sobre .navbar-toggler-icon {
   filter: brightness(0) invert(1);
 }
@@ -235,22 +234,6 @@ section p {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* todo el footer */
-footer {
-  background: #3737a6;
-  background: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
-  color: white;
-  padding: 20px 15px;
-}
-
-.a_direccion--sede {
-  color: white;
-}
-
-footer p:last-child {
-  margin-bottom: 0;
 }
 
 @media (max-width: 576px) {

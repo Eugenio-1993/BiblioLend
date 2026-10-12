@@ -283,23 +283,6 @@ a {
   background-color: #c62828;
 }
 
-/* todo el footer */
-footer {
-  text-align: center;
-  background: #3737a6;
-  background: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
-  color: white;
-  height: 200px;
-}
-
-.a_direccion--sede {
-  color: white;
-}
-
-footer p:last-child {
-  margin-bottom: 0;
-}
-
 @media (max-width: 768px) {
   .admin-header__brand {
     flex-direction: column;
