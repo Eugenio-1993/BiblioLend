@@ -124,7 +124,8 @@ main {
   border: 3px solid #ffab00;
 }
 
-section {
+/* Acotado a main para no pisar los <section> del footer compartido */
+main section {
   background-color: #f5f5f5;
   padding: 24px;
   border-radius: 20px;
@@ -136,12 +137,12 @@ section {
     0px -2px 6px 0px #0245 inset;
 }
 
-section h2 {
+main section h2 {
   color: #2a2f7b;
   margin-bottom: 14px;
 }
 
-section p {
+main section p {
   line-height: 1.7;
   margin-bottom: 0;
 }
@@ -255,7 +256,7 @@ section p {
     padding: 20px 14px;
   }
 
-  section {
+  main section {
     padding: 18px;
   }
 
