@@ -1,108 +1,107 @@
-.logoBibliolend {
-  object-fit: contain;
-  background-color: #ffab00;
-  border-radius: 50%;
-  padding: 4px;
-}
-
-.titulo-logo {
-  font-size: larger;
-  color: white;
-  font-weight: 600;
-}
-
 body {
-  background: linear-gradient(
-  to bottom,
-  #0b1642 0%,
-  #0b1642 21%,
-  #1d3cb8 50%,
-  #0b1642 79%,
-  #0b1642 100%
+  /* Fondo fijo: el gradiente cubre siempre el viewport, sin importar
+     la altura del contenido de cada pagina */
+  background-image: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
   );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
   background-color: #e8eaff;
-  font-family: system-ui, sans-serif;
 }
 
 hr {
   color: #ffab00;
 }
 
-/* NAV-BAR */
-.navbar-sobre {
-  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-sobre .navbar-brand img {
-  object-fit: contain;
-  background-color: #ffab00;
-  border-radius: 50%;
-  padding: 4px;
-}
-
-.navbar-sobre .nav-link {
-  margin: 0 8px;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 1.05rem;
-  position: relative;
-  transition: color 0.3s ease;
-  padding: 8px 12px;
-  background: transparent;
+/* ─── Portada (cabecera de la pagina, sin navbar) ─────── */
+/* Ocupa el 100% del ancho, igual que el footer */
+.portada {
+  width: 100%;
+  margin: 0;
+  padding: 24px 20px 26px;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
   border: none;
   border-radius: 0;
-  outline: none;
 }
 
-.navbar-sobre .nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 50%;
-  background-color: #ffc95e;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transform: translateX(-50%);
-  border-radius: 2px;
+/* Dos columnas equitativas: identificacion a la izquierda, texto a la derecha */
+.portada-contenido {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  color: #ffffff;
+  box-shadow: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
 }
 
-/* --- Hover --- */
-.navbar-sobre .nav-link:hover {
+.portada-izq {
+  min-width: 0;
+}
+
+/* Separador vertical suave entre ambas columnas */
+.portada-der {
+  min-width: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  padding-left: 32px;
+}
+
+.portada-kicker {
+  margin: 12px 0 0;
   color: #ffc95e;
-  background-color: transparent;
-}
-
-.navbar-sobre .nav-link:hover::after {
-  width: 80%;
-}
-
-/* --- Enlace activo --- */
-.navbar-sobre .nav-link.active {
-  color: #ffab00;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
 }
 
-.navbar-sobre .nav-link.active::after {
-  width: 80%;
-  background-color: #ffab00;
+.portada-titulo {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 10px 0 0;
 }
 
-.navItem--perfil {
-  margin-left: 30px;
-  height: 45px;
-  width: 45px;
-  border-radius: 100%;
+.portada-bajada {
+  margin: 0;
+  line-height: 1.7;
+  font-weight: 300;
+  color: #e6ebff;
+}
+
+@media (max-width: 767.98px) {
+  .portada {
+    padding: 28px 20px 30px;
+  }
+
+  .portada-contenido {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .portada-der {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    padding-left: 0;
+    padding-top: 16px;
+  }
 }
 
 main {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 24px 20px 30px;
 }
 
 .bloque {
@@ -128,6 +127,8 @@ main {
 }
 
 .contacto-card {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   padding: 24px 18px;
   border-radius: 20px;
@@ -148,16 +149,19 @@ main {
   font-weight: 700;
   margin-top: 16px;
   margin-bottom: 8px;
+  min-height: 50px;
 }
 
 .contacto-rol {
   color: #5b6285;
   font-weight: 600;
   margin-bottom: 10px;
+  min-height: 65px;
 }
 
 .contacto-label {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .contacto-card a {
@@ -172,10 +176,11 @@ main {
 }
 
 .contacto-redes {
+  margin: 0px;
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: auto;
   align-items: center;
   padding: 0;
 }
@@ -240,15 +245,6 @@ footer p:last-child {
 }
 
 @media (max-width: 576px) {
-  .titulo-logo {
-    font-size: 18px;
-  }
-
-  .navbar-sobre .navbar-brand img {
-    width: 50px;
-    height: 50px;
-  }
-
   main {
     padding: 20px 14px;
   }
@@ -264,40 +260,36 @@ footer p:last-child {
   }
 }
 
-/* Títulos principales */
-h1 {
-  font-family: "Google Sans Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+/* ─── Tipografía (misma que la landing: Inicio.css) ─────── */
+body {
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* Subtítulos */
+/* Titulos principales y de seccion */
+h1,
 h2,
-h3 {
-  font-family: "Google Sans Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
 }
 
 /* Texto normal */
 p,
-span {
-  font-family: "Google Sans Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
+span,
+strong,
+li,
+a,
+button,
+input,
+label {
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* Texto inclinado (en vez de italic) */
+/* Texto inclinado */
 .inclinado {
-  font-family: "Google Sans Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "slnt" -10, "wdth" 100, "GRAD" 0, "ROND" 0;
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
 }

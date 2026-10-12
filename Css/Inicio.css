@@ -49,6 +49,23 @@ a {
   color: #070f2e;
 }
 
+/* Boton secundario del navbar (paginas publicas) */
+.btn-contactanos-nav {
+  margin-right: 3px;
+  background-color: transparent;
+  color: #070f2e;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: 1px solid #070f2e;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-contactanos-nav:hover {
+  background-color: #070f2e;
+  color: #ffffff;
+}
+
 /* ─── Hero Section ────────────────────────────────────── */
 .hero-section {
   position: relative;

@@ -1,0 +1,209 @@
+/* ============================================================
+   Componente: Footer
+   ------------------------------------------------------------
+   No se definen colores ni tipografias concretas: todo sale de
+   variables CSS con valores neutros, para que puedas sobrescribir
+   cada una con tu propio estilo.
+
+   Uso:
+     <link rel="stylesheet" href="../Css/Footer.css">
+   ============================================================ */
+
+:root {
+  /* Colores: los mismos que usaba el footer anterior, ahora en variables */
+  --footer-bg: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
+  --footer-fg: #ffffff;
+  --footer-fg-muted: #e6ebff;
+  --footer-accent: #ffab00;
+  --footer-accent-fg: #070f2e;
+  --footer-surface: rgba(255, 255, 255, 0.12);
+
+  /* Forma */
+  --footer-inner-width: 1120px;
+
+  /* Espaciado */
+  --footer-block-padding: 3rem;
+  --footer-gutter: clamp(1rem, 4vw, 3rem);
+  --footer-column-gap: 3.5rem;
+  --footer-row-gap: 2rem;
+
+  /* Jerarquia visual */
+  --footer-brand-size: 1.5rem;
+  --footer-title-size: 1.0625rem;
+  --footer-text-size: 0.875rem;
+
+  /* Interacciones */
+  --footer-transition: 0.2s ease;
+}
+
+/* Evita que el ancho de 100vw genere scroll horizontal por la barra de
+   desplazamiento vertical. Quitarlo si el footer deja de ocupar 100vw. */
+html {
+  overflow-x: clip;
+}
+
+/* ─── Contenedor general ─────────────────────────────────── */
+
+/* Banda de ancho completo: de borde a borde, sin margenes laterales */
+.site-footer {
+  width: 100vw;
+  /* permite ocupar todo el vw aunque el footer este dentro de un contenedor centrado */
+  margin-inline: calc(50% - 50vw);
+  padding: var(--footer-block-padding) 0;
+  box-sizing: border-box;
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+}
+
+.site-footer__inner {
+  max-width: var(--footer-inner-width);
+  margin-inline: auto;
+  padding-inline: var(--footer-gutter);
+
+  display: grid;
+  /* La columna de marca es mas ancha que las otras dos */
+  grid-template-columns: 1.4fr 1fr 1fr;
+  column-gap: var(--footer-column-gap);
+  row-gap: var(--footer-row-gap);
+  align-items: start;
+}
+
+/* ─── Columna 1: marca ───────────────────────────────────── */
+
+.site-footer__brand-name {
+  margin: 0;
+  font-size: var(--footer-brand-size);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.site-footer__brand-name sup {
+  font-size: 0.5em;
+  font-weight: 500;
+  vertical-align: super;
+}
+
+.site-footer__brand-description {
+  margin: 0.75rem 0 0;
+  max-width: 34ch; /* evita que la linea se estire */
+  font-size: var(--footer-text-size);
+  line-height: 1.6;
+  color: var(--footer-fg-muted);
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 0.5rem; /* separacion pequena entre iconos */
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%; /* botones circulares pequenos */
+  background-color: var(--footer-surface);
+  color: var(--footer-fg);
+  transition:
+    background-color var(--footer-transition),
+    color var(--footer-transition),
+    transform var(--footer-transition);
+}
+
+.site-footer__social-link svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.site-footer__social-link:hover,
+.site-footer__social-link:focus-visible {
+  background-color: var(--footer-accent);
+  color: var(--footer-accent-fg);
+  transform: translateY(-2px);
+}
+
+/* ─── Titulos de columna ─────────────────────────────────── */
+
+.site-footer__title {
+  margin: 0 0 1rem;
+  font-size: var(--footer-title-size);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ─── Columna 2: enlaces ─────────────────────────────────── */
+
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* separacion uniforme */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__list a,
+.site-footer__address a {
+  font-size: var(--footer-text-size);
+  color: var(--footer-fg-muted);
+  text-decoration: none;
+  transition: color var(--footer-transition);
+}
+
+.site-footer__list a:hover,
+.site-footer__address a:hover,
+.site-footer__list a:focus-visible,
+.site-footer__address a:focus-visible {
+  color: var(--footer-fg);
+  text-decoration: underline;
+}
+
+/* ─── Columna 3: contacto ────────────────────────────────── */
+
+.site-footer__address {
+  margin: 0;
+  font-style: normal;
+}
+
+.site-footer__address p {
+  margin: 0 0 1rem;
+  font-size: var(--footer-text-size);
+  line-height: 1.6;
+  color: var(--footer-fg-muted);
+}
+
+.site-footer__address p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+/* Tablet: la marca ocupa el ancho completo, enlaces y contacto al lado */
+@media (max-width: 991.98px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Movil: todo apilado en una sola columna, en orden */
+@media (max-width: 575.98px) {
+  .site-footer {
+    padding: 2rem 0;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    padding-inline: 1.25rem;
+  }
+
+  .site-footer__brand {
+    grid-column: auto;
+  }
+}
