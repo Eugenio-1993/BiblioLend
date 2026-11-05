@@ -1,0 +1,3019 @@
+body.pagina-inicio *,
+body.pagina-inicio *::before,
+body.pagina-inicio *::after {
+  box-sizing: border-box;
+}
+
+body.pagina-inicio {
+  margin: 0;
+  color: #070f2e;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-inicio a {
+  text-decoration: none;
+}
+
+body.pagina-inicio .nav-custom {
+  padding: 14px 0;
+  background-color: #e8eaff;
+}
+
+body.pagina-inicio .nav-logo {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(7, 15, 46, 0.15);
+}
+
+body.pagina-inicio .nav-title {
+  color: #070f2e;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+body.pagina-inicio .btn-login-nav {
+  margin-right: 3px;
+  padding: 10px 30px;
+  color: #fff;
+  background-color: #070f2e;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.pagina-inicio .btn-login-nav:hover {
+  color: #070f2e;
+  background-color: #ffab00;
+}
+
+body.pagina-inicio .btn-contactanos-nav {
+  margin-right: 3px;
+  padding: 10px 24px;
+  color: #070f2e;
+  background-color: transparent;
+  border: 1px solid #070f2e;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.pagina-inicio .btn-contactanos-nav:hover {
+  color: #fff;
+  background-color: #070f2e;
+}
+
+body.pagina-inicio .hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 88vh;
+  overflow: hidden;
+  padding-top: 76px;
+  color: #fff;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
+}
+
+body.pagina-inicio .hero-columns {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 22px;
+  padding-right: 6%;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+body.pagina-inicio .hero-columns span {
+  display: block;
+  width: 26px;
+  height: 100%;
+  background: #ffab00;
+}
+
+body.pagina-inicio .hero-columns span:nth-child(2) {
+  margin-top: 60px;
+}
+
+body.pagina-inicio .hero-columns span:nth-child(3) {
+  margin-top: 20px;
+}
+
+body.pagina-inicio .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+body.pagina-inicio .hero-eyebrow-mark {
+  width: 46px;
+  height: 3px;
+  margin-bottom: 22px;
+  background: #ffab00;
+}
+
+body.pagina-inicio .hero-title {
+  margin-bottom: 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+body.pagina-inicio .hero-subtitle {
+  max-width: 520px;
+  margin-bottom: 34px;
+  color: #d9deff;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+body.pagina-inicio .btn-explore {
+  display: inline-block;
+  padding: 13px 32px;
+  color: #070f2e;
+  background-color: #ffab00;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.pagina-inicio .btn-explore:hover {
+  color: #070f2e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+body.pagina-inicio .section-beneficios {
+  padding: 90px 0 0;
+  background: #e8eaff;
+}
+
+body.pagina-inicio .section-heading {
+  max-width: 560px;
+  margin: 0 0 56px;
+}
+
+body.pagina-inicio .section-kicker {
+  margin-bottom: 10px;
+  color: #3737a6;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+body.pagina-inicio .section-heading h2 {
+  margin-bottom: 0;
+  color: #070f2e;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+}
+
+body.pagina-inicio .benefit-card {
+  height: 100%;
+  background: #070f2e;
+  border-top: 4px solid #ffab00;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(7, 15, 46, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.pagina-inicio .benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(7, 15, 46, 0.1);
+}
+
+body.pagina-inicio .benefit-title {
+  margin-bottom: 14px;
+  color: #e8eaff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
+
+body.pagina-inicio .benefit-card p {
+  color: #e8eaff;
+  line-height: 1.6;
+}
+
+body.pagina-inicio .section-acceso {
+  padding: 80px 0;
+  background: #e8eaff;
+}
+
+body.pagina-inicio .acceso-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 56px;
+  background: #070f2e;
+  border-left: 6px solid #ffab00;
+  border-radius: 16px;
+}
+
+body.pagina-inicio .acceso-text h2 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
+
+body.pagina-inicio .acceso-text p {
+  max-width: 440px;
+  margin-bottom: 0;
+  color: #c7cdfa;
+  line-height: 1.6;
+}
+
+body.pagina-inicio .btn-acceso {
+  padding: 14px 34px;
+  color: #070f2e;
+  background-color: #ffab00;
+  border-radius: 6px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.pagina-inicio .btn-acceso:hover {
+  color: #070f2e;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+body.pagina-inicio .footer-custom {
+  padding: 24px 0;
+  color: #fff;
+  background-color: #070f2e;
+  font-size: 0.9rem;
+}
+
+body.pagina-inicio a:focus-visible,
+body.pagina-inicio button:focus-visible {
+  outline: 2px solid #ffab00;
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  body.pagina-inicio .hero-title {
+    font-size: 2.3rem;
+  }
+
+  body.pagina-inicio .hero-section {
+    min-height: auto;
+    padding: 120px 0 70px;
+    text-align: left;
+  }
+
+  body.pagina-inicio .hero-columns {
+    display: none;
+  }
+
+  body.pagina-inicio .acceso-inner {
+    justify-content: center;
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  body.pagina-inicio .acceso-text p {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.pagina-inicio .btn-explore,
+  body.pagina-inicio .btn-acceso,
+  body.pagina-inicio .btn-login-nav,
+  body.pagina-inicio .benefit-card {
+    transition: none;
+  }
+}
+
+body.pagina-catalogo .logoBibliolend,
+body.pagina-catalogo .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+}
+
+body.pagina-catalogo .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-catalogo {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-catalogo hr {
+  color: #ffab00;
+}
+
+body.pagina-catalogo .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-catalogo .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-catalogo .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-catalogo .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-catalogo .navbar-sobre .nav-link:hover::after,
+body.pagina-catalogo .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-catalogo .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-catalogo .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 50%;
+}
+
+body.pagina-catalogo .catalogo-page {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+body.pagina-catalogo .catalogo-bloque {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #f5f5f5;
+  border: 3px solid #ffab00;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px #2a2f7b14, 0 30px 60px -30px #0004;
+}
+
+body.pagina-catalogo .catalogo-bloque h2,
+body.pagina-catalogo .subtitulo-catalogo {
+  color: #2a2f7b;
+}
+
+body.pagina-catalogo .filtros {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+body.pagina-catalogo .libros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+body.pagina-catalogo .libro-card {
+  padding: 18px;
+  background-color: #f9faff;
+  border: 1px solid #d9defc;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px #2a2f7b0f;
+}
+
+body.pagina-catalogo .libro-img {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+body.pagina-catalogo .portada-1,
+body.pagina-catalogo .portada-2,
+body.pagina-catalogo .portada-3,
+body.pagina-catalogo .portada-4,
+body.pagina-catalogo .portada-5,
+body.pagina-catalogo .portada-6 {
+  width: 100%;
+  max-width: 300px;
+  height: 290px;
+  object-fit: cover;
+}
+
+body.pagina-catalogo .portada-4 {
+  background: linear-gradient(135deg, #7b1e7a, #c77dff);
+}
+
+body.pagina-catalogo .portada-5 {
+  background: linear-gradient(135deg, #006d77, #83c5be);
+}
+
+body.pagina-catalogo .portada-6 {
+  background: linear-gradient(135deg, #2b2d42, #8d99ae);
+}
+
+body.pagina-catalogo .libro-card h3 {
+  margin-bottom: 8px;
+  color: #2a2f7b;
+  font-size: 1.1rem;
+}
+
+body.pagina-catalogo .autor,
+body.pagina-catalogo .categoria {
+  margin-bottom: 6px;
+  color: #5f6475;
+}
+
+body.pagina-catalogo .estado {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+body.pagina-catalogo .disponible {
+  color: #1f7a3f;
+  background-color: #dff7e7;
+}
+
+body.pagina-catalogo .prestado {
+  color: #b42318;
+  background-color: #ffe4e4;
+}
+
+body.pagina-catalogo .reservado {
+  color: #b26a00;
+  background-color: #fff3d6;
+}
+
+body.pagina-catalogo .btn-primary {
+  background-color: #3737a6;
+  border-color: #3737a6;
+}
+
+body.pagina-catalogo .btn-primary:hover {
+  background-color: #2a2f7b;
+  border-color: #2a2f7b;
+}
+
+body.pagina-catalogo .btn-outline-secondary {
+  margin: 0 0 20px 20px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: transparent;
+  font-weight: 400;
+}
+
+body.pagina-catalogo .btn-outline-secondary:hover {
+  color: #002562;
+  background-color: #fff;
+  border-color: #3737a6;
+}
+
+@media (max-width: 992px) {
+  body.pagina-catalogo .libros-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  body.pagina-catalogo .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-catalogo .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-catalogo .catalogo-page {
+    padding: 20px 14px;
+  }
+
+  body.pagina-catalogo .filtros,
+  body.pagina-catalogo .libros-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.pagina-catalogo .catalogo-bloque,
+  body.pagina-catalogo .libro-card {
+    padding: 18px;
+  }
+}
+
+/* Este bloque puede ir en una hoja compartida para todas las páginas. */
+:root {
+  --footer-bg: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
+  --footer-fg: #fff;
+  --footer-fg-muted: #e6ebff;
+  --footer-accent: #ffab00;
+  --footer-accent-fg: #070f2e;
+  --footer-surface: rgba(255, 255, 255, 0.12);
+  --footer-inner-width: 1120px;
+  --footer-block-padding: 3rem;
+  --footer-gutter: clamp(1rem, 4vw, 3rem);
+  --footer-column-gap: 3.5rem;
+  --footer-row-gap: 2rem;
+  --footer-brand-size: 1.5rem;
+  --footer-title-size: 1.0625rem;
+  --footer-text-size: 0.875rem;
+  --footer-transition: 0.2s ease;
+}
+
+html {
+  overflow-x: clip;
+}
+
+.site-footer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--footer-block-padding) 0;
+  color: var(--footer-fg);
+  background: var(--footer-bg);
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--footer-row-gap) var(--footer-column-gap);
+  align-items: start;
+  max-width: var(--footer-inner-width);
+  margin: 0 auto;
+  padding: 0 var(--footer-gutter);
+}
+
+.site-footer__brand-name {
+  margin: 0;
+  font-size: var(--footer-brand-size);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.site-footer__brand-name sup {
+  font-size: 0.5em;
+  font-weight: 500;
+  vertical-align: super;
+}
+
+.site-footer__brand-description {
+  max-width: 34ch;
+  margin: 0.75rem 0 0;
+  color: var(--footer-fg-muted);
+  font-size: var(--footer-text-size);
+  line-height: 1.6;
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--footer-fg);
+  background-color: var(--footer-surface);
+  border-radius: 50%;
+  transition: background-color var(--footer-transition), color var(--footer-transition), transform var(--footer-transition);
+}
+
+.site-footer__social-link svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.site-footer__social-link:hover,
+.site-footer__social-link:focus-visible {
+  color: var(--footer-accent-fg);
+  background-color: var(--footer-accent);
+  transform: translateY(-2px);
+}
+
+.site-footer__title {
+  margin: 0 0 1rem;
+  font-size: var(--footer-title-size);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__list a,
+.site-footer__address a {
+  color: var(--footer-fg-muted);
+  font-size: var(--footer-text-size);
+  text-decoration: none;
+  transition: color var(--footer-transition);
+}
+
+.site-footer__list a:hover,
+.site-footer__address a:hover,
+.site-footer__list a:focus-visible,
+.site-footer__address a:focus-visible {
+  color: var(--footer-fg);
+  text-decoration: underline;
+}
+
+.site-footer__address {
+  margin: 0;
+  font-style: normal;
+}
+
+.site-footer__address p {
+  margin: 0 0 1rem;
+  color: var(--footer-fg-muted);
+  font-size: var(--footer-text-size);
+  line-height: 1.6;
+}
+
+.site-footer__address p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .site-footer {
+    padding: 2rem 0;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    padding-inline: 1.25rem;
+  }
+
+  .site-footer__brand {
+    grid-column: auto;
+  }
+}
+
+body.pagina-contactanos {
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-contactanos hr {
+  color: #ffab00;
+}
+
+body.pagina-contactanos .portada {
+  width: 100%;
+  margin: 0;
+  padding: 24px 20px 26px;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
+}
+
+body.pagina-contactanos .portada-contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+body.pagina-contactanos .portada-izq,
+body.pagina-contactanos .portada-der {
+  min-width: 0;
+}
+
+body.pagina-contactanos .portada-der {
+  padding-left: 32px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+body.pagina-contactanos .portada-kicker {
+  margin: 12px 0 0;
+  color: #ffc95e;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.pagina-contactanos .portada-titulo {
+  margin: 10px 0 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+body.pagina-contactanos .portada-bajada {
+  margin: 0;
+  color: #e6ebff;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+@media (max-width: 767.98px) {
+  body.pagina-contactanos .portada {
+    padding: 28px 20px 30px;
+  }
+
+  body.pagina-contactanos .portada-contenido {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  body.pagina-contactanos .portada-der {
+    padding-top: 16px;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 0;
+  }
+}
+
+body.pagina-contactanos main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 30px;
+}
+
+body.pagina-contactanos .bloque {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #f5f5f5;
+  border: 3px solid #ffab00;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-contactanos .bloque h2 {
+  margin-bottom: 14px;
+  color: #2a2f7b;
+}
+
+body.pagina-contactanos .bloque p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+body.pagina-contactanos .contacto-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 18px;
+  background-color: #fff;
+  border: 1px solid #d9defc;
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(42, 47, 123, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.pagina-contactanos .contacto-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(42, 47, 123, 0.14);
+}
+
+body.pagina-contactanos .contacto-card .card-title {
+  min-height: 50px;
+  margin: 16px 0 8px;
+  color: #2a2f7b;
+  font-weight: 700;
+}
+
+body.pagina-contactanos .contacto-rol {
+  min-height: 65px;
+  margin-bottom: 10px;
+  color: #5b6285;
+  font-weight: 600;
+}
+
+body.pagina-contactanos .contacto-label {
+  margin: 0 0 10px;
+}
+
+body.pagina-contactanos .contacto-card a {
+  color: #3737a6;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+body.pagina-contactanos .contacto-card a:hover {
+  text-decoration: underline;
+}
+
+body.pagina-contactanos .contacto-redes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: auto 0 0;
+  padding: 0;
+}
+
+body.pagina-contactanos .contacto-redes--item {
+  width: 100%;
+  list-style: none;
+}
+
+body.pagina-contactanos .contacto-redes a {
+  color: #3737a6;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+body.pagina-contactanos .img_perfiles {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 10px;
+  border: 4px solid #ffab00;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+body.pagina-contactanos .img_eugenio {
+  object-position: center 10%;
+}
+
+body.pagina-contactanos .btn-outline-secondary {
+  margin: 0 0 20px 20px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: transparent;
+  font-weight: 400;
+}
+
+body.pagina-contactanos .btn-outline-secondary:hover {
+  color: #002562;
+  background-color: #fff;
+  border-color: #3737a6;
+}
+
+body.pagina-contactanos footer {
+  padding: 20px 15px;
+  color: #fff;
+  background: linear-gradient(90deg, #070f2e, #3737a6, #070f2e);
+}
+
+body.pagina-contactanos .a_direccion--sede {
+  color: #fff;
+}
+
+body.pagina-contactanos footer p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  body.pagina-contactanos main {
+    padding: 20px 14px;
+  }
+
+  body.pagina-contactanos .bloque,
+  body.pagina-contactanos .contacto-card {
+    padding: 18px;
+  }
+
+  body.pagina-contactanos .img_perfiles {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+body.pagina-cuenta-usuarios .logoBibliolend,
+body.pagina-cuenta-usuarios .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  object-fit: contain;
+  background-color: #ffab00;
+  border-radius: 50%;
+}
+
+body.pagina-cuenta-usuarios .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-cuenta-usuarios {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-cuenta-usuarios hr {
+  color: #ffab00;
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link:hover::after,
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-cuenta-usuarios .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-cuenta-usuarios .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  padding: 2px;
+  background-color: #ffab00;
+  border-radius: 50%;
+}
+
+body.pagina-cuenta-usuarios .bloque {
+  background-color: #f5f5f5 !important;
+  border: 3px solid #ffab00;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-cuenta-usuarios .panel-usuario {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+
+body.pagina-cuenta-usuarios .topbar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin-bottom: 24px;
+  padding: 0 18px;
+  color: #fff;
+  background: #4a67c2;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px #2a2f7b14;
+}
+
+body.pagina-cuenta-usuarios .topbar-dots {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+body.pagina-cuenta-usuarios .circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+body.pagina-cuenta-usuarios .panel-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+}
+
+body.pagina-cuenta-usuarios .sidebar {
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+  text-align: center;
+}
+
+body.pagina-cuenta-usuarios .avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #d8dde6, #bfc8d8);
+  border-radius: 50%;
+}
+
+body.pagina-cuenta-usuarios .user-name {
+  margin-bottom: 6px;
+  color: #2a2f7b;
+}
+
+body.pagina-cuenta-usuarios .user-role {
+  margin-bottom: 18px;
+  color: #6b7280;
+}
+
+body.pagina-cuenta-usuarios .user-data {
+  margin-bottom: 20px;
+  padding: 14px;
+  background-color: #f5f7ff;
+  border-radius: 14px;
+  text-align: left;
+}
+
+body.pagina-cuenta-usuarios .user-data p {
+  margin-bottom: 10px;
+}
+
+body.pagina-cuenta-usuarios .user-data p:last-child {
+  margin-bottom: 0;
+}
+
+body.pagina-cuenta-usuarios .btn-panel {
+  display: block;
+  max-width: 190px;
+  margin: 12px auto;
+  padding: 10px 14px;
+  color: #fff;
+  background: #222f67;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+body.pagina-cuenta-usuarios .btn-panel:hover {
+  color: #fff;
+  background: #151d3f;
+}
+
+body.pagina-cuenta-usuarios .btn-cerrar {
+  background-color: #c62828;
+}
+
+body.pagina-cuenta-usuarios .btn-cerrar:hover {
+  color: #fff;
+  background-color: #8e1b1b;
+}
+
+body.pagina-cuenta-usuarios .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.pagina-cuenta-usuarios .header-box,
+body.pagina-cuenta-usuarios .card-panel,
+body.pagina-cuenta-usuarios .stat-card {
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-cuenta-usuarios .header-box h3,
+body.pagina-cuenta-usuarios .card-panel h4,
+body.pagina-cuenta-usuarios .stat-card h4 {
+  color: #2a2f7b;
+}
+
+body.pagina-cuenta-usuarios .header-box p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+body.pagina-cuenta-usuarios .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body.pagina-cuenta-usuarios .stat-card {
+  text-align: center;
+}
+
+body.pagina-cuenta-usuarios .stat-card span {
+  color: #4a67c2;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+body.pagina-cuenta-usuarios .activity-list {
+  padding-left: 18px;
+}
+
+body.pagina-cuenta-usuarios .recommend-grid {
+  display: grid;
+  gap: 16px;
+}
+
+body.pagina-cuenta-usuarios .recommend-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background-color: #f5f7ff;
+  border-radius: 14px;
+}
+
+body.pagina-cuenta-usuarios .thumb {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  background: #d8dde6;
+  border-radius: 12px;
+}
+
+body.pagina-cuenta-usuarios .book-title {
+  margin: 0 0 4px;
+  color: #2a2f7b;
+  font-weight: 700;
+}
+
+body.pagina-cuenta-usuarios .book-meta {
+  margin: 0;
+  color: #6b7280;
+}
+
+body.pagina-cuenta-usuarios .btn-outline-secondary {
+  margin: 0 0 20px 20px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: transparent;
+  font-weight: 400;
+}
+
+body.pagina-cuenta-usuarios .btn-outline-secondary:hover {
+  color: #002562;
+  background-color: #fff;
+  border-color: #3737a6;
+}
+
+body.pagina-cuenta-usuarios .btn-true {
+  color: #fff;
+  background-color: #2e41e9;
+}
+
+body.pagina-cuenta-usuarios .btn-true:hover {
+  color: #fff;
+  background-color: #1a2bbf;
+}
+
+body.pagina-cuenta-usuarios .btn-false {
+  color: #fff;
+  background-color: #e92e2e;
+}
+
+body.pagina-cuenta-usuarios .btn-false:hover {
+  color: #fff;
+  background-color: #bf1a1a;
+}
+
+@media (max-width: 768px) {
+  body.pagina-cuenta-usuarios .panel-layout,
+  body.pagina-cuenta-usuarios .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  body.pagina-cuenta-usuarios .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-cuenta-usuarios .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-cuenta-usuarios .panel-usuario {
+    padding: 20px 14px;
+  }
+
+  body.pagina-cuenta-usuarios .topbar,
+  body.pagina-cuenta-usuarios .sidebar,
+  body.pagina-cuenta-usuarios .header-box,
+  body.pagina-cuenta-usuarios .card-panel,
+  body.pagina-cuenta-usuarios .stat-card {
+    padding: 18px;
+  }
+
+  body.pagina-cuenta-usuarios .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+body.pagina-olvide-mi-contrasena *,
+body.pagina-olvide-mi-contrasena *::before,
+body.pagina-olvide-mi-contrasena *::after,
+body.pagina-panel-login *,
+body.pagina-panel-login *::before,
+body.pagina-panel-login *::after {
+  box-sizing: border-box;
+}
+
+body.pagina-olvide-mi-contrasena,
+body.pagina-panel-login {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-olvide-mi-contrasena .login-wrapper,
+body.pagina-panel-login .login-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body.pagina-olvide-mi-contrasena .panel-left,
+body.pagina-panel-login .panel-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 55%;
+  margin-bottom: 0;
+  padding: 50px 50px 0;
+  color: #fff;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
+  border-right: 10px solid #ffab00;
+}
+
+body.pagina-olvide-mi-contrasena .panel-left__content,
+body.pagina-panel-login .panel-left__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: auto 0;
+}
+
+body.pagina-olvide-mi-contrasena .logo-img,
+body.pagina-panel-login .logo-img {
+  width: 250px;
+  height: 250px;
+  padding: 6px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px #0000004d;
+}
+
+body.pagina-olvide-mi-contrasena .brand-title,
+body.pagina-panel-login .brand-title {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+body.pagina-olvide-mi-contrasena .brand-tagline,
+body.pagina-panel-login .brand-tagline {
+  max-width: 380px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.7;
+  text-align: center;
+}
+
+body.pagina-olvide-mi-contrasena .panel-left__footer,
+body.pagina-panel-login .panel-left__footer {
+  position: relative;
+  margin: 0;
+  color: #ffab00;
+  font-size: 13px;
+  text-align: left;
+}
+
+body.pagina-olvide-mi-contrasena .panel-right,
+body.pagina-panel-login .panel-right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background: #e8eaff;
+}
+
+body.pagina-olvide-mi-contrasena .form-wrapper,
+body.pagina-panel-login .form-wrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
+body.pagina-olvide-mi-contrasena .form-brand,
+body.pagina-panel-login .form-brand {
+  color: #3737a6;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+body.pagina-olvide-mi-contrasena .form-title,
+body.pagina-panel-login .form-title {
+  margin-bottom: 16px;
+  color: #000;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+body.pagina-olvide-mi-contrasena .form-sub,
+body.pagina-panel-login .form-sub {
+  margin-bottom: 28px;
+  color: #070f2e;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+body.pagina-olvide-mi-contrasena .form-sub a,
+body.pagina-panel-login .form-sub a {
+  color: #3737a6;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.pagina-olvide-mi-contrasena .field-group,
+body.pagina-panel-login .field-group {
+  margin-bottom: 20px;
+}
+
+body.pagina-olvide-mi-contrasena .field-group label,
+body.pagina-panel-login .field-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #3737a6;
+  font-weight: 500;
+}
+
+body.pagina-olvide-mi-contrasena .field-input,
+body.pagina-panel-login .field-input {
+  width: 100%;
+  padding: 10px 2px;
+  color: #111827;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid #3737a6;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+body.pagina-olvide-mi-contrasena .field-input::placeholder,
+body.pagina-panel-login .field-input::placeholder {
+  color: #070f2ec7;
+}
+
+body.pagina-olvide-mi-contrasena .field-input:focus,
+body.pagina-panel-login .field-input:focus {
+  border-bottom-color: #ffab00;
+}
+
+body.pagina-olvide-mi-contrasena .field-select,
+body.pagina-panel-login .field-select {
+  width: 100%;
+  padding: 10px 28px 10px 2px;
+  color: #070f2e;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid #3737a6;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+body.pagina-olvide-mi-contrasena .field-select:focus,
+body.pagina-panel-login .field-select:focus {
+  border-bottom-color: #ffab00;
+}
+
+body.pagina-olvide-mi-contrasena .field-select option,
+body.pagina-panel-login .field-select option {
+  color: #070f2e;
+  background: #fff;
+}
+
+body.pagina-olvide-mi-contrasena .field-select option[value=""][disabled],
+body.pagina-panel-login .field-select option[value=""][disabled] {
+  color: #9ca3af;
+}
+
+body.pagina-olvide-mi-contrasena .btn-login,
+body.pagina-panel-login .btn-login {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  color: #fff;
+  background-color: #070f2e;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.pagina-olvide-mi-contrasena .btn-login:hover,
+body.pagina-panel-login .btn-login:hover {
+  color: #0d0d0d;
+  background-color: #ffab00;
+  box-shadow: 0 5px 5px #000d;
+}
+
+body.pagina-olvide-mi-contrasena .btn-login:active,
+body.pagina-panel-login .btn-login:active {
+  transform: scale(0.99);
+}
+
+body.pagina-olvide-mi-contrasena .btn-login:disabled,
+body.pagina-panel-login .btn-login:disabled {
+  color: #fff;
+  background-color: #070f2e;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+body.pagina-olvide-mi-contrasena .field-help,
+body.pagina-panel-login .field-help {
+  margin: 6px 0 0;
+  color: #3a3f55;
+  font-size: 0.875rem;
+}
+
+body.pagina-olvide-mi-contrasena .field-error,
+body.pagina-panel-login .field-error {
+  margin: 6px 0 0;
+  color: #b00020;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+body.pagina-olvide-mi-contrasena .field-input[aria-invalid="true"],
+body.pagina-panel-login .field-input[aria-invalid="true"] {
+  border-bottom-color: #b00020;
+}
+
+body.pagina-olvide-mi-contrasena .confirmacion,
+body.pagina-panel-login .confirmacion {
+  padding: 24px;
+  color: #070f2e;
+  background: #fff;
+  border-left: 6px solid #ffab00;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(7, 15, 46, 0.08);
+}
+
+body.pagina-olvide-mi-contrasena .confirmacion__titulo,
+body.pagina-panel-login .confirmacion__titulo {
+  margin-bottom: 12px;
+  color: #3737a6;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+body.pagina-olvide-mi-contrasena .confirmacion__titulo:focus,
+body.pagina-panel-login .confirmacion__titulo:focus {
+  outline: none;
+}
+
+body.pagina-olvide-mi-contrasena .confirmacion p,
+body.pagina-panel-login .confirmacion p {
+  line-height: 1.6;
+}
+
+body.pagina-olvide-mi-contrasena .confirmacion strong,
+body.pagina-panel-login .confirmacion strong {
+  overflow-wrap: anywhere;
+}
+
+body.pagina-olvide-mi-contrasena .btn-enlace,
+body.pagina-panel-login .btn-enlace {
+  padding: 0;
+  color: #3737a6;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.pagina-olvide-mi-contrasena .btn-enlace:hover,
+body.pagina-panel-login .btn-enlace:hover {
+  color: #b37800;
+}
+
+body.pagina-olvide-mi-contrasena .forgot,
+body.pagina-panel-login .forgot {
+  margin-top: 24px;
+  font-size: 14px;
+  text-align: center;
+}
+
+body.pagina-olvide-mi-contrasena .forgot a,
+body.pagina-panel-login .forgot a {
+  color: #3737a6;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.pagina-olvide-mi-contrasena .forgot a:hover,
+body.pagina-panel-login .forgot a:hover {
+  color: #ffab00;
+}
+
+body.pagina-olvide-mi-contrasena .ayuda-presencial {
+  margin-top: 20px;
+  padding-top: 16px;
+  color: #3a3f55;
+  border-top: 1px solid #3737a640;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+body.pagina-olvide-mi-contrasena .inst-label,
+body.pagina-panel-login .inst-label {
+  margin-top: 32px;
+  color: #d1d5db;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+body.pagina-olvide-mi-contrasena .field-input:focus-visible,
+body.pagina-panel-login .field-input:focus-visible,
+body.pagina-olvide-mi-contrasena .btn-login:focus-visible,
+body.pagina-panel-login .btn-login:focus-visible,
+body.pagina-olvide-mi-contrasena .btn-enlace:focus-visible,
+body.pagina-panel-login .btn-enlace:focus-visible,
+body.pagina-olvide-mi-contrasena .forgot a:focus-visible,
+body.pagina-panel-login .forgot a:focus-visible {
+  outline: 2px solid #070f2e;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  body.pagina-olvide-mi-contrasena .login-wrapper,
+  body.pagina-panel-login .login-wrapper {
+    flex-direction: column;
+  }
+
+  body.pagina-olvide-mi-contrasena .panel-left,
+  body.pagina-panel-login .panel-left {
+    width: 100%;
+    min-height: 130px;
+    padding: 40px 32px;
+  }
+
+  body.pagina-olvide-mi-contrasena .panel-left__content,
+  body.pagina-panel-login .panel-left__content {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  body.pagina-olvide-mi-contrasena .logo-img,
+  body.pagina-panel-login .logo-img {
+    width: 70px;
+    height: 70px;
+    padding: 4px;
+  }
+
+  body.pagina-olvide-mi-contrasena .brand-title,
+  body.pagina-panel-login .brand-title {
+    font-size: 26px;
+  }
+
+  body.pagina-olvide-mi-contrasena .brand-tagline,
+  body.pagina-panel-login .brand-tagline {
+    display: none;
+  }
+
+  body.pagina-olvide-mi-contrasena .panel-left::after,
+  body.pagina-panel-login .panel-left::after,
+  body.pagina-olvide-mi-contrasena .panel-left::before,
+  body.pagina-panel-login .panel-left::before {
+    display: none;
+  }
+
+  body.pagina-olvide-mi-contrasena .panel-left__footer p,
+  body.pagina-panel-login .panel-left__footer p {
+    position: relative;
+    top: 35px;
+  }
+
+  body.pagina-olvide-mi-contrasena .panel-right,
+  body.pagina-panel-login .panel-right {
+    align-items: flex-start;
+    padding: 32px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.pagina-olvide-mi-contrasena .btn-login,
+  body.pagina-panel-login .btn-login,
+  body.pagina-olvide-mi-contrasena .field-input,
+  body.pagina-panel-login .field-input {
+    transition: none;
+  }
+}
+
+body.pagina-panel-admin *,
+body.pagina-panel-admin *::before,
+body.pagina-panel-admin *::after {
+  box-sizing: border-box;
+}
+
+body.pagina-panel-admin {
+  min-height: 100vh;
+  margin: 0;
+  color: #1f1f1f;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-panel-admin hr {
+  color: #ffab00;
+}
+
+body.pagina-panel-admin .admin-header {
+  position: relative;
+  z-index: 1000;
+  padding: 20px;
+  color: #fff;
+  background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
+}
+
+body.pagina-panel-admin .admin-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+body.pagina-panel-admin .admin-nav__link--logout {
+  margin-left: auto;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #c62828;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+body.pagina-panel-admin .admin-nav__link--logout:hover {
+  color: #fff;
+  background-color: #961212;
+}
+
+body.pagina-panel-admin .admin-header__logo {
+  width: 70px;
+  height: 70px;
+  padding: 6px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-panel-admin .admin-header__title {
+  font-size: 2rem;
+}
+
+body.pagina-panel-admin .admin-header__subtitle {
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+body.pagina-panel-admin .admin-nav {
+  display: none;
+}
+
+body.pagina-panel-admin .admin-nav__list {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  list-style: none;
+}
+
+body.pagina-panel-admin .admin-nav__item--logout {
+  margin-left: auto;
+}
+
+body.pagina-panel-admin .admin-nav__item {
+  height: 25px;
+  background-color: #ffab00;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+body.pagina-panel-admin .admin-nav__item:hover {
+  background-color: #d60000;
+}
+
+body.pagina-panel-admin .admin-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 12px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.pagina-panel-admin a {
+  color: #000;
+}
+
+body.pagina-panel-admin .admin-nav__link:hover {
+  color: #fff;
+}
+
+body.pagina-panel-admin .admin-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+body.pagina-panel-admin .dashboard {
+  margin-bottom: 40px;
+  padding: 24px;
+  background-color: #fff;
+  border: 3px solid #ffab00;
+  border-radius: 14px;
+}
+
+body.pagina-panel-admin .dashboard__title,
+body.pagina-panel-admin .management__title {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #3737a6;
+  transform-origin: left;
+  transition: transform 0.4s ease, color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+body.pagina-panel-admin .dashboard__title:hover,
+body.pagina-panel-admin .management__title:hover {
+  color: #ffab00;
+  letter-spacing: 2px;
+  transform: scale(1.1) translateX(20px);
+}
+
+body.pagina-panel-admin .dashboard__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+body.pagina-panel-admin .card-stat {
+  padding: 24px;
+  background-color: #fff;
+  border: 3px solid #1971ff;
+  border-radius: 14px;
+  box-shadow: 0 4px 6px #0000000d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.pagina-panel-admin .card-stat:hover {
+  border-color: #ffab00;
+  box-shadow: 0 30px 60px -30px #0004;
+  transform: translateY(-10px);
+}
+
+body.pagina-panel-admin .card-stat__title {
+  margin-bottom: 12px;
+  color: #2a2f7b;
+  font-size: 1rem;
+}
+
+body.pagina-panel-admin .card-stat__value {
+  color: #3737a6;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+body.pagina-panel-admin .management {
+  padding: 24px;
+  background-color: #fff;
+  border: 3px solid #ffab00;
+  border-radius: 14px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-panel-admin .management__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+body.pagina-panel-admin .management__button {
+  position: relative;
+  bottom: 0;
+  padding: 12px 24px;
+  color: #fff;
+  background-color: #002562;
+  border: 1px solid #002562;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+body.pagina-panel-admin .management__button:hover {
+  bottom: 3px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: #0006;
+  box-shadow: 0 5px 10px #000;
+}
+
+body.pagina-panel-admin .table-container {
+  overflow-x: auto;
+}
+
+body.pagina-panel-admin .table-books {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+body.pagina-panel-admin .table-books th,
+body.pagina-panel-admin .table-books td {
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+body.pagina-panel-admin .table-books__head {
+  color: #fff;
+  background-color: #3737a6;
+}
+
+body.pagina-panel-admin .table-books__status {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+body.pagina-panel-admin .table-books__status--available {
+  color: #146814;
+  background-color: #d4f7d4;
+}
+
+body.pagina-panel-admin .table-books__status--borrowed {
+  color: #8a5200;
+  background-color: #ffe2b7;
+}
+
+body.pagina-panel-admin .table-books__action {
+  margin-right: 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background-color: #3737a6;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.pagina-panel-admin .table-books__action--danger {
+  background-color: #c62828;
+}
+
+@media (max-width: 768px) {
+  body.pagina-panel-admin .admin-header__brand {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  body.pagina-panel-admin .admin-nav__list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  body.pagina-panel-admin .management__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+body.pagina-panel-bibliotecario .logoBibliolend {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-panel-bibliotecario .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-panel-bibliotecario {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-panel-bibliotecario hr {
+  color: #ffab00;
+}
+
+body.pagina-panel-bibliotecario .admin-header {
+  position: relative;
+  z-index: 1000;
+  padding: 20px;
+  color: #fff;
+  background: linear-gradient(90deg, #3737a6 20%, #070f2e 100%);
+}
+
+body.pagina-panel-bibliotecario .admin-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__link--logout {
+  margin-left: auto;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #c62828;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__link--logout:hover {
+  color: #fff;
+  background-color: #961212;
+}
+
+body.pagina-panel-bibliotecario .admin-header__logo {
+  width: 70px;
+  height: 70px;
+  padding: 6px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-panel-bibliotecario .admin-header__title {
+  font-size: 2rem;
+}
+
+body.pagina-panel-bibliotecario .admin-header__subtitle {
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__list {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  list-style: none;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__item--logout {
+  margin-left: auto;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__item {
+  height: 25px;
+  background-color: #ffab00;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__item:hover {
+  background-color: #d60000;
+}
+
+body.pagina-panel-bibliotecario .admin-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 12px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.pagina-panel-bibliotecario .panel-bibliotecario {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+body.pagina-panel-bibliotecario .bloque {
+  margin-bottom: 17px;
+  padding: 24px;
+  background-color: #fff;
+  border: 3px solid #ffab00;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-panel-bibliotecario .bienvenida {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-panel-bibliotecario .bienvenida h2,
+body.pagina-panel-bibliotecario .bloque h2 {
+  margin-bottom: 12px;
+  color: #2a2f7b;
+}
+
+body.pagina-panel-bibliotecario .bienvenida p,
+body.pagina-panel-bibliotecario .bloque p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+body.pagina-panel-bibliotecario .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+body.pagina-panel-bibliotecario .stat-card {
+  padding: 24px;
+  background: #fff;
+  border: 3px solid #1971ff;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.pagina-panel-bibliotecario .stat-card:hover {
+  border-color: #ffab00;
+  transform: translateY(-10px);
+}
+
+body.pagina-panel-bibliotecario .stat-card h3 {
+  margin-bottom: 10px;
+  color: #2a2f7b;
+  font-size: 1rem;
+}
+
+body.pagina-panel-bibliotecario .stat-card p {
+  margin-bottom: 0;
+  color: #3737a6;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+body.pagina-panel-bibliotecario .stat-card.alerta p {
+  color: #c62828;
+}
+
+body.pagina-panel-bibliotecario .acciones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body.pagina-panel-bibliotecario .accion-card {
+  display: block;
+  padding: 16px;
+  color: #2a2f7b;
+  background-color: #f5f7ff;
+  border: 1px solid #d9defc;
+  border-radius: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.pagina-panel-bibliotecario .accion-card:hover {
+  color: #fff;
+  background-color: #3737a6;
+}
+
+body.pagina-panel-bibliotecario table thead {
+  color: #fff;
+  background-color: #3737a6;
+}
+
+body.pagina-panel-bibliotecario table th,
+body.pagina-panel-bibliotecario table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+body.pagina-panel-bibliotecario .estado {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+body.pagina-panel-bibliotecario .pendiente {
+  color: #8a6000;
+  background-color: #fff3cd;
+}
+
+body.pagina-panel-bibliotecario .retraso {
+  color: #842029;
+  background-color: #f8d7da;
+}
+
+body.pagina-panel-bibliotecario .actividad-lista {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.pagina-panel-bibliotecario .actividad-item {
+  margin: 0;
+  padding: 14px 16px;
+  background-color: #f5f7ff;
+  border-left: 5px solid #3737a6;
+  border-radius: 14px;
+}
+
+body.pagina-panel-bibliotecario .btn-success {
+  position: relative;
+  bottom: 1px;
+  color: #fff;
+  background-color: #002562;
+  border-color: #002562;
+  font-weight: 700;
+}
+
+body.pagina-panel-bibliotecario .btn-success:hover {
+  bottom: 3px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: #ffab00;
+  box-shadow: 0 5px 5px #000d;
+  transition: bottom 0.2s;
+}
+
+body.pagina-panel-bibliotecario .btn-outline-secondary {
+  margin: 0 0 20px 20px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: transparent;
+  font-weight: 400;
+}
+
+body.pagina-panel-bibliotecario .btn-outline-secondary:hover {
+  color: #002562;
+  background-color: #fff;
+  border-color: #3737a6;
+}
+
+@media (max-width: 992px) {
+  body.pagina-panel-bibliotecario .stats-grid,
+  body.pagina-panel-bibliotecario .acciones-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.pagina-panel-bibliotecario .bienvenida {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  body.pagina-panel-bibliotecario .titulo-logo,
+  body.pagina-panel-bibliotecario .logoBibliolend {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  body.pagina-panel-bibliotecario .panel-bibliotecario {
+    padding: 20px 14px;
+  }
+
+  body.pagina-panel-bibliotecario .bloque,
+  body.pagina-panel-bibliotecario .stat-card {
+    padding: 18px;
+  }
+
+  body.pagina-panel-bibliotecario .stats-grid,
+  body.pagina-panel-bibliotecario .acciones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.pagina-panel-bibliotecario .navItem--perfil {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+body.pagina-panel-principal .logoBibliolend,
+body.pagina-panel-principal .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-panel-principal .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-panel-principal {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-panel-principal hr {
+  color: #ffab00;
+}
+
+body.pagina-panel-principal .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-panel-principal .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-panel-principal .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-panel-principal .navbar-sobre .nav-link:hover::after,
+body.pagina-panel-principal .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-panel-principal .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-panel-principal .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-panel-principal .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 50%;
+}
+
+body.pagina-panel-principal main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+body.pagina-panel-principal .bloque {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #f5f5f5;
+  border: 3px solid #ffab00;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-panel-principal .bloque h2 {
+  margin-bottom: 14px;
+  color: #2a2f7b;
+}
+
+body.pagina-panel-principal .bloque p {
+  line-height: 1.7;
+}
+
+body.pagina-panel-principal .carousel-item {
+  transition: transform 0.8s ease-in-out;
+}
+
+body.pagina-panel-principal .img-carousel {
+  height: 380px;
+  border-radius: 16px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+body.pagina-panel-principal .carousel-item.active .img-carousel {
+  transform: scale(1.02);
+}
+
+body.pagina-panel-principal .carousel-caption {
+  padding: 10px;
+  background-color: #070f2e73;
+  border-radius: 10px;
+}
+
+body.pagina-panel-principal .btn-success {
+  position: relative;
+  bottom: 1px;
+  color: #fff;
+  background-color: #002562;
+  border-color: #002562;
+  font-weight: 700;
+}
+
+body.pagina-panel-principal .btn-success:hover {
+  bottom: 3px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: #ffab00;
+  box-shadow: 0 5px 5px #000d;
+  transition: bottom 0.3s;
+}
+
+body.pagina-panel-principal .btn-primary {
+  background-color: #3737a6;
+  border-color: #3737a6;
+}
+
+body.pagina-panel-principal .table-responsive {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: left;
+}
+
+body.pagina-panel-principal .table-responsive h2 {
+  margin-bottom: 20px;
+}
+
+body.pagina-panel-principal table thead {
+  color: #fff;
+  background-color: #3737a6;
+}
+
+body.pagina-panel-principal table th,
+body.pagina-panel-principal table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+  body.pagina-panel-principal .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-panel-principal .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-panel-principal main {
+    padding: 20px 14px;
+  }
+
+  body.pagina-panel-principal .bloque {
+    padding: 18px;
+  }
+
+  body.pagina-panel-principal .img-carousel {
+    height: 220px;
+  }
+}
+
+body.pagina-resenas .logoBibliolend,
+body.pagina-resenas .navbar-sobre .navbar-brand img,
+body.pagina-sobre-nosotros .logoBibliolend,
+body.pagina-sobre-nosotros .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-resenas .titulo-logo,
+body.pagina-sobre-nosotros .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-resenas,
+body.pagina-sobre-nosotros {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #0b1642 0%,
+    #0b1642 21%,
+    #1d3cb8 50%,
+    #0b1642 79%,
+    #0b1642 100%
+  ) fixed no-repeat;
+  background-size: cover;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body.pagina-resenas hr,
+body.pagina-sobre-nosotros hr {
+  color: #ffab00;
+}
+
+body.pagina-resenas .navbar-sobre,
+body.pagina-sobre-nosotros .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-resenas .navbar-sobre .nav-link,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-resenas .navbar-sobre .nav-link::after,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-resenas .navbar-sobre .nav-link:hover::after,
+body.pagina-resenas .navbar-sobre .nav-link.active::after,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link:hover::after,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-resenas .navbar-sobre .nav-link:hover,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-resenas .navbar-sobre .nav-link.active,
+body.pagina-sobre-nosotros .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-sobre-nosotros .navbar-sobre .navbar-toggler {
+  border-color: #ffffffb3;
+}
+
+body.pagina-sobre-nosotros .navbar-sobre .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.pagina-resenas .navItem--perfil,
+body.pagina-sobre-nosotros .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 50%;
+}
+
+body.pagina-resenas main,
+body.pagina-sobre-nosotros main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+body.pagina-resenas .bloque,
+body.pagina-sobre-nosotros main section {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: #f5f5f5;
+  border: 3px solid #ffab00;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -30px #0004;
+}
+
+body.pagina-resenas .intro-resenas h2,
+body.pagina-sobre-nosotros main section h2 {
+  margin-bottom: 14px;
+  color: #2a2f7b;
+}
+
+body.pagina-resenas .intro-resenas p,
+body.pagina-sobre-nosotros main section p {
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+body.pagina-resenas fieldset {
+  background-color: #f4f6ff;
+  border: 1px solid #cfd5ff !important;
+}
+
+body.pagina-resenas legend {
+  color: #2a2f7b;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+body.pagina-resenas .form-label {
+  color: #2a2f7b;
+  font-weight: 600;
+}
+
+body.pagina-resenas .form-control,
+body.pagina-resenas .form-select {
+  border: 1px solid #cfd5ff;
+  border-radius: 10px;
+}
+
+body.pagina-resenas .form-control:focus,
+body.pagina-resenas .form-select:focus {
+  border-color: #3737a6;
+  box-shadow: 0 0 0 0.2rem #3737a626;
+}
+
+body.pagina-resenas .btn-success {
+  position: relative;
+  bottom: 0;
+  color: #fff;
+  background-color: #002562;
+  border-color: #002562;
+  font-weight: 700;
+}
+
+body.pagina-resenas .btn-success:hover {
+  bottom: 3px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: #ffab00;
+  box-shadow: 0 5px 5px #000d;
+  transition: bottom 0.3s;
+}
+
+body.pagina-resenas .btn-outline-secondary,
+body.pagina-sobre-nosotros .btn-outline-secondary {
+  margin: 0 0 20px 20px;
+  color: #000;
+  background-color: #ffab00;
+  border-color: transparent;
+  font-weight: 400;
+}
+
+body.pagina-resenas .btn-outline-secondary:hover,
+body.pagina-sobre-nosotros .btn-outline-secondary:hover {
+  color: #002562;
+  background-color: #fff;
+  border-color: #3737a6;
+}
+
+body.pagina-sobre-nosotros .accordion-equipo {
+  margin-top: 10px;
+}
+
+body.pagina-sobre-nosotros .equipo-item {
+  margin-bottom: 16px;
+  background: transparent;
+  border: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.pagina-sobre-nosotros .equipo-item:hover {
+  box-shadow: 0 12px 24px rgba(42, 47, 123, 0.12);
+  transform: translateY(-4px);
+}
+
+body.pagina-sobre-nosotros .equipo-boton {
+  padding: 18px 20px;
+  color: #2a2f7b;
+  background: linear-gradient(90deg, #f5f7ff, #e6ebff);
+  border: 1px solid #d9defc;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 18px rgba(42, 47, 123, 0.08);
+  font-weight: 700;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.pagina-sobre-nosotros .equipo-boton:not(.collapsed) {
+  color: #fff;
+  background: linear-gradient(90deg, #3737a6, #070f2e);
+  box-shadow: none;
+}
+
+body.pagina-sobre-nosotros .equipo-boton:focus {
+  box-shadow: none;
+}
+
+body.pagina-sobre-nosotros .equipo-boton::after {
+  transition: transform 0.3s ease;
+}
+
+body.pagina-sobre-nosotros .equipo-boton:not(.collapsed)::after {
+  transform: rotate(-180deg);
+}
+
+body.pagina-sobre-nosotros .equipo-body {
+  padding: 18px 20px;
+  background-color: #fff;
+  border: 1px solid #d9defc;
+  border-top: 0;
+  border-radius: 0 0 16px 16px;
+  line-height: 1.7;
+  animation: aparecerSuave 0.35s ease;
+}
+
+body.pagina-sobre-nosotros .equipo-body p {
+  margin-bottom: 10px;
+}
+
+body.pagina-sobre-nosotros .equipo-body p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 576px) {
+  body.pagina-resenas .titulo-logo,
+  body.pagina-sobre-nosotros .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-resenas .navbar-sobre .navbar-brand img,
+  body.pagina-sobre-nosotros .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-resenas .navbar-sobre .nav-link,
+  body.pagina-sobre-nosotros .navbar-sobre .nav-link {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  body.pagina-resenas main,
+  body.pagina-sobre-nosotros main {
+    padding: 20px 14px;
+  }
+
+  body.pagina-resenas .bloque,
+  body.pagina-sobre-nosotros main section {
+    padding: 18px;
+  }
+
+  body.pagina-sobre-nosotros .btn-outline-secondary {
+    margin-left: 14px;
+  }
+}
+
+body.pagina-manual-de-bibliolend {
+  --color-header-bg: #4a5568;
+  --color-sidebar-bg: #f7fafc;
+  --color-text: #2d3748;
+  --color-link: #3182ce;
+  --color-border: #e2e8f0;
+  --color-accent: #ecc94b;
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+body.pagina-manual-de-bibliolend *,
+body.pagina-manual-de-bibliolend *::before,
+body.pagina-manual-de-bibliolend *::after {
+  box-sizing: border-box;
+}
+
+body.pagina-manual-de-bibliolend .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: var(--color-header-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.pagina-manual-de-bibliolend .header__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+body.pagina-manual-de-bibliolend .documentation {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+body.pagina-manual-de-bibliolend .sidebar {
+  flex-shrink: 0;
+  width: 280px;
+  padding: 2rem 0;
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-border);
+}
+
+body.pagina-manual-de-bibliolend .sidebar__list {
+  list-style: none;
+}
+
+body.pagina-manual-de-bibliolend .sidebar__item {
+  margin-bottom: 0.25rem;
+}
+
+body.pagina-manual-de-bibliolend .sidebar__link {
+  display: block;
+  padding: 0.75rem 2rem;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.pagina-manual-de-bibliolend .sidebar__link:hover {
+  color: var(--color-link);
+  background-color: var(--color-border);
+}
+
+body.pagina-manual-de-bibliolend .content {
+  flex-grow: 1;
+  max-width: 900px;
+  padding: 3rem 4rem;
+}
+
+body.pagina-manual-de-bibliolend .content__section {
+  margin-bottom: 3rem;
+}
+
+body.pagina-manual-de-bibliolend .content__title {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  color: #1a202c;
+  border-bottom: 3px solid var(--color-accent);
+  font-size: 1.8rem;
+}
+
+body.pagina-manual-de-bibliolend .content__text {
+  margin-bottom: 1.5rem;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+body.pagina-manual-de-bibliolend .content__block {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+body.pagina-manual-de-bibliolend .content__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+body.pagina-manual-de-bibliolend .content__subtitle {
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+  font-size: 1.1rem;
+}
+
+body.pagina-manual-de-bibliolend .content__list {
+  margin-top: 0.5rem;
+  list-style: none;
+}
+
+body.pagina-manual-de-bibliolend .content__list-item {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+body.pagina-manual-de-bibliolend .content__list-item::before {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  color: var(--color-link);
+  content: '•';
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+body.pagina-manual-de-bibliolend .content__link {
+  color: var(--color-link);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+body.pagina-manual-de-bibliolend .content__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  body.pagina-manual-de-bibliolend .documentation {
+    flex-direction: column;
+  }
+
+  body.pagina-manual-de-bibliolend .sidebar {
+    width: 100%;
+    padding: 1rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  body.pagina-manual-de-bibliolend .content {
+    padding: 2rem;
+  }
+}
