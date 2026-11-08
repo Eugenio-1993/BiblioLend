@@ -81,28 +81,29 @@
         </div>
 
         <div class="table-container">
-          <table class="table-books">
+          <table class="table-books tabla-apilada">
+            <caption class="visually-hidden">Libros registrados en la biblioteca</caption>
             <thead class="table-books__head">
               <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th scope="col">Título</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
 
             <tbody class="table-books__body">
               <tr>
-                <td>1984</td>
-                <td>George Orwell</td>
-                <td>
+                <td data-label="Título">1984</td>
+                <td data-label="Autor">George Orwell</td>
+                <td data-label="Estado">
                   <span
                     class="table-books__status table-books__status--available"
                   >
                     Disponible
                   </span>
                 </td>
-                <td>
+                <td data-label="Acciones">
                   <button class="table-books__action">Editar</button>
                   <button
                     class="table-books__action table-books__action--danger"
@@ -113,16 +114,16 @@
               </tr>
 
               <tr>
-                <td>El Principito</td>
-                <td>Antoine de Saint-Exupéry</td>
-                <td>
+                <td data-label="Título">El Principito</td>
+                <td data-label="Autor">Antoine de Saint-Exupéry</td>
+                <td data-label="Estado">
                   <span
                     class="table-books__status table-books__status--borrowed"
                   >
                     Prestado
                   </span>
                 </td>
-                <td>
+                <td data-label="Acciones">
                   <button class="table-books__action">Editar</button>
                   <button
                     class="table-books__action table-books__action--danger"
