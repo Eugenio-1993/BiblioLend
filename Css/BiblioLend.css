@@ -728,6 +728,84 @@ body.pagina-contactanos hr {
   color: #ffab00;
 }
 
+body.pagina-contactanos .logoBibliolend,
+body.pagina-contactanos .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-contactanos .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-contactanos .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link:hover::after,
+body.pagina-contactanos .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-contactanos .navbar-sobre .navbar-toggler {
+  border-color: #ffffffb3;
+}
+
+body.pagina-contactanos .navbar-sobre .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.pagina-contactanos .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 50%;
+}
+
 body.pagina-contactanos .portada {
   width: 100%;
   margin: 0;
@@ -933,6 +1011,25 @@ body.pagina-contactanos footer p:last-child {
 }
 
 @media (max-width: 576px) {
+  body.pagina-contactanos .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-contactanos .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-contactanos .navbar-sobre .nav-link {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  body.pagina-contactanos .navItem--perfil {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
   body.pagina-contactanos main {
     padding: 20px 14px;
   }
