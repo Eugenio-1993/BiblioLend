@@ -25,7 +25,7 @@ const usuarios = [
 // --- PÁGINAS PERMITIDAS POR ROL ---
 const paginasPermitidas = {
   estudiante: [
-    "Panel_login.html",
+    "Panel_principal.html",
     "sobre_nosotros.html",
     "resenas.html",
     "catalogo.html",
