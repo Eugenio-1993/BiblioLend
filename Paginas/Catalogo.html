@@ -67,14 +67,47 @@
       <div class="filtros">
         <label class="visually-hidden" for="buscar-libro">Buscar por título o autor</label>
         <input id="buscar-libro" type="search" class="form-control" placeholder="Buscar por título o autor" />
-        <select class="form-select" aria-label="Filtrar por categoría">
-          <option>Todas las categorías</option>
-          <option>Literatura</option>
-          <option>Ciencia</option>
-          <option>Historia</option>
-          <option>Matemáticas</option>
-          <option>Inglés</option>
-        </select>
+
+        <div class="filtro-categoria" data-filtro-categoria>
+          <span class="visually-hidden" id="filtro-categoria-etiqueta">Filtrar por categoría</span>
+          <button type="button" class="filtro-categoria__trigger" id="filtro-categoria"
+            aria-haspopup="listbox" aria-expanded="false"
+            aria-labelledby="filtro-categoria-etiqueta filtro-categoria-valor"
+            aria-controls="filtro-categoria-lista" data-valor="Todas las categorías">
+            <span class="filtro-categoria__valor" id="filtro-categoria-valor">Todas las categorías</span>
+          </button>
+
+          <ul class="filtro-categoria__lista" id="filtro-categoria-lista" role="listbox"
+            aria-labelledby="filtro-categoria-etiqueta" tabindex="-1" hidden>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="true" tabindex="-1">
+              Todas las categorías
+            </li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Novela</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
+              Literatura infantil
+            </li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Aventura</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
+              Ciencia ficción
+            </li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Historia</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
+              Ciencias naturales
+            </li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Filosofía</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Geografía</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Poesía</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Terror</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Romance</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Biografía</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Consulta</li>
+            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
+              Fábulas y leyendas
+            </li>
+          </ul>
+
+          <input type="hidden" name="categoria" value="Todas las categorías" data-filtro-categoria-campo />
+        </div>
       </div>
     </section>
 
