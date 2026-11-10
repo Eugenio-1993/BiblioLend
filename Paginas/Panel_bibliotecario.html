@@ -87,7 +87,7 @@
       <section class="bloque">
         <h2>Préstamos pendientes</h2>
         <div class="table-responsive">
-          <table class="table table-bordered align-middle">
+          <table class="table table-bordered align-middle tabla-apilada">
             <caption class="visually-hidden">Préstamos pendientes de devolución</caption>
             <thead>
               <tr>
@@ -100,25 +100,25 @@
             </thead>
             <tbody>
               <tr>
-                <td>Juan Pérez</td>
-                <td>100 Años de soledad</td>
-                <td>02 / Mayo / 2026</td>
-                <td>09 / Mayo / 2026</td>
-                <td><span class="estado pendiente">Pendiente</span></td>
+                <td data-label="Estudiante">Juan Pérez</td>
+                <td data-label="Libro">100 Años de soledad</td>
+                <td data-label="Fecha préstamo">02 / Mayo / 2026</td>
+                <td data-label="Fecha devolución">09 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
               </tr>
               <tr>
-                <td>Laura Gómez</td>
-                <td>Álgebra de Baldor</td>
-                <td>30 / Abril / 2026</td>
-                <td>07 / Mayo / 2026</td>
-                <td><span class="estado retraso">Retraso</span></td>
+                <td data-label="Estudiante">Laura Gómez</td>
+                <td data-label="Libro">Álgebra de Baldor</td>
+                <td data-label="Fecha préstamo">30 / Abril / 2026</td>
+                <td data-label="Fecha devolución">07 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado retraso">Retraso</span></td>
               </tr>
               <tr>
-                <td>Carlos Díaz</td>
-                <td>Meditaciones</td>
-                <td>01 / Mayo / 2026</td>
-                <td>08 / Mayo / 2026</td>
-                <td><span class="estado pendiente">Pendiente</span></td>
+                <td data-label="Estudiante">Carlos Díaz</td>
+                <td data-label="Libro">Meditaciones</td>
+                <td data-label="Fecha préstamo">01 / Mayo / 2026</td>
+                <td data-label="Fecha devolución">08 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
               </tr>
             </tbody>
           </table>
@@ -220,7 +220,7 @@
 
     <script src="../JS/auth.js"></script>
     <script>
-      protegerPagina("panel_bibliotecario.html");
+      protegerPagina("Panel_bibliotecario.html");
       mostrarUsuario();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

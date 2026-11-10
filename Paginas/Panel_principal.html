@@ -19,7 +19,7 @@
   </head>
   <body class="pagina-panel-principal">
     <header>
-      <nav class="navbar navbar-expand-sm navbar-sobre">
+      <nav class="navbar navbar-expand-lg navbar-sobre">
         <div class="container">
           <a
             class="navbar-brand d-flex align-items-center gap-2"
@@ -54,6 +54,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Sobre_nosotros.html">Sobre Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Contactanos.html">Contáctanos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Resenas.html">Reseñas</a>
@@ -184,27 +187,28 @@
       <section class="bloque">
         <h2>Mis Préstamos Activos</h2>
         <div class="table-responsive">
-          <table border="1" class="table table-bordered">
+          <table border="1" class="table table-bordered tabla-apilada">
+            <caption class="visually-hidden">Préstamos activos del usuario</caption>
             <thead>
               <tr>
-                <th>Libro</th>
-                <th>Fecha de Préstamo</th>
-                <th>Fecha de Devolución</th>
-                <th>Estado</th>
+                <th scope="col">Libro</th>
+                <th scope="col">Fecha de Préstamo</th>
+                <th scope="col">Fecha de Devolución</th>
+                <th scope="col">Estado</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>100 Años de soledad</td>
-                <td>10 / Marzo / 2025</td>
-                <td>17 / Marzo / 2025</td>
-                <td>Por devolver (3 días)</td>
+                <td data-label="Libro">100 Años de soledad</td>
+                <td data-label="Fecha de préstamo">10 / Marzo / 2025</td>
+                <td data-label="Fecha de devolución">17 / Marzo / 2025</td>
+                <td data-label="Estado">Por devolver (3 días)</td>
               </tr>
               <tr>
-                <td>Inglés con Felipe</td>
-                <td>05 / Marzo / 2025</td>
-                <td>19 / Marzo / 2025</td>
-                <td>Por devolver (12 días)</td>
+                <td data-label="Libro">Inglés con Felipe</td>
+                <td data-label="Fecha de préstamo">05 / Marzo / 2025</td>
+                <td data-label="Fecha de devolución">19 / Marzo / 2025</td>
+                <td data-label="Estado">Por devolver (12 días)</td>
               </tr>
             </tbody>
           </table>
