@@ -327,3 +327,210 @@
     libroActual = null;
   });
 })();
+
+// ============================================================
+// Filtro de categorías — desplegable personalizado
+// ============================================================
+
+(function () {
+  "use strict";
+
+  const contenedor = document.querySelector("[data-filtro-categoria]");
+
+  if (!contenedor) {
+    return;
+  }
+
+  const boton = contenedor.querySelector(".filtro-categoria__trigger");
+  const lista = contenedor.querySelector(".filtro-categoria__lista");
+  const valor = contenedor.querySelector(".filtro-categoria__valor");
+  const campo = contenedor.querySelector("[data-filtro-categoria-campo]");
+  const opciones = lista
+    ? Array.from(lista.querySelectorAll('[role="option"]'))
+    : [];
+
+  if (!boton || !lista || !valor || !opciones.length) {
+    return;
+  }
+
+  let indiceSeleccionado = opciones.findIndex(function (opcion) {
+    return opcion.getAttribute("aria-selected") === "true";
+  });
+
+  if (indiceSeleccionado < 0) {
+    indiceSeleccionado = 0;
+  }
+
+  let indiceActivo = indiceSeleccionado;
+
+  function marcarActivo(indice) {
+    indiceActivo = (indice + opciones.length) % opciones.length;
+
+    opciones.forEach(function (opcion, posicion) {
+      opcion.classList.toggle("is-active", posicion === indiceActivo);
+    });
+  }
+
+  function enfocarOpcion(indice) {
+    marcarActivo(indice);
+    opciones[indiceActivo].focus({ preventScroll: true });
+    opciones[indiceActivo].scrollIntoView({ block: "nearest" });
+  }
+
+  function ajustarAlturaLista() {
+    const margenInferior = 16;
+    const separacion = 7;
+    const alturaMinima = 200;
+
+    function calcularEspacio() {
+      return (
+        window.innerHeight -
+        boton.getBoundingClientRect().bottom -
+        separacion -
+        margenInferior
+      );
+    }
+
+    let espacioDisponible = calcularEspacio();
+
+    // Si el botón queda cerca del borde inferior, se desplaza la página
+    // lo justo para que la lista quepa completa debajo de él.
+    if (espacioDisponible < alturaMinima) {
+      window.scrollBy({
+        top: alturaMinima - espacioDisponible,
+        left: 0,
+        behavior: "instant",
+      });
+      espacioDisponible = calcularEspacio();
+    }
+
+    // La lista siempre se abre hacia abajo y nunca supera el espacio
+    // visible, ni siquiera en ventanas muy bajas.
+    const altura = Math.min(420, Math.max(0, espacioDisponible));
+
+    lista.style.maxHeight = altura + "px";
+  }
+
+  function abrir() {
+    ajustarAlturaLista();
+    lista.hidden = false;
+    boton.setAttribute("aria-expanded", "true");
+    contenedor.classList.add("is-open");
+    enfocarOpcion(indiceSeleccionado);
+  }
+
+  function cerrar(devolverFoco) {
+    lista.hidden = true;
+    boton.setAttribute("aria-expanded", "false");
+    contenedor.classList.remove("is-open");
+
+    if (devolverFoco) {
+      boton.focus();
+    }
+  }
+
+  function seleccionar(indice) {
+    const opcion = opciones[indice];
+    const texto = opcion.textContent.trim();
+
+    indiceSeleccionado = indice;
+
+    opciones.forEach(function (elemento, posicion) {
+      elemento.setAttribute(
+        "aria-selected",
+        String(posicion === indiceSeleccionado)
+      );
+    });
+
+    valor.textContent = texto;
+    boton.dataset.valor = texto;
+
+    if (campo) {
+      campo.value = texto;
+    }
+
+    cerrar(true);
+  }
+
+  boton.addEventListener("click", function () {
+    if (lista.hidden) {
+      abrir();
+    } else {
+      cerrar(true);
+    }
+  });
+
+  boton.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      abrir();
+    }
+  });
+
+  opciones.forEach(function (opcion, indice) {
+    // Se usa mousemove en lugar de mouseenter para que reaparecer bajo el
+    // cursor no altere la opción activa durante la navegación con teclado.
+    opcion.addEventListener("mousemove", function () {
+      marcarActivo(indice);
+    });
+
+    opcion.addEventListener("click", function () {
+      seleccionar(indice);
+    });
+  });
+
+  lista.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      cerrar(true);
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      enfocarOpcion(indiceActivo + 1);
+      return;
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      enfocarOpcion(indiceActivo - 1);
+      return;
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      enfocarOpcion(0);
+      return;
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      enfocarOpcion(opciones.length - 1);
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      seleccionar(indiceActivo);
+      return;
+    }
+
+    if (event.key === "Tab") {
+      cerrar(false);
+      boton.focus();
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!contenedor.contains(event.target)) {
+      cerrar(false);
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (!lista.hidden) {
+      ajustarAlturaLista();
+    }
+  });
+})();
