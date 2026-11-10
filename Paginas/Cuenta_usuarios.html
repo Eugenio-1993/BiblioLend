@@ -107,38 +107,82 @@
             </p>
           </div>
 
-          <div class="stats-grid">
+          <div class="stats-grid stats-grid--two">
             <div class="stat-card">
               <h4>Préstamos activos</h4>
-              <span>2</span>
-            </div>
-            <div class="stat-card">
-              <h4>Tickets</h4>
-              <button class="btn-panel btn-true">Generar Nuevo préstamo</button> <hr>
-              <button class="btn-panel btn-false">Generar Nueva devolución</button>
+              <span data-stat="prestamos-activos">2</span>
             </div>
             <div class="stat-card">
               <h4>Libros Vencidos por devolver</h4>
-              <span>0</span>
+              <span data-stat="libros-vencidos">0</span>
             </div>
           </div>
 
           <div class="card-panel">
             <h4>Estado de mis libros</h4>
+            <p class="prestamos-hint">
+              Haz clic en un libro para consultar las fechas de tu préstamo.
+            </p>
             <div class="recommend-grid">
-              <div class="recommend-item">
-                <div class="thumb"></div>
-                <div>
-                  <p class="book-title">Oliver Twist</p>
-                  <p class="book-meta">Drama</p>
+              <div class="recommend-item" data-inicio="2026-11-02" data-devolucion="2026-11-17">
+                <button type="button" class="recommend-item__toggle" aria-expanded="false"
+                  aria-controls="detalle-oliver-twist" aria-label="Ver fechas del préstamo de Oliver Twist">
+                  <span class="thumb thumb--oliver" aria-hidden="true">
+                    <span class="thumb__iniciales">OT</span>
+                  </span>
+                  <span class="recommend-item__info">
+                    <span class="book-title">Oliver Twist</span>
+                    <span class="book-meta">Drama</span>
+                  </span>
+                  <span class="dias-restantes" data-dias-restantes>—</span>
+                </button>
+
+                <div class="recommend-detail" id="detalle-oliver-twist" hidden>
+                  <dl class="recommend-detail__datos">
+                    <div>
+                      <dt>Fecha de inicio</dt>
+                      <dd data-fecha-inicio>—</dd>
+                    </div>
+                    <div>
+                      <dt>Fecha de devolución</dt>
+                      <dd data-fecha-devolucion>—</dd>
+                    </div>
+                    <div>
+                      <dt>Días para entregar</dt>
+                      <dd data-dias-detalle>—</dd>
+                    </div>
+                  </dl>
                 </div>
               </div>
 
-              <div class="recommend-item">
-                <div class="thumb"></div>
-                <div>
-                  <p class="book-title">Meditaciones</p>
-                  <p class="book-meta">Historia</p>
+              <div class="recommend-item" data-inicio="2026-10-29" data-devolucion="2026-11-12">
+                <button type="button" class="recommend-item__toggle" aria-expanded="false"
+                  aria-controls="detalle-meditaciones" aria-label="Ver fechas del préstamo de Meditaciones">
+                  <span class="thumb" aria-hidden="true">
+                    <img src="../Imagenes/Libros/Meditaciones_de_Marco-Aurelio.png" alt="" />
+                  </span>
+                  <span class="recommend-item__info">
+                    <span class="book-title">Meditaciones</span>
+                    <span class="book-meta">Historia</span>
+                  </span>
+                  <span class="dias-restantes" data-dias-restantes>—</span>
+                </button>
+
+                <div class="recommend-detail" id="detalle-meditaciones" hidden>
+                  <dl class="recommend-detail__datos">
+                    <div>
+                      <dt>Fecha de inicio</dt>
+                      <dd data-fecha-inicio>—</dd>
+                    </div>
+                    <div>
+                      <dt>Fecha de devolución</dt>
+                      <dd data-fecha-devolucion>—</dd>
+                    </div>
+                    <div>
+                      <dt>Días para entregar</dt>
+                      <dd data-dias-detalle>—</dd>
+                    </div>
+                  </dl>
                 </div>
               </div>
             </div>
@@ -229,5 +273,6 @@
       mostrarUsuario();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JavaScript/Cuenta_usuarios.js"></script>
   </body>
 </html>
