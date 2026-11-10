@@ -1400,17 +1400,89 @@ body.pagina-catalogo .detalle-libro__footer {
   border-top: 1px solid var(--bl-border);
 }
 
-body.pagina-catalogo .detalle-libro__cerrar {
-  padding: 10px 20px;
-  color: var(--bl-indigo);
-  background-color: transparent;
-  border: 2px solid var(--bl-border-soft);
-  border-radius: var(--bl-radius-md);
-  font-weight: 700;
-  transition:
-    color var(--bl-transition),
-    background-color var(--bl-transition),
-    border-color var(--bl-transition);
+body.pagina-contactanos .logoBibliolend,
+body.pagina-contactanos .navbar-sobre .navbar-brand img {
+  padding: 4px;
+  background-color: #ffab00;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+body.pagina-contactanos .titulo-logo {
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+body.pagina-contactanos .navbar-sobre {
+  position: relative;
+  z-index: 1000;
+  background: linear-gradient(90deg, #3737a6 21%, #070f2e 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link {
+  position: relative;
+  margin: 0 8px;
+  padding: 8px 12px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #ffc95e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link:hover::after,
+body.pagina-contactanos .navbar-sobre .nav-link.active::after {
+  width: 80%;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link:hover {
+  color: #ffc95e;
+}
+
+body.pagina-contactanos .navbar-sobre .nav-link.active {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+body.pagina-contactanos .navbar-sobre .navbar-toggler {
+  border-color: #ffffffb3;
+}
+
+body.pagina-contactanos .navbar-sobre .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.pagina-contactanos .navItem--perfil {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 50%;
+}
+
+body.pagina-contactanos .portada {
+  width: 100%;
+  margin: 0;
+  padding: 24px 20px 26px;
+  background: linear-gradient(135deg, #3737a6 0%, #070f2e 100%);
 }
 
 body.pagina-catalogo .detalle-libro__cerrar:hover {
@@ -1649,6 +1721,25 @@ body.pagina-contactanos footer p:last-child {
 }
 
 @media (max-width: 576px) {
+  body.pagina-contactanos .titulo-logo {
+    font-size: 18px;
+  }
+
+  body.pagina-contactanos .navbar-sobre .navbar-brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  body.pagina-contactanos .navbar-sobre .nav-link {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  body.pagina-contactanos .navItem--perfil {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
   body.pagina-contactanos main {
     padding: 20px 14px;
   }
@@ -3312,508 +3403,5 @@ body.pagina-manual-de-bibliolend .content__link:hover {
 
   body.pagina-manual-de-bibliolend .content {
     padding: 2rem;
-  }
-}
-
-
-/* =============================================================================
-   13. Manual interactivo (Manual_usuario/index.html)
-   ============================================================================= */
-
-body.pagina-index {
-  --doc-ink: #19212c;
-  --doc-muted: #637083;
-  --doc-line: #dce3eb;
-  --doc-canvas: #f8fafc;
-  --doc-blue: #1865c0;
-  --doc-blue-soft: #eef6ff;
-  --doc-amber: #915f00;
-  --doc-amber-soft: #fff8e8;
-
-  color: var(--doc-ink);
-  background-color: var(--doc-canvas);
-  font-family: 'DM Sans', sans-serif;
-  line-height: 1.65;
-}
-
-body.pagina-index [id] {
-  scroll-margin-top: 6rem;
-}
-
-body.pagina-index .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  min-height: 68px;
-  padding: 10px max(24px, calc((100vw - 1440px) / 2));
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid var(--doc-line);
-  backdrop-filter: blur(10px);
-}
-
-body.pagina-index .brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 190px;
-  color: var(--doc-ink);
-  line-height: 1.15;
-  text-decoration: none;
-}
-
-body.pagina-index .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  color: var(--bl-white);
-  background: var(--doc-blue);
-  border-radius: 8px;
-  font-family: 'Source Serif 4', serif;
-  font-size: 22px;
-}
-
-body.pagina-index .brand small {
-  display: block;
-  margin-top: 3px;
-  color: var(--doc-muted);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-body.pagina-index .search {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  gap: 10px;
-  max-width: 540px;
-  padding: 7px 10px;
-  color: var(--doc-muted);
-  background: #f4f6f8;
-  border: 1px solid transparent;
-  border-radius: 7px;
-}
-
-body.pagina-index .search:focus-within {
-  background: var(--bl-white);
-  border-color: #8bb9ec;
-}
-
-body.pagina-index .search input {
-  width: 100%;
-  min-width: 0;
-  color: var(--doc-ink);
-  background: transparent;
-  border: 0;
-  outline: 0;
-  font: inherit;
-}
-
-body.pagina-index .search kbd {
-  padding: 1px 5px;
-  color: #7c8695;
-  border: 1px solid #cbd3dc;
-  border-radius: 4px;
-  font-size: 10px;
-  white-space: nowrap;
-}
-
-body.pagina-index .site-link {
-  margin-left: auto;
-  color: var(--doc-blue);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-body.pagina-index .site-link:hover {
-  text-decoration: underline;
-}
-
-body.pagina-index .layout {
-  display: grid;
-  grid-template-columns: 250px minmax(0, 780px) 190px;
-  justify-content: center;
-  gap: 48px;
-  max-width: 1440px;
-  min-height: calc(100vh - 68px);
-  margin: auto;
-  padding: 42px 32px;
-}
-
-body.pagina-index .sidebar {
-  position: sticky;
-  top: 92px;
-  align-self: start;
-  max-height: calc(100vh - 110px);
-  overflow: auto;
-}
-
-body.pagina-index .sidebar nav {
-  display: grid;
-  gap: 2px;
-}
-
-body.pagina-index .sidebar-label,
-body.pagina-index .on-page p {
-  margin: 20px 0 7px;
-  color: #8893a2;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-body.pagina-index .sidebar-label:first-child {
-  margin-top: 0;
-}
-
-body.pagina-index .nav-link {
-  display: block;
-  padding: 6px 10px;
-  color: #526073;
-  border-left: 2px solid transparent;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-body.pagina-index .nav-link:hover,
-body.pagina-index .nav-link.active {
-  color: var(--doc-blue);
-  background: #f1f7ff;
-  border-left-color: var(--doc-blue);
-}
-
-body.pagina-index .content {
-  min-width: 0;
-}
-
-body.pagina-index .content section {
-  padding: 18px 0 46px;
-  border-bottom: 1px solid var(--doc-line);
-}
-
-body.pagina-index .content section:first-child {
-  padding-top: 0;
-}
-
-body.pagina-index h1,
-body.pagina-index h2,
-body.pagina-index h3 {
-  font-family: 'Source Serif 4', serif;
-  line-height: 1.15;
-}
-
-body.pagina-index h1 {
-  margin: 0 0 14px;
-  font-size: 48px;
-  letter-spacing: -0.03em;
-}
-
-body.pagina-index h2 {
-  margin: 0 0 14px;
-  font-size: 33px;
-  letter-spacing: -0.02em;
-}
-
-body.pagina-index h3 {
-  margin: 24px 0 7px;
-  font-size: 21px;
-}
-
-body.pagina-index .eyebrow {
-  margin: 0 0 8px;
-  color: var(--doc-blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-body.pagina-index .lead {
-  max-width: 680px;
-  color: #536174;
-  font-size: 19px;
-}
-
-body.pagina-index .info-card,
-body.pagina-index .callout {
-  display: flex;
-  gap: 12px;
-  margin: 26px 0;
-  padding: 16px 18px;
-  color: #34516e;
-  background: var(--doc-blue-soft);
-  border: 1px solid #cce3fb;
-  border-radius: 8px;
-}
-
-body.pagina-index .info-card p,
-body.pagina-index .callout {
-  margin: 0;
-}
-
-body.pagina-index .info-icon {
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  margin-top: 2px;
-  color: var(--bl-white);
-  background: var(--doc-blue);
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-body.pagina-index .warning {
-  color: #70571f;
-  background: var(--doc-amber-soft);
-  border-color: #f0d992;
-}
-
-body.pagina-index .image-slot {
-  display: grid;
-  place-items: center;
-  min-height: 210px;
-  margin: 28px 0 4px;
-  padding: 22px;
-  background: #f7f9fb;
-  border: 1px dashed #aebac8;
-  border-radius: 8px;
-  text-align: center;
-}
-
-body.pagina-index .image-slot img {
-  display: block;
-  max-width: 100%;
-  max-height: 360px;
-}
-
-body.pagina-index .image-slot img[src=''] {
-  display: none;
-}
-
-body.pagina-index .image-slot p {
-  margin: 0;
-  color: #778496;
-  font-size: 14px;
-}
-
-body.pagina-index .steps {
-  display: grid;
-  gap: 18px;
-  padding: 0;
-  list-style: none;
-}
-
-body.pagina-index .steps li {
-  display: flex;
-  gap: 15px;
-}
-
-body.pagina-index .steps span {
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-top: 3px;
-  color: var(--doc-blue);
-  background: var(--doc-blue-soft);
-  border-radius: 50%;
-  font-weight: 700;
-}
-
-body.pagina-index .steps p {
-  margin: 2px 0 0;
-  color: var(--doc-muted);
-}
-
-body.pagina-index .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin: 24px 0;
-}
-
-body.pagina-index .feature-grid article {
-  padding: 17px;
-  background: var(--bl-white);
-  border: 1px solid var(--doc-line);
-  border-radius: 8px;
-}
-
-body.pagina-index .feature-grid h3 {
-  margin: 0 0 6px;
-  font-size: 19px;
-}
-
-body.pagina-index .feature-grid p {
-  margin: 0;
-  color: var(--doc-muted);
-  font-size: 14px;
-}
-
-body.pagina-index details {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--doc-line);
-}
-
-body.pagina-index summary {
-  color: #243247;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-body.pagina-index details p {
-  margin: 9px 0 0;
-  color: var(--doc-muted);
-}
-
-body.pagina-index .on-page {
-  position: sticky;
-  top: 92px;
-  align-self: start;
-  padding-left: 18px;
-  border-left: 1px solid var(--doc-line);
-}
-
-body.pagina-index .on-page p {
-  margin-top: 0;
-}
-
-body.pagina-index .on-page a {
-  display: block;
-  margin: 7px 0;
-  color: #687587;
-  font-size: 13px;
-  text-decoration: none;
-}
-
-body.pagina-index .on-page a:hover {
-  color: var(--doc-blue);
-}
-
-body.pagina-index .page-footer {
-  padding: 34px 0 0;
-  color: #7b8797;
-  font-size: 12px;
-}
-
-@media (max-width: 1050px) {
-  body.pagina-index .layout {
-    grid-template-columns: 220px minmax(0, 760px);
-    gap: 32px;
-  }
-
-  body.pagina-index .on-page {
-    display: none;
-  }
-}
-
-@media (max-width: 720px) {
-  body.pagina-index .topbar {
-    gap: 13px;
-    padding: 10px 18px;
-  }
-
-  body.pagina-index .brand {
-    min-width: auto;
-  }
-
-  body.pagina-index .brand small,
-  body.pagina-index .site-link,
-  body.pagina-index .search kbd {
-    display: none;
-  }
-
-  body.pagina-index .search {
-    min-width: 0;
-  }
-
-  body.pagina-index .layout {
-    display: block;
-    padding: 24px 20px 48px;
-  }
-
-  body.pagina-index .sidebar {
-    position: static;
-    max-height: none;
-    margin-bottom: 30px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--doc-line);
-  }
-
-  body.pagina-index .sidebar nav {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  body.pagina-index .sidebar-label {
-    grid-column: 1 / -1;
-  }
-
-  body.pagina-index .nav-link {
-    font-size: 13px;
-  }
-
-  body.pagina-index h1 {
-    font-size: 38px;
-  }
-
-  body.pagina-index h2 {
-    font-size: 29px;
-  }
-
-  body.pagina-index .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  body.pagina-index .image-slot {
-    min-height: 160px;
-  }
-}
-
-@media (max-width: 520px) {
-  body.pagina-index .topbar {
-    flex-wrap: wrap;
-    padding: 10px 16px;
-  }
-
-  body.pagina-index .search {
-    flex: 1 1 100%;
-    order: 3;
-    max-width: none;
-  }
-
-  body.pagina-index .layout {
-    padding: 22px 16px 40px;
-  }
-
-  body.pagina-index h1 {
-    font-size: 32px;
-  }
-
-  body.pagina-index h2 {
-    font-size: 25px;
-  }
-}
-
-/* =============================================================================
-   14. Accesibilidad y movimiento reducido
-   ============================================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
