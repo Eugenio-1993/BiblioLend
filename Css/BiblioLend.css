@@ -1528,7 +1528,7 @@ body.pagina-catalogo .detalle-libro :is(button, [tabindex]):focus-visible {
 body.pagina-contactanos main {
   max-width: var(--bl-container-narrow);
   margin: 0 auto;
-  padding: 24px 20px 30px;
+  padding: 30px 20px;
 }
 
 body.pagina-contactanos .bloque h2 {
@@ -1628,24 +1628,6 @@ body.pagina-contactanos .img_perfiles {
 
 body.pagina-contactanos .img_eugenio {
   object-position: center 10%;
-}
-
-body.pagina-contactanos footer {
-  padding: 20px 15px;
-  color: var(--bl-white);
-  background: linear-gradient(90deg, var(--bl-navy), var(--bl-indigo), var(--bl-navy));
-}
-
-body.pagina-contactanos .a_direccion--sede {
-  color: var(--bl-white);
-}
-
-body.pagina-contactanos footer a:hover {
-  color: var(--bl-accent-light);
-}
-
-body.pagina-contactanos footer p:last-child {
-  margin-bottom: 0;
 }
 
 @media (max-width: 576px) {
