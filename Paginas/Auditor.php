@@ -1,24 +1,42 @@
 <?php
-// 1. Incluimos la conexión del proyecto actual de forma automática
-require_once 'conexion.php'; 
+// Página de auditoría: solo administradores y conexión centralizada.
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('administrador');
 
 $tablaSeleccionada = "";
 $registros = [];
 $error = "";
 
-// validamos el envió el formulario con el nombre de la tabla
-if (isset($_POST['tabla']) && !empty(trim($_POST['tabla']))) {
-    // Limpiamos un poco el texto para evitar errores de estacios
+// Validamos el nombre de la tabla antes de consultarla.
+if (isset($_POST['tabla']) && trim($_POST['tabla']) !== '') {
     $tablaSeleccionada = trim($_POST['tabla']);
 
-    try {
-        // 3. Preparamos y ejecutamos la consulta dinámica
-        $sql = "SELECT * FROM `$tablaSeleccionada`";
-        $stmt = $pdo->query($sql);
-        $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!preg_match('/^[A-Za-z0-9_]+$/', $tablaSeleccionada)) {
+        $error = "El nombre de la tabla solo puede contener letras, números y guiones bajos.";
+    } else {
+        try {
+            // La conexión solo se necesita al ejecutar una consulta.
+            require_once __DIR__ . '/../conexion.php';
 
-    } catch (Exception $e) {
-        $error = "No se pudo consultar la tabla '$tablaSeleccionada'. Revisa si el nombre es correcto. Error: " . $e->getMessage();
+            $stmtExiste = $pdo->prepare(
+                "SELECT COUNT(*)
+                 FROM information_schema.TABLES
+                 WHERE TABLE_SCHEMA = DATABASE()
+                   AND TABLE_NAME = :tabla"
+            );
+            $stmtExiste->execute(['tabla' => $tablaSeleccionada]);
+
+            if ((int) $stmtExiste->fetchColumn() === 0) {
+                $error = "La tabla indicada no existe en la base de datos.";
+            } else {
+                // El nombre ya fue validado y existe: se puede interpolar con seguridad.
+                $stmt = $pdo->query("SELECT * FROM `$tablaSeleccionada`");
+                $registros = $stmt->fetchAll();
+            }
+        } catch (PDOException $e) {
+            error_log("Error en Auditor: " . $e->getMessage());
+            $error = "No se pudo consultar la tabla indicada.";
+        }
     }
 }
 ?>
@@ -48,20 +66,20 @@ if (isset($_POST['tabla']) && !empty(trim($_POST['tabla']))) {
             </form>
         </div>
 
-        <!-- eror de consulta -->
+        <!-- Error de consulta -->
         <?php if (!empty($error)): ?>
             <div class="alert alert-danger" role="alert">
-                <?php echo $error; ?>
+                <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
             </div>
         <?php endif; ?>
 
-        <!—condicion para mostrar registros -->
+        <!-- Condición para mostrar registros -->
         <?php if (!empty($registros)): ?>
             <div class="card shadow-sm p-4">
                 <h4 class="mb-3 text-success">Resultados para: <code><?php echo htmlspecialchars($tablaSeleccionada); ?></code> 
                     <span class="badge bg-secondary fs-6 float-end">Total registros: <?php echo count($registros); ?></span>
                 </h4>
-                <!—tabla para mostrar registros -->
+                <!-- Tabla para mostrar registros -->
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="table-dark">

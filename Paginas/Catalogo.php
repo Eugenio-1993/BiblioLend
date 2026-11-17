@@ -22,11 +22,11 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
   
 </head>
 
-<body class="pagina-catalogo">
+<body class="pagina-catalogo" data-usuario-email="<?= htmlspecialchars($_SESSION['correo'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-sobre">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="Panel_principal.html">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="Panel_principal.php">
           <img class="logoBibliolend" alt="Logo BiblioLend" src="../Imagenes/Logo_bibliolend.png" width="80"
             height="80" />
           <span class="titulo-logo">BiblioLend</span>
@@ -40,22 +40,22 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
         <div class="collapse navbar-collapse" id="menuNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="Panel_principal.html">Inicio</a>
+              <a class="nav-link" href="Panel_principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Sobre_nosotros.html">Sobre Nosotros</a>
+              <a class="nav-link" href="Sobre_nosotros.php">Sobre Nosotros</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Contactanos.html">Contáctanos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Resenas.html">Reseñas</a>
+              <a class="nav-link" href="Resenas.php">Reseñas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="Catalogo.html" aria-current="page">Catálogo</a>
+              <a class="nav-link active" href="Catalogo.php" aria-current="page">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a href="Cuenta_usuarios.html"><img src="../Imagenes/Imagen_de_perfil.jpg" alt="Imagen de Perfil"
+              <a href="Cuenta_usuarios.php"><img src="../Imagenes/Imagen_de_perfil.jpg" alt="Imagen de Perfil"
                   class="navItem--perfil" /></a>
             </li>
           </ul>
@@ -244,11 +244,11 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
       <nav class="site-footer__nav" aria-labelledby="footer-links-title">
         <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
         <ul class="site-footer__list" role="list">
-          <li><a href="Panel_principal.html">Inicio</a></li>
-          <li><a href="Catalogo.html">Catálogo</a></li>
-          <li><a href="Resenas.html">Reseñas</a></li>
+          <li><a href="Panel_principal.php">Inicio</a></li>
+          <li><a href="Catalogo.php">Catálogo</a></li>
+          <li><a href="Resenas.php">Reseñas</a></li>
           <li><a href="Contactanos.html">Nuestro equipo</a></li>
-          <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+          <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
         </ul>
       </nav>
 
