@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('estudiante');
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -86,7 +91,7 @@
       <section class="panel-layout" id="pantalla">
         <aside class="sidebar" id="datos_usuario">
           <div class="avatar"></div>
-          <h2 class="user-name" data-user-name>Juan Pérez</h2>
+          <h2 class="user-name" data-user-name><?= htmlspecialchars($_SESSION['nombre']) ?></h2>
           <p class="user-role" data-user-role>Estudiante - 10°</p>
 
           <div class="user-data">
@@ -95,7 +100,7 @@
           </div>
 
           <a href="#" class="btn-panel activo">Editar Perfil</a>
-          <a href="#" onclick="cerrarSesion(); return false;" class="btn-panel btn-cerrar">Cerrar sesión</a>
+          <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
         </aside>
 
         <section class="content">
@@ -267,12 +272,6 @@
         </div>
     </footer>
 <!-- to do -->
-    <script src="../JS/auth.js"></script>
-    <script>
-      protegerPagina("cuenta_usuario.html");
-      mostrarUsuario();
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../JavaScript/Cuenta_usuarios.js"></script>
   </body>
 </html>

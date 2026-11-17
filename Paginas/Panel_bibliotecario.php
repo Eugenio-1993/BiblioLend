@@ -1,9 +1,56 @@
+<?php
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('bibliotecario');
+
+// autenticacion.php - Incluir en la primera línea de cualquier página protegida
+
+function verificarSesion() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION['usuario_id'])) {
+        $_SESSION['error'] = "Debes iniciar sesión para acceder.";
+        header("Location: Panel_login.php");
+        exit();
+    }
+}
+
+// Acepta un rol ('estudiante') o varios (['estudiante', 'bibliotecario'])
+function requerirRol($rolesPermitidos) {
+    verificarSesion();
+
+    $rolesPermitidos = (array) $rolesPermitidos;
+
+    // Si el rol en sesión no está entre los permitidos para esta página
+    if (!in_array($_SESSION['rol'], $rolesPermitidos, true)) {
+        $_SESSION['error'] = "No tienes permisos para acceder a esta sección.";
+
+        switch ($_SESSION['rol']) {
+            case 'administrador':
+                header("Location: Panel_admin.php");
+                break;
+            case 'estudiante':
+                header("Location: Panel_principal.php");
+                break;
+            case 'bibliotecario':
+                header("Location: Panel_bibliotecario.php");
+                break;
+            default:
+                header("Location: Panel_login.php");
+                break;
+        }
+        exit();
+    }
+}
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reseñas - BiblioLend</title>
+    <title>Panel del Bibliotecario - BiblioLend</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -17,111 +64,127 @@
     <!-- Pie de página compartido -->
     
   </head>
+  <body class="pagina-panel-bibliotecario">
+    <header class="admin-header">
+      <div class="admin-header__brand">
+        <img
+          src="../Imagenes/Logo_bibliolend.png"
+          alt="Logo BiblioLend"
+          class="admin-header__logo"
+        />
 
-  <body class="pagina-resenas">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark navbar-sobre">
-        <div class="container">
-          <a
-            class="navbar-brand d-flex align-items-center gap-2"
-            href="Panel_principal.html"
-          >
-            <img
-              class="logoBibliolend"
-              alt="Logo BiblioLend"
-              src="../Imagenes/Logo_bibliolend.png"
-              width="80"
-              height="80"
-            />
-            <span class="titulo-logo">BiblioLend</span>
-          </a>
-
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuNav"
-            aria-controls="menuNav"
-            aria-expanded="false"
-            aria-label="Abrir menú"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="menuNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="Panel_principal.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Sobre_nosotros.html"
-                  >Sobre Nosotros</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Contactanos.html">Contáctanos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="Resenas.html">Reseñas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Catalogo.html">Catálogo</a>
-              </li>
-              <li class="nav-item">
-                <a href="Cuenta_usuarios.html">
-                  <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
-                    alt="Imagen de Perfil"
-                    class="navItem--perfil"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <section class="bloque" id="section_principal">
-        <div class="intro-resenas">
-          <h2>Cuéntanos, ¿qué opinas de nosotros?</h2>
-          <p>
-            Tu opinión es importantísima para que
-            <strong>BiblioLend</strong> siga mejorando, ayúdanos.
+        <div class="admin-header__info">
+          <h1 class="admin-header__title">Panel de Bibliotecario</h1>
+          <p class="admin-header__subtitle">
+            Gestión de libros de la plataforma
           </p>
         </div>
+      <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="panel-bibliotecario">
+      <section class="bloque bienvenida">
+        <div>
+          <h2>Panel del Bibliotecario</h2>
+          <p>
+            Administra préstamos, devoluciones, catálogo y actividad reciente de
+            la biblioteca.
+          </p>
+        </div>
+        <a href="catalogo.html" class="btn btn-success">Gestionar Catálogo</a>
       </section>
 
-      <section class="bloque" id="section_comentarios">
-        <form>
-          <fieldset class="border rounded p-3">
-            <legend class="float-none w-auto px-2">Tu Comentario</legend>
-
-            <div class="mb-3">
-              <label for="resena" class="form-label">Reseña:</label>
-              <textarea
-                id="resena"
-                name="resena"
-                class="form-control"
-                rows="5"
-                placeholder="Escribe aquí tu experiencia con la plataforma..."
-                required
-              ></textarea>
-            </div>
-
-            <input
-              type="submit"
-              value="Enviar Reseña"
-              class="btn btn-success"
-            />
-          </fieldset>
-        </form>
+      <section class="stats-grid" aria-label="Resumen de la biblioteca">
+        <article class="stat-card">
+          <h3>Libros disponibles</h3>
+          <p>124</p>
+        </article>
+        <article class="stat-card">
+          <h3>Préstamos activos</h3>
+          <p>18</p>
+        </article>
+        <article class="stat-card">
+          <h3>Devoluciones </h3>
+          <p>7</p>
+        </article>
+        <article class="stat-card alerta">
+          <h3>Retrasos</h3>
+          <p>3</p>
+        </article>
       </section>
-  </main>
 
+      <section class="bloque acciones-rapidas">
+        <h2>Acciones rápidas</h2>
+        <div class="acciones-grid">
+          <a href="#" class="accion-card">Registrar préstamo</a>
+          <a href="#" class="accion-card">Registrar devolución</a>
+          <a href="#" class="accion-card">Agregar libro</a>
+          <a href="#" class="accion-card">Ver usuarios</a>
+        </div>
+      </section>
+
+      <section class="bloque">
+        <h2>Préstamos pendientes</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle tabla-apilada">
+            <caption class="visually-hidden">Préstamos pendientes de devolución</caption>
+            <thead>
+              <tr>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Libro</th>
+                <th scope="col">Fecha préstamo</th>
+                <th scope="col">Fecha devolución</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Estudiante">Juan Pérez</td>
+                <td data-label="Libro">100 Años de soledad</td>
+                <td data-label="Fecha préstamo">02 / Mayo / 2026</td>
+                <td data-label="Fecha devolución">09 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
+              </tr>
+              <tr>
+                <td data-label="Estudiante">Laura Gómez</td>
+                <td data-label="Libro">Álgebra de Baldor</td>
+                <td data-label="Fecha préstamo">30 / Abril / 2026</td>
+                <td data-label="Fecha devolución">07 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado retraso">Retraso</span></td>
+              </tr>
+              <tr>
+                <td data-label="Estudiante">Carlos Díaz</td>
+                <td data-label="Libro">Meditaciones</td>
+                <td data-label="Fecha préstamo">01 / Mayo / 2026</td>
+                <td data-label="Fecha devolución">08 / Mayo / 2026</td>
+                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bloque">
+        <h2>Actividad reciente</h2>
+        <ul class="actividad-lista">
+          <li class="actividad-item">
+            <strong>Devolución registrada:</strong> Inglés con Felipe por María
+            Torres.
+          </li>
+          <li class="actividad-item">
+            <strong>Nuevo préstamo:</strong> Principios de la Física para Andrés
+            López.
+          </li>
+          <li class="actividad-item">
+            <strong>Catálogo actualizado:</strong> se agregó Biología Escolar.
+          </li>
+        </ul>
+      </section>
+    </main>
+    <br />
     <hr />
-
     <footer class="site-footer">
         <div class="site-footer__inner">
             <!-- Columna 1: Marca -->
@@ -195,10 +258,6 @@
             </section>
         </div>
     </footer>
-    <script src="../JS/auth.js"></script>
-    <script>
-      protegerPagina("resenas.html");
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
