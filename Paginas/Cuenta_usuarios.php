@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../autenticacion.php';
-requerirRol('estudiante');
+require_once __DIR__ . '/../conexion.php';
+require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
 ?>
 
 <!doctype html>
