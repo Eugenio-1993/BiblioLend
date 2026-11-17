@@ -29,7 +29,7 @@ requerirRol('estudiante');
         <div class="container">
           <a
             class="navbar-brand d-flex align-items-center gap-2"
-            href="Panel_principal.html"
+            href="Panel_principal.php"
           >
             <img
               class="logoBibliolend"
@@ -56,22 +56,22 @@ requerirRol('estudiante');
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="Panel_principal.html">Inicio</a>
+                <a class="nav-link active" href="Panel_principal.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Sobre_nosotros.html">Sobre Nosotros</a>
+                <a class="nav-link" href="Sobre_nosotros.php">Sobre Nosotros</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Contactanos.html">Contáctanos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Resenas.html">Reseñas</a>
+                <a class="nav-link" href="Resenas.php">Reseñas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Catalogo.html">Catálogo</a>
+                <a class="nav-link" href="Catalogo.php">Catálogo</a>
               </li>
               <li class="nav-item">
-                <a href="Cuenta_usuarios.html">
+                <a href="Cuenta_usuarios.php">
                   <img
                     src="../Imagenes/Imagen_de_perfil.jpg"
                     alt="Imagen de Perfil"
@@ -92,7 +92,7 @@ requerirRol('estudiante');
           Presiona el botón y acceda al catálogo de libros escolares en cualquier lugar y en
           cualquier momento.
         </p>
-        <a href="catalogo.html" class="btn btn-success">
+        <a href="Catalogo.php" class="btn btn-success">
           Catálogo Completo
         </a>
       </section>
@@ -289,11 +289,11 @@ requerirRol('estudiante');
             <nav class="site-footer__nav" aria-labelledby="footer-links-title">
                 <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
                 <ul class="site-footer__list" role="list">
-                  <li><a href="Panel_principal.html">Inicio</a></li>
-                  <li><a href="Catalogo.html">Catálogo</a></li>
-                  <li><a href="Resenas.html">Reseñas</a></li>
+                  <li><a href="Panel_principal.php">Inicio</a></li>
+                  <li><a href="Catalogo.php">Catálogo</a></li>
+                  <li><a href="Resenas.php">Reseñas</a></li>
                   <li><a href="Contactanos.html">Nuestro equipo</a></li>
-                  <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+                  <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
 

@@ -39,8 +39,7 @@ requerirRol('bibliotecario');
             Gestión de libros de la plataforma
           </p>
         </div>
-      <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
-        </div>
+        <a href="../logout.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
       </div>
     </header>
 
@@ -53,7 +52,7 @@ requerirRol('bibliotecario');
             la biblioteca.
           </p>
         </div>
-        <a href="catalogo.html" class="btn btn-success">Gestionar Catálogo</a>
+        <a href="Catalogo.php" class="btn btn-success">Gestionar Catálogo</a>
       </section>
 
       <section class="stats-grid" aria-label="Resumen de la biblioteca">
@@ -192,11 +191,11 @@ requerirRol('bibliotecario');
             <nav class="site-footer__nav" aria-labelledby="footer-links-title">
                 <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
                 <ul class="site-footer__list" role="list">
-                  <li><a href="Panel_principal.html">Inicio</a></li>
-                  <li><a href="Catalogo.html">Catálogo</a></li>
-                  <li><a href="Resenas.html">Reseñas</a></li>
+                  <li><a href="Panel_bibliotecario.php">Inicio</a></li>
+                  <li><a href="Catalogo.php">Catálogo</a></li>
+                  <li><a href="Resenas.php">Reseñas</a></li>
                   <li><a href="Contactanos.html">Nuestro equipo</a></li>
-                  <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+                  <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
 

@@ -36,7 +36,7 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('administrador');
           <h1 class="admin-header__title">Panel de Administración</h1>
           <p class="admin-header__subtitle">Gestión general de la plataforma</p>
         </div>
-      <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
+      <a href="../logout.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
         <a href="Panel_login.php" class="btn btn-outline-secondary">
      Volver al inicio
   </a>
@@ -186,11 +186,11 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('administrador');
             <nav class="site-footer__nav" aria-labelledby="footer-links-title">
                 <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
                 <ul class="site-footer__list" role="list">
-                  <li><a href="Panel_principal.html">Inicio</a></li>
-                  <li><a href="Catalogo.html">Catálogo</a></li>
-                  <li><a href="Resenas.html">Reseñas</a></li>
+                  <li><a href="Panel_admin.php">Inicio</a></li>
+                  <li><a href="Catalogo.php">Catálogo</a></li>
+                  <li><a href="Resenas.php">Reseñas</a></li>
                   <li><a href="Contactanos.html">Nuestro equipo</a></li>
-                  <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+                  <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
 

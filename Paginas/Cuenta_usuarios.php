@@ -29,7 +29,7 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
         <div class="container">
           <a
             class="navbar-brand d-flex align-items-center gap-2"
-            href="Panel_principal.html"
+            href="Panel_principal.php"
           >
             <img
               class="logoBibliolend"
@@ -56,10 +56,10 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
           <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="Panel_principal.html">Inicio</a>
+                <a class="nav-link" href="Panel_principal.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Sobre_nosotros.html"
+                <a class="nav-link" href="Sobre_nosotros.php"
                   >Sobre Nosotros</a
                 >
               </li>
@@ -67,13 +67,13 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
                 <a class="nav-link" href="Contactanos.html">Contáctanos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Resenas.html">Reseñas</a>
+                <a class="nav-link" href="Resenas.php">Reseñas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Catalogo.html">Catálogo</a>
+                <a class="nav-link" href="Catalogo.php">Catálogo</a>
               </li>
               <li>
-                <a href="Cuenta_usuarios.html">
+                <a href="Cuenta_usuarios.php">
                   <img
                     src="../Imagenes/Imagen_de_perfil.jpg"
                     alt="Imagen de Perfil"
@@ -92,15 +92,15 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
         <aside class="sidebar" id="datos_usuario">
           <div class="avatar"></div>
           <h2 class="user-name" data-user-name><?= htmlspecialchars($_SESSION['nombre']) ?></h2>
-          <p class="user-role" data-user-role>Estudiante - 10°</p>
+          <p class="user-role" data-user-role><?= htmlspecialchars(ucfirst($_SESSION['rol'] ?? 'Estudiante'), ENT_QUOTES, 'UTF-8') ?></p>
 
           <div class="user-data">
-            <p><strong>Correo:</strong> <span data-user-email>juan@colegio.edu.co</span></p>
+            <p><strong>Correo:</strong> <span data-user-email><?= htmlspecialchars($_SESSION['correo'] ?? '', ENT_QUOTES, 'UTF-8') ?></span></p>
             <p><strong>Matricula:</strong> 190094</p>
           </div>
 
           <a href="#" class="btn-panel activo">Editar Perfil</a>
-          <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
+          <a href="../logout.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
         </aside>
 
         <section class="content">
@@ -245,11 +245,11 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
             <nav class="site-footer__nav" aria-labelledby="footer-links-title">
                 <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
                 <ul class="site-footer__list" role="list">
-                  <li><a href="Panel_principal.html">Inicio</a></li>
-                  <li><a href="Catalogo.html">Catálogo</a></li>
-                  <li><a href="Resenas.html">Reseñas</a></li>
+                  <li><a href="Panel_principal.php">Inicio</a></li>
+                  <li><a href="Catalogo.php">Catálogo</a></li>
+                  <li><a href="Resenas.php">Reseñas</a></li>
                   <li><a href="Contactanos.html">Nuestro equipo</a></li>
-                  <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+                  <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
 
@@ -271,7 +271,7 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
             </section>
         </div>
     </footer>
-<!-- to do -->
+    <script src="../JavaScript/Cuenta_usuarios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
