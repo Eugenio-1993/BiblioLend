@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
-require_once __DIR__ . '/../autenticacion.php';requerirRol('administrador');
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('administrador');
 ?>
 
 <!doctype html>
