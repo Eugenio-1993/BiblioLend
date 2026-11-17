@@ -6,6 +6,12 @@ $error = '';
 $correo = '';
 $rolSeleccionado = 'estudiante';
 
+// Mensaje que deja autenticacion.php cuando alguien entra sin permiso
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Los nombres deben coincidir con los campos del formulario (name="email", "password", "rol").
     $correo = trim($_POST['email'] ?? '');
@@ -14,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $rolesValidos = ['estudiante', 'bibliotecario', 'administrador'];
     $paneles = [
-        'estudiante' => 'Panel_principal.html',
-        'bibliotecario' => 'Panel_bibliotecario.html',
-        'administrador' => 'Panel_admin.html',
+        'estudiante'    => 'Panel_principal.php',
+        'bibliotecario' => 'Panel_bibliotecario.php',
+        'administrador' => 'Panel_admin.php',
     ];
 
     if ($correo === '' || $password === '' || $rolSeleccionado === '') {
@@ -27,15 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Selecciona un tipo de usuario válido.";
     } else {
         try {
-            // La tabla `login` guarda las credenciales y se une con `usuario` por el documento.
             $stmt = $pdo->prepare(
-                "SELECT l.correo, l.contrasena, l.rol, l.Numero_de_documento,
-                        u.Primer_nombre, u.Segundo_nombre,
-                        u.Primer_apellido, u.Segundo_apellido
-                 FROM login AS l
-                 LEFT JOIN usuario AS u
-                        ON u.Numero_de_documento = l.Numero_de_documento
-                 WHERE l.correo = :correo
+                "SELECT id_usuario, correo, contrasena, rol,
+                        primer_nombre, segundo_nombre,
+                        primer_apellido, segundo_apellido
+                 FROM usuario
+                 WHERE correo = :correo
                  LIMIT 1"
             );
             $stmt->execute(['correo' => $correo]);
@@ -50,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 session_regenerate_id(true);
 
                 $nombre = trim(implode(' ', array_filter([
-                    $user['Primer_nombre'] ?? '',
-                    $user['Segundo_nombre'] ?? '',
-                    $user['Primer_apellido'] ?? '',
-                    $user['Segundo_apellido'] ?? '',
+                    $user['primer_nombre'] ?? '',
+                    $user['segundo_nombre'] ?? '',
+                    $user['primer_apellido'] ?? '',
+                    $user['segundo_apellido'] ?? '',
                 ])));
 
-                $_SESSION['usuario_id'] = $user['Numero_de_documento'] ?? $user['correo'];
+                $_SESSION['usuario_id'] = $user['id_usuario'];
                 $_SESSION['nombre'] = $nombre !== '' ? $nombre : $user['correo'];
                 $_SESSION['correo'] = $user['correo'];
                 $_SESSION['rol'] = $user['rol'];

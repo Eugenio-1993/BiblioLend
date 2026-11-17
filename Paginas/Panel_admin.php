@@ -1,24 +1,70 @@
+<?php
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('administrador');
+
+// autenticacion.php - Incluir en la primera línea de cualquier página protegida
+
+function verificarSesion() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (!isset($_SESSION['usuario_id'])) {
+        $_SESSION['error'] = "Debes iniciar sesión para acceder.";
+        header("Location: Panel_login.php");
+        exit();
+    }
+}
+
+// Acepta un rol ('estudiante') o varios (['estudiante', 'bibliotecario'])
+function requerirRol($rolesPermitidos) {
+    verificarSesion();
+
+    $rolesPermitidos = (array) $rolesPermitidos;
+
+    // Si el rol en sesión no está entre los permitidos para esta página
+    if (!in_array($_SESSION['rol'], $rolesPermitidos, true)) {
+        $_SESSION['error'] = "No tienes permisos para acceder a esta sección.";
+
+        switch ($_SESSION['rol']) {
+            case 'administrador':
+                header("Location: Panel_admin.php");
+                break;
+            case 'estudiante':
+                header("Location: Panel_principal.php");
+                break;
+            case 'bibliotecario':
+                header("Location: Panel_bibliotecario.php");
+                break;
+            default:
+                header("Location: Panel_login.php");
+                break;
+        }
+        exit();
+    }
+}
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel del Bibliotecario - BiblioLend</title>
-
+    <title>Panel de Administración | BiblioLend</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Tipografías (mismas que la landing) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../Css/BiblioLend.css" />
     <!-- Pie de página compartido -->
     
   </head>
-  <body class="pagina-panel-bibliotecario">
+
+  <body class="pagina-panel-admin">
     <header class="admin-header">
       <div class="admin-header__brand">
         <img
@@ -28,120 +74,110 @@
         />
 
         <div class="admin-header__info">
-          <h1 class="admin-header__title">Panel de Bibliotecario</h1>
-          <p class="admin-header__subtitle">
-            Gestión de libros de la plataforma
-          </p>
+          <h1 class="admin-header__title">Panel de Administración</h1>
+          <p class="admin-header__subtitle">Gestión general de la plataforma</p>
         </div>
-        <a
-          href="#"
-          onclick="cerrarSesion(); return false;"
-          class="admin-nav__link admin-nav__link--logout"
-        >
-          Cerrar Sesión
-        </a>
+      <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
+        <a href="Panel_login.php" class="btn btn-outline-secondary">
+     Volver al inicio
+  </a>
       </div>
     </header>
 
-    <main class="panel-bibliotecario">
-      <section class="bloque bienvenida">
-        <div>
-          <h2>Panel del Bibliotecario</h2>
-          <p>
-            Administra préstamos, devoluciones, catálogo y actividad reciente de
-            la biblioteca.
-          </p>
-        </div>
-        <a href="catalogo.html" class="btn btn-success">Gestionar Catálogo</a>
-      </section>
+    <main class="admin-main">
+      <section class="dashboard" aria-labelledby="dashboard-title">
+        <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
 
-      <section class="stats-grid" aria-label="Resumen de la biblioteca">
-        <article class="stat-card">
-          <h3>Libros disponibles</h3>
-          <p>124</p>
-        </article>
-        <article class="stat-card">
-          <h3>Préstamos activos</h3>
-          <p>18</p>
-        </article>
-        <article class="stat-card">
-          <h3>Devoluciones </h3>
-          <p>7</p>
-        </article>
-        <article class="stat-card alerta">
-          <h3>Retrasos</h3>
-          <p>3</p>
-        </article>
-      </section>
+        <div class="dashboard__cards">
+          <article class="card-stat">
+            <h3 class="card-stat__title">Usuarios registrados</h3>
+            <p class="card-stat__value">1,248</p>
+          </article>
 
-      <section class="bloque acciones-rapidas">
-        <h2>Acciones rápidas</h2>
-        <div class="acciones-grid">
-          <a href="#" class="accion-card">Registrar préstamo</a>
-          <a href="#" class="accion-card">Registrar devolución</a>
-          <a href="#" class="accion-card">Agregar libro</a>
-          <a href="#" class="accion-card">Ver usuarios</a>
+          <article class="card-stat">
+            <h3 class="card-stat__title">Total libros disponibles</h3>
+            <p class="card-stat__value">532</p>
+          </article>
+
+          <article class="card-stat">
+            <h3 class="card-stat__title">Préstamos activos</h3>
+            <p class="card-stat__value">89</p>
+          </article>
+
+          <article class="card-stat">
+            <h3 class="card-stat__title">Reseñas activas</h3>
+            <p class="card-stat__value">34</p>
+          </article>
         </div>
       </section>
 
-      <section class="bloque">
-        <h2>Préstamos pendientes</h2>
-        <div class="table-responsive">
-          <table class="table table-bordered align-middle tabla-apilada">
-            <caption class="visually-hidden">Préstamos pendientes de devolución</caption>
-            <thead>
+      <section class="management" aria-labelledby="management-title">
+        <div class="management__header">
+          <h2 id="management-title" class="management__title">
+            Gestión de Libros
+          </h2>
+
+          <button type="submit" class="management__button" id="btnAgregarLibro">Agregar libro</button>
+        </div>
+
+        <div class="table-container">
+          <table class="table-books tabla-apilada">
+            <caption class="visually-hidden">Libros registrados en la biblioteca</caption>
+            <thead class="table-books__head">
               <tr>
-                <th scope="col">Estudiante</th>
-                <th scope="col">Libro</th>
-                <th scope="col">Fecha préstamo</th>
-                <th scope="col">Fecha devolución</th>
+                <th scope="col">Título</th>
+                <th scope="col">Autor</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody class="table-books__body">
               <tr>
-                <td data-label="Estudiante">Juan Pérez</td>
-                <td data-label="Libro">100 Años de soledad</td>
-                <td data-label="Fecha préstamo">02 / Mayo / 2026</td>
-                <td data-label="Fecha devolución">09 / Mayo / 2026</td>
-                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
+                <td data-label="Título">1984</td>
+                <td data-label="Autor">George Orwell</td>
+                <td data-label="Estado">
+                  <span
+                    class="table-books__status table-books__status--available"
+                  >
+                    Disponible
+                  </span>
+                </td>
+                <td data-label="Acciones">
+                  <button class="table-books__action">Editar</button>
+                  <button
+                    class="table-books__action table-books__action--danger"
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
+
               <tr>
-                <td data-label="Estudiante">Laura Gómez</td>
-                <td data-label="Libro">Álgebra de Baldor</td>
-                <td data-label="Fecha préstamo">30 / Abril / 2026</td>
-                <td data-label="Fecha devolución">07 / Mayo / 2026</td>
-                <td data-label="Estado"><span class="estado retraso">Retraso</span></td>
-              </tr>
-              <tr>
-                <td data-label="Estudiante">Carlos Díaz</td>
-                <td data-label="Libro">Meditaciones</td>
-                <td data-label="Fecha préstamo">01 / Mayo / 2026</td>
-                <td data-label="Fecha devolución">08 / Mayo / 2026</td>
-                <td data-label="Estado"><span class="estado pendiente">Pendiente</span></td>
+                <td data-label="Título">El Principito</td>
+                <td data-label="Autor">Antoine de Saint-Exupéry</td>
+                <td data-label="Estado">
+                  <span
+                    class="table-books__status table-books__status--borrowed"
+                  >
+                    Prestado
+                  </span>
+                </td>
+                <td data-label="Acciones">
+                  <button class="table-books__action">Editar</button>
+                  <button
+                    class="table-books__action table-books__action--danger"
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
-
-      <section class="bloque">
-        <h2>Actividad reciente</h2>
-        <ul class="actividad-lista">
-          <li class="actividad-item">
-            <strong>Devolución registrada:</strong> Inglés con Felipe por María
-            Torres.
-          </li>
-          <li class="actividad-item">
-            <strong>Nuevo préstamo:</strong> Principios de la Física para Andrés
-            López.
-          </li>
-          <li class="actividad-item">
-            <strong>Catálogo actualizado:</strong> se agregó Biología Escolar.
-          </li>
-        </ul>
-      </section>
     </main>
+
     <br />
     <hr />
     <footer class="site-footer">
@@ -217,12 +253,6 @@
             </section>
         </div>
     </footer>
-
-    <script src="../JS/auth.js"></script>
-    <script>
-      protegerPagina("Panel_bibliotecario.html");
-      mostrarUsuario();
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

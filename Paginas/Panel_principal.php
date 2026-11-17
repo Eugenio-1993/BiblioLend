@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol('estudiante');
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -81,7 +86,7 @@
 
     <main>
       <section class="bloque">
-        <h2 data-saludo>Bienvenido de vuelta, [USUARIO]</h2>
+        <h2 data-saludo>Bienvenido de vuelta, <?= htmlspecialchars($_SESSION['nombre']) ?> </h2>
         <p>
           Presiona el botón y acceda al catálogo de libros escolares en cualquier lugar y en
           cualquier momento.
@@ -309,15 +314,6 @@
             </section>
         </div>
     </footer>
-    <script src="../JS/auth.js"></script>
-    <script>
-      // Protegemos esta página: solo roles que tengan "Panel_login.html"
-      // en su lista de páginas permitidas pueden verla.
-      protegerPagina("Panel_login.html");
-
-      // Mostramos el email del usuario en el saludo.
-      mostrarUsuario();
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

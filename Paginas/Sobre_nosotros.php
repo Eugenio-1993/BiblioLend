@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../autenticacion.php';
+requerirRol(['estudiante', 'bibliotecario', 'administrador']);
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -237,10 +242,6 @@
             </section>
         </div>
     </footer>
-    <script src="../JS/auth.js"></script>
-    <script>
-      protegerPagina("Sobre_nosotros.html");
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
