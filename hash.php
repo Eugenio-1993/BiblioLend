@@ -1,5 +1,11 @@
 <?php
-include 'conexion.php'; 
+// Script de mantenimiento: se puede ejecutar por CLI o por un administrador.
+if (PHP_SAPI !== 'cli') {
+    require_once __DIR__ . '/autenticacion.php';
+    requerirRol('administrador');
+}
+
+require_once __DIR__ . '/conexion.php';
 
 try {
     $stmt = $pdo->query("SELECT id_usuario, contrasena FROM usuario");

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $_SESSION = array(); // Vaciar variables
 
 if (ini_get("session.use_cookies")) {
@@ -11,6 +14,6 @@ if (ini_get("session.use_cookies")) {
 }
 
 session_destroy();
-header("Location: Panel_login.php");
+header("Location: Paginas/Panel_login.php");
 exit();
 ?>

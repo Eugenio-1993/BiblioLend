@@ -18,13 +18,21 @@
   // al cerrar la ventana o recargar la página. Si hay una sesión activa,
   // cada usuario mantiene sus propias solicitudes.
   function obtenerClaveSolicitudes() {
+    // El correo se imprime desde la sesión PHP en el atributo
+    // data-usuario-email del <body>. Se conserva localStorage como respaldo.
+    const usuarioSesion = document.body
+      ? document.body.dataset.usuarioEmail || ""
+      : "";
+
     try {
-      const usuario = localStorage.getItem("sesion_email");
+      const usuario = usuarioSesion || localStorage.getItem("sesion_email") || "";
       return usuario
         ? "bibliolend_solicitudes:" + usuario
         : "bibliolend_solicitudes";
     } catch (error) {
-      return "bibliolend_solicitudes";
+      return usuarioSesion
+        ? "bibliolend_solicitudes:" + usuarioSesion
+        : "bibliolend_solicitudes";
     }
   }
 
@@ -449,6 +457,10 @@
       campo.value = texto;
     }
 
+    document.dispatchEvent(
+      new CustomEvent("catalogo:categoria", { detail: texto })
+    );
+
     cerrar(true);
   }
 
@@ -533,4 +545,80 @@
       ajustarAlturaLista();
     }
   });
+})();
+
+// ============================================================
+// Búsqueda por título/autor y filtro por categoría
+// ============================================================
+
+(function () {
+  "use strict";
+
+  const buscador = document.getElementById("buscar-libro");
+  const contador = document.getElementById("catalogo-contador");
+  const sinResultados = document.getElementById("catalogo-sin-resultados");
+  const tarjetas = Array.from(document.querySelectorAll(".libro-card"));
+
+  if (!buscador || !tarjetas.length) {
+    return;
+  }
+
+  let categoriaActual = "Todas las categorías";
+
+  function normalizar(texto) {
+    return String(texto)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  function aplicarFiltros() {
+    const termino = normalizar(buscador.value);
+    let visibles = 0;
+
+    tarjetas.forEach(function (tarjeta) {
+      const titulo = normalizar(
+        tarjeta.querySelector("h3") ? tarjeta.querySelector("h3").textContent : ""
+      );
+      const autor = normalizar(
+        tarjeta.querySelector(".autor")
+          ? tarjeta.querySelector(".autor").textContent
+          : ""
+      );
+      const categoria = normalizar(tarjeta.dataset.categoria || "");
+      const coincideTexto =
+        termino === "" ||
+        titulo.indexOf(termino) !== -1 ||
+        autor.indexOf(termino) !== -1;
+      const coincideCategoria =
+        categoriaActual === "Todas las categorías" ||
+        categoria === normalizar(categoriaActual);
+
+      const visible = coincideTexto && coincideCategoria;
+      tarjeta.hidden = !visible;
+
+      if (visible) {
+        visibles += 1;
+      }
+    });
+
+    if (contador) {
+      contador.textContent =
+        "Mostrando " + visibles + " de " + tarjetas.length + " libros";
+    }
+
+    if (sinResultados) {
+      sinResultados.hidden = visibles !== 0;
+    }
+  }
+
+  buscador.addEventListener("input", aplicarFiltros);
+
+  document.addEventListener("catalogo:categoria", function (event) {
+    categoriaActual = event.detail || "Todas las categorías";
+    aplicarFiltros();
+  });
+
+  aplicarFiltros();
 })();

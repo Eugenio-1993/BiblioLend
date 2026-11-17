@@ -1,47 +1,6 @@
 <?php
 require_once __DIR__ . '/../autenticacion.php';
 requerirRol('bibliotecario');
-
-// autenticacion.php - Incluir en la primera línea de cualquier página protegida
-
-function verificarSesion() {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (!isset($_SESSION['usuario_id'])) {
-        $_SESSION['error'] = "Debes iniciar sesión para acceder.";
-        header("Location: Panel_login.php");
-        exit();
-    }
-}
-
-// Acepta un rol ('estudiante') o varios (['estudiante', 'bibliotecario'])
-function requerirRol($rolesPermitidos) {
-    verificarSesion();
-
-    $rolesPermitidos = (array) $rolesPermitidos;
-
-    // Si el rol en sesión no está entre los permitidos para esta página
-    if (!in_array($_SESSION['rol'], $rolesPermitidos, true)) {
-        $_SESSION['error'] = "No tienes permisos para acceder a esta sección.";
-
-        switch ($_SESSION['rol']) {
-            case 'administrador':
-                header("Location: Panel_admin.php");
-                break;
-            case 'estudiante':
-                header("Location: Panel_principal.php");
-                break;
-            case 'bibliotecario':
-                header("Location: Panel_bibliotecario.php");
-                break;
-            default:
-                header("Location: Panel_login.php");
-                break;
-        }
-        exit();
-    }
-}
 ?>
 
 <!doctype html>
@@ -79,8 +38,7 @@ function requerirRol($rolesPermitidos) {
             Gestión de libros de la plataforma
           </p>
         </div>
-      <a href="Cerrar_sesion.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
-        </div>
+        <a href="../logout.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
       </div>
     </header>
 
@@ -93,7 +51,7 @@ function requerirRol($rolesPermitidos) {
             la biblioteca.
           </p>
         </div>
-        <a href="catalogo.html" class="btn btn-success">Gestionar Catálogo</a>
+        <a href="Catalogo.php" class="btn btn-success">Gestionar Catálogo</a>
       </section>
 
       <section class="stats-grid" aria-label="Resumen de la biblioteca">
@@ -232,11 +190,11 @@ function requerirRol($rolesPermitidos) {
             <nav class="site-footer__nav" aria-labelledby="footer-links-title">
                 <h2 class="site-footer__title" id="footer-links-title">Enlaces rápidos</h2>
                 <ul class="site-footer__list" role="list">
-                  <li><a href="Panel_principal.html">Inicio</a></li>
-                  <li><a href="Catalogo.html">Catálogo</a></li>
-                  <li><a href="Resenas.html">Reseñas</a></li>
+                  <li><a href="Panel_bibliotecario.php">Inicio</a></li>
+                  <li><a href="Catalogo.php">Catálogo</a></li>
+                  <li><a href="Resenas.php">Reseñas</a></li>
                   <li><a href="Contactanos.html">Nuestro equipo</a></li>
-                  <li><a href="Sobre_nosotros.html">Sobre nosotros</a></li>
+                  <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
 

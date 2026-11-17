@@ -17,7 +17,9 @@ $opciones = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $opciones);
 } catch (PDOException $e) {
-    die("Error al conectar la Base de Datos (archivo de conexión): " . $e->getMessage());
+    // El detalle técnico queda en el log; las páginas muestran un mensaje amable.
+    error_log("Error de conexión a la base de datos: " . $e->getMessage());
+    throw new PDOException("No se pudo conectar con la base de datos.");
 }
 
 ?>
