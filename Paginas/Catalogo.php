@@ -1,6 +1,19 @@
 <?php
 require_once __DIR__ . '/../autenticacion.php';
 requerirRol(['estudiante', 'bibliotecario', 'administrador']);
+
+// Catálogo centralizado en datos/libros_catalogo.json.
+$rutaLibros = __DIR__ . '/../datos/libros_catalogo.json';
+$libros = [];
+
+if (is_readable($rutaLibros)) {
+    $contenidoLibros = file_get_contents($rutaLibros);
+    $librosDecodificados = json_decode($contenidoLibros, true);
+
+    if (is_array($librosDecodificados)) {
+        $libros = $librosDecodificados;
+    }
+}
 ?>
 
 <!doctype html>
@@ -118,82 +131,54 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
 
     <section class="catalogo-bloque" aria-labelledby="subtitulo-catalogo">
       <h2 class="subtitulo-catalogo" id="subtitulo-catalogo">Todo lo que hay</h2>
+      <p class="text-muted" id="catalogo-contador" role="status" aria-live="polite">
+        <?= count($libros) ?> libros disponibles
+      </p>
       <div class="libros-grid">
-        <article class="libro-card" data-libro-id="cien-anos-de-soledad"
-          data-descripcion="Una de las obras más representativas del realismo mágico. Narra la historia de la familia Buendía durante siete generaciones en el pueblo de Macondo."
-          data-anio="1967" data-paginas="471" data-isbn="978-84-397-2073-7" data-ubicacion="Estantería A-1">
-          <div class="libro-img portada-1">
-            <img class="portada-1" src="../Imagenes/Libros/100_anos_de_soledad.png" alt="100 Años de soledad" />
-          </div>
-          <h3>100 Años de soledad</h3>
-          <p class="autor">Gabriel García Márquez</p>
-          <p class="categoria">Literatura</p>
-          <span class="estado disponible">Disponible</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
+        <?php if ($libros === []): ?>
+          <p class="sin-resultados">No hay libros disponibles en este momento.</p>
+        <?php endif; ?>
 
-        <article class="libro-card" data-libro-id="principios-de-la-fisica"
-          data-descripcion="Texto fundamental de la física clásica que establece las leyes del movimiento y la gravitación universal."
-          data-anio="1687" data-paginas="512" data-isbn="978-84-206-5904-3" data-ubicacion="Estantería B-1">
-          <div class="libro-img portada-2">
-            <img class="portada-2" src="../Imagenes/Libros/Principios_de_la_fisica.png"
-              alt="Principios de la Física" />
-          </div>
-          <h3>Principios de la Física</h3>
-          <p class="autor">Isaac Newton</p>
-          <p class="categoria">Ciencia</p>
-          <span class="estado prestado">Prestado</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
-
-        <article class="libro-card" data-libro-id="meditaciones"
-          data-descripcion="Reflexiones personales del emperador romano Marco Aurelio sobre la ética, la serenidad y el autocontrol."
-          data-anio="c. 180" data-paginas="240" data-isbn="978-84-206-5451-2" data-ubicacion="Estantería C-2">
-          <div class="libro-img portada-3">
-            <img class="portada-3" src="../Imagenes/Libros/Meditaciones_de_Marco-Aurelio.png" alt="Meditaciones" />
-          </div>
-          <h3>Meditaciones</h3>
-          <p class="autor">Marco Aurelio</p>
-          <p class="categoria">Historia</p>
-          <span class="estado disponible">Disponible</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
-
-        <article class="libro-card" data-libro-id="algebra-de-baldor"
-          data-descripcion="Manual clásico de álgebra con ejercicios y explicaciones paso a paso, ideal para reforzar las bases matemáticas."
-          data-anio="1941" data-paginas="576" data-isbn="978-970-817-174-6" data-ubicacion="Estantería D-3">
-          <div class="libro-img portada-4">
-            <!-- aca esta el ejemplo de adjuntar imagenes, mire arriba, dentro de este div -->
-          </div>
-          <h3>Álgebra de Baldor</h3>
-          <p class="autor">Aurelio Baldor</p>
-          <p class="categoria">Matemáticas</p>
-          <span class="estado prestado">Prestado</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
-
-        <article class="libro-card" data-libro-id="ingles-con-felipe"
-          data-descripcion="Método práctico para aprender inglés con vocabulario, ejercicios y situaciones cotidianas."
-          data-anio="2021" data-paginas="180" data-isbn="978-958-12-3456-7" data-ubicacion="Estantería E-1">
-          <div class="libro-img portada-5"></div>
-          <h3>Inglés con Felipe</h3>
-          <p class="autor">Felipe Rojas</p>
-          <p class="categoria">Inglés</p>
-          <span class="estado disponible">Disponible</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
-
-        <article class="libro-card" data-libro-id="biologia-escolar"
-          data-descripcion="Libro de biología para estudiantes con los conceptos esenciales de la célula, los seres vivos y los ecosistemas."
-          data-anio="2019" data-paginas="320" data-isbn="978-958-765-432-1" data-ubicacion="Estantería B-4">
-          <div class="libro-img portada-6"></div>
-          <h3>Biología Escolar</h3>
-          <p class="autor">María López</p>
-          <p class="categoria">Ciencia</p>
-          <span class="estado prestado">Prestado</span>
-          <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
-        </article>
+        <?php foreach ($libros as $libro): ?>
+          <?php
+            $tituloLibro = (string) ($libro['titulo'] ?? '');
+            $autorLibro = (string) ($libro['autor'] ?? 'Autor por confirmar');
+            $categoriaLibro = (string) ($libro['categoria'] ?? 'Sin categoría');
+            $descripcionLibro = (string) ($libro['descripcion'] ?? 'Sin descripción disponible.');
+            $portadaLibro = (string) ($libro['portada'] ?? '');
+            $idLibro = (string) ($libro['id'] ?? '');
+            $anioLibro = (string) ($libro['anio'] ?? '');
+            $paginasLibro = (string) ($libro['paginas'] ?? '');
+            $isbnLibro = (string) ($libro['isbn'] ?? '');
+            $ubicacionLibro = (string) ($libro['ubicacion'] ?? '');
+            $disponiblesLibro = (int) ($libro['disponibles'] ?? 0);
+            $estaDisponible = $disponiblesLibro > 0;
+          ?>
+          <article class="libro-card"
+            data-libro-id="<?= htmlspecialchars($idLibro, ENT_QUOTES, 'UTF-8') ?>"
+            data-categoria="<?= htmlspecialchars($categoriaLibro, ENT_QUOTES, 'UTF-8') ?>"
+            data-descripcion="<?= htmlspecialchars($descripcionLibro, ENT_QUOTES, 'UTF-8') ?>"
+            <?php if ($anioLibro !== ''): ?>data-anio="<?= htmlspecialchars($anioLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
+            <?php if ($paginasLibro !== ''): ?>data-paginas="<?= htmlspecialchars($paginasLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
+            <?php if ($isbnLibro !== ''): ?>data-isbn="<?= htmlspecialchars($isbnLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
+            <?php if ($ubicacionLibro !== ''): ?>data-ubicacion="<?= htmlspecialchars($ubicacionLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>>
+            <div class="libro-img">
+              <?php if ($portadaLibro !== ''): ?>
+                <img src="../Imagenes/Libros/<?= htmlspecialchars($portadaLibro, ENT_QUOTES, 'UTF-8') ?>"
+                  alt="<?= htmlspecialchars($tituloLibro, ENT_QUOTES, 'UTF-8') ?>" loading="lazy" />
+              <?php endif; ?>
+            </div>
+            <h3><?= htmlspecialchars($tituloLibro, ENT_QUOTES, 'UTF-8') ?></h3>
+            <p class="autor"><?= htmlspecialchars($autorLibro, ENT_QUOTES, 'UTF-8') ?></p>
+            <p class="categoria"><?= htmlspecialchars($categoriaLibro, ENT_QUOTES, 'UTF-8') ?></p>
+            <span class="estado <?= $estaDisponible ? 'disponible' : 'prestado' ?>"><?= $estaDisponible ? 'Disponible' : 'Prestado' ?></span>
+            <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
+          </article>
+        <?php endforeach; ?>
       </div>
+      <p class="text-muted" id="catalogo-sin-resultados" hidden>
+        No se encontraron libros con esos criterios.
+      </p>
     </section>
   </main>
   <hr />
