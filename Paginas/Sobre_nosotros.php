@@ -95,6 +95,12 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
           <strong>BiblioLend</strong>, una solución digital para mejorar la
           gestión bibliotecaria de nuestra institución.
         </p>
+        <img
+          class="logo-codeforge"
+          src="../Imagenes/CodeForge.png"
+          alt="Logo de CodeForge"
+          style="display: block; width: 110px; max-width: 100%; height: auto; margin: 1rem auto 0;"
+        />
       </section>
 
       <section class="bloque" id="section_mision">

@@ -3734,3 +3734,10 @@ body.pagina-manual-de-bibliolend .content__link:hover {
     padding: 2rem;
   }
 }
+
+body.pagina-sobre-nosotros .logo-codeforge {
+  display: block;
+  width: min(100%, 110px);
+  height: auto;
+  margin: 1rem auto 0;
+}
