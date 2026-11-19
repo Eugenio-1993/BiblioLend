@@ -1,7 +1,10 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
 requerirRol(['estudiante', 'bibliotecario', 'administrador']);
+
+$resenas = listarResenas($pdo);
 ?>
 
 <!doctype html>
@@ -89,6 +92,7 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
     </header>
 
     <main>
+      <?php mostrarFlash(); ?>
       <section class="bloque" id="section_principal">
         <div class="intro-resenas">
           <h2>Cuéntanos, ¿qué opinas de nosotros?</h2>
@@ -100,7 +104,10 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
       </section>
 
       <section class="bloque" id="section_comentarios">
-        <form>
+        <form action="../acciones.php" method="post">
+          <?= csrfCampo() ?>
+          <input type="hidden" name="accion" value="guardar_resena">
+          <input type="hidden" name="volver" value="Resenas.php">
           <fieldset class="border rounded p-3">
             <legend class="float-none w-auto px-2">Tu Comentario</legend>
 
@@ -123,6 +130,26 @@ requerirRol(['estudiante', 'bibliotecario', 'administrador']);
             />
           </fieldset>
         </form>
+      </section>
+
+      <section class="bloque" id="section_lista_resenas">
+        <h2>Reseñas recientes</h2>
+
+        <?php if ($resenas === []): ?>
+          <p class="mb-0">Todavía no hay reseñas. ¡Sé el primero en escribir una!</p>
+        <?php else: ?>
+          <div class="list-group">
+            <?php foreach (array_slice($resenas, 0, 20) as $resena): ?>
+              <article class="list-group-item">
+                <div class="d-flex justify-content-between gap-3">
+                  <strong><?= htmlspecialchars($resena['estudiante'], ENT_QUOTES, 'UTF-8') ?></strong>
+                  <small class="text-muted"><?= formatearFecha(substr((string) $resena['fecha'], 0, 10)) ?></small>
+                </div>
+                <p class="mb-0 mt-2"><?= nl2br(htmlspecialchars($resena['cuerpo'], ENT_QUOTES, 'UTF-8')) ?></p>
+              </article>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
       </section>
   </main>
 

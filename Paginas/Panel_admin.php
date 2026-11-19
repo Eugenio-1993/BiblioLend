@@ -1,7 +1,21 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
 requerirRol('administrador');
+
+$usuariosRegistrados = contarUsuariosRegistrados($pdo);
+$librosDisponibles = contarLibrosDisponibles($pdo);
+$prestamosActivos = contarPrestamosActivos($pdo);
+$totalResenas = contarResenas($pdo);
+$ticketsPorValidar = contarTicketsPorValidar($pdo);
+$retrasos = contarRetrasos($pdo);
+$libros = $pdo->query(
+    "SELECT id_libro, titulo, autor, copias, disponibles
+     FROM libro
+     ORDER BY titulo"
+)->fetchAll(PDO::FETCH_ASSOC);
+$resenas = listarResenas($pdo);
 ?>
 
 <!doctype html>
@@ -43,28 +57,39 @@ requerirRol('administrador');
     </header>
 
     <main class="admin-main">
+      <?php mostrarFlash(); ?>
       <section class="dashboard" aria-labelledby="dashboard-title">
         <h2 id="dashboard-title" class="dashboard__title">Resumen General</h2>
 
         <div class="dashboard__cards">
           <article class="card-stat">
             <h3 class="card-stat__title">Usuarios registrados</h3>
-            <p class="card-stat__value">1,248</p>
+            <p class="card-stat__value"><?= $usuariosRegistrados ?></p>
           </article>
 
           <article class="card-stat">
-            <h3 class="card-stat__title">Total libros disponibles</h3>
-            <p class="card-stat__value">532</p>
+            <h3 class="card-stat__title">Copias disponibles</h3>
+            <p class="card-stat__value"><?= $librosDisponibles ?></p>
           </article>
 
           <article class="card-stat">
             <h3 class="card-stat__title">Préstamos activos</h3>
-            <p class="card-stat__value">89</p>
+            <p class="card-stat__value"><?= $prestamosActivos ?></p>
+          </article>
+
+          <article class="card-stat">
+            <h3 class="card-stat__title">Tickets por validar</h3>
+            <p class="card-stat__value"><?= $ticketsPorValidar ?></p>
+          </article>
+
+          <article class="card-stat">
+            <h3 class="card-stat__title">Retrasos</h3>
+            <p class="card-stat__value"><?= $retrasos ?></p>
           </article>
 
           <article class="card-stat">
             <h3 class="card-stat__title">Reseñas activas</h3>
-            <p class="card-stat__value">34</p>
+            <p class="card-stat__value"><?= $totalResenas ?></p>
           </article>
         </div>
       </section>
@@ -91,56 +116,66 @@ requerirRol('administrador');
             </thead>
 
             <tbody class="table-books__body">
-              <tr>
-                <td data-label="Título">1984</td>
-                <td data-label="Autor">George Orwell</td>
-                <td data-label="Estado">
-                  <span
-                    class="table-books__status table-books__status--available"
-                  >
-                    Disponible
-                  </span>
-                </td>
-                <td data-label="Acciones">
-                  <button class="table-books__action">Editar</button>
-                  <button
-                    class="table-books__action table-books__action--danger"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td data-label="Título">El Principito</td>
-                <td data-label="Autor">Antoine de Saint-Exupéry</td>
-                <td data-label="Estado">
-                  <span
-                    class="table-books__status table-books__status--borrowed"
-                  >
-                    Prestado
-                  </span>
-                </td>
-                <td data-label="Acciones">
-                  <button class="table-books__action">Editar</button>
-                  <button
-                    class="table-books__action table-books__action--danger"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+              <?php if ($libros === []): ?>
+                <tr>
+                  <td colspan="4">No hay libros registrados.</td>
+                </tr>
+              <?php else: ?>
+                <?php foreach ($libros as $libro): ?>
+                  <?php $disponible = (int) $libro['disponibles'] > 0; ?>
+                  <tr>
+                    <td data-label="Título"><?= htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td data-label="Autor"><?= htmlspecialchars($libro['autor'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td data-label="Estado">
+                      <span class="table-books__status <?= $disponible ? 'table-books__status--available' : 'table-books__status--borrowed' ?>">
+                        <?= $disponible ? 'Disponible' : 'Prestado' ?>
+                      </span><br>
+                      <small><?= (int) $libro['disponibles'] ?> de <?= (int) $libro['copias'] ?> copias</small>
+                    </td>
+                    <td data-label="Acciones">
+                      <button type="button" class="table-books__action" disabled>Editar</button>
+                      <button type="button" class="table-books__action table-books__action--danger" disabled>Eliminar</button>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </tbody>
           </table>
         </div>
       </section>
 <br>
-      <section class="management" aria-labelledby="management-title">
+      <section class="management" aria-labelledby="resenas-title">
         <div class="management__header">
-          <h2 class="management__title">
-            Reseñas
-          </h2>
+          <h2 class="management__title" id="resenas-title">Reseñas</h2>
         </div>
+
+        <?php if ($resenas === []): ?>
+          <p class="text-muted mb-0">Todavía no hay reseñas enviadas por los estudiantes.</p>
+        <?php else: ?>
+          <div class="table-container">
+            <table class="table-books tabla-apilada">
+              <caption class="visually-hidden">Reseñas de los estudiantes</caption>
+              <thead class="table-books__head">
+                <tr>
+                  <th scope="col">Estudiante</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col">Reseña</th>
+                  <th scope="col">Fecha</th>
+                </tr>
+              </thead>
+              <tbody class="table-books__body">
+                <?php foreach ($resenas as $resena): ?>
+                  <tr>
+                    <td data-label="Estudiante"><?= htmlspecialchars($resena['estudiante'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td data-label="Correo"><?= htmlspecialchars($resena['correo'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td data-label="Reseña"><?= nl2br(htmlspecialchars($resena['cuerpo'], ENT_QUOTES, 'UTF-8')) ?></td>
+                    <td data-label="Fecha"><?= formatearFecha(substr((string) $resena['fecha'], 0, 10)) ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        <?php endif; ?>
       </section>
     </main>
 

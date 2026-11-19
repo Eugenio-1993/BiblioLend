@@ -1,7 +1,17 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
 requerirRol('estudiante');
+
+$idUsuario = (int) $_SESSION['usuario_id'];
+$misLibros = listarMisLibros($pdo, $idUsuario);
+$prestamosActivos = contarPrestamosActivos($pdo, $idUsuario);
+$retrasos = contarRetrasos($pdo, $idUsuario);
+$solicitudesPendientes = count(array_filter(
+    $misLibros,
+    static fn(array $prestamo): bool => $prestamo['estado'] === 'solicitado'
+));
 ?>
 
 <!doctype html>
@@ -86,15 +96,41 @@ requerirRol('estudiante');
     </header>
 
     <main>
+      <?php mostrarFlash(); ?>
+
       <section class="bloque">
         <h2 data-saludo>Bienvenido de vuelta, <?= htmlspecialchars($_SESSION['nombre']) ?> </h2>
         <p>
-          Presiona el botón y acceda al catálogo de libros escolares en cualquier lugar y en
+          Presiona el botón y accede al catálogo de libros escolares en cualquier lugar y en
           cualquier momento.
         </p>
         <a href="Catalogo.php" class="btn btn-success">
           Catálogo Completo
         </a>
+      </section>
+
+      <section class="bloque">
+        <h2>Resumen de mi actividad</h2>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="border rounded p-3 h-100 text-center">
+              <p class="text-muted mb-1">Préstamos activos</p>
+              <p class="fs-3 fw-bold mb-0"><?= $prestamosActivos ?></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border rounded p-3 h-100 text-center">
+              <p class="text-muted mb-1">Solicitudes por validar</p>
+              <p class="fs-3 fw-bold mb-0"><?= $solicitudesPendientes ?></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border rounded p-3 h-100 text-center">
+              <p class="text-muted mb-1">Libros con retraso</p>
+              <p class="fs-3 fw-bold mb-0 <?= $retrasos > 0 ? 'text-danger' : '' ?>"><?= $retrasos ?></p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <hr />
@@ -176,34 +212,76 @@ requerirRol('estudiante');
       </section>
 
       <section class="bloque">
-        <h2>Mis Préstamos Activos</h2>
-        <div class="table-responsive">
-          <table border="1" class="table table-bordered tabla-apilada">
-            <caption class="visually-hidden">Préstamos activos del usuario</caption>
-            <thead>
-              <tr>
-                <th scope="col">Libro</th>
-                <th scope="col">Fecha de Préstamo</th>
-                <th scope="col">Fecha de Devolución</th>
-                <th scope="col">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Libro">100 Años de soledad</td>
-                <td data-label="Fecha de préstamo">10 / Marzo / 2025</td>
-                <td data-label="Fecha de devolución">17 / Marzo / 2025</td>
-                <td data-label="Estado">Por devolver (3 días)</td>
-              </tr>
-              <tr>
-                <td data-label="Libro">Inglés con Felipe</td>
-                <td data-label="Fecha de préstamo">05 / Marzo / 2025</td>
-                <td data-label="Fecha de devolución">19 / Marzo / 2025</td>
-                <td data-label="Estado">Por devolver (12 días)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h2>Mis solicitudes y préstamos</h2>
+        <p class="text-muted">
+          Cuando el bibliotecario valide tu ticket, el libro aparecerá como préstamo activo.
+        </p>
+
+        <?php if ($misLibros === []): ?>
+          <p class="text-muted mb-0">
+            Todavía no tienes solicitudes ni préstamos.
+            <a href="Catalogo.php">Busca un libro en el catálogo</a>.
+          </p>
+        <?php else: ?>
+          <div class="table-responsive">
+            <table border="1" class="table table-bordered tabla-apilada">
+              <caption class="visually-hidden">Solicitudes y préstamos del usuario</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Libro</th>
+                  <th scope="col">Solicitado</th>
+                  <th scope="col">Fecha de préstamo</th>
+                  <th scope="col">Fecha de devolución</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($misLibros as $prestamo): ?>
+                  <tr>
+                    <td data-label="Libro">
+                      <strong><?= htmlspecialchars($prestamo['titulo'], ENT_QUOTES, 'UTF-8') ?></strong><br>
+                      <small class="text-muted">Ticket: <?= htmlspecialchars($prestamo['codigo_ticket'], ENT_QUOTES, 'UTF-8') ?></small>
+                    </td>
+                    <td data-label="Solicitado">
+                      <?= formatearFecha(substr((string) $prestamo['fecha_solicitud'], 0, 10)) ?>
+                    </td>
+                    <td data-label="Fecha de préstamo"><?= formatearFecha($prestamo['fecha_prestamo']) ?></td>
+                    <td data-label="Fecha de devolución"><?= formatearFecha($prestamo['fecha_vencimiento']) ?></td>
+                    <td data-label="Estado">
+                      <span class="estado <?= htmlspecialchars($prestamo['clase'], ENT_QUOTES, 'UTF-8') ?>">
+                        <?= htmlspecialchars($prestamo['etiqueta'], ENT_QUOTES, 'UTF-8') ?>
+                      </span>
+                    </td>
+                    <td data-label="Acciones">
+                      <?php if ($prestamo['estado'] === 'solicitado'): ?>
+                        <form action="../acciones.php" method="post" class="d-inline">
+                          <?= csrfCampo() ?>
+                          <input type="hidden" name="accion" value="cancelar_solicitud">
+                          <input type="hidden" name="id_libro" value="<?= (int) $prestamo['id_libro'] ?>">
+                          <input type="hidden" name="volver" value="Panel_principal.php">
+                          <button type="submit" class="btn btn-sm btn-outline-danger">Cancelar solicitud</button>
+                        </form>
+                      <?php elseif ($prestamo['estado'] === 'activo'): ?>
+                        <form action="../acciones.php" method="post" class="d-inline">
+                          <?= csrfCampo() ?>
+                          <input type="hidden" name="accion" value="solicitar_devolucion">
+                          <input type="hidden" name="id_prestamo" value="<?= (int) $prestamo['id_prestamo'] ?>">
+                          <input type="hidden" name="volver" value="Panel_principal.php">
+                          <button type="submit" class="btn btn-sm btn-success">Solicitar devolución</button>
+                        </form>
+                      <?php elseif ($prestamo['estado'] === 'devolucion_solicitada'): ?>
+                        <span class="text-muted small">Espera la validación del bibliotecario.</span>
+                      <?php else: ?>
+                        <span class="text-muted">—</span>
+                      <?php endif; ?>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        <?php endif; ?>
       </section>
 
       
