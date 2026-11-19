@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
 
 $error = '';
@@ -32,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Selecciona un tipo de usuario válido.";
     } else {
         try {
-            // La conexión solo se necesita al procesar el formulario.
-            require_once __DIR__ . '/../conexion.php';
-
             $stmt = $pdo->prepare(
                 "SELECT id_usuario, correo, contrasena, rol, foto,
                         primer_nombre, segundo_nombre,
@@ -68,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['foto'] = $user['foto'] ?? '';
 
                 // Redirección al panel que corresponde al rol.
-                header("Location: " . urlPagina($paneles[$user['rol']]));
+                header("Location: " . $paneles[$user['rol']]);
                 exit();
             }
 

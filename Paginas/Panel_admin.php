@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
 requerirRol('administrador');
 ?>
@@ -37,9 +38,7 @@ requerirRol('administrador');
           <p class="admin-header__subtitle">Gestión general de la plataforma</p>
         </div>
       <a href="../logout.php" class="btn-panel btn-cerrar">Cerrar sesión</a>
-        <a href="Panel_login.php" class="btn btn-outline-secondary">
-     Volver al inicio
-  </a>
+
       </div>
     </header>
 
@@ -133,6 +132,14 @@ requerirRol('administrador');
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+<br>
+      <section class="management" aria-labelledby="management-title">
+        <div class="management__header">
+          <h2 class="management__title">
+            Reseñas
+          </h2>
         </div>
       </section>
     </main>

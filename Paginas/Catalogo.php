@@ -1,18 +1,28 @@
 <?php
+require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
 requerirRol(['estudiante', 'bibliotecario', 'administrador']);
 
-// Catálogo centralizado en datos/libros_catalogo.json.
-$rutaLibros = __DIR__ . '/../datos/libros_catalogo.json';
+// Libros desde la base de datos (tabla libro)
+$filas = $pdo->query(
+    "SELECT id_libro, titulo, autor, categoria, descripcion, portada, disponibles
+     FROM libro
+     ORDER BY titulo"
+)->fetchAll();
+
+// Se adapta cada fila al formato que espera la plantilla de abajo
 $libros = [];
-
-if (is_readable($rutaLibros)) {
-    $contenidoLibros = file_get_contents($rutaLibros);
-    $librosDecodificados = json_decode($contenidoLibros, true);
-
-    if (is_array($librosDecodificados)) {
-        $libros = $librosDecodificados;
-    }
+foreach ($filas as $fila) {
+    $libros[] = [
+        'id'          => (string) $fila['id_libro'],
+        'titulo'      => $fila['titulo'],
+        'autor'       => $fila['autor'],
+        'categoria'   => $fila['categoria'],
+        'descripcion' => $fila['descripcion'] ?? '',
+        // La base guarda "Imagenes/Libros/archivo.jpg" y la plantilla ya agrega "../Imagenes/Libros/"
+        'portada'     => basename((string) $fila['portada']),
+        'disponibles' => (int) $fila['disponibles'],
+    ];
 }
 ?>
 
