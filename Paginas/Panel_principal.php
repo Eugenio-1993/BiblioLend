@@ -108,62 +108,47 @@ requerirRol('estudiante');
           data-bs-interval="3000"
         >
           <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselBiblioteca"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Imagen 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselBiblioteca"
-              data-bs-slide-to="1"
-              aria-label="Imagen 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselBiblioteca"
-              data-bs-slide-to="2"
-              aria-label="Imagen 3"
-            ></button>
+            <button type="button" data-bs-target="#carouselBiblioteca" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Imagen 1"></button>
+            <button type="button" data-bs-target="#carouselBiblioteca" data-bs-slide-to="1" aria-label="Imagen 2"></button>
+            <button type="button" data-bs-target="#carouselBiblioteca" data-bs-slide-to="2" aria-label="Imagen 3"></button>
+            <button type="button" data-bs-target="#carouselBiblioteca" data-bs-slide-to="3" aria-label="Imagen 4"></button>
+            <button type="button" data-bs-target="#carouselBiblioteca" data-bs-slide-to="4" aria-label="Imagen 5"></button>
           </div>
 
           <div class="carousel-inner rounded shadow">
             <div class="carousel-item active">
-              <img
-                src="../Imagenes/Img_carrusel(1).png"
-                class="d-block w-100 img-carousel"
-                alt="Biblioteca 1"
-              />
+              <img src="../Imagenes/471793.jpg" class="d-block w-100 img-carousel" alt="Estanterías con libros en la biblioteca del colegio" />
               <div class="carousel-caption d-none d-md-block">
-                <h5>Explora la biblioteca</h5>
-                <p>Encuentra libros escolares de forma rapida y sencilla.</p>
+                <h5>Conoce nuestra biblioteca</h5>
+                <p>Un espacio escolar lleno de historias y recursos para aprender.</p>
               </div>
             </div>
-
             <div class="carousel-item">
-              <img
-                src="../Imagenes/Img_carrusel(2).png"
-                class="d-block w-100 img-carousel"
-                alt="Biblioteca 2"
-              />
+              <img src="../Imagenes/471794.jpg" class="d-block w-100 img-carousel" alt="Colección de libros de la biblioteca escolar" />
               <div class="carousel-caption d-none d-md-block">
-                <h5>Aprende cada dia</h5>
-                <p>Accede al catalogo desde cualquier lugar.</p>
+                <h5>Libros para descubrir</h5>
+                <p>Explora los títulos disponibles para nuestra comunidad educativa.</p>
               </div>
             </div>
-
             <div class="carousel-item">
-              <img
-                src="../Imagenes/Img_carrusel(3).png"
-                class="d-block w-100 img-carousel"
-                alt="Biblioteca 3"
-              />
+              <img src="../Imagenes/471795.jpg" class="d-block w-100 img-carousel" alt="Estanterías de libros infantiles en la biblioteca del colegio" />
               <div class="carousel-caption d-none d-md-block">
-                <h5>BiblioLend</h5>
-                <p>Tu biblioteca digital escolar.</p>
+                <h5>Leer abre nuevas ideas</h5>
+                <p>Encuentra lecturas para aprender, imaginar y crecer.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../Imagenes/471796.jpg" class="d-block w-100 img-carousel" alt="Libros organizados en las estanterías de la biblioteca escolar" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Un lugar para aprender</h5>
+                <p>La biblioteca acompaña cada paso de tu aprendizaje.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../Imagenes/471797.jpg" class="d-block w-100 img-carousel" alt="Estanterías de recursos y libros de la biblioteca del colegio" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Tu biblioteca escolar</h5>
+                <p>Acércate a los libros y aprovecha todos sus recursos.</p>
               </div>
             </div>
           </div>
