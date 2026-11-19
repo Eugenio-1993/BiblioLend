@@ -127,7 +127,7 @@ $retrasos = contarRetrasos($pdo, $idUsuario);
 
           <div class="user-data">
             <p><strong>Correo:</strong> <span data-user-email><?= htmlspecialchars($datosUsuario['correo'] ?? ($_SESSION['correo'] ?? ''), ENT_QUOTES, 'UTF-8') ?></span></p>
-            <p><strong>Grado y grupo:</strong> <?= htmlspecialchars($gradoGrupo !== '' ? $gradoGrupo : 'Sin registrar', ENT_QUOTES, 'UTF-8') ?></p>
+            <p><strong>Grado:</strong> <?= htmlspecialchars($gradoGrupo !== '' ? $gradoGrupo : 'Sin registrar', ENT_QUOTES, 'UTF-8') ?></p>
           </div>
 
           <a href="#" class="btn-panel activo">Editar Perfil</a>
