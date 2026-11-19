@@ -72,7 +72,7 @@ requerirRol('estudiante');
               <li class="nav-item">
                 <a href="Cuenta_usuarios.php">
                   <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
+                    src="../<?= htmlspecialchars(rutaAvatarUsuario(), ENT_QUOTES, 'UTF-8') ?>"
                     alt="Imagen de Perfil"
                     class="navItem--perfil"
                   />

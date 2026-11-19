@@ -213,3 +213,172 @@
     statVencidos.textContent = String(vencidos);
   }
 })();
+
+// ============================================================
+// Selector de avatar de la cuenta
+// ============================================================
+
+(function () {
+  "use strict";
+
+  const modalElement = document.getElementById("modalAvatares");
+  const botonAvatar = document.getElementById("avatarUsuario");
+  const imagenAvatar = document.getElementById("avatarUsuarioImagen");
+  const imagenNav = document.querySelector("[data-avatar-nav]");
+  const botonGuardar = document.querySelector("[data-avatar-guardar]");
+  const estado = document.querySelector("[data-avatar-status]");
+  const feedback = document.querySelector("[data-avatar-feedback]");
+  const opciones = Array.from(
+    document.querySelectorAll("[data-avatar-option]")
+  );
+
+  if (
+    !modalElement ||
+    !botonAvatar ||
+    !imagenAvatar ||
+    !botonGuardar ||
+    !opciones.length ||
+    typeof bootstrap === "undefined"
+  ) {
+    return;
+  }
+
+  const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+  let avatarActual = botonAvatar.dataset.avatarActual || "";
+  let seleccion = avatarActual;
+  let guardando = false;
+  let temporizadorFeedback = null;
+
+  function marcarSeleccion(id) {
+    seleccion = id || "";
+
+    opciones.forEach(function (opcion) {
+      const activa = opcion.dataset.avatarOption === seleccion;
+      opcion.classList.toggle("is-selected", activa);
+
+      const radio = opcion.querySelector('input[type="radio"]');
+
+      if (radio) {
+        radio.checked = activa;
+      }
+    });
+
+    botonGuardar.disabled =
+      guardando || seleccion === "" || seleccion === avatarActual;
+
+    if (estado) {
+      estado.textContent = "";
+    }
+  }
+
+  function mostrarFeedback(mensaje, esError) {
+    if (!feedback) {
+      return;
+    }
+
+    feedback.textContent = mensaje;
+    feedback.classList.toggle("is-error", Boolean(esError));
+
+    window.clearTimeout(temporizadorFeedback);
+
+    if (!esError) {
+      temporizadorFeedback = window.setTimeout(function () {
+        feedback.textContent = "";
+      }, 3500);
+    }
+  }
+
+  opciones.forEach(function (opcion) {
+    const radio = opcion.querySelector('input[type="radio"]');
+
+    if (!radio) {
+      return;
+    }
+
+    radio.addEventListener("change", function () {
+      if (radio.checked) {
+        marcarSeleccion(opcion.dataset.avatarOption || "");
+      }
+    });
+  });
+
+  modalElement.addEventListener("show.bs.modal", function () {
+    marcarSeleccion(avatarActual);
+  });
+
+  botonGuardar.addEventListener("click", async function () {
+    if (guardando || seleccion === "" || seleccion === avatarActual) {
+      return;
+    }
+
+    guardando = true;
+    botonGuardar.disabled = true;
+    botonGuardar.textContent = "Guardando...";
+
+    if (estado) {
+      estado.textContent = "";
+    }
+
+    try {
+      const datos = new FormData();
+      datos.append("avatar", seleccion);
+      datos.append("csrf", modalElement.dataset.csrf || "");
+
+      const respuesta = await fetch("../actualizar_avatar.php", {
+        method: "POST",
+        body: datos,
+        credentials: "same-origin",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      let resultado = {};
+
+      try {
+        resultado = await respuesta.json();
+      } catch (error) {
+        resultado = {};
+      }
+
+      if (!respuesta.ok || !resultado.ok) {
+        throw new Error(
+          resultado.error || "No se pudo guardar el avatar. Inténtalo de nuevo."
+        );
+      }
+
+      avatarActual = resultado.avatar || seleccion;
+      botonAvatar.dataset.avatarActual = avatarActual;
+
+      if (resultado.src) {
+        imagenAvatar.src = resultado.src;
+
+        if (imagenNav) {
+          imagenNav.src = resultado.src;
+        }
+      }
+
+      if (resultado.nombre) {
+        imagenAvatar.alt = "Avatar " + resultado.nombre;
+      }
+
+      mostrarFeedback("Avatar actualizado correctamente.", false);
+      modal.hide();
+    } catch (error) {
+      const mensaje =
+        error instanceof Error
+          ? error.message
+          : "No se pudo guardar el avatar. Inténtalo de nuevo.";
+
+      if (estado) {
+        estado.textContent = mensaje;
+      }
+
+      mostrarFeedback(mensaje, true);
+    } finally {
+      guardando = false;
+      botonGuardar.textContent = "Guardar avatar";
+      botonGuardar.disabled = seleccion === avatarActual;
+    }
+  });
+})();

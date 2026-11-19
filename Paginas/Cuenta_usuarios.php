@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../autenticacion.php';
 requerirRol('estudiante');
+
+$avatarActualId = avatarActualId();
+$avatarActual = rutaAvatarUsuario();
+$listaAvatares = avataresDisponibles();
+$csrfAvatar = tokenCsrf();
 ?>
 
 <!doctype html>
@@ -75,9 +80,10 @@ requerirRol('estudiante');
               <li>
                 <a href="Cuenta_usuarios.php">
                   <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
+                    src="../<?= htmlspecialchars($avatarActual, ENT_QUOTES, 'UTF-8') ?>"
                     alt="Imagen de Perfil"
                     class="navItem--perfil"
+                    data-avatar-nav
                   />
                 </a>
               </li>
@@ -90,7 +96,33 @@ requerirRol('estudiante');
     <main class="panel-usuario">
       <section class="panel-layout" id="pantalla">
         <aside class="sidebar" id="datos_usuario">
-          <div class="avatar"></div>
+          <button
+            type="button"
+            class="avatar"
+            id="avatarUsuario"
+            data-avatar-actual="<?= htmlspecialchars($avatarActualId, ENT_QUOTES, 'UTF-8') ?>"
+            data-bs-toggle="modal"
+            data-bs-target="#modalAvatares"
+            aria-label="Cambiar avatar"
+            aria-haspopup="dialog"
+          >
+            <img
+              src="../<?= htmlspecialchars($avatarActual, ENT_QUOTES, 'UTF-8') ?>"
+              alt="Avatar actual de <?= htmlspecialchars($_SESSION['nombre'], ENT_QUOTES, 'UTF-8') ?>"
+              class="avatar__img"
+              id="avatarUsuarioImagen"
+            />
+            <span class="avatar__edit" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+              <span>Cambiar</span>
+            </span>
+          </button>
+          <p class="avatar-feedback" role="status" aria-live="polite" data-avatar-feedback></p>
+
           <h2 class="user-name" data-user-name><?= htmlspecialchars($_SESSION['nombre']) ?></h2>
           <p class="user-role" data-user-role><?= htmlspecialchars(ucfirst($_SESSION['rol'] ?? 'Estudiante'), ENT_QUOTES, 'UTF-8') ?></p>
 
@@ -271,7 +303,78 @@ requerirRol('estudiante');
             </section>
         </div>
     </footer>
-    <script src="../JavaScript/Cuenta_usuarios.js"></script>
+
+    <!-- Selector de avatar -->
+    <div
+      class="modal fade"
+      id="modalAvatares"
+      tabindex="-1"
+      aria-labelledby="tituloModalAvatares"
+      aria-hidden="true"
+      data-csrf="<?= htmlspecialchars($csrfAvatar, ENT_QUOTES, 'UTF-8') ?>"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content avatar-modal">
+          <div class="modal-header">
+            <h2 class="modal-title" id="tituloModalAvatares">Elige tu avatar</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+
+          <div class="modal-body">
+            <p class="avatar-modal__hint">
+              Selecciona uno de los 10 avatares para personalizar tu cuenta.
+            </p>
+
+            <div class="avatar-grid" role="radiogroup" aria-label="Avatares disponibles">
+              <?php foreach ($listaAvatares as $idAvatar => $nombreAvatar): ?>
+                <?php $avatarSeleccionado = $idAvatar === $avatarActualId; ?>
+                <label
+                  class="avatar-option<?= $avatarSeleccionado ? ' is-selected' : '' ?>"
+                  data-avatar-option="<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>"
+                >
+                  <input
+                    class="avatar-option__input"
+                    type="radio"
+                    name="avatar"
+                    value="<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>"
+                    aria-label="<?= htmlspecialchars($nombreAvatar, ENT_QUOTES, 'UTF-8') ?>"
+                    <?= $avatarSeleccionado ? 'checked' : '' ?>
+                  />
+                  <span class="avatar-option__frame">
+                    <img
+                      src="../Imagenes/Avatares/<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>.png"
+                      alt=""
+                      width="88"
+                      height="88"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="avatar-option__check" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                      <path d="m5 12 5 5L20 7" />
+                    </svg>
+                  </span>
+                </label>
+              <?php endforeach; ?>
+            </div>
+
+            <p class="avatar-modal__status" role="status" aria-live="polite" data-avatar-status></p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" data-avatar-guardar disabled>
+              Guardar avatar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JavaScript/Cuenta_usuarios.js"></script>
   </body>
 </html>
