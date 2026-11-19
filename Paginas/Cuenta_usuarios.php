@@ -104,9 +104,10 @@ $retrasos = contarRetrasos($pdo, $idUsuario);
               <li>
                 <a href="Cuenta_usuarios.php">
                   <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
+                    src="../<?= htmlspecialchars($avatarActual, ENT_QUOTES, 'UTF-8') ?>"
                     alt="Imagen de Perfil"
                     class="navItem--perfil"
+                    data-avatar-nav
                   />
                 </a>
               </li>
@@ -320,8 +321,9 @@ $retrasos = contarRetrasos($pdo, $idUsuario);
                 <h2 class="site-footer__title" id="footer-contact-title">Contacto</h2>
                 <address class="site-footer__address">
                   <p>
-                        Cra. 50B #97a-30, Santa Cruz<br />
+                        <a href="https://maps.google.com/?q=6.2907713,-75.5595566" target="_blank" rel="noopener">Cra. 50B #97a-30, Santa Cruz<br />
                         Medellín, Antioquia 050001
+                        </a>
                   </p>
                   <p>
                         <a href="mailto:contacto@bibliolend.edu.co">contacto@bibliolend.edu.co</a>
@@ -334,5 +336,6 @@ $retrasos = contarRetrasos($pdo, $idUsuario);
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JavaScript/Cuenta_usuarios.js"></script>
   </body>
 </html>

@@ -11,6 +11,90 @@ function verificarSesion() {
     }
 }
 
+/**
+ * Avatares disponibles para la cuenta de usuario.
+ * La clave es el identificador que se guarda en la columna usuario.foto.
+ */
+function avataresDisponibles(): array
+{
+    return [
+        'the-striver'        => 'The Striver',
+        'focused-tiger'      => 'Focused Tiger',
+        'driven-lion'        => 'Driven Lion',
+        'the-powerhouse'     => 'The Powerhouse',
+        'relentless-cheetah' => 'Relentless Cheetah',
+        'the-contender'      => 'The Contender',
+        'fierce-panther'     => 'Fierce Panther',
+        'grinding-bear'      => 'Grinding Bear',
+        'iron-rhino'         => 'Iron Rhino',
+        'elite-eagle'        => 'Elite Eagle',
+    ];
+}
+
+/**
+ * Avatar que se muestra mientras el usuario no ha elegido uno.
+ */
+function avatarPredeterminado(): string
+{
+    return 'Imagenes/Imagen_de_perfil.jpg';
+}
+
+/**
+ * Devuelve el identificador del avatar guardado en la sesión, o '' si
+ * todavía no tiene uno válido.
+ */
+function avatarActualId(): string
+{
+    $foto = (string) ($_SESSION['foto'] ?? '');
+
+    if (preg_match('#^Imagenes/Avatares/([a-z0-9-]+)\.png$#', $foto, $coincidencia)) {
+        $idAvatar = $coincidencia[1];
+
+        if (isset(avataresDisponibles()[$idAvatar])) {
+            return $idAvatar;
+        }
+    }
+
+    return '';
+}
+
+/**
+ * Ruta relativa del avatar del usuario desde la raíz del proyecto.
+ */
+function rutaAvatarUsuario(): string
+{
+    $idAvatar = avatarActualId();
+
+    if ($idAvatar === '') {
+        return avatarPredeterminado();
+    }
+
+    return 'Imagenes/Avatares/' . $idAvatar . '.png';
+}
+
+/**
+ * Token simple para proteger formularios enviados por AJAX.
+ */
+function tokenCsrf(): string
+{
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+    return (string) $_SESSION['csrf_token'];
+}
+
+/**
+ * Comprueba que el token recibido coincida con el de la sesión.
+ */
+function tokenCsrfValido($token): bool
+{
+    return is_string($token)
+        && $token !== ''
+        && isset($_SESSION['csrf_token'])
+        && hash_equals((string) $_SESSION['csrf_token'], $token);
+}
+
 // Acepta un rol ('estudiante') o varios (['estudiante', 'bibliotecario'])
 function requerirRol($rolesPermitidos) {
     verificarSesion();

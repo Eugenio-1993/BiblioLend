@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         try {
             $stmt = $pdo->prepare(
-                "SELECT id_usuario, correo, contrasena, rol,
+                "SELECT id_usuario, correo, contrasena, rol, foto,
                         primer_nombre, segundo_nombre,
                         primer_apellido, segundo_apellido
                  FROM usuario
@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['nombre'] = $nombre !== '' ? $nombre : $user['correo'];
                 $_SESSION['correo'] = $user['correo'];
                 $_SESSION['rol'] = $user['rol'];
+                $_SESSION['foto'] = $user['foto'] ?? '';
 
                 // Redirección al panel que corresponde al rol.
                 header("Location: " . $paneles[$user['rol']]);
