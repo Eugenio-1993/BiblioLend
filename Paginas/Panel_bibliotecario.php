@@ -52,7 +52,7 @@ requerirRol('bibliotecario');
             la biblioteca.
           </p>
         </div>
-        <a href="Catalogo.php" class="btn btn-success">Gestionar Catálogo</a>
+        <a href="Catalogo.php" class="btn btn-success">Mostrar Catálogo</a>
       </section>
 
       <section class="stats-grid" aria-label="Resumen de la biblioteca">
@@ -65,7 +65,7 @@ requerirRol('bibliotecario');
           <p>18</p>
         </article>
         <article class="stat-card">
-          <h3>Devoluciones </h3>
+          <h3>Pendientes por registrar </h3>
           <p>7</p>
         </article>
         <article class="stat-card alerta">
@@ -124,24 +124,8 @@ requerirRol('bibliotecario');
           </table>
         </div>
       </section>
-
-      <section class="bloque">
-        <h2>Actividad reciente</h2>
-        <ul class="actividad-lista">
-          <li class="actividad-item">
-            <strong>Devolución registrada:</strong> Inglés con Felipe por María
-            Torres.
-          </li>
-          <li class="actividad-item">
-            <strong>Nuevo préstamo:</strong> Principios de la Física para Andrés
-            López.
-          </li>
-          <li class="actividad-item">
-            <strong>Catálogo actualizado:</strong> se agregó Biología Escolar.
-          </li>
-        </ul>
-      </section>
     </main>
+
     <br />
     <hr />
     <footer class="site-footer">
