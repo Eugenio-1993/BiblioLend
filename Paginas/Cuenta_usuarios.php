@@ -96,7 +96,7 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
 
           <div class="user-data">
             <p><strong>Correo:</strong> <span data-user-email><?= htmlspecialchars($_SESSION['correo'] ?? '', ENT_QUOTES, 'UTF-8') ?></span></p>
-            <p><strong>Matricula:</strong> 190094</p>
+            <p><strong>Grado + grupo(en la db tmbn):</strong> 190094</p>
           </div>
 
           <a href="#" class="btn-panel activo">Editar Perfil</a>
@@ -105,7 +105,7 @@ require_once __DIR__ . '/../autenticacion.php';requerirRol('estudiante');
 
         <section class="content">
           <div class="header-box">
-            <h3>Bienvenido a tu cuenta</h3>
+            <h3>Bienvenid@ a tu cuenta, </h3>
             <p>
               Desde aquí puedes consultar tu actividad, revisar tus préstamos y
               mantener tu información al día.
