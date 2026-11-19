@@ -1,623 +1,347 @@
-// ============================================================
-// Catalogo.js — Detalle de libros y solicitudes de préstamo
-// BiblioLend · 2026
-// ============================================================
+/**
+ * Catalogo.js
+ * Filtros del catálogo y ventana de detalle con solicitud/cancelación de préstamos.
+ */
+(() => {
+  'use strict';
 
-(function () {
-  "use strict";
-
-  const modalElement = document.getElementById("modalDetalleLibro");
-
-  if (!modalElement || typeof bootstrap === "undefined") {
+  const modalEl = document.getElementById('modalDetalleLibro');
+  if (!modalEl) {
     return;
   }
 
-  const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-
-  // Las solicitudes se guardan en el navegador para que se conserven
-  // al cerrar la ventana o recargar la página. Si hay una sesión activa,
-  // cada usuario mantiene sus propias solicitudes.
-  function obtenerClaveSolicitudes() {
-    // El correo se imprime desde la sesión PHP en el atributo
-    // data-usuario-email del <body>. Se conserva localStorage como respaldo.
-    const usuarioSesion = document.body
-      ? document.body.dataset.usuarioEmail || ""
-      : "";
-
-    try {
-      const usuario = usuarioSesion || localStorage.getItem("sesion_email") || "";
-      return usuario
-        ? "bibliolend_solicitudes:" + usuario
-        : "bibliolend_solicitudes";
-    } catch (error) {
-      return usuarioSesion
-        ? "bibliolend_solicitudes:" + usuarioSesion
-        : "bibliolend_solicitudes";
-    }
-  }
-
-  const STORAGE_KEY = obtenerClaveSolicitudes();
-  let solicitudesMemoria = null;
-
-  const elementos = {
-    portada: document.getElementById("detallePortada"),
-    imagen: document.getElementById("detalleImagen"),
-    iniciales: document.getElementById("detalleIniciales"),
-    titulo: document.getElementById("detalleTitulo"),
-    autor: document.getElementById("detalleAutor"),
-    categoria: document.getElementById("detalleCategoria"),
-    estado: document.getElementById("detalleEstado"),
-    anio: document.getElementById("detalleAnio"),
-    paginas: document.getElementById("detallePaginas"),
-    isbn: document.getElementById("detalleIsbn"),
-    ubicacion: document.getElementById("detalleUbicacion"),
-    descripcion: document.getElementById("detalleDescripcion"),
-    aviso: document.getElementById("detalleAviso"),
-    accion: document.getElementById("detalleAccion"),
-  };
-
-  let libroActual = null;
-
-  function leerSolicitudes() {
-    if (solicitudesMemoria !== null) {
-      return solicitudesMemoria;
-    }
-
-    try {
-      const solicitudes = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      return Array.isArray(solicitudes) ? solicitudes : [];
-    } catch (error) {
-      return [];
-    }
-  }
-
-  function guardarSolicitudes(solicitudes) {
-    // La copia en memoria permite que el botón funcione durante la sesión
-    // actual aunque el navegador bloquee localStorage.
-    solicitudesMemoria = solicitudes.slice();
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(solicitudes));
-    } catch (error) {
-      // Se conserva únicamente la copia en memoria.
-    }
-  }
-
-  function tieneSolicitud(id) {
-    return leerSolicitudes().includes(id);
-  }
-
-  function generarId(titulo) {
-    return titulo
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-  }
-
-  function obtenerIniciales(titulo) {
-    const omitidas = new Set(["de", "del", "la", "las", "el", "los", "y", "con"]);
-    const palabras = titulo
-      .split(/\s+/)
-      .filter(function (palabra) {
-        return palabra && !omitidas.has(palabra.toLowerCase());
-      });
-
-    return palabras
-      .slice(0, 2)
-      .map(function (palabra) {
-        return palabra.charAt(0);
-      })
-      .join("")
-      .toUpperCase();
-  }
-
-  function obtenerDatos(card) {
-    const estadoElemento = card.querySelector(".estado");
-    const imagen = card.querySelector(".libro-img img");
-    const portadaElemento = card.querySelector(".libro-img");
-    const tituloElemento = card.querySelector("h3");
-    const titulo = tituloElemento ? tituloElemento.textContent.trim() : "Libro";
-
-    const portadaClase = portadaElemento
-      ? Array.from(portadaElemento.classList).find(function (clase) {
-          return clase.indexOf("portada-") === 0;
-        })
-      : "";
-
-    return {
-      id: card.dataset.libroId || generarId(titulo),
-      titulo: titulo,
-      autor: card.querySelector(".autor")
-        ? card.querySelector(".autor").textContent.trim()
-        : "Autor desconocido",
-      categoria: card.querySelector(".categoria")
-        ? card.querySelector(".categoria").textContent.trim()
-        : "Sin categoría",
-      disponible: estadoElemento
-        ? estadoElemento.classList.contains("disponible")
-        : true,
-      imagen: imagen ? imagen.getAttribute("src") : "",
-      imagenAlt: imagen ? imagen.getAttribute("alt") : "",
-      portadaClase: portadaClase,
-      descripcion: card.dataset.descripcion || "Sin descripción disponible.",
-      anio: card.dataset.anio || "—",
-      paginas: card.dataset.paginas || "—",
-      isbn: card.dataset.isbn || "—",
-      ubicacion: card.dataset.ubicacion || "—",
-    };
-  }
-
-  function mostrarAviso(texto, tipo) {
-    elementos.aviso.classList.remove(
-      "detalle-libro__aviso--ok",
-      "detalle-libro__aviso--info"
-    );
-
-    if (!texto) {
-      elementos.aviso.textContent = "";
-      elementos.aviso.hidden = true;
-      return;
-    }
-
-    elementos.aviso.textContent = texto;
-    elementos.aviso.classList.add("detalle-libro__aviso--" + tipo);
-    elementos.aviso.hidden = false;
-  }
-
-  function actualizarEstado() {
-    const solicitado = tieneSolicitud(libroActual.id);
-
-    elementos.estado.classList.remove(
-      "disponible",
-      "prestado",
-      "pendiente",
-      "retraso"
-    );
-
-    if (libroActual.disponible && solicitado) {
-      elementos.estado.classList.add("pendiente");
-      elementos.estado.textContent = "Solicitud enviada";
-    } else if (libroActual.disponible) {
-      elementos.estado.classList.add("disponible");
-      elementos.estado.textContent = "Disponible";
-    } else {
-      elementos.estado.classList.add("prestado");
-      elementos.estado.textContent = "Prestado";
-    }
-  }
-
-  function actualizarAccion() {
-    const solicitado = tieneSolicitud(libroActual.id);
-
-    elementos.accion.className = "btn detalle-libro__accion";
-    elementos.accion.disabled = false;
-    elementos.accion.removeAttribute("title");
-
-    if (solicitado) {
-      elementos.accion.classList.add("detalle-libro__accion--cancelar");
-      elementos.accion.textContent = "Cancelar solicitud";
-      elementos.accion.setAttribute(
-        "aria-label",
-        "Cancelar la solicitud de préstamo de " + libroActual.titulo
-      );
-      return;
-    }
-
-    if (libroActual.disponible) {
-      elementos.accion.classList.add("btn-success");
-      elementos.accion.textContent = "Pedir prestado";
-      elementos.accion.setAttribute(
-        "aria-label",
-        "Pedir prestado " + libroActual.titulo
-      );
-      return;
-    }
-
-    elementos.accion.classList.add("detalle-libro__accion--agotado");
-    elementos.accion.textContent = "No disponible";
-    elementos.accion.disabled = true;
-    elementos.accion.setAttribute(
-      "title",
-      "Este libro está prestado actualmente."
-    );
-  }
-
-  function pintarPortada(libro) {
-    elementos.portada.className = "detalle-libro__portada";
-    elementos.iniciales.textContent = "";
-
-    if (libro.imagen) {
-      elementos.imagen.src = libro.imagen;
-      elementos.imagen.alt = libro.imagenAlt || "Portada de " + libro.titulo;
-      elementos.imagen.hidden = false;
-      return;
-    }
-
-    elementos.imagen.removeAttribute("src");
-    elementos.imagen.alt = "";
-    elementos.imagen.hidden = true;
-    elementos.portada.classList.add("detalle-libro__portada--vacia");
-
-    if (libro.portadaClase) {
-      elementos.portada.classList.add(libro.portadaClase);
-    }
-
-    elementos.iniciales.textContent = obtenerIniciales(libro.titulo);
-  }
-
-  function mostrarLibro(libro) {
-    elementos.titulo.textContent = libro.titulo;
-    elementos.autor.textContent = libro.autor;
-    elementos.categoria.textContent = libro.categoria;
-    elementos.anio.textContent = libro.anio;
-    elementos.paginas.textContent = libro.paginas;
-    elementos.isbn.textContent = libro.isbn;
-    elementos.ubicacion.textContent = libro.ubicacion;
-    elementos.descripcion.textContent = libro.descripcion;
-
-    pintarPortada(libro);
-    actualizarEstado();
-    actualizarAccion();
-
-    if (tieneSolicitud(libro.id)) {
-      mostrarAviso(
-        "Solicitud registrada. Puedes cancelarla cuando quieras desde este mismo botón.",
-        "info"
-      );
-    } else if (!libro.disponible) {
-      mostrarAviso(
-        "Este libro está prestado actualmente. Vuelve a consultar su disponibilidad más adelante.",
-        "info"
-      );
-    } else {
-      mostrarAviso("", "");
-    }
-  }
-
-  function abrirDetalle(card) {
-    libroActual = obtenerDatos(card);
-    mostrarLibro(libroActual);
-    modal.show();
-  }
-
-  document.querySelectorAll(".btn-ver-detalle").forEach(function (boton) {
-    boton.addEventListener("click", function () {
-      const card = boton.closest(".libro-card");
-
-      if (card) {
-        abrirDetalle(card);
-      }
-    });
-  });
-
-  elementos.accion.addEventListener("click", function () {
-    if (!libroActual) {
-      return;
-    }
-
-    const solicitado = tieneSolicitud(libroActual.id);
-    let solicitudes = leerSolicitudes();
-
-    if (solicitado) {
-      solicitudes = solicitudes.filter(function (id) {
-        return id !== libroActual.id;
-      });
-      guardarSolicitudes(solicitudes);
-      actualizarEstado();
-      actualizarAccion();
-      mostrarAviso(
-        "Solicitud cancelada. El libro vuelve a estar disponible.",
-        "info"
-      );
-      return;
-    }
-
-    if (!libroActual.disponible) {
-      return;
-    }
-
-    if (!solicitudes.includes(libroActual.id)) {
-      solicitudes.push(libroActual.id);
-      guardarSolicitudes(solicitudes);
-    }
-
-    actualizarEstado();
-    actualizarAccion();
-    mostrarAviso(
-      "Solicitud registrada. Acércate a la biblioteca para confirmar el préstamo.",
-      "ok"
-    );
-  });
-
-  modalElement.addEventListener("hidden.bs.modal", function () {
-    libroActual = null;
-  });
-})();
-
-// ============================================================
-// Filtro de categorías — desplegable personalizado
-// ============================================================
-
-(function () {
-  "use strict";
-
-  const contenedor = document.querySelector("[data-filtro-categoria]");
-
-  if (!contenedor) {
-    return;
-  }
-
-  const boton = contenedor.querySelector(".filtro-categoria__trigger");
-  const lista = contenedor.querySelector(".filtro-categoria__lista");
-  const valor = contenedor.querySelector(".filtro-categoria__valor");
-  const campo = contenedor.querySelector("[data-filtro-categoria-campo]");
-  const opciones = lista
-    ? Array.from(lista.querySelectorAll('[role="option"]'))
-    : [];
-
-  if (!boton || !lista || !valor || !opciones.length) {
-    return;
-  }
-
-  let indiceSeleccionado = opciones.findIndex(function (opcion) {
-    return opcion.getAttribute("aria-selected") === "true";
-  });
-
-  if (indiceSeleccionado < 0) {
-    indiceSeleccionado = 0;
-  }
-
-  let indiceActivo = indiceSeleccionado;
-
-  function marcarActivo(indice) {
-    indiceActivo = (indice + opciones.length) % opciones.length;
-
-    opciones.forEach(function (opcion, posicion) {
-      opcion.classList.toggle("is-active", posicion === indiceActivo);
-    });
-  }
-
-  function enfocarOpcion(indice) {
-    marcarActivo(indice);
-    opciones[indiceActivo].focus({ preventScroll: true });
-    opciones[indiceActivo].scrollIntoView({ block: "nearest" });
-  }
-
-  function ajustarAlturaLista() {
-    const margenInferior = 16;
-    const separacion = 7;
-    const alturaMinima = 200;
-
-    function calcularEspacio() {
-      return (
-        window.innerHeight -
-        boton.getBoundingClientRect().bottom -
-        separacion -
-        margenInferior
-      );
-    }
-
-    let espacioDisponible = calcularEspacio();
-
-    // Si el botón queda cerca del borde inferior, se desplaza la página
-    // lo justo para que la lista quepa completa debajo de él.
-    if (espacioDisponible < alturaMinima) {
-      window.scrollBy({
-        top: alturaMinima - espacioDisponible,
-        left: 0,
-        behavior: "instant",
-      });
-      espacioDisponible = calcularEspacio();
-    }
-
-    // La lista siempre se abre hacia abajo y nunca supera el espacio
-    // visible, ni siquiera en ventanas muy bajas.
-    const altura = Math.min(420, Math.max(0, espacioDisponible));
-
-    lista.style.maxHeight = altura + "px";
-  }
-
-  function abrir() {
-    ajustarAlturaLista();
-    lista.hidden = false;
-    boton.setAttribute("aria-expanded", "true");
-    contenedor.classList.add("is-open");
-    enfocarOpcion(indiceSeleccionado);
-  }
-
-  function cerrar(devolverFoco) {
-    lista.hidden = true;
-    boton.setAttribute("aria-expanded", "false");
-    contenedor.classList.remove("is-open");
-
-    if (devolverFoco) {
-      boton.focus();
-    }
-  }
-
-  function seleccionar(indice) {
-    const opcion = opciones[indice];
-    const texto = opcion.textContent.trim();
-
-    indiceSeleccionado = indice;
-
-    opciones.forEach(function (elemento, posicion) {
-      elemento.setAttribute(
-        "aria-selected",
-        String(posicion === indiceSeleccionado)
-      );
-    });
-
-    valor.textContent = texto;
-    boton.dataset.valor = texto;
-
-    if (campo) {
-      campo.value = texto;
-    }
-
-    document.dispatchEvent(
-      new CustomEvent("catalogo:categoria", { detail: texto })
-    );
-
-    cerrar(true);
-  }
-
-  boton.addEventListener("click", function () {
-    if (lista.hidden) {
-      abrir();
-    } else {
-      cerrar(true);
-    }
-  });
-
-  boton.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-      event.preventDefault();
-      abrir();
-    }
-  });
-
-  opciones.forEach(function (opcion, indice) {
-    // Se usa mousemove en lugar de mouseenter para que reaparecer bajo el
-    // cursor no altere la opción activa durante la navegación con teclado.
-    opcion.addEventListener("mousemove", function () {
-      marcarActivo(indice);
-    });
-
-    opcion.addEventListener("click", function () {
-      seleccionar(indice);
-    });
-  });
-
-  lista.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      cerrar(true);
-      return;
-    }
-
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      enfocarOpcion(indiceActivo + 1);
-      return;
-    }
-
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      enfocarOpcion(indiceActivo - 1);
-      return;
-    }
-
-    if (event.key === "Home") {
-      event.preventDefault();
-      enfocarOpcion(0);
-      return;
-    }
-
-    if (event.key === "End") {
-      event.preventDefault();
-      enfocarOpcion(opciones.length - 1);
-      return;
-    }
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      seleccionar(indiceActivo);
-      return;
-    }
-
-    if (event.key === "Tab") {
-      cerrar(false);
-      boton.focus();
-    }
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!contenedor.contains(event.target)) {
-      cerrar(false);
-    }
-  });
-
-  window.addEventListener("resize", function () {
-    if (!lista.hidden) {
-      ajustarAlturaLista();
-    }
-  });
-})();
-
-// ============================================================
-// Búsqueda por título/autor y filtro por categoría
-// ============================================================
-
-(function () {
-  "use strict";
-
-  const buscador = document.getElementById("buscar-libro");
-  const contador = document.getElementById("catalogo-contador");
-  const sinResultados = document.getElementById("catalogo-sin-resultados");
-  const tarjetas = Array.from(document.querySelectorAll(".libro-card"));
-
-  if (!buscador || !tarjetas.length) {
-    return;
-  }
-
-  let categoriaActual = "Todas las categorías";
-
-  function normalizar(texto) {
-    return String(texto)
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim();
-  }
+  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+  const tarjetas = Array.from(document.querySelectorAll('.libro-card'));
+  const buscador = document.getElementById('buscar-libro');
+  const contador = document.getElementById('catalogo-contador');
+  const sinResultados = document.getElementById('catalogo-sin-resultados');
+  const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+  // ------------------------------------------------------------
+  // Filtros (texto y categoría)
+  // ------------------------------------------------------------
+  const filtroWrap = document.querySelector('[data-filtro-categoria]');
+  const filtroTrigger = document.getElementById('filtro-categoria');
+  const filtroLista = document.getElementById('filtro-categoria-lista');
+  const filtroValor = document.getElementById('filtro-categoria-valor');
+  const filtroCampo = document.querySelector('[data-filtro-categoria-campo]');
+  let categoriaActual = 'Todas las categorías';
+
+  const normalizar = (texto) => String(texto || '')
+    .toLocaleLowerCase('es')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '');
 
   function aplicarFiltros() {
-    const termino = normalizar(buscador.value);
+    const texto = normalizar(buscador?.value.trim() || '');
     let visibles = 0;
 
-    tarjetas.forEach(function (tarjeta) {
-      const titulo = normalizar(
-        tarjeta.querySelector("h3") ? tarjeta.querySelector("h3").textContent : ""
-      );
-      const autor = normalizar(
-        tarjeta.querySelector(".autor")
-          ? tarjeta.querySelector(".autor").textContent
-          : ""
-      );
-      const categoria = normalizar(tarjeta.dataset.categoria || "");
-      const coincideTexto =
-        termino === "" ||
-        titulo.indexOf(termino) !== -1 ||
-        autor.indexOf(termino) !== -1;
-      const coincideCategoria =
-        categoriaActual === "Todas las categorías" ||
-        categoria === normalizar(categoriaActual);
+    tarjetas.forEach((tarjeta) => {
+      const coincideTexto = texto === ''
+        || normalizar(tarjeta.dataset.titulo).includes(texto)
+        || normalizar(tarjeta.dataset.autor).includes(texto)
+        || normalizar(tarjeta.dataset.categoria).includes(texto);
+
+      const coincideCategoria = categoriaActual === 'Todas las categorías'
+        || tarjeta.dataset.categoria === categoriaActual;
 
       const visible = coincideTexto && coincideCategoria;
       tarjeta.hidden = !visible;
 
       if (visible) {
-        visibles += 1;
+        visibles++;
       }
     });
 
     if (contador) {
-      contador.textContent =
-        "Mostrando " + visibles + " de " + tarjetas.length + " libros";
+      contador.textContent = visibles === 1
+        ? '1 libro encontrado'
+        : `${visibles} libros encontrados`;
     }
 
     if (sinResultados) {
-      sinResultados.hidden = visibles !== 0;
+      sinResultados.hidden = visibles !== 0 || tarjetas.length === 0;
     }
   }
 
-  buscador.addEventListener("input", aplicarFiltros);
+  function abrirFiltro(abrir) {
+    if (!filtroLista || !filtroTrigger) {
+      return;
+    }
 
-  document.addEventListener("catalogo:categoria", function (event) {
-    categoriaActual = event.detail || "Todas las categorías";
+    filtroLista.hidden = !abrir;
+    filtroTrigger.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+  }
+
+  buscador?.addEventListener('input', aplicarFiltros);
+
+  filtroTrigger?.addEventListener('click', () => {
+    abrirFiltro(filtroLista.hidden);
+  });
+
+  filtroLista?.addEventListener('click', (evento) => {
+    const opcion = evento.target.closest('.filtro-categoria__opcion');
+    if (!opcion) {
+      return;
+    }
+
+    categoriaActual = opcion.textContent.trim();
+    filtroValor.textContent = categoriaActual;
+    filtroTrigger.dataset.valor = categoriaActual;
+
+    filtroLista.querySelectorAll('.filtro-categoria__opcion').forEach((item) => {
+      item.setAttribute('aria-selected', item === opcion ? 'true' : 'false');
+    });
+
+    if (filtroCampo) {
+      filtroCampo.value = categoriaActual;
+    }
+
+    abrirFiltro(false);
     aplicarFiltros();
+  });
+
+  document.addEventListener('click', (evento) => {
+    if (filtroWrap && !filtroWrap.contains(evento.target)) {
+      abrirFiltro(false);
+    }
+  });
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape') {
+      abrirFiltro(false);
+    }
+  });
+
+  // ------------------------------------------------------------
+  // Ventana de detalle
+  // ------------------------------------------------------------
+  const detalle = {
+    portada: document.getElementById('detallePortada'),
+    imagen: document.getElementById('detalleImagen'),
+    iniciales: document.getElementById('detalleIniciales'),
+    estado: document.getElementById('detalleEstado'),
+    titulo: document.getElementById('detalleTitulo'),
+    autor: document.getElementById('detalleAutor'),
+    categoria: document.getElementById('detalleCategoria'),
+    anio: document.getElementById('detalleAnio'),
+    paginas: document.getElementById('detallePaginas'),
+    isbn: document.getElementById('detalleIsbn'),
+    ubicacion: document.getElementById('detalleUbicacion'),
+    descripcion: document.getElementById('detalleDescripcion'),
+    aviso: document.getElementById('detalleAviso'),
+    accion: document.getElementById('detalleAccion'),
+  };
+
+  let libroActual = null;
+
+  function texto(valor, vacio = '—') {
+    const limpio = String(valor || '').trim();
+    return limpio === '' ? vacio : limpio;
+  }
+
+  function iniciales(titulo) {
+    return String(titulo || '?')
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((palabra) => palabra.charAt(0).toUpperCase())
+      .join('');
+  }
+
+  function mostrarAviso(mensaje, tipo = 'ok') {
+    if (!detalle.aviso) {
+      return;
+    }
+
+    detalle.aviso.textContent = mensaje;
+    detalle.aviso.className = 'detalle-libro__aviso '
+      + (tipo === 'error' ? 'detalle-libro__aviso--error' : 'detalle-libro__aviso--ok');
+    detalle.aviso.hidden = false;
+  }
+
+  function ocultarAviso() {
+    if (detalle.aviso) {
+      detalle.aviso.hidden = true;
+      detalle.aviso.textContent = '';
+    }
+  }
+
+  function etiquetaVisible(tarjeta) {
+    const estado = tarjeta.dataset.miEstado || '';
+    const disponibles = Number(tarjeta.dataset.disponibles || 0);
+
+    if (estado === 'solicitado') {
+      return { texto: 'Solicitud enviada', clase: 'pendiente' };
+    }
+    if (estado === 'activo') {
+      return { texto: 'En tu préstamo', clase: 'activo' };
+    }
+    if (estado === 'devolucion_solicitada') {
+      return { texto: 'Devolución solicitada', clase: 'pendiente' };
+    }
+    if (disponibles > 0) {
+      return { texto: 'Disponible', clase: 'disponible' };
+    }
+
+    return { texto: 'Prestado', clase: 'prestado' };
+  }
+
+  function actualizarTarjeta(tarjeta) {
+    const etiqueta = etiquetaVisible(tarjeta);
+    const badge = tarjeta.querySelector('[data-estado-libro]');
+
+    if (badge) {
+      badge.className = 'estado ' + etiqueta.clase;
+      badge.textContent = etiqueta.texto;
+    }
+  }
+
+  function configurarBotonAccion() {
+    const boton = detalle.accion;
+    if (!boton || !libroActual) {
+      return;
+    }
+
+    const estado = libroActual.dataset.miEstado || '';
+    const disponibles = Number(libroActual.dataset.disponibles || 0);
+    const puedeSolicitar = libroActual.dataset.puedeSolicitar === '1';
+
+    boton.disabled = false;
+    boton.dataset.accion = '';
+    boton.className = 'btn btn-success detalle-libro__accion';
+
+    if (estado === 'solicitado') {
+      boton.textContent = 'Cancelar solicitud';
+      boton.dataset.accion = 'cancelar';
+      boton.className = 'btn detalle-libro__accion detalle-libro__accion--cancelar';
+      return;
+    }
+
+    if (estado === 'activo') {
+      boton.textContent = 'Ya está en tu préstamo';
+      boton.disabled = true;
+      boton.className = 'btn detalle-libro__accion detalle-libro__accion--agotado';
+      return;
+    }
+
+    if (estado === 'devolucion_solicitada') {
+      boton.textContent = 'Devolución en revisión';
+      boton.disabled = true;
+      boton.className = 'btn detalle-libro__accion detalle-libro__accion--agotado';
+      return;
+    }
+
+    if (!puedeSolicitar) {
+      boton.textContent = 'Solo estudiantes';
+      boton.disabled = true;
+      boton.className = 'btn detalle-libro__accion detalle-libro__accion--agotado';
+      return;
+    }
+
+    if (disponibles <= 0) {
+      boton.textContent = 'Sin copias disponibles';
+      boton.disabled = true;
+      boton.className = 'btn detalle-libro__accion detalle-libro__accion--agotado';
+      return;
+    }
+
+    boton.textContent = 'Pedir prestado';
+    boton.dataset.accion = 'solicitar';
+  }
+
+  function abrirDetalle(tarjeta) {
+    libroActual = tarjeta;
+    ocultarAviso();
+
+    detalle.titulo.textContent = texto(tarjeta.dataset.titulo, 'Sin título');
+    detalle.autor.textContent = texto(tarjeta.dataset.autor, 'Autor por confirmar');
+    detalle.categoria.textContent = texto(tarjeta.dataset.categoria, 'Sin categoría');
+    detalle.descripcion.textContent = texto(tarjeta.dataset.descripcion, 'Sin descripción disponible.');
+    detalle.anio.textContent = texto(tarjeta.dataset.anio);
+    detalle.paginas.textContent = texto(tarjeta.dataset.paginas);
+    detalle.isbn.textContent = texto(tarjeta.dataset.isbn);
+    detalle.ubicacion.textContent = texto(tarjeta.dataset.ubicacion);
+
+    const etiqueta = etiquetaVisible(tarjeta);
+    detalle.estado.className = 'estado ' + etiqueta.clase;
+    detalle.estado.textContent = etiqueta.texto;
+
+    const imagenTarjeta = tarjeta.querySelector('.libro-img img');
+    if (imagenTarjeta) {
+      detalle.imagen.src = imagenTarjeta.src;
+      detalle.imagen.alt = imagenTarjeta.alt;
+      detalle.imagen.hidden = false;
+      detalle.iniciales.textContent = '';
+      detalle.portada?.classList.remove('detalle-libro__portada--vacia');
+    } else {
+      detalle.imagen.hidden = true;
+      detalle.imagen.removeAttribute('src');
+      detalle.imagen.alt = '';
+      detalle.iniciales.textContent = iniciales(tarjeta.dataset.titulo);
+      detalle.portada?.classList.add('detalle-libro__portada--vacia');
+    }
+
+    configurarBotonAccion();
+    modal.show();
+  }
+
+  tarjetas.forEach((tarjeta) => {
+    tarjeta.querySelector('.btn-ver-detalle')?.addEventListener('click', () => abrirDetalle(tarjeta));
+    actualizarTarjeta(tarjeta);
+  });
+
+  detalle.accion?.addEventListener('click', async () => {
+    if (!libroActual || !detalle.accion.dataset.accion) {
+      return;
+    }
+
+    const accion = detalle.accion.dataset.accion;
+
+    detalle.accion.disabled = true;
+    detalle.accion.textContent = 'Procesando...';
+    ocultarAviso();
+
+    try {
+      const cuerpo = new URLSearchParams({
+        accion: accion === 'solicitar' ? 'solicitar_prestamo' : 'cancelar_solicitud',
+        id_libro: libroActual.dataset.libroId,
+        csrf_token: csrf,
+        volver: 'Catalogo.php',
+      });
+
+      const respuesta = await fetch('../acciones.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          'X-Requested-With': 'XMLHttpRequest',
+          Accept: 'application/json',
+        },
+        body: cuerpo,
+      });
+
+      const datos = await respuesta.json();
+
+      if (!datos.ok) {
+        mostrarAviso(datos.mensaje || 'No se pudo completar la acción.', 'error');
+        return;
+      }
+
+      libroActual.dataset.miEstado = accion === 'solicitar' ? 'solicitado' : '';
+      actualizarTarjeta(libroActual);
+
+      const etiqueta = etiquetaVisible(libroActual);
+      detalle.estado.className = 'estado ' + etiqueta.clase;
+      detalle.estado.textContent = etiqueta.texto;
+
+      mostrarAviso(datos.mensaje || 'Acción realizada.');
+      configurarBotonAccion();
+    } catch (error) {
+      mostrarAviso('No se pudo conectar con el servidor. Inténtalo de nuevo.', 'error');
+    } finally {
+      detalle.accion.disabled = false;
+      configurarBotonAccion();
+    }
   });
 
   aplicarFiltros();

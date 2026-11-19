@@ -1,23 +1,25 @@
-// ============================================================
-// Olvide_mi_contrasena.js — Validación y confirmación visual
-// BiblioLend · 2026
-// ============================================================
+/**
+ * Olvide_mi_contrasena.js
+ * Muestra la confirmación del formulario de recuperación de contraseña.
+ *
+ * Nota: el envío real del correo lo debe hacer el servidor cuando exista
+ * el endpoint de recuperación. Aquí solo se valida el correo y se cambia
+ * al estado de confirmación que ya trae la página.
+ */
+(() => {
+  'use strict';
 
-(function () {
-  "use strict";
+  const formulario = document.getElementById('recuperarContrasena');
+  const correo = document.getElementById('email');
+  const error = document.getElementById('email-error');
+  const confirmacion = document.getElementById('confirmacion');
+  const correoEnviado = document.getElementById('correoEnviado');
+  const btnOtroCorreo = document.getElementById('btnOtroCorreo');
+  const tituloConfirmacion = document.getElementById('titulo-confirmacion');
 
-  const formulario = document.getElementById("recuperarContrasena");
-
-  if (!formulario) {
+  if (!formulario || !correo || !confirmacion) {
     return;
   }
-
-  const email = document.getElementById("email");
-  const error = document.getElementById("email-error");
-  const confirmacion = document.getElementById("confirmacion");
-  const correoEnviado = document.getElementById("correoEnviado");
-  const btnOtroCorreo = document.getElementById("btnOtroCorreo");
-  const tituloConfirmacion = document.getElementById("titulo-confirmacion");
 
   function mostrarError(mensaje) {
     if (!error) {
@@ -26,10 +28,7 @@
 
     error.textContent = mensaje;
     error.hidden = false;
-
-    if (email) {
-      email.setAttribute("aria-invalid", "true");
-    }
+    correo.setAttribute('aria-invalid', 'true');
   }
 
   function limpiarError() {
@@ -37,67 +36,38 @@
       return;
     }
 
-    error.textContent = "";
+    error.textContent = '';
     error.hidden = true;
-
-    if (email) {
-      email.removeAttribute("aria-invalid");
-    }
+    correo.removeAttribute('aria-invalid');
   }
 
-  if (email) {
-    email.addEventListener("input", limpiarError);
-  }
+  correo.addEventListener('input', limpiarError);
 
-  formulario.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const valor = email ? email.value.trim() : "";
-
-    if (valor === "") {
-      mostrarError("Escribe tu correo institucional.");
-      if (email) {
-        email.focus();
-      }
-      return;
-    }
-
-    if (email && !email.checkValidity()) {
-      mostrarError("Ingresa un correo institucional válido.");
-      email.focus();
-      return;
-    }
-
+  formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
     limpiarError();
+
+    const valor = correo.value.trim();
+    if (valor === '' || !correo.checkValidity()) {
+      mostrarError('Escribe un correo electrónico válido.');
+      correo.focus();
+      return;
+    }
 
     if (correoEnviado) {
       correoEnviado.textContent = valor;
     }
 
     formulario.hidden = true;
-
-    if (confirmacion) {
-      confirmacion.hidden = false;
-    }
-
-    if (tituloConfirmacion) {
-      tituloConfirmacion.focus();
-    }
+    confirmacion.hidden = false;
+    tituloConfirmacion?.focus();
   });
 
-  if (btnOtroCorreo) {
-    btnOtroCorreo.addEventListener("click", function () {
-      if (confirmacion) {
-        confirmacion.hidden = true;
-      }
-
-      formulario.hidden = false;
-      limpiarError();
-
-      if (email) {
-        email.value = "";
-        email.focus();
-      }
-    });
-  }
+  btnOtroCorreo?.addEventListener('click', () => {
+    confirmacion.hidden = true;
+    formulario.hidden = false;
+    formulario.reset();
+    limpiarError();
+    correo.focus();
+  });
 })();

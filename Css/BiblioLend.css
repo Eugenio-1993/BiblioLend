@@ -336,6 +336,11 @@ body.pagina-panel-bibliotecario .bloque {
   background-color: var(--bl-danger-bg);
 }
 
+.estado.activo {
+  color: #084298;
+  background-color: #cfe2ff;
+}
+
 .pendiente {
   color: #8a6000;
   background-color: #fff3cd;
@@ -1393,6 +1398,12 @@ body.pagina-catalogo .detalle-libro__aviso--info {
   border-left: 4px solid var(--bl-indigo);
 }
 
+body.pagina-catalogo .detalle-libro__aviso--error {
+  color: var(--bl-danger);
+  background-color: var(--bl-danger-bg);
+  border-left: 4px solid var(--bl-danger);
+}
+
 body.pagina-catalogo .detalle-libro__footer {
   gap: 10px;
   padding: 16px 24px;
@@ -2249,6 +2260,14 @@ body.pagina-cuenta-usuarios .recommend-item__toggle {
 body.pagina-cuenta-usuarios .recommend-item__toggle:focus-visible {
   outline: 2px solid var(--bl-accent);
   outline-offset: -2px;
+}
+
+body.pagina-cuenta-usuarios .recommend-item__toggle--static {
+  cursor: default;
+}
+
+body.pagina-cuenta-usuarios .recommend-item__toggle--static::after {
+  display: none;
 }
 
 body.pagina-cuenta-usuarios .recommend-item__toggle::after {

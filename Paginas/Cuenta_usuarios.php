@@ -1,12 +1,35 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
 requerirRol('estudiante');
 
-$avatarActualId = avatarActualId();
-$avatarActual = rutaAvatarUsuario();
-$listaAvatares = avataresDisponibles();
-$csrfAvatar = tokenCsrf();
+$idUsuario = (int) $_SESSION['usuario_id'];
+
+$stmt = $pdo->prepare(
+    "SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,
+            correo, grado, grupo
+     FROM usuario
+     WHERE id_usuario = ?
+     LIMIT 1"
+);
+$stmt->execute([$idUsuario]);
+$datosUsuario = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+
+$nombreCompleto = trim(implode(' ', array_filter([
+    $datosUsuario['primer_nombre'] ?? '',
+    $datosUsuario['segundo_nombre'] ?? '',
+    $datosUsuario['primer_apellido'] ?? '',
+    $datosUsuario['segundo_apellido'] ?? '',
+])));
+if ($nombreCompleto === '') {
+    $nombreCompleto = (string) ($_SESSION['nombre'] ?? 'Estudiante');
+}
+
+$gradoGrupo = trim(($datosUsuario['grado'] ?? '') . ' ' . ($datosUsuario['grupo'] ?? ''));
+$misLibros = listarMisLibros($pdo, $idUsuario);
+$prestamosActivos = contarPrestamosActivos($pdo, $idUsuario);
+$retrasos = contarRetrasos($pdo, $idUsuario);
 ?>
 
 <!doctype html>
@@ -95,41 +118,16 @@ $csrfAvatar = tokenCsrf();
     </header>
 
     <main class="panel-usuario">
+      <?php mostrarFlash(); ?>
       <section class="panel-layout" id="pantalla">
         <aside class="sidebar" id="datos_usuario">
-          <button
-            type="button"
-            class="avatar"
-            id="avatarUsuario"
-            data-avatar-actual="<?= htmlspecialchars($avatarActualId, ENT_QUOTES, 'UTF-8') ?>"
-            data-bs-toggle="modal"
-            data-bs-target="#modalAvatares"
-            aria-label="Cambiar avatar"
-            aria-haspopup="dialog"
-          >
-            <img
-              src="../<?= htmlspecialchars($avatarActual, ENT_QUOTES, 'UTF-8') ?>"
-              alt="Avatar actual de <?= htmlspecialchars($_SESSION['nombre'], ENT_QUOTES, 'UTF-8') ?>"
-              class="avatar__img"
-              id="avatarUsuarioImagen"
-            />
-            <span class="avatar__edit" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-              </svg>
-              <span>Cambiar</span>
-            </span>
-          </button>
-          <p class="avatar-feedback" role="status" aria-live="polite" data-avatar-feedback></p>
-
-          <h2 class="user-name" data-user-name><?= htmlspecialchars($_SESSION['nombre']) ?></h2>
+          <div class="avatar"></div>
+          <h2 class="user-name" data-user-name><?= htmlspecialchars($nombreCompleto, ENT_QUOTES, 'UTF-8') ?></h2>
           <p class="user-role" data-user-role><?= htmlspecialchars(ucfirst($_SESSION['rol'] ?? 'Estudiante'), ENT_QUOTES, 'UTF-8') ?></p>
 
           <div class="user-data">
-            <p><strong>Correo:</strong> <span data-user-email><?= htmlspecialchars($_SESSION['correo'] ?? '', ENT_QUOTES, 'UTF-8') ?></span></p>
-            <p><strong>Grado + grupo(en la db tmbn):</strong> 190094</p>
+            <p><strong>Correo:</strong> <span data-user-email><?= htmlspecialchars($datosUsuario['correo'] ?? ($_SESSION['correo'] ?? ''), ENT_QUOTES, 'UTF-8') ?></span></p>
+            <p><strong>Grado y grupo:</strong> <?= htmlspecialchars($gradoGrupo !== '' ? $gradoGrupo : 'Sin registrar', ENT_QUOTES, 'UTF-8') ?></p>
           </div>
 
           <a href="#" class="btn-panel activo">Editar Perfil</a>
@@ -138,7 +136,7 @@ $csrfAvatar = tokenCsrf();
 
         <section class="content">
           <div class="header-box">
-            <h3>Bienvenid@ a tu cuenta, </h3>
+            <h3>Bienvenid@ a tu cuenta, <?= htmlspecialchars($nombreCompleto, ENT_QUOTES, 'UTF-8') ?></h3>
             <p>
               Desde aquí puedes consultar tu actividad, revisar tus préstamos y
               mantener tu información al día.
@@ -148,82 +146,114 @@ $csrfAvatar = tokenCsrf();
           <div class="stats-grid stats-grid--two">
             <div class="stat-card">
               <h4>Préstamos activos</h4>
-              <span data-stat="prestamos-activos">2</span>
+              <span data-stat="prestamos-activos"><?= $prestamosActivos ?></span>
             </div>
             <div class="stat-card">
-              <h4>Libros Vencidos por devolver</h4>
-              <span data-stat="libros-vencidos">0</span>
+              <h4>Libros vencidos por devolver</h4>
+              <span data-stat="libros-vencidos"><?= $retrasos ?></span>
             </div>
           </div>
 
           <div class="card-panel">
             <h4>Estado de mis libros</h4>
             <p class="prestamos-hint">
-              Haz clic en un libro para consultar las fechas de tu préstamo.
+              Aquí ves tus solicitudes, préstamos activos y devoluciones en proceso.
             </p>
-            <div class="recommend-grid">
-              <div class="recommend-item" data-inicio="2026-11-02" data-devolucion="2026-11-17">
-                <button type="button" class="recommend-item__toggle" aria-expanded="false"
-                  aria-controls="detalle-oliver-twist" aria-label="Ver fechas del préstamo de Oliver Twist">
-                  <span class="thumb thumb--oliver" aria-hidden="true">
-                    <span class="thumb__iniciales">OT</span>
-                  </span>
-                  <span class="recommend-item__info">
-                    <span class="book-title">Oliver Twist</span>
-                    <span class="book-meta">Drama</span>
-                  </span>
-                  <span class="dias-restantes" data-dias-restantes>—</span>
-                </button>
 
-                <div class="recommend-detail" id="detalle-oliver-twist" hidden>
-                  <dl class="recommend-detail__datos">
-                    <div>
-                      <dt>Fecha de inicio</dt>
-                      <dd data-fecha-inicio>—</dd>
+            <?php if ($misLibros === []): ?>
+              <p class="mb-0">
+                No tienes libros solicitados ni prestados.
+                <a href="Catalogo.php">Explora el catálogo</a>.
+              </p>
+            <?php else: ?>
+              <div class="recommend-grid">
+                <?php foreach ($misLibros as $prestamo): ?>
+                  <?php
+                    $dias = diasParaVencimiento($prestamo['fecha_vencimiento']);
+                    $claseDias = '';
+                    $textoDias = '—';
+
+                    if ($prestamo['estado'] === 'solicitado') {
+                        $textoDias = 'Por entregar';
+                    } elseif ($prestamo['estado'] === 'devolucion_solicitada') {
+                        $textoDias = 'En devolución';
+                    } elseif ($dias !== null) {
+                        if ($dias < 0) {
+                            $textoDias = abs($dias) . ' días de retraso';
+                            $claseDias = 'dias-restantes--vencido';
+                        } elseif ($dias === 0) {
+                            $textoDias = 'Vence hoy';
+                            $claseDias = 'dias-restantes--urgente';
+                        } else {
+                            $textoDias = $dias . ' días';
+                            $claseDias = $dias <= 3 ? 'dias-restantes--urgente' : '';
+                        }
+                    }
+                  ?>
+                  <div class="recommend-item is-open">
+                    <div class="recommend-item__toggle recommend-item__toggle--static">
+                      <span class="thumb" aria-hidden="true">
+                        <?php if (!empty($prestamo['portada'])): ?>
+                          <img src="../Imagenes/Libros/<?= htmlspecialchars(basename((string) $prestamo['portada']), ENT_QUOTES, 'UTF-8') ?>" alt="" />
+                        <?php else: ?>
+                          <span class="thumb__iniciales"><?= htmlspecialchars(inicialesTitulo((string) $prestamo['titulo']), ENT_QUOTES, 'UTF-8') ?></span>
+                        <?php endif; ?>
+                      </span>
+                      <span class="recommend-item__info">
+                        <span class="book-title"><?= htmlspecialchars($prestamo['titulo'], ENT_QUOTES, 'UTF-8') ?></span>
+                        <span class="book-meta"><?= htmlspecialchars($prestamo['categoria'], ENT_QUOTES, 'UTF-8') ?></span>
+                      </span>
+                      <span class="dias-restantes <?= $claseDias ?>"><?= htmlspecialchars($textoDias, ENT_QUOTES, 'UTF-8') ?></span>
                     </div>
-                    <div>
-                      <dt>Fecha de devolución</dt>
-                      <dd data-fecha-devolucion>—</dd>
+
+                    <div class="recommend-detail">
+                      <dl class="recommend-detail__datos">
+                        <div>
+                          <dt>Fecha de solicitud</dt>
+                          <dd><?= formatearFecha(substr((string) $prestamo['fecha_solicitud'], 0, 10)) ?></dd>
+                        </div>
+                        <div>
+                          <dt>Fecha de devolución</dt>
+                          <dd><?= formatearFecha($prestamo['fecha_vencimiento']) ?></dd>
+                        </div>
+                        <div>
+                          <dt>Estado</dt>
+                          <dd>
+                            <span class="estado <?= htmlspecialchars($prestamo['clase'], ENT_QUOTES, 'UTF-8') ?>">
+                              <?= htmlspecialchars($prestamo['etiqueta'], ENT_QUOTES, 'UTF-8') ?>
+                            </span>
+                          </dd>
+                        </div>
+                      </dl>
+
+                      <p class="mt-3 mb-2 small text-muted">
+                        Ticket: <strong><?= htmlspecialchars($prestamo['codigo_ticket'], ENT_QUOTES, 'UTF-8') ?></strong>
+                      </p>
+
+                      <?php if ($prestamo['estado'] === 'solicitado'): ?>
+                        <form action="../acciones.php" method="post">
+                          <?= csrfCampo() ?>
+                          <input type="hidden" name="accion" value="cancelar_solicitud">
+                          <input type="hidden" name="id_libro" value="<?= (int) $prestamo['id_libro'] ?>">
+                          <input type="hidden" name="volver" value="Cuenta_usuarios.php">
+                          <button type="submit" class="btn btn-sm btn-outline-danger">Cancelar solicitud</button>
+                        </form>
+                      <?php elseif ($prestamo['estado'] === 'activo'): ?>
+                        <form action="../acciones.php" method="post">
+                          <?= csrfCampo() ?>
+                          <input type="hidden" name="accion" value="solicitar_devolucion">
+                          <input type="hidden" name="id_prestamo" value="<?= (int) $prestamo['id_prestamo'] ?>">
+                          <input type="hidden" name="volver" value="Cuenta_usuarios.php">
+                          <button type="submit" class="btn btn-sm btn-success">Solicitar devolución</button>
+                        </form>
+                      <?php elseif ($prestamo['estado'] === 'devolucion_solicitada'): ?>
+                        <p class="mb-0 small text-muted">Entrega el libro en la biblioteca; el bibliotecario validará la devolución.</p>
+                      <?php endif; ?>
                     </div>
-                    <div>
-                      <dt>Días para entregar</dt>
-                      <dd data-dias-detalle>—</dd>
-                    </div>
-                  </dl>
-                </div>
+                  </div>
+                <?php endforeach; ?>
               </div>
-
-              <div class="recommend-item" data-inicio="2026-10-29" data-devolucion="2026-11-12">
-                <button type="button" class="recommend-item__toggle" aria-expanded="false"
-                  aria-controls="detalle-meditaciones" aria-label="Ver fechas del préstamo de Meditaciones">
-                  <span class="thumb" aria-hidden="true">
-                    <img src="../Imagenes/Libros/Meditaciones_de_Marco-Aurelio.png" alt="" />
-                  </span>
-                  <span class="recommend-item__info">
-                    <span class="book-title">Meditaciones</span>
-                    <span class="book-meta">Historia</span>
-                  </span>
-                  <span class="dias-restantes" data-dias-restantes>—</span>
-                </button>
-
-                <div class="recommend-detail" id="detalle-meditaciones" hidden>
-                  <dl class="recommend-detail__datos">
-                    <div>
-                      <dt>Fecha de inicio</dt>
-                      <dd data-fecha-inicio>—</dd>
-                    </div>
-                    <div>
-                      <dt>Fecha de devolución</dt>
-                      <dd data-fecha-devolucion>—</dd>
-                    </div>
-                    <div>
-                      <dt>Días para entregar</dt>
-                      <dd data-dias-detalle>—</dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-            </div>
+            <?php endif; ?>
           </div>
         </section>
   </section>
@@ -305,77 +335,6 @@ $csrfAvatar = tokenCsrf();
             </section>
         </div>
     </footer>
-
-    <!-- Selector de avatar -->
-    <div
-      class="modal fade"
-      id="modalAvatares"
-      tabindex="-1"
-      aria-labelledby="tituloModalAvatares"
-      aria-hidden="true"
-      data-csrf="<?= htmlspecialchars($csrfAvatar, ENT_QUOTES, 'UTF-8') ?>"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content avatar-modal">
-          <div class="modal-header">
-            <h2 class="modal-title" id="tituloModalAvatares">Elige tu avatar</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-
-          <div class="modal-body">
-            <p class="avatar-modal__hint">
-              Selecciona uno de los 10 avatares para personalizar tu cuenta.
-            </p>
-
-            <div class="avatar-grid" role="radiogroup" aria-label="Avatares disponibles">
-              <?php foreach ($listaAvatares as $idAvatar => $nombreAvatar): ?>
-                <?php $avatarSeleccionado = $idAvatar === $avatarActualId; ?>
-                <label
-                  class="avatar-option<?= $avatarSeleccionado ? ' is-selected' : '' ?>"
-                  data-avatar-option="<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>"
-                >
-                  <input
-                    class="avatar-option__input"
-                    type="radio"
-                    name="avatar"
-                    value="<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>"
-                    aria-label="<?= htmlspecialchars($nombreAvatar, ENT_QUOTES, 'UTF-8') ?>"
-                    <?= $avatarSeleccionado ? 'checked' : '' ?>
-                  />
-                  <span class="avatar-option__frame">
-                    <img
-                      src="../Imagenes/Avatares/<?= htmlspecialchars($idAvatar, ENT_QUOTES, 'UTF-8') ?>.png"
-                      alt=""
-                      width="88"
-                      height="88"
-                      loading="lazy"
-                    />
-                  </span>
-                  <span class="avatar-option__check" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-                      stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                      <path d="m5 12 5 5L20 7" />
-                    </svg>
-                  </span>
-                </label>
-              <?php endforeach; ?>
-            </div>
-
-            <p class="avatar-modal__status" role="status" aria-live="polite" data-avatar-status></p>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-primary" data-avatar-guardar disabled>
-              Guardar avatar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JavaScript/Cuenta_usuarios.js"></script>
   </body>

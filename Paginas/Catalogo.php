@@ -1,11 +1,21 @@
 <?php
 require_once __DIR__ . '/../conexion.php';
 require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
 requerirRol(['estudiante', 'bibliotecario', 'administrador']);
+
+$idUsuario = (int) $_SESSION['usuario_id'];
+$rol = (string) $_SESSION['rol'];
+$puedeSolicitar = $rol === 'estudiante';
+
+// Estado del estudiante con cada libro (solicitud, préstamo o devolución).
+$estadosPorLibro = $puedeSolicitar
+    ? estadosPrestamoPorLibro($pdo, $idUsuario)
+    : [];
 
 // Libros desde la base de datos (tabla libro)
 $filas = $pdo->query(
-    "SELECT id_libro, titulo, autor, categoria, descripcion, portada, disponibles
+    "SELECT id_libro, titulo, autor, categoria, descripcion, portada, copias, disponibles
      FROM libro
      ORDER BY titulo"
 )->fetchAll();
@@ -21,9 +31,18 @@ foreach ($filas as $fila) {
         'descripcion' => $fila['descripcion'] ?? '',
         // La base guarda "Imagenes/Libros/archivo.jpg" y la plantilla ya agrega "../Imagenes/Libros/"
         'portada'     => basename((string) $fila['portada']),
+        'copias'      => (int) $fila['copias'],
         'disponibles' => (int) $fila['disponibles'],
     ];
 }
+
+// Categorías reales del catálogo (así el filtro nunca queda desactualizado).
+$categorias = array_values(array_unique(array_filter(array_map(
+    static fn(array $libro): string => trim((string) $libro['categoria']),
+    $libros
+))));
+natcasesort($categorias);
+$categorias = array_values($categorias);
 ?>
 
 <!doctype html>
@@ -32,6 +51,7 @@ foreach ($filas as $fila) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="<?= htmlspecialchars(csrfToken(), ENT_QUOTES, 'UTF-8') ?>" />
   <title>Catálogo - BiblioLend</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -88,6 +108,7 @@ foreach ($filas as $fila) {
   </header>
 
   <main class="catalogo-page">
+    <?php mostrarFlash(); ?>
     <section class="catalogo-bloque" aria-labelledby="titulo-catalogo">
       <h1 id="titulo-catalogo">Catálogo de Libros</h1>
       <p>Explora los libros disponibles en la biblioteca escolar.</p>
@@ -110,28 +131,11 @@ foreach ($filas as $fila) {
             <li class="filtro-categoria__opcion" role="option" aria-selected="true" tabindex="-1">
               Todas las categorías
             </li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Novela</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
-              Literatura infantil
-            </li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Aventura</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
-              Ciencia ficción
-            </li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Historia</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
-              Ciencias naturales
-            </li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Filosofía</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Geografía</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Poesía</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Terror</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Romance</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Biografía</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">Consulta</li>
-            <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
-              Fábulas y leyendas
-            </li>
+            <?php foreach ($categorias as $categoria): ?>
+              <li class="filtro-categoria__opcion" role="option" aria-selected="false" tabindex="-1">
+                <?= htmlspecialchars($categoria, ENT_QUOTES, 'UTF-8') ?>
+              </li>
+            <?php endforeach; ?>
           </ul>
 
           <input type="hidden" name="categoria" value="Todas las categorías" data-filtro-categoria-campo />
@@ -142,7 +146,7 @@ foreach ($filas as $fila) {
     <section class="catalogo-bloque" aria-labelledby="subtitulo-catalogo">
       <h2 class="subtitulo-catalogo" id="subtitulo-catalogo">Todo lo que hay</h2>
       <p class="text-muted" id="catalogo-contador" role="status" aria-live="polite">
-        <?= count($libros) ?> libros disponibles
+        <?= count($libros) ?> libros en el catálogo
       </p>
       <div class="libros-grid">
         <?php if ($libros === []): ?>
@@ -162,12 +166,38 @@ foreach ($filas as $fila) {
             $isbnLibro = (string) ($libro['isbn'] ?? '');
             $ubicacionLibro = (string) ($libro['ubicacion'] ?? '');
             $disponiblesLibro = (int) ($libro['disponibles'] ?? 0);
-            $estaDisponible = $disponiblesLibro > 0;
+            $copiasLibro = (int) ($libro['copias'] ?? $disponiblesLibro);
+            $estadoMi = (string) ($estadosPorLibro[(int) $idLibro]['estado'] ?? '');
+            $miPrestamoId = (int) ($estadosPorLibro[(int) $idLibro]['id_prestamo'] ?? 0);
+
+            if ($estadoMi === 'solicitado') {
+                $badgeTexto = 'Solicitud enviada';
+                $badgeClase = 'pendiente';
+            } elseif ($estadoMi === 'activo') {
+                $badgeTexto = 'En tu préstamo';
+                $badgeClase = 'activo';
+            } elseif ($estadoMi === 'devolucion_solicitada') {
+                $badgeTexto = 'Devolución solicitada';
+                $badgeClase = 'pendiente';
+            } elseif ($disponiblesLibro > 0) {
+                $badgeTexto = 'Disponible';
+                $badgeClase = 'disponible';
+            } else {
+                $badgeTexto = 'Prestado';
+                $badgeClase = 'prestado';
+            }
           ?>
           <article class="libro-card"
             data-libro-id="<?= htmlspecialchars($idLibro, ENT_QUOTES, 'UTF-8') ?>"
+            data-titulo="<?= htmlspecialchars($tituloLibro, ENT_QUOTES, 'UTF-8') ?>"
+            data-autor="<?= htmlspecialchars($autorLibro, ENT_QUOTES, 'UTF-8') ?>"
             data-categoria="<?= htmlspecialchars($categoriaLibro, ENT_QUOTES, 'UTF-8') ?>"
             data-descripcion="<?= htmlspecialchars($descripcionLibro, ENT_QUOTES, 'UTF-8') ?>"
+            data-disponibles="<?= $disponiblesLibro ?>"
+            data-copias="<?= $copiasLibro ?>"
+            data-mi-estado="<?= htmlspecialchars($estadoMi, ENT_QUOTES, 'UTF-8') ?>"
+            data-mi-prestamo-id="<?= $miPrestamoId ?>"
+            data-puede-solicitar="<?= $puedeSolicitar ? '1' : '0' ?>"
             <?php if ($anioLibro !== ''): ?>data-anio="<?= htmlspecialchars($anioLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
             <?php if ($paginasLibro !== ''): ?>data-paginas="<?= htmlspecialchars($paginasLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
             <?php if ($isbnLibro !== ''): ?>data-isbn="<?= htmlspecialchars($isbnLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
@@ -181,7 +211,10 @@ foreach ($filas as $fila) {
             <h3><?= htmlspecialchars($tituloLibro, ENT_QUOTES, 'UTF-8') ?></h3>
             <p class="autor"><?= htmlspecialchars($autorLibro, ENT_QUOTES, 'UTF-8') ?></p>
             <p class="categoria"><?= htmlspecialchars($categoriaLibro, ENT_QUOTES, 'UTF-8') ?></p>
-            <span class="estado <?= $estaDisponible ? 'disponible' : 'prestado' ?>"><?= $estaDisponible ? 'Disponible' : 'Prestado' ?></span>
+            <p class="text-muted small mb-1">
+              <?= $disponiblesLibro ?> de <?= $copiasLibro ?> copias disponibles
+            </p>
+            <span class="estado <?= $badgeClase ?>" data-estado-libro><?= $badgeTexto ?></span>
             <button type="button" class="btn btn-primary btn-sm mt-3 btn-ver-detalle">Ver detalle</button>
           </article>
         <?php endforeach; ?>

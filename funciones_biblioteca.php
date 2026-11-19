@@ -8,7 +8,7 @@
  * CÓMO SE USA (desde una página dentro de Paginas/):
  *   require_once __DIR__ . '/../conexion.php';
  *   require_once __DIR__ . '/../funciones_biblioteca.php';
-  * $activos = contarPrestamosActivos($pdo, $_SESSION['usuario_id']);
+ *   $activos = contarPrestamosActivos($pdo, $_SESSION['usuario_id']);
  *
  * Todas las funciones reciben $pdo (la conexión que crea conexion.php).
  */
@@ -103,7 +103,7 @@ function etiquetaEstado(string $estado, bool $vencido): array
         case 'solicitado':
             return ['texto' => 'Solicitud enviada', 'clase' => 'pendiente'];
         case 'activo':
-            return ['texto' => 'Pendiente', 'clase' => 'pendiente'];
+            return ['texto' => 'En préstamo', 'clase' => 'activo'];
         case 'devolucion_solicitada':
             return ['texto' => 'Devolución solicitada', 'clase' => 'pendiente'];
         case 'devuelto':
@@ -144,6 +144,40 @@ function agregarEtiquetas(array $filas): array
     unset($fila);
 
     return $filas;
+}
+
+// Días que faltan para una fecha (negativo si ya venció). Null si no hay fecha.
+function diasParaVencimiento(?string $fecha): ?int
+{
+    if ($fecha === null || $fecha === '') {
+        return null;
+    }
+
+    $marca = strtotime($fecha);
+    if ($marca === false) {
+        return null;
+    }
+
+    $hoy = strtotime(date('Y-m-d'));
+
+    return (int) floor(($marca - $hoy) / 86400);
+}
+
+// "Cien años de soledad" -> "CA" (para portadas sin imagen)
+function inicialesTitulo(string $titulo): string
+{
+    $palabras = preg_split('/\s+/u', trim($titulo), -1, PREG_SPLIT_NO_EMPTY);
+
+    if (!$palabras) {
+        return '?';
+    }
+
+    $iniciales = '';
+    foreach (array_slice($palabras, 0, 2) as $palabra) {
+        $iniciales .= mb_strtoupper(mb_substr($palabra, 0, 1));
+    }
+
+    return $iniciales;
 }
 
 // ============================================================
@@ -239,6 +273,35 @@ function librosConSolicitud(PDO $pdo, int $idUsuario): array
     return array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
 }
 
+// CATÁLOGO: estado actual de este estudiante con cada libro.
+// Devuelve [id_libro => ['estado' => 'solicitado', 'id_prestamo' => 3], ...]
+function estadosPrestamoPorLibro(PDO $pdo, int $idUsuario): array
+{
+    $stmt = $pdo->prepare(
+        "SELECT id_libro, id_prestamo, estado
+         FROM prestamo
+         WHERE id_usuario = ?
+           AND estado IN ('solicitado','activo','devolucion_solicitada')
+         ORDER BY fecha_solicitud DESC, id_prestamo DESC"
+    );
+    $stmt->execute([$idUsuario]);
+
+    $estados = [];
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fila) {
+        $idLibro = (int) $fila['id_libro'];
+
+        // Si por datos antiguos hubiera más de una fila, gana la más reciente.
+        if (!isset($estados[$idLibro])) {
+            $estados[$idLibro] = [
+                'estado'      => $fila['estado'],
+                'id_prestamo' => (int) $fila['id_prestamo'],
+            ];
+        }
+    }
+
+    return $estados;
+}
+
 // ============================================================
 // 4. ACCIONES (lo que hacen los botones)
 // Todas devuelven: ['ok' => true/false, 'mensaje' => '...'] (+ datos extra)
@@ -303,7 +366,8 @@ function solicitarPrestamo(PDO $pdo, int $idUsuario, int $idLibro): array
 
             try {
                 $insertar->execute([$codigo, $idUsuario, $idLibro]);
-                return resultado(true, 'Solicitud registrada. Acércate a la biblioteca con tu ticket.', [
+                return resultado(true, 'Solicitud registrada. Tu ticket es ' . $codigo
+                    . '. Acércate a la biblioteca para reclamar el libro.', [
                     'codigo_ticket' => $codigo,
                 ]);
             } catch (PDOException $e) {
@@ -370,10 +434,12 @@ function validarEntrega(PDO $pdo, string $codigoTicket): array
     try {
         $pdo->beginTransaction();
 
+        $codigoTicket = strtoupper(trim($codigoTicket));
+
         $stmt = $pdo->prepare(
             "SELECT id_prestamo, id_libro, estado FROM prestamo WHERE codigo_ticket = ? FOR UPDATE"
         );
-        $stmt->execute([trim($codigoTicket)]);
+        $stmt->execute([$codigoTicket]);
         $prestamo = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$prestamo) {
@@ -424,10 +490,12 @@ function validarDevolucion(PDO $pdo, string $codigoTicket): array
     try {
         $pdo->beginTransaction();
 
+        $codigoTicket = strtoupper(trim($codigoTicket));
+
         $stmt = $pdo->prepare(
             "SELECT id_prestamo, id_libro, estado FROM prestamo WHERE codigo_ticket = ? FOR UPDATE"
         );
-        $stmt->execute([trim($codigoTicket)]);
+        $stmt->execute([$codigoTicket]);
         $prestamo = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$prestamo) {
