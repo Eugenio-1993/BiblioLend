@@ -78,7 +78,7 @@ foreach ($filas as $fila) {
               <a class="nav-link active" href="Catalogo.php" aria-current="page">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a href="Cuenta_usuarios.php"><img src="../Imagenes/Imagen_de_perfil.jpg" alt="Imagen de Perfil"
+              <a href="Cuenta_usuarios.php"><img src="../<?= htmlspecialchars(rutaAvatarUsuario(), ENT_QUOTES, 'UTF-8') ?>" alt="Imagen de Perfil"
                   class="navItem--perfil" /></a>
             </li>
           </ul>
