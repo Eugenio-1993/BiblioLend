@@ -204,8 +204,9 @@ requerirRol('bibliotecario');
                 <h2 class="site-footer__title" id="footer-contact-title">Contacto</h2>
                 <address class="site-footer__address">
                   <p>
-                        Cra. 50B #97a-30, Santa Cruz<br />
+                        <a href="https://maps.google.com/?q=6.2907713,-75.5595566" target="_blank" rel="noopener">Cra. 50B #97a-30, Santa Cruz<br />
                         Medellín, Antioquia 050001
+                        </a>
                   </p>
                   <p>
                         <a href="mailto:contacto@bibliolend.edu.co">contacto@bibliolend.edu.co</a>
