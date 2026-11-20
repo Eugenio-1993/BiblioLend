@@ -188,6 +188,31 @@ switch ($accion) {
         $resultado = validarDevolucion($pdo, $codigo);
         break;
 
+    case 'crear_libro':
+    case 'editar_libro':
+        if ($rol !== 'bibliotecario') {
+            $resultado = resultado(false, 'Solo los bibliotecarios pueden gestionar el catálogo.');
+            break;
+        }
+
+        $idLibro = null;
+
+        if ($accion === 'editar_libro') {
+            $idLibro = filter_var($_POST['id_libro'] ?? null, FILTER_VALIDATE_INT, [
+                'options' => ['min_range' => 1],
+            ]);
+
+            if ($idLibro === false) {
+                $resultado = resultado(false, 'El libro indicado no es válido.');
+                break;
+            }
+
+            $idLibro = (int) $idLibro;
+        }
+
+        $resultado = guardarLibro($pdo, $_POST, $_FILES['portada'] ?? null, $idLibro);
+        break;
+
     case 'guardar_resena':
         $texto = (string) ($_POST['resena'] ?? '');
         $resultado = guardarResena($pdo, $idUsuario, $texto);

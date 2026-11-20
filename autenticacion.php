@@ -59,17 +59,31 @@ function avatarActualId(): string
 }
 
 /**
+ * Convierte el valor guardado en usuario.foto en una ruta segura.
+ * Si la foto no corresponde a uno de los avatares disponibles, usa la imagen
+ * predeterminada. Sirve también para mostrar el avatar de otros usuarios.
+ */
+function rutaAvatarDesdeFoto(?string $foto): string
+{
+    $foto = (string) $foto;
+
+    if (preg_match('#^Imagenes/Avatares/([a-z0-9-]+)\.png$#', $foto, $coincidencia)) {
+        $idAvatar = $coincidencia[1];
+
+        if (isset(avataresDisponibles()[$idAvatar])) {
+            return 'Imagenes/Avatares/' . $idAvatar . '.png';
+        }
+    }
+
+    return avatarPredeterminado();
+}
+
+/**
  * Ruta relativa del avatar del usuario desde la raíz del proyecto.
  */
 function rutaAvatarUsuario(): string
 {
-    $idAvatar = avatarActualId();
-
-    if ($idAvatar === '') {
-        return avatarPredeterminado();
-    }
-
-    return 'Imagenes/Avatares/' . $idAvatar . '.png';
+    return rutaAvatarDesdeFoto($_SESSION['foto'] ?? '');
 }
 
 /**

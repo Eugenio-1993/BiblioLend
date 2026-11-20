@@ -77,10 +77,10 @@ function contarTicketsPorValidar(PDO $pdo): int
     )->fetchColumn();
 }
 
-// Usuarios registrados (solo estudiantes). Para contar a todos, quita el WHERE.
+// Total de usuarios registrados (estudiantes, bibliotecarios y administradores).
 function contarUsuariosRegistrados(PDO $pdo): int
 {
-    return (int) $pdo->query("SELECT COUNT(*) FROM usuario WHERE rol = 'estudiante'")->fetchColumn();
+    return (int) $pdo->query("SELECT COUNT(*) FROM usuario")->fetchColumn();
 }
 
 function contarResenas(PDO $pdo): int
@@ -180,6 +180,18 @@ function inicialesTitulo(string $titulo): string
     return $iniciales;
 }
 
+// Ruta segura de la portada de un libro. Devuelve '' si no hay una válida.
+function rutaPortadaLibro(?string $portada): string
+{
+    $portada = (string) $portada;
+
+    if ($portada !== '' && preg_match('#^Imagenes/Libros/[A-Za-z0-9._-]+$#', $portada)) {
+        return $portada;
+    }
+
+    return '';
+}
+
 // ============================================================
 // 3. LISTAS (tablas de los paneles)
 // ============================================================
@@ -260,6 +272,87 @@ function listarResenas(PDO $pdo): array
     );
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// BIBLIOTECARIO: todos los libros con los datos que se pueden editar
+function listarLibrosGestion(PDO $pdo): array
+{
+    $stmt = $pdo->query(
+        "SELECT id_libro, titulo, autor, categoria, descripcion, portada, copias, disponibles
+         FROM libro
+         ORDER BY titulo"
+    );
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Categorías existentes, para sugerirlas en el formulario de libros
+function listarCategoriasLibros(PDO $pdo): array
+{
+    $stmt = $pdo->query(
+        "SELECT DISTINCT categoria
+         FROM libro
+         WHERE categoria IS NOT NULL AND TRIM(categoria) <> ''
+         ORDER BY categoria"
+    );
+
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}
+
+// ADMIN: usuarios registrados junto con todo su historial de préstamos
+function listarUsuariosGestion(PDO $pdo): array
+{
+    $usuarios = $pdo->query(
+        "SELECT id_usuario, documento, primer_nombre, segundo_nombre,
+                primer_apellido, segundo_apellido, correo, rol, grado, grupo, foto
+         FROM usuario
+         ORDER BY rol, primer_apellido, primer_nombre"
+    )->fetchAll(PDO::FETCH_ASSOC);
+
+    $prestamos = $pdo->query(
+        "SELECT p.id_prestamo, p.id_usuario, p.codigo_ticket, p.estado,
+                p.fecha_solicitud, p.fecha_prestamo, p.fecha_vencimiento,
+                (p.estado IN ('activo','devolucion_solicitada')
+                  AND p.fecha_vencimiento < CURDATE()) AS vencido,
+                l.titulo, l.autor
+         FROM prestamo p
+         JOIN libro l ON l.id_libro = p.id_libro
+         ORDER BY p.fecha_solicitud DESC, p.id_prestamo DESC"
+    )->fetchAll(PDO::FETCH_ASSOC);
+
+    $prestamos = agregarEtiquetas($prestamos);
+    $porUsuario = [];
+
+    foreach ($prestamos as $prestamo) {
+        $porUsuario[(int) $prestamo['id_usuario']][] = $prestamo;
+    }
+
+    foreach ($usuarios as &$usuario) {
+        $lista = $porUsuario[(int) $usuario['id_usuario']] ?? [];
+        $activos = 0;
+
+        foreach ($lista as $prestamo) {
+            if (in_array($prestamo['estado'], ['activo', 'devolucion_solicitada'], true)) {
+                $activos++;
+            }
+        }
+
+        $nombre = trim(implode(' ', array_filter([
+            $usuario['primer_nombre'] ?? '',
+            $usuario['segundo_nombre'] ?? '',
+            $usuario['primer_apellido'] ?? '',
+            $usuario['segundo_apellido'] ?? '',
+        ])));
+
+        $usuario['nombre'] = $nombre !== '' ? $nombre : (string) $usuario['correo'];
+        $usuario['grado_grupo'] = trim(($usuario['grado'] ?? '') . ' ' . ($usuario['grupo'] ?? ''));
+        $usuario['prestamos'] = $lista;
+        $usuario['prestamos_total'] = count($lista);
+        $usuario['prestamos_activos'] = $activos;
+    }
+    unset($usuario);
+
+    return $usuarios;
 }
 
 // CATÁLOGO: ids de los libros que este estudiante ya solicitó (para mostrar "Cancelar solicitud")
@@ -547,5 +640,264 @@ function guardarResena(PDO $pdo, int $idUsuario, string $texto): array
     } catch (Throwable $e) {
         error_log('Error en guardarResena: ' . $e->getMessage());
         return resultado(false, 'No se pudo guardar la reseña. Inténtalo de nuevo.');
+    }
+}
+
+// ------------------------------------------------------------
+// 5. GESTIÓN DE LIBROS (bibliotecario)
+// ------------------------------------------------------------
+
+/**
+ * Valida y guarda la portada subida. Si no se envía archivo, conserva la
+ * portada actual. Devuelve ['ok', 'ruta', 'nueva'] o un resultado de error.
+ */
+function procesarPortadaLibro(?array $archivo, ?string $portadaActual): array
+{
+    if ($archivo === null || !isset($archivo['error'])) {
+        return ['ok' => true, 'ruta' => $portadaActual, 'nueva' => false];
+    }
+
+    $codigoError = (int) $archivo['error'];
+
+    if ($codigoError === UPLOAD_ERR_NO_FILE) {
+        return ['ok' => true, 'ruta' => $portadaActual, 'nueva' => false];
+    }
+
+    if ($codigoError !== UPLOAD_ERR_OK) {
+        return resultado(false, 'No se pudo subir la portada. Inténtalo de nuevo.');
+    }
+
+    $tamano = (int) ($archivo['size'] ?? 0);
+
+    if ($tamano <= 0) {
+        return resultado(false, 'El archivo de la portada está vacío.');
+    }
+
+    if ($tamano > 5 * 1024 * 1024) {
+        return resultado(false, 'La portada no puede superar los 5 MB.');
+    }
+
+    $rutaTemporal = (string) ($archivo['tmp_name'] ?? '');
+
+    if ($rutaTemporal === '' || !is_uploaded_file($rutaTemporal)) {
+        return resultado(false, 'No se pudo leer la portada subida.');
+    }
+
+    $tipo = @getimagesize($rutaTemporal);
+
+    if ($tipo === false) {
+        return resultado(false, 'El archivo de la portada no es una imagen válida.');
+    }
+
+    $tiposPermitidos = [
+        IMAGETYPE_JPEG => 'jpg',
+        IMAGETYPE_PNG  => 'png',
+        IMAGETYPE_WEBP => 'webp',
+    ];
+
+    if (!isset($tiposPermitidos[$tipo[2]])) {
+        return resultado(false, 'La portada debe ser una imagen JPG, PNG o WEBP.');
+    }
+
+    $mime = (new finfo(FILEINFO_MIME_TYPE))->file($rutaTemporal);
+    $mimesPermitidos = ['image/jpeg', 'image/png', 'image/webp'];
+
+    if ($mime === false || !in_array($mime, $mimesPermitidos, true)) {
+        return resultado(false, 'El contenido del archivo no corresponde a una imagen permitida.');
+    }
+
+    $directorio = __DIR__ . '/Imagenes/Libros';
+
+    if (!is_dir($directorio) && !mkdir($directorio, 0775, true) && !is_dir($directorio)) {
+        return resultado(false, 'No se pudo preparar la carpeta de portadas.');
+    }
+
+    $nombreArchivo = 'libro_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4))
+        . '.' . $tiposPermitidos[$tipo[2]];
+    $destino = $directorio . '/' . $nombreArchivo;
+
+    if (!move_uploaded_file($rutaTemporal, $destino)) {
+        return resultado(false, 'No se pudo guardar la portada. Inténtalo de nuevo.');
+    }
+
+    return [
+        'ok'    => true,
+        'ruta'  => 'Imagenes/Libros/' . $nombreArchivo,
+        'nueva' => true,
+    ];
+}
+
+// Borra una portada anterior solo si está dentro de Imagenes/Libros.
+function eliminarPortadaLibro(?string $ruta): void
+{
+    if ($ruta === null || !preg_match('#^Imagenes/Libros/[A-Za-z0-9._-]+$#', $ruta)) {
+        return;
+    }
+
+    $archivo = __DIR__ . '/' . $ruta;
+
+    if (is_file($archivo)) {
+        @unlink($archivo);
+    }
+}
+
+/**
+ * BIBLIOTECARIO: crea un libro ($idLibro null) o actualiza uno existente.
+ * Al editar se conservan los ejemplares prestados: disponibles = copias - prestados.
+ */
+function guardarLibro(PDO $pdo, array $datos, ?array $archivoPortada = null, ?int $idLibro = null): array
+{
+    $titulo = trim((string) ($datos['titulo'] ?? ''));
+    $autor = trim((string) ($datos['autor'] ?? ''));
+    $categoria = trim((string) ($datos['categoria'] ?? ''));
+    $descripcion = trim((string) ($datos['descripcion'] ?? ''));
+    $copias = filter_var($datos['copias'] ?? null, FILTER_VALIDATE_INT, [
+        'options' => ['min_range' => 1, 'max_range' => 9999],
+    ]);
+
+    if ($titulo === '') {
+        return resultado(false, 'Escribe el título del libro.');
+    }
+    if (mb_strlen($titulo) > 255) {
+        return resultado(false, 'El título es demasiado largo (máximo 255 caracteres).');
+    }
+    if ($autor === '') {
+        return resultado(false, 'Escribe el autor del libro.');
+    }
+    if (mb_strlen($autor) > 150) {
+        return resultado(false, 'El autor es demasiado largo (máximo 150 caracteres).');
+    }
+
+    if ($categoria === '') {
+        $categoria = 'General';
+    }
+    if (mb_strlen($categoria) > 50) {
+        return resultado(false, 'La categoría es demasiado larga (máximo 50 caracteres).');
+    }
+    if (mb_strlen($descripcion) > 3000) {
+        return resultado(false, 'La sinopsis es demasiado larga (máximo 3000 caracteres).');
+    }
+    if ($copias === false) {
+        return resultado(false, 'El número de copias debe ser un entero mayor que cero.');
+    }
+
+    $libroActual = null;
+    $rutaPortada = null;
+    $portadaNueva = false;
+
+    try {
+        if ($idLibro !== null) {
+            $stmt = $pdo->prepare(
+                "SELECT id_libro, portada, copias, disponibles
+                 FROM libro WHERE id_libro = ? LIMIT 1"
+            );
+            $stmt->execute([$idLibro]);
+            $libroActual = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$libroActual) {
+                return resultado(false, 'El libro que intentas editar no existe.');
+            }
+        }
+
+        $portada = procesarPortadaLibro($archivoPortada, $libroActual['portada'] ?? null);
+
+        if (!$portada['ok']) {
+            return $portada;
+        }
+
+        $rutaPortada = $portada['ruta'] ?? null;
+        $portadaNueva = !empty($portada['nueva']);
+
+        $pdo->beginTransaction();
+
+        if ($idLibro === null) {
+            $stmt = $pdo->prepare(
+                "INSERT INTO libro (titulo, autor, categoria, descripcion, portada, copias, disponibles)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)"
+            );
+            $stmt->execute([
+                $titulo,
+                $autor,
+                $categoria,
+                $descripcion !== '' ? $descripcion : null,
+                $rutaPortada,
+                $copias,
+                $copias,
+            ]);
+
+            $nuevoId = (int) $pdo->lastInsertId();
+            $pdo->commit();
+
+            return resultado(true, 'Libro agregado correctamente.', ['id_libro' => $nuevoId]);
+        }
+
+        // Bloquea la fila para calcular las copias prestadas con datos actuales.
+        $stmt = $pdo->prepare(
+            "SELECT copias, disponibles FROM libro WHERE id_libro = ? FOR UPDATE"
+        );
+        $stmt->execute([$idLibro]);
+        $actual = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$actual) {
+            $pdo->rollBack();
+            if ($portadaNueva) {
+                eliminarPortadaLibro($rutaPortada);
+            }
+            return resultado(false, 'El libro que intentas editar ya no existe.');
+        }
+
+        $prestados = max(0, (int) $actual['copias'] - (int) $actual['disponibles']);
+
+        if ((int) $copias < $prestados) {
+            $pdo->rollBack();
+            if ($portadaNueva) {
+                eliminarPortadaLibro($rutaPortada);
+            }
+            return resultado(
+                false,
+                'No puedes dejar el total de copias por debajo de los ' . $prestados
+                . ' ejemplar(es) que están prestados.'
+            );
+        }
+
+        $disponibles = (int) $copias - $prestados;
+
+        $stmt = $pdo->prepare(
+            "UPDATE libro
+             SET titulo = ?, autor = ?, categoria = ?, descripcion = ?,
+                 portada = ?, copias = ?, disponibles = ?
+             WHERE id_libro = ?"
+        );
+        $stmt->execute([
+            $titulo,
+            $autor,
+            $categoria,
+            $descripcion !== '' ? $descripcion : null,
+            $rutaPortada,
+            $copias,
+            $disponibles,
+            $idLibro,
+        ]);
+
+        $pdo->commit();
+
+        if ($portadaNueva && $libroActual !== null
+            && !empty($libroActual['portada'])
+            && $libroActual['portada'] !== $rutaPortada) {
+            eliminarPortadaLibro($libroActual['portada']);
+        }
+
+        return resultado(true, 'Libro actualizado correctamente.');
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
+
+        if ($portadaNueva) {
+            eliminarPortadaLibro($rutaPortada);
+        }
+
+        error_log('Error en guardarLibro: ' . $e->getMessage());
+        return resultado(false, 'No se pudo guardar el libro. Inténtalo de nuevo.');
     }
 }
