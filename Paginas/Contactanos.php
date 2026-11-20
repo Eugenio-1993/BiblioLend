@@ -217,12 +217,12 @@ requerirRol('estudiante');
                 <span class="contacto-card__numero" aria-hidden="true">04</span>
                 <img
                   class="img_perfiles"
-                  src="../Imagenes/Desarrolladores/Desarrollador_Santiago-Palomino.png"
+                  src="../Imagenes/Desarrolladores/Desarrollador_Santiago-Palomino.jpg"
                   alt="Foto de Santiago Palomino"
                 />
               </div>
               <div class="contacto-card__cuerpo">
-                <h3 class="contacto-card__nombre" id="dev-santiago">Santiago Palomino M.</h3>
+                <h3 class="contacto-card__nombre" id="dev-santiago">Santiago Palomino A.</h3>
                 <p class="contacto-card__rol">Desarrollador destacado en Frontend</p>
                 <div class="contacto-card__contacto">
                   <p class="contacto-card__etiqueta">Contacto</p>
