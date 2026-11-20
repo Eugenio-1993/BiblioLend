@@ -1,3 +1,10 @@
+<?php 
+require_once __DIR__ . '/../conexion.php';
+require_once __DIR__ . '/../autenticacion.php';
+require_once __DIR__ . '/../funciones_biblioteca.php';
+requerirRol('estudiante');
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -56,7 +63,7 @@
                 <a class="nav-link" href="Sobre_nosotros.php">Sobre Nosotros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="Contactanos.html">Contáctanos</a>
+                <a class="nav-link active" href="Contactanos.php">Contáctanos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Resenas.php">Reseñas</a>
@@ -65,13 +72,8 @@
                 <a class="nav-link" href="Catalogo.php">Catálogo</a>
               </li>
               <li class="nav-item">
-                <a href="Cuenta_usuarios.php">
-                  <img
-                    src="../Imagenes/Imagen_de_perfil.jpg"
-                    alt="Imagen de Perfil"
-                    class="navItem--perfil"
-                  />
-                </a>
+                <a href="Cuenta_usuarios.php"><img src="../<?= htmlspecialchars(rutaAvatarUsuario(), ENT_QUOTES, 'UTF-8') ?>" alt="Imagen de Perfil"
+                  class="navItem--perfil" /></a>
               </li>
             </ul>
           </div>
@@ -271,7 +273,7 @@
             <li><a href="Panel_principal.php">Inicio</a></li>
             <li><a href="Catalogo.php">Catálogo</a></li>
             <li><a href="Resenas.php">Reseñas</a></li>
-            <li><a href="Contactanos.html">Nuestro equipo</a></li>
+            <li><a href="Contactanos.php">Nuestro equipo</a></li>
             <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
           </ul>
         </nav>
