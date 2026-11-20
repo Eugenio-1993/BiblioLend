@@ -10,6 +10,10 @@ $ticketsPorValidar = contarTicketsPorValidar($pdo);
 $retrasos = contarRetrasos($pdo);
 $tickets = listarTicketsPorValidar($pdo);
 $prestamos = listarPrestamosActivos($pdo);
+$libros = listarLibrosGestion($pdo);
+$categorias = listarCategoriasLibros($pdo);
+
+$escapar = static fn ($valor): string => htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
 ?>
 
 <!doctype html>
@@ -18,6 +22,7 @@ $prestamos = listarPrestamosActivos($pdo);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel del Bibliotecario - BiblioLend</title>
+    <meta name="csrf-token" content="<?= htmlspecialchars(csrfToken(), ENT_QUOTES, 'UTF-8') ?>" />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -90,7 +95,7 @@ $prestamos = listarPrestamosActivos($pdo);
           <a href="#validar-ticket" class="accion-card">Validar ticket</a>
           <a href="#tickets-pendientes" class="accion-card">Entregas pendientes</a>
           <a href="#prestamos-activos" class="accion-card">Préstamos activos</a>
-          <a href="Catalogo.php" class="accion-card">Ver catálogo</a>
+          <a href="#gestion-libros" class="accion-card">Gestionar libros</a>
         </div>
       </section>
 
@@ -232,6 +237,112 @@ $prestamos = listarPrestamosActivos($pdo);
           </div>
         <?php endif; ?>
       </section>
+
+      <section class="management" id="gestion-libros" aria-labelledby="management-title">
+        <div class="management__header">
+          <div>
+            <h2 id="management-title" class="management__title">
+              Gestión de Libros
+            </h2>
+            <p class="management__subtitle">
+              Agrega nuevos títulos o actualiza la información y la portada de los existentes.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="management__button"
+            id="btnAgregarLibro"
+            data-bs-toggle="modal"
+            data-bs-target="#modalLibro"
+            data-modo="crear"
+          >
+            Agregar libro
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="table-books tabla-apilada">
+            <caption class="visually-hidden">Libros registrados en la biblioteca</caption>
+            <thead class="table-books__head">
+              <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Copias</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody class="table-books__body">
+              <?php if ($libros === []): ?>
+                <tr>
+                  <td colspan="6">No hay libros registrados.</td>
+                </tr>
+              <?php else: ?>
+                <?php foreach ($libros as $libro): ?>
+                  <?php
+                    $disponible = (int) $libro['disponibles'] > 0;
+                    $rutaPortada = rutaPortadaLibro($libro['portada']);
+                  ?>
+                  <tr>
+                    <td data-label="Título">
+                      <div class="table-books__book">
+                        <?php if ($rutaPortada !== ''): ?>
+                          <img
+                            class="table-books__cover"
+                            src="../<?= $escapar($rutaPortada) ?>"
+                            alt="Portada de <?= $escapar($libro['titulo']) ?>"
+                            loading="lazy"
+                          />
+                        <?php else: ?>
+                          <span class="table-books__cover-placeholder" aria-hidden="true">
+                            <?= $escapar(inicialesTitulo((string) $libro['titulo'])) ?>
+                          </span>
+                        <?php endif; ?>
+                        <span><?= $escapar($libro['titulo']) ?></span>
+                      </div>
+                    </td>
+                    <td data-label="Autor"><?= $escapar($libro['autor']) ?></td>
+                    <td data-label="Categoría"><?= $escapar($libro['categoria']) ?></td>
+                    <td data-label="Copias">
+                      <span class="table-books__copies">
+                        <?= (int) $libro['disponibles'] ?> de <?= (int) $libro['copias'] ?> disponibles
+                      </span>
+                    </td>
+                    <td data-label="Estado">
+                      <span class="table-books__status <?= $disponible ? 'table-books__status--available' : 'table-books__status--borrowed' ?>">
+                        <?= $disponible ? 'Disponible' : 'Sin copias' ?>
+                      </span>
+                    </td>
+                    <td data-label="Acciones">
+                      <button
+                        type="button"
+                        class="table-books__action"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalLibro"
+                        data-modo="editar"
+                        data-id="<?= (int) $libro['id_libro'] ?>"
+                        data-titulo="<?= $escapar($libro['titulo']) ?>"
+                        data-autor="<?= $escapar($libro['autor']) ?>"
+                        data-categoria="<?= $escapar($libro['categoria']) ?>"
+                        data-descripcion="<?= $escapar($libro['descripcion']) ?>"
+                        data-copias="<?= (int) $libro['copias'] ?>"
+                        data-disponibles="<?= (int) $libro['disponibles'] ?>"
+                        data-portada="<?= $escapar($rutaPortada) ?>"
+                      >
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
     </main>
 
     <br />
@@ -280,6 +391,142 @@ $prestamos = listarPrestamosActivos($pdo);
             </section>
         </div>
     </footer>
+
+    <!-- Formulario para agregar o editar un libro -->
+    <div
+      class="modal fade"
+      id="modalLibro"
+      tabindex="-1"
+      aria-labelledby="tituloModalLibro"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <form
+          id="formLibro"
+          class="modal-content book-modal"
+          action="../acciones.php"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <?= csrfCampo() ?>
+          <input type="hidden" name="volver" value="Panel_bibliotecario.php">
+          <input type="hidden" name="accion" id="libroAccion" value="crear_libro">
+          <input type="hidden" name="id_libro" id="libroId" value="">
+
+          <div class="modal-header">
+              <h2 class="modal-title" id="tituloModalLibro">Agregar libro</h2>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="book-form">
+                <div class="book-form__field">
+                  <label for="libroTitulo" class="form-label">Título *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="libroTitulo"
+                    name="titulo"
+                    maxlength="255"
+                    required
+                  />
+                </div>
+
+                <div class="book-form__field">
+                  <label for="libroAutor" class="form-label">Autor *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="libroAutor"
+                    name="autor"
+                    maxlength="150"
+                    required
+                  />
+                </div>
+
+                <div class="book-form__field">
+                  <label for="libroCategoria" class="form-label">Categoría *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="libroCategoria"
+                    name="categoria"
+                    list="categoriasLibros"
+                    maxlength="50"
+                    required
+                  />
+                  <datalist id="categoriasLibros">
+                    <?php foreach ($categorias as $categoria): ?>
+                      <option value="<?= $escapar($categoria) ?>"></option>
+                    <?php endforeach; ?>
+                  </datalist>
+                </div>
+
+                <div class="book-form__field">
+                  <label for="libroCopias" class="form-label">Número de copias *</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="libroCopias"
+                    name="copias"
+                    min="1"
+                    max="9999"
+                    value="1"
+                    required
+                  />
+                  <p class="book-form__hint" data-libro-copias-hint>
+                    Se registrarán como copias disponibles.
+                  </p>
+                </div>
+
+                <div class="book-form__field book-form__field--full">
+                  <label for="libroDescripcion" class="form-label">Sinopsis / descripción</label>
+                  <textarea
+                    class="form-control"
+                    id="libroDescripcion"
+                    name="descripcion"
+                    rows="4"
+                    maxlength="3000"
+                  ></textarea>
+                </div>
+
+                <div class="book-form__field book-form__field--full">
+                  <label for="libroPortada" class="form-label">Portada</label>
+                  <p class="book-form__hint">
+                    Formatos JPG, PNG o WEBP, máximo 5 MB. Al editar sin elegir un archivo se conserva la portada actual.
+                  </p>
+                  <div class="book-form__cover">
+                    <div class="book-form__cover-preview" data-libro-portada-preview hidden>
+                      <img src="" alt="Portada actual del libro" data-libro-portada-imagen />
+                    </div>
+                    <span class="book-form__cover-empty" data-libro-portada-vacia>
+                      Sin portada seleccionada.
+                    </span>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="libroPortada"
+                      name="portada"
+                      accept="image/jpeg,image/png,image/webp"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary" data-libro-submit>
+                Agregar libro
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JavaScript/Panel_bibliotecario.js"></script>
   </body>
 </html>

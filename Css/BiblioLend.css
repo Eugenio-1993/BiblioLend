@@ -2881,6 +2881,24 @@ body:is(.pagina-panel-login, .pagina-olvide-mi-contrasena) :is(.field-input, .fi
   font-size: 0.95rem;
 }
 
+.admin-header .btn-cerrar {
+  margin-left: auto;
+  padding: 10px 20px;
+  color: var(--bl-white);
+  background-color: var(--bl-danger-strong);
+  border: 1px solid #000000;
+  border-radius: var(--bl-radius-sm);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--bl-transition);
+}
+
+.admin-header .btn-cerrar:hover {
+  color: var(--bl-white);
+  background-color: var(--bl-danger-strong-hover);
+}
+
 .admin-nav__link--logout {
   margin-left: auto;
   padding: 10px 20px;
@@ -2916,7 +2934,7 @@ body.pagina-panel-admin .dashboard {
 }
 
 body.pagina-panel-admin .dashboard__title,
-body.pagina-panel-admin .management__title {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__title {
   display: inline-block;
   margin-bottom: 20px;
   color: var(--bl-indigo);
@@ -2928,7 +2946,7 @@ body.pagina-panel-admin .management__title {
 }
 
 body.pagina-panel-admin .dashboard__title:hover,
-body.pagina-panel-admin .management__title:hover {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__title:hover {
   color: var(--bl-accent);
   letter-spacing: 2px;
   transform: scale(1.1) translateX(20px);
@@ -2969,7 +2987,7 @@ body.pagina-panel-admin .card-stat__value {
   font-weight: 700;
 }
 
-body.pagina-panel-admin .management {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management {
   padding: 24px;
   background-color: var(--bl-white);
   border: 3px solid var(--bl-accent);
@@ -2977,7 +2995,7 @@ body.pagina-panel-admin .management {
   box-shadow: var(--bl-shadow-lg);
 }
 
-body.pagina-panel-admin .management__header {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2985,7 +3003,7 @@ body.pagina-panel-admin .management__header {
   margin-bottom: 20px;
 }
 
-body.pagina-panel-admin .management__button {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__button {
   padding: 12px 24px;
   color: var(--bl-white);
   background-color: #002562;
@@ -3002,7 +3020,7 @@ body.pagina-panel-admin .management__button {
     box-shadow var(--bl-transition);
 }
 
-body.pagina-panel-admin .management__button:hover {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__button:hover {
   color: #000000;
   background-color: var(--bl-accent);
   border-color: rgba(0, 0, 0, 0.4);
@@ -3010,28 +3028,28 @@ body.pagina-panel-admin .management__button:hover {
   transform: translateY(-3px);
 }
 
-body.pagina-panel-admin .table-container {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-container {
   overflow-x: auto;
 }
 
-body.pagina-panel-admin .table-books {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books {
   width: 100%;
   border-collapse: collapse;
 }
 
-body.pagina-panel-admin .table-books th,
-body.pagina-panel-admin .table-books td {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books th,
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books td {
   padding: 14px;
   border-bottom: 1px solid #dddddd;
   text-align: left;
 }
 
-body.pagina-panel-admin .table-books__head {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__head {
   color: var(--bl-white);
   background-color: var(--bl-indigo);
 }
 
-body.pagina-panel-admin .table-books__status {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__status {
   display: inline-block;
   padding: 6px 10px;
   border-radius: var(--bl-radius-pill);
@@ -3039,17 +3057,17 @@ body.pagina-panel-admin .table-books__status {
   font-weight: 700;
 }
 
-body.pagina-panel-admin .table-books__status--available {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__status--available {
   color: #146814;
   background-color: #d4f7d4;
 }
 
-body.pagina-panel-admin .table-books__status--borrowed {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__status--borrowed {
   color: #8a5200;
   background-color: #ffe2b7;
 }
 
-body.pagina-panel-admin .table-books__action {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action {
   margin-right: 8px;
   padding: 8px 12px;
   color: var(--bl-white);
@@ -3060,16 +3078,317 @@ body.pagina-panel-admin .table-books__action {
   transition: background-color var(--bl-transition-fast);
 }
 
-body.pagina-panel-admin .table-books__action:hover {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action:hover {
   background-color: var(--bl-indigo-dark);
 }
 
-body.pagina-panel-admin .table-books__action--danger {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action--danger {
   background-color: var(--bl-danger-strong);
 }
 
-body.pagina-panel-admin .table-books__action--danger:hover {
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action--danger:hover {
   background-color: var(--bl-danger-strong-hover);
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action--secondary {
+  color: var(--bl-indigo);
+  background-color: var(--bl-surface-soft);
+  border: 1px solid var(--bl-border-soft);
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__action--secondary:hover {
+  color: var(--bl-white);
+  background-color: var(--bl-indigo);
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management {
+  margin-bottom: 24px;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__header .management__title {
+  margin-bottom: 4px;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__subtitle {
+  margin: 0;
+  color: var(--bl-text-muted);
+  font-size: 0.95rem;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__meta {
+  color: var(--bl-text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__book {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__cover,
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__cover-placeholder {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 60px;
+  background-color: var(--bl-surface-soft);
+  border: 1px solid var(--bl-border);
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__cover-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bl-indigo);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .table-books__copies {
+  color: var(--bl-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Formulario de libros (modal del bibliotecario) */
+.book-modal {
+  overflow: hidden;
+  border: 3px solid var(--bl-accent);
+  border-radius: var(--bl-radius-lg);
+}
+
+.book-modal .modal-header {
+  color: var(--bl-white);
+  background: linear-gradient(90deg, var(--bl-indigo) 20%, var(--bl-navy) 100%);
+}
+
+.book-modal .modal-title {
+  font-family: var(--bl-font-heading);
+}
+
+.book-modal .modal-body {
+  background-color: var(--bl-white);
+}
+
+.book-modal .modal-footer {
+  background-color: var(--bl-surface-alt);
+}
+
+.book-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.book-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.book-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.book-form .form-label {
+  margin-bottom: 0;
+  color: var(--bl-text-heading);
+  font-weight: 700;
+}
+
+.book-form .form-control {
+  border: 1px solid var(--bl-border);
+  border-radius: 10px;
+}
+
+.book-form .form-control:focus {
+  border-color: var(--bl-accent);
+  box-shadow: 0 0 0 0.2rem rgba(255, 171, 0, 0.2);
+}
+
+.book-form__hint {
+  margin: 0;
+  color: var(--bl-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.book-form__cover {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.book-form__cover-preview img {
+  width: 80px;
+  height: 110px;
+  border: 2px solid var(--bl-border);
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.book-form__cover-empty {
+  color: var(--bl-text-muted);
+  font-size: 0.85rem;
+}
+
+.book-form__cover input[type="file"] {
+  flex: 1 1 220px;
+}
+
+/* Gestión de usuarios (administrador) */
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background-color: var(--bl-white);
+  border: 1px solid var(--bl-border);
+  border-radius: var(--bl-radius-lg);
+  box-shadow: var(--bl-shadow-sm);
+}
+
+.user-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.user-card__avatar {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  background-color: var(--bl-surface-soft);
+  border: 3px solid var(--bl-accent);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-card__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.user-card__name {
+  margin: 0 0 2px;
+  color: var(--bl-text-heading);
+  font-size: 1.05rem;
+}
+
+.user-card__email {
+  margin: 0;
+  color: var(--bl-text-muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.user-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+  color: var(--bl-text-muted);
+  font-size: 0.78rem;
+}
+
+.user-card__role {
+  display: inline-block;
+  padding: 3px 9px;
+  color: var(--bl-indigo);
+  background-color: var(--bl-surface-soft);
+  border-radius: var(--bl-radius-pill);
+  font-weight: 700;
+}
+
+.user-card__role--administrador {
+  color: #7a4a00;
+  background-color: #ffe9c2;
+}
+
+.user-card__role--bibliotecario {
+  color: #146814;
+  background-color: #dff7e7;
+}
+
+.user-card__role--estudiante {
+  color: #1d3cb8;
+  background-color: #e4ecff;
+}
+
+.user-card__stats {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.user-card__stat-number {
+  display: block;
+  color: var(--bl-indigo);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.user-card__stat-label {
+  display: block;
+  color: var(--bl-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.user-card__stat-total {
+  display: block;
+  margin-top: 4px;
+  color: var(--bl-text-muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.user-card__loans {
+  padding-top: 12px;
+  border-top: 1px solid var(--bl-border);
+}
+
+.user-card__summary {
+  color: var(--bl-indigo);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.user-card__summary:hover {
+  color: var(--bl-indigo-dark);
+}
+
+.user-card__empty {
+  margin: 0;
+  padding-top: 8px;
+  color: var(--bl-text-muted);
+  font-size: 0.88rem;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .user-loans-table {
+  margin-top: 12px;
+  font-size: 0.82rem;
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .user-loans-table thead {
+  color: var(--bl-white);
+  background-color: var(--bl-indigo);
+}
+
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .user-loans-table th,
+body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .user-loans-table td {
+  padding: 8px;
 }
 
 @media (max-width: 768px) {
@@ -3082,7 +3401,7 @@ body.pagina-panel-admin .table-books__action--danger:hover {
     margin-left: 0;
   }
 
-  body.pagina-panel-admin .management__header {
+  body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management__header {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -3145,12 +3464,24 @@ body.pagina-panel-admin .table-books__action--danger:hover {
   }
 
   body.pagina-panel-admin .dashboard,
-  body.pagina-panel-admin .management {
+  body:is(.pagina-panel-admin, .pagina-panel-bibliotecario) .management {
     padding: 18px;
   }
 
   body.pagina-panel-admin .dashboard__cards {
     grid-template-columns: 1fr;
+  }
+
+  .book-form {
+    grid-template-columns: 1fr;
+  }
+
+  .user-card__header {
+    flex-wrap: wrap;
+  }
+
+  .user-card__stats {
+    margin-left: auto;
   }
 }
 

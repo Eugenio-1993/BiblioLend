@@ -10,12 +10,10 @@ $prestamosActivos = contarPrestamosActivos($pdo);
 $totalResenas = contarResenas($pdo);
 $ticketsPorValidar = contarTicketsPorValidar($pdo);
 $retrasos = contarRetrasos($pdo);
-$libros = $pdo->query(
-    "SELECT id_libro, titulo, autor, copias, disponibles
-     FROM libro
-     ORDER BY titulo"
-)->fetchAll(PDO::FETCH_ASSOC);
+$usuarios = listarUsuariosGestion($pdo);
 $resenas = listarResenas($pdo);
+
+$escapar = static fn ($valor): string => htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
 ?>
 
 <!doctype html>
@@ -24,6 +22,7 @@ $resenas = listarResenas($pdo);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Administración | BiblioLend</title>
+    <meta name="csrf-token" content="<?= htmlspecialchars(csrfToken(), ENT_QUOTES, 'UTF-8') ?>" />
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -94,56 +93,129 @@ $resenas = listarResenas($pdo);
         </div>
       </section>
 
-      <section class="management" aria-labelledby="management-title">
+      <section class="management" id="gestion-usuarios" aria-labelledby="usuarios-title">
         <div class="management__header">
-          <h2 id="management-title" class="management__title">
-            Gestión de Libros
-          </h2>
-
-          <button type="submit" class="management__button" id="btnAgregarLibro">Agregar libro</button>
+          <div>
+            <h2 id="usuarios-title" class="management__title">Gestión de Usuarios</h2>
+            <p class="management__subtitle">
+              Consulta los datos de cada usuario y el detalle de sus préstamos.
+            </p>
+          </div>
+          <span class="management__meta"><?= count($usuarios) ?> usuarios registrados</span>
         </div>
 
-        <div class="table-container">
-          <table class="table-books tabla-apilada">
-            <caption class="visually-hidden">Libros registrados en la biblioteca</caption>
-            <thead class="table-books__head">
-              <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Autor</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
+        <?php if ($usuarios === []): ?>
+          <p class="text-muted mb-0">Todavía no hay usuarios registrados.</p>
+        <?php else: ?>
+          <div class="users-grid">
+            <?php foreach ($usuarios as $usuario): ?>
+              <?php
+                $avatarUsuario = rutaAvatarDesdeFoto($usuario['foto'] ?? null);
+                $rolUsuario = (string) $usuario['rol'];
+                $roles = [
+                    'estudiante'    => 'Estudiante',
+                    'bibliotecario' => 'Bibliotecario',
+                    'administrador' => 'Administrador',
+                ];
+                $etiquetaRol = $roles[$rolUsuario] ?? ucfirst($rolUsuario);
+                $sinPrestamos = (int) $usuario['prestamos_total'] === 0;
+              ?>
+              <article class="user-card">
+                <header class="user-card__header">
+                  <img
+                    class="user-card__avatar"
+                    src="../<?= $escapar($avatarUsuario) ?>"
+                    alt="Avatar de <?= $escapar($usuario['nombre']) ?>"
+                    loading="lazy"
+                  />
 
-            <tbody class="table-books__body">
-              <?php if ($libros === []): ?>
-                <tr>
-                  <td colspan="4">No hay libros registrados.</td>
-                </tr>
-              <?php else: ?>
-                <?php foreach ($libros as $libro): ?>
-                  <?php $disponible = (int) $libro['disponibles'] > 0; ?>
-                  <tr>
-                    <td data-label="Título"><?= htmlspecialchars($libro['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td data-label="Autor"><?= htmlspecialchars($libro['autor'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td data-label="Estado">
-                      <span class="table-books__status <?= $disponible ? 'table-books__status--available' : 'table-books__status--borrowed' ?>">
-                        <?= $disponible ? 'Disponible' : 'Prestado' ?>
-                      </span><br>
-                      <small><?= (int) $libro['disponibles'] ?> de <?= (int) $libro['copias'] ?> copias</small>
-                    </td>
-                    <td data-label="Acciones">
-                      <button type="button" class="table-books__action" disabled>Editar</button>
-                      <button type="button" class="table-books__action table-books__action--danger" disabled>Eliminar</button>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-              <?php endif; ?>
-            </tbody>
-          </table>
-        </div>
+                  <div class="user-card__info">
+                    <h3 class="user-card__name"><?= $escapar($usuario['nombre']) ?></h3>
+                    <p class="user-card__email"><?= $escapar($usuario['correo']) ?></p>
+                    <p class="user-card__meta">
+                      <span class="user-card__role user-card__role--<?= $escapar($rolUsuario) ?>">
+                        <?= $escapar($etiquetaRol) ?>
+                      </span>
+                      <?php if (($usuario['grado_grupo'] ?? '') !== ''): ?>
+                        <span>Grado: <?= $escapar($usuario['grado_grupo']) ?></span>
+                      <?php endif; ?>
+                      <?php if (($usuario['documento'] ?? '') !== ''): ?>
+                        <span>Doc. <?= $escapar($usuario['documento']) ?></span>
+                      <?php endif; ?>
+                    </p>
+                  </div>
+
+                  <div class="user-card__stats" aria-label="Resumen de préstamos">
+                    <span class="user-card__stat-number"><?= (int) $usuario['prestamos_activos'] ?></span>
+                    <span class="user-card__stat-label">activos</span>
+                    <span class="user-card__stat-total">
+                      <?= (int) $usuario['prestamos_total'] ?> prestamos en total
+                    </span>
+                  </div>
+                </header>
+
+                <?php if ($sinPrestamos): ?>
+                  <p class="user-card__empty">
+                    Este usuario todavía no ha solicitado ningún libro.
+                  </p>
+                <?php else: ?>
+                  <details class="user-card__loans">
+                    <summary class="user-card__summary">
+                      Ver préstamos (<?= (int) $usuario['prestamos_total'] ?>)
+                    </summary>
+
+                    <div class="table-container">
+                      <table class="table-books user-loans-table">
+                        <caption class="visually-hidden">
+                          Préstamos de <?= $escapar($usuario['nombre']) ?>
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Ticket</th>
+                            <th scope="col">Libro</th>
+                            <th scope="col">Solicitud</th>
+                            <th scope="col">Préstamo</th>
+                            <th scope="col">Vence</th>
+                            <th scope="col">Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($usuario['prestamos'] as $prestamo): ?>
+                            <tr>
+                              <td data-label="Ticket">
+                                <strong><?= $escapar($prestamo['codigo_ticket']) ?></strong>
+                              </td>
+                              <td data-label="Libro">
+                                <?= $escapar($prestamo['titulo']) ?><br />
+                                <small><?= $escapar($prestamo['autor']) ?></small>
+                              </td>
+                              <td data-label="Solicitud">
+                                <?= formatearFecha(substr((string) $prestamo['fecha_solicitud'], 0, 10)) ?>
+                              </td>
+                              <td data-label="Préstamo">
+                                <?= formatearFecha($prestamo['fecha_prestamo']) ?>
+                              </td>
+                              <td data-label="Vence">
+                                <?= formatearFecha($prestamo['fecha_vencimiento']) ?>
+                              </td>
+                              <td data-label="Estado">
+                                <span class="estado <?= $escapar($prestamo['clase']) ?>">
+                                  <?= $escapar($prestamo['etiqueta']) ?>
+                                </span>
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </details>
+                <?php endif; ?>
+              </article>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
       </section>
-<br>
+
       <section class="management" aria-labelledby="resenas-title">
         <div class="management__header">
           <h2 class="management__title" id="resenas-title">Reseñas</h2>
