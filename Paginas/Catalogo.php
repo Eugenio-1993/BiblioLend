@@ -161,10 +161,6 @@ $categorias = array_values($categorias);
             $descripcionLibro = (string) ($libro['descripcion'] ?? 'Sin descripción disponible.');
             $portadaLibro = (string) ($libro['portada'] ?? '');
             $idLibro = (string) ($libro['id'] ?? '');
-            $anioLibro = (string) ($libro['anio'] ?? '');
-            $paginasLibro = (string) ($libro['paginas'] ?? '');
-            $isbnLibro = (string) ($libro['isbn'] ?? '');
-            $ubicacionLibro = (string) ($libro['ubicacion'] ?? '');
             $disponiblesLibro = (int) ($libro['disponibles'] ?? 0);
             $copiasLibro = (int) ($libro['copias'] ?? $disponiblesLibro);
             $estadoMi = (string) ($estadosPorLibro[(int) $idLibro]['estado'] ?? '');
@@ -197,11 +193,7 @@ $categorias = array_values($categorias);
             data-copias="<?= $copiasLibro ?>"
             data-mi-estado="<?= htmlspecialchars($estadoMi, ENT_QUOTES, 'UTF-8') ?>"
             data-mi-prestamo-id="<?= $miPrestamoId ?>"
-            data-puede-solicitar="<?= $puedeSolicitar ? '1' : '0' ?>"
-            <?php if ($anioLibro !== ''): ?>data-anio="<?= htmlspecialchars($anioLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
-            <?php if ($paginasLibro !== ''): ?>data-paginas="<?= htmlspecialchars($paginasLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
-            <?php if ($isbnLibro !== ''): ?>data-isbn="<?= htmlspecialchars($isbnLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>
-            <?php if ($ubicacionLibro !== ''): ?>data-ubicacion="<?= htmlspecialchars($ubicacionLibro, ENT_QUOTES, 'UTF-8') ?>"<?php endif; ?>>
+            data-puede-solicitar="<?= $puedeSolicitar ? '1' : '0' ?>">
             <div class="libro-img">
               <?php if ($portadaLibro !== ''): ?>
                 <img src="../Imagenes/Libros/<?= htmlspecialchars($portadaLibro, ENT_QUOTES, 'UTF-8') ?>"
@@ -292,25 +284,6 @@ $categorias = array_values($categorias);
               <h3 class="detalle-libro__titulo" id="detalleTitulo"></h3>
               <p class="detalle-libro__autor" id="detalleAutor"></p>
               <p class="detalle-libro__categoria" id="detalleCategoria"></p>
-
-              <dl class="detalle-libro__datos">
-                <div>
-                  <dt>Año</dt>
-                  <dd id="detalleAnio"></dd>
-                </div>
-                <div>
-                  <dt>Páginas</dt>
-                  <dd id="detallePaginas"></dd>
-                </div>
-                <div>
-                  <dt>ISBN</dt>
-                  <dd id="detalleIsbn"></dd>
-                </div>
-                <div>
-                  <dt>Ubicación</dt>
-                  <dd id="detalleUbicacion"></dd>
-                </div>
-              </dl>
 
               <h4 class="detalle-libro__subtitulo">Sinopsis</h4>
               <p class="detalle-libro__descripcion" id="detalleDescripcion"></p>

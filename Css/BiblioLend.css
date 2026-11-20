@@ -1334,37 +1334,6 @@ body.pagina-catalogo .detalle-libro__categoria {
   font-weight: 600;
 }
 
-body.pagina-catalogo .detalle-libro__datos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 0 0 20px;
-}
-
-body.pagina-catalogo .detalle-libro__datos > div {
-  padding: 10px 12px;
-  background-color: var(--bl-white);
-  border: 1px solid var(--bl-border);
-  border-radius: 10px;
-}
-
-body.pagina-catalogo .detalle-libro__datos dt {
-  margin: 0 0 2px;
-  color: var(--bl-text-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-body.pagina-catalogo .detalle-libro__datos dd {
-  margin: 0;
-  color: var(--bl-text);
-  font-size: 0.92rem;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-
 body.pagina-catalogo .detalle-libro__subtitulo {
   margin: 0 0 6px;
   color: var(--bl-text-heading);
@@ -1492,10 +1461,6 @@ body.pagina-catalogo .detalle-libro :is(button, [tabindex]):focus-visible {
   body.pagina-catalogo .detalle-libro__footer .btn {
     width: 100%;
     margin: 0 !important;
-  }
-
-  body.pagina-catalogo .detalle-libro__datos {
-    grid-template-columns: 1fr;
   }
 
   body.pagina-catalogo .detalle-libro__portada {
