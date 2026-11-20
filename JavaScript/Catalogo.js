@@ -124,10 +124,6 @@
     titulo: document.getElementById('detalleTitulo'),
     autor: document.getElementById('detalleAutor'),
     categoria: document.getElementById('detalleCategoria'),
-    anio: document.getElementById('detalleAnio'),
-    paginas: document.getElementById('detallePaginas'),
-    isbn: document.getElementById('detalleIsbn'),
-    ubicacion: document.getElementById('detalleUbicacion'),
     descripcion: document.getElementById('detalleDescripcion'),
     aviso: document.getElementById('detalleAviso'),
     accion: document.getElementById('detalleAccion'),
@@ -258,10 +254,6 @@
     detalle.autor.textContent = texto(tarjeta.dataset.autor, 'Autor por confirmar');
     detalle.categoria.textContent = texto(tarjeta.dataset.categoria, 'Sin categoría');
     detalle.descripcion.textContent = texto(tarjeta.dataset.descripcion, 'Sin descripción disponible.');
-    detalle.anio.textContent = texto(tarjeta.dataset.anio);
-    detalle.paginas.textContent = texto(tarjeta.dataset.paginas);
-    detalle.isbn.textContent = texto(tarjeta.dataset.isbn);
-    detalle.ubicacion.textContent = texto(tarjeta.dataset.ubicacion);
 
     const etiqueta = etiquetaVisible(tarjeta);
     detalle.estado.className = 'estado ' + etiqueta.clase;
