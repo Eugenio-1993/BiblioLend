@@ -256,7 +256,7 @@ $prestamos = listarPrestamosActivos($pdo);
                   <li><a href="Panel_bibliotecario.php">Inicio</a></li>
                   <li><a href="Catalogo.php">Catálogo</a></li>
                   <li><a href="Resenas.php">Reseñas</a></li>
-                  <li><a href="Contactanos.html">Nuestro equipo</a></li>
+                  <li><a href="Contactanos.php">Nuestro equipo</a></li>
                   <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>

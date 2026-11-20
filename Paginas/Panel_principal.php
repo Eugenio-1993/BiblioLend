@@ -72,7 +72,7 @@ $solicitudesPendientes = count(array_filter(
                 <a class="nav-link" href="Sobre_nosotros.php">Sobre Nosotros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Contactanos.html">Contáctanos</a>
+                <a class="nav-link" href="Contactanos.php">Contáctanos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Resenas.php">Reseñas</a>
@@ -325,7 +325,7 @@ $solicitudesPendientes = count(array_filter(
                   <li><a href="Panel_principal.php">Inicio</a></li>
                   <li><a href="Catalogo.php">Catálogo</a></li>
                   <li><a href="Resenas.php">Reseñas</a></li>
-                  <li><a href="Contactanos.html">Nuestro equipo</a></li>
+                  <li><a href="Contactanos.php">Nuestro equipo</a></li>
                   <li><a href="Sobre_nosotros.php">Sobre nosotros</a></li>
                 </ul>
             </nav>
